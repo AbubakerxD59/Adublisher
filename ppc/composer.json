@@ -1,0 +1,6 @@
+{
+    "require": {
+        "dirkgroenen/pinterest-api-php": "^0.2.14",
+        "aws/aws-sdk-php": "^3.319"
+    }
+}

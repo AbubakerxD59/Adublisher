@@ -1,0 +1,52 @@
+[08-Jul-2020 14:31:11 America/Toronto] PHP Fatal error:  Uncaught Swift_TransportException: Connection could not be established with host s9.wpxhosting.com [ #0] in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/swift/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php:269
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/swift/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php(62): Swift_Transport_StreamBuffer->establishSocketConnection()
+#1 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/swift/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/AbstractSmtpTransport.php(126): Swift_Transport_StreamBuffer->initialize(Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/swift/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mailer.php(67): Swift_Transport_AbstractSmtpTransport->start()
+#3 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/gateways/stripe/ipn.php(142): Swift_Mailer->send(Object(Swift_Message))
+#4 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/swift/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php on line 269
+[08-Jul-2020 15:47:33 America/Toronto] PHP Warning:  Use of undefined constant ENVIRONMENT - assumed 'ENVIRONMENT' (this will throw an Error in a future version of PHP) in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/mailer.class.php on line 46
+[10-Jul-2020 20:12:10 America/Toronto] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'adublisher.bulkuploads' doesn't exist in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php:317
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php(317): PDO->prepare('SELECT * FROM `...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/membership.class.php(152): Db->select('bulkuploads', Array, Array, 'ORDER BY id')
+#2 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/gateways/stripe/ipn.php(105): Membership::updateResources(2, 1946)
+#3 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php on line 317
+[10-Jul-2020 20:17:24 America/Toronto] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'adublisher.bulkuploads' doesn't exist in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php:317
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php(317): PDO->prepare('SELECT * FROM `...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/membership.class.php(152): Db->select('bulkuploads', Array, Array, 'ORDER BY id')
+#2 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/gateways/stripe/ipn.php(105): Membership::updateResources(3, 1946)
+#3 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php on line 317
+[10-Jul-2020 20:23:28 America/Toronto] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'adublisher.bulkuploads' doesn't exist in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php:317
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php(317): PDO->prepare('SELECT * FROM `...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/membership.class.php(152): Db->select('bulkuploads', Array, Array, 'ORDER BY id')
+#2 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/gateways/stripe/ipn.php(105): Membership::updateResources(2, 1946)
+#3 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php on line 317
+[10-Jul-2020 20:31:57 America/Toronto] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'adublisher.bulkuploads' doesn't exist in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php:317
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php(317): PDO->prepare('SELECT * FROM `...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/membership.class.php(152): Db->select('bulkuploads', Array, Array, 'ORDER BY id')
+#2 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/gateways/stripe/ipn.php(105): Membership::updateResources(3, 1946)
+#3 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php on line 317
+[10-Jul-2020 20:43:04 America/Toronto] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'adublisher.bulkuploads' doesn't exist in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php:317
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php(317): PDO->prepare('SELECT * FROM `...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/membership.class.php(152): Db->select('bulkuploads', Array, Array, 'ORDER BY id')
+#2 /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/gateways/stripe/ipn.php(105): Membership::updateResources(2, 1946)
+#3 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/adublisher/accounts/lib/db.class.php on line 317
+[30-May-2021 14:29:29 America/Toronto] PHP Fatal error:  Uncaught Swift_TransportException: Connection could not be established with host adublisher.com [ #0] in /home/admin/web/adublisher.com/public_html/accounts/lib/swift/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php:269
+Stack trace:
+#0 /home/admin/web/adublisher.com/public_html/accounts/lib/swift/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php(62): Swift_Transport_StreamBuffer->establishSocketConnection()
+#1 /home/admin/web/adublisher.com/public_html/accounts/lib/swift/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/AbstractSmtpTransport.php(126): Swift_Transport_StreamBuffer->initialize(Array)
+#2 /home/admin/web/adublisher.com/public_html/accounts/lib/swift/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mailer.php(67): Swift_Transport_AbstractSmtpTransport->start()
+#3 /home/admin/web/adublisher.com/public_html/accounts/gateways/stripe/ipn.php(147): Swift_Mailer->send(Object(Swift_Message))
+#4 {main}
+  thrown in /home/admin/web/adublisher.com/public_html/accounts/lib/swift/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php on line 269
