@@ -5,6 +5,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <!-- Favicon icon -->
+ <link rel="icon" type="image/x-icon" href="<?php echo ASSETURL.'images/logo-icon.png'; ?>">
 <!-- <link rel="shortcut icon" type="image/*" href="<?= LANDINGASSETS ?>images/fav/favicon.ico?v=1.2" />
     <link rel="apple-touch-icon" sizes="57x57" href="<?= LANDINGASSETS ?>images/fav/apple-icon-57x57.png?v=1.2">
     <link rel="apple-touch-icon" sizes="60x60" href="<?= LANDINGASSETS ?>images/fav/apple-icon-60x60.png?v=1.2">

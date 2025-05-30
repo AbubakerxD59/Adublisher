@@ -710,7 +710,7 @@ $route['delete_url'] = 'rest/publisher/Usersrest/delete_url';
 // get utm
 $route['url_tracks'] = 'rest/publisher/Usersrest/url_tracks';
 // edit utm
-$route['edit_url/(:any)'] = 'rest/publisher/Usersrest/edit_url/$1';
+$route['edit_url/(:any)'] = 'publisher/Home/edit_url/$1';
 // update utm
 $route['update_url/(:any)'] = 'rest/publisher/Usersrest/update_url/$1';
 // change utm status

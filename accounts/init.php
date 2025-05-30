@@ -40,7 +40,7 @@ $url = preg_replace("#/+#", "/", $_SERVER['HTTP_HOST'] . '/' . $dir);
 
 $site_url = Url::protocol() . "://" . $url;
 // APP CONSTANTS
-defined('SITEURL') or define('SITEURL', "::1" == $_SERVER['REMOTE_ADDR'] ? '' : 'https://www.adublisher.com/');
+defined('SITEURL') or define('SITEURL', "::1" == $_SERVER['REMOTE_ADDR'] ? 'http://localhost/adublisher/' : 'https://www.adublisher.com/');
 define("SITEURLMM", $site_url);
 define("TRIALDAYS", 7);
 define("UPLOADURL", SITEURLMM . '/uploads');

@@ -25,7 +25,7 @@ if ($membership_id == "0") {
                     <img src="<?php echo ASSETURL . 'images/avatar3.png'; ?>" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block"><?php echo get_auth_user()->username; ?></a>
+                    <a href="<?php echo SITEURL . 'personal-info'; ?>" class="d-block"><?php echo get_auth_user()->username; ?></a>
                 </div>
             </div>
             <!-- Sidebar Menu -->
@@ -44,12 +44,8 @@ if ($membership_id == "0") {
                     <li class="nav-item <?= REVIEW_REQUEST; ?>">
                         <a class="waves-effect waves-dark nav-link <?php echo url_segments("groups") ? "active" : ""; ?> " href="<?= SITEURL; ?>groups">
                             <i class="nav-icon mdi mdi-view-dashboard"></i>
-                            <p class="hide-menu">Groups
-                                <?= $inactive_lock ?>
+                            <p class="hide-menu">Group <?= $inactive_lock ?>
                                 <?php limit_check(GROUP_POSTING_ID, 1) ? '' : "<i class='fa fa-lock'></i>"; ?>
-                            </p>
-                            <i class="nav-icon mdi mdi-facebook-box"></i>
-                            <p class="hide-menu">Scheduling <?= $inactive_lock ?>
                             </p>
                         </a>
                     </li>
@@ -71,7 +67,7 @@ if ($membership_id == "0") {
                         </a>
                     </li>
                     <li class="nav-item <?= REVIEW_REQUEST; ?>">
-                        <a class="waves-effect waves-dark nav-link <?php echo url_segments("url") ? "active" : ""; ?> " href="<?= SITEURL; ?>url-tracking" aria-expanded="false">
+                        <a class="waves-effect waves-dark nav-link <?php echo url_segments("url-tracking") || url_segments("edit_url") ? "active" : ""; ?> " href="<?= SITEURL; ?>url-tracking" aria-expanded="false">
                             <i class="nav-icon mdi mdi-map-marker"></i>
                             <p class="hide-menu">Url Tracking
                                 <?= $inactive_lock ?>

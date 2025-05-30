@@ -1962,7 +1962,6 @@ class Usersrest extends REST_Controller
 			} else {
 				$this->response(['status' => true, 'message' => 'Attension! There are no New Products to fetch right now.', 'produplicate' => true], REST_Controller::HTTP_OK);
 			}
-
 		}
 
 		$if_rss_delete = $this->post('if_rss_delete'); // Means this function is for deleting rss_links
@@ -1996,7 +1995,6 @@ class Usersrest extends REST_Controller
 			} else {
 				$this->response(['status' => false, 'message' => 'There is nothing to delete'], REST_Controller::HTTP_BAD_REQUEST);
 			}
-
 		} else {
 			$encode_rss_links = json_encode($rss_link);
 
@@ -2046,10 +2044,9 @@ class Usersrest extends REST_Controller
 				} else {
 					$this->response(['status' => false, 'message' => $response['error']], REST_Controller::HTTP_BAD_REQUEST);
 				}
-			}// if condition
+			} // if condition
 			//-------------------------------------------------Site mapping End------------------------------------------------//
 		}
-
 	}
 	public function facebookpagecatption_POST()
 	{
@@ -2235,11 +2232,11 @@ class Usersrest extends REST_Controller
 													);
 													$opts = array(
 														'http' =>
-															array(
-																'method' => 'GET',
-																'header' => $headers,
-																'ignore_errors' => true
-															)
+														array(
+															'method' => 'GET',
+															'header' => $headers,
+															'ignore_errors' => true
+														)
 													);
 													$context = stream_context_create($opts);
 													$dom = new DOMDocument();
@@ -2435,7 +2432,7 @@ class Usersrest extends REST_Controller
 								$this->create_single_rss_feed($user->id, $page->id, $title, $src, $FinalUrl, $time_slots);
 							}
 						}
-					}// pages foreach
+					} // pages foreach
 				} // pkg info if
 			} // foreach
 			// Shopify Products Ending
@@ -3462,7 +3459,6 @@ class Usersrest extends REST_Controller
 		} else {
 			$this->response(['status' => false, 'data' => $result['error']], REST_Controller::HTTP_OK);
 		}
-
 	}
 
 	public function publish_now_pinterest_post_POST()
@@ -3485,7 +3481,6 @@ class Usersrest extends REST_Controller
 		$this->db->insert('publish_now', $data);
 		run_php_background('https://www.adublisher.com/publishRssNow');
 		$this->response(['status' => true, 'data' => 'Your post is being Published!'], REST_Controller::HTTP_OK);
-
 	}
 
 	public function shuffle_scheduled_posts_POST()
@@ -4046,9 +4041,7 @@ class Usersrest extends REST_Controller
 	{
 		$userID = App::Session()->get('userid');
 		$channel_id = trim($this->post('channel_id'));
-
 		$result = $this->Publisher_model->yt_channel_active($userID, $channel_id);
-
 		if ($result) {
 			$this->response(
 				[
@@ -5433,7 +5426,6 @@ class Usersrest extends REST_Controller
 			$response = $this->upload->data();
 		}
 		return $response;
-
 	}
 
 	public function get_channels_scheduled_GET()
@@ -6281,7 +6273,6 @@ class Usersrest extends REST_Controller
 			} else {
 				$this->response(['status' => false, 'message' => 'There is nothing to delete'], REST_Controller::HTTP_BAD_REQUEST);
 			}
-
 		} else {
 			$encode_rss_links = json_encode($rss_link);
 			//-----------------------------------------------Site mapping Start------------------------------------------------//
@@ -7434,7 +7425,6 @@ class Usersrest extends REST_Controller
 			} else {
 				$this->response(['status' => false, 'message' => 'There is nothing to delete'], REST_Controller::HTTP_BAD_REQUEST);
 			}
-
 		} else {
 			//-----------------------------------------------Site mapping Start------------------------------------------------//
 			$if_rss_fetch = $this->post('if_rss_fetch'); // Means this logic is for fetching sitemap 10 posts
@@ -8156,7 +8146,6 @@ class Usersrest extends REST_Controller
 			} else {
 				$this->response(['status' => false, 'message' => 'There is nothing to delete'], REST_Controller::HTTP_BAD_REQUEST);
 			}
-
 		} else {
 			// $group_row = $this->Publisher_model->retrieve_record('facebook_groups', $id);
 			/*$rss_link = array_filter($rss_link);
@@ -8286,11 +8275,11 @@ class Usersrest extends REST_Controller
 									);
 									$opts = array(
 										'http' =>
-											array(
-												'method' => 'GET',
-												'header' => $headers,
-												'ignore_errors' => true
-											)
+										array(
+											'method' => 'GET',
+											'header' => $headers,
+											'ignore_errors' => true
+										)
 									);
 									$context = stream_context_create($opts);
 									$dom = new DOMDocument();
@@ -8374,7 +8363,7 @@ class Usersrest extends REST_Controller
 				}
 
 				$this->response(['status' => true, 'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'], REST_Controller::HTTP_OK);
-			}// if condition
+			} // if condition
 			//-------------------------------------------------Site mapping End------------------------------------------------//
 			//---------------------------------------------Submit Process Starting---------------------------------------------//
 			if ($rss_link) {
@@ -8434,7 +8423,7 @@ class Usersrest extends REST_Controller
 
 								$this->response(['status' => false, 'message' => 'Your provided link has not valid RSS feed, Please fix and try again'], REST_Controller::HTTP_NOT_FOUND);
 							}
-						}//foreach
+						} //foreach
 						$lastIteration = true;
 						// Code to execute after the last iteration
 						if ($lastIteration) {
@@ -9449,29 +9438,6 @@ class Usersrest extends REST_Controller
 		$this->response($response, REST_Controller::HTTP_OK);
 	}
 
-	public function edit_url_GET($id = null)
-	{
-		if (!empty($id)) {
-			$sql = "select tracking_urls.*, utm_urls.url_id, utm_urls.type, utm_urls.value from tracking_urls join utm_urls on tracking_urls.id = utm_urls.url_id where tracking_urls.id=" . $id;
-			$query = $this->db->query($sql);
-			$utms = $query->result_array();
-			// user id
-			$userID = App::Session()->get('userid');
-			$roles_data['roles'] = $this->Publisher_model->get_active_roles($userID);
-			// render header
-			$this->load->view('templates/publisher/header', $roles_data);
-			// get user
-			$user = $this->Publisher_model->retrieve_record('user', $userID);
-			$data['user'] = $user;
-			// utms
-			$data['utms'] = $utms;
-
-			$this->load->view('layouts/publisher/url_tracking_edit', $data);
-		} else {
-			redirect(SITEURL . "url-tracking");
-		}
-	}
-
 	public function update_url_POST($id = null)
 	{
 		if (!empty($id)) {
@@ -9528,18 +9494,11 @@ class Usersrest extends REST_Controller
 		$url_track = $this->Publisher_model->retrieve_record('tracking_urls', $id);
 		if (!empty($url_track)) {
 			$status = $status == 'ON' ? 1 : 0;
-			$result = $this->Publisher_model->update_record('tracking_urls', array('status' => $status), $id);
-			if ($result == 1) {
-				$response = [
-					'status' => true,
-					'message' => 'Status updated Successfully!'
-				];
-			} else {
-				$response = [
-					'status' => false,
-					'message' => 'Unknown error, please try again!'
-				];
-			}
+			$this->Publisher_model->update_record('tracking_urls', array('status' => $status), $id);
+			$response = [
+				'status' => true,
+				'message' => 'Status updated Successfully!'
+			];
 		} else {
 			$response = [
 				'status' => false,
@@ -9590,13 +9549,15 @@ class Usersrest extends REST_Controller
 				$tracks[$utm->type] = ucwords(preg_replace('/_/', ' ', $utm->value));
 			}
 			$status = $url->status ? "checked" : "";
-			$status_div = '<div class="switch">';
-			$status_div .= '<label>OFF';
-			$status_div .= '<input type="checkbox" class="track_status" data-id="' . $url->id . '" ' . $status . '>';
-			$status_div .= '<span class="lever switch-col-light-blue"></span>';
-			$status_div .= 'ON</label>';
-			$status_div .= '</div>';
-			$tracks['status'] = $status_div;
+			$switch = '<label class="switch">
+							<input type="checkbox" class="track_status" data-id="' . $url->id . '" ' . $status . '>
+							<div class="slider"></div>
+							<div class="slider-card">
+								<div class="slider-card-face slider-card-front"></div>
+								<div class="slider-card-face slider-card-back"></div>
+							</div>
+						</label>';
+			$tracks['status'] = $switch;
 			$tracks['action'] = "";
 			$tracks['action'] .= "<a class='btn delete_url text-danger' data-id='" . $url->id . "'><i class='fa fa-trash'></i></a>";
 			$edit_url = SITEURL . 'edit_url/' . $url->id;
@@ -10379,7 +10340,6 @@ class Usersrest extends REST_Controller
 						$encode_updated_link = '';
 					} else {
 						$encode_updated_link = json_encode($decoded_rss_link);
-
 					}
 				}
 				$this->Publisher_model->update_record('tiktok', array('rss_links' => $encode_updated_link), $page);
@@ -10422,6 +10382,5 @@ class Usersrest extends REST_Controller
 				$this->response(['status' => false, 'message' => $response['error']], REST_Controller::HTTP_BAD_REQUEST);
 			}
 		}
-
 	}
 }

@@ -760,7 +760,6 @@ class Home extends CI_Controller
 	}
 	public function add_new_menu($id)
 	{
-
 		$this->Publisher_model->add_new_menu($id);
 	}
 
@@ -770,20 +769,10 @@ class Home extends CI_Controller
 
 		$this->sessioncheck();
 		$userID = App::Session()->get('userid');
-		$role_status = $this->Publisher_model->get_specific_role('Facebook Bulk Upload', $userID);
-		$roles_data['roles'] = $this->Publisher_model->get_active_roles($userID);
-		$this->load->view('templates/publisher/header', $roles_data);
-		$status = @$role_status->status;
-
-
-		if ($status == "" || $status == 'InActive') {
-			$this->load->view('layouts/publisher/access_denied');
-		} else {
-			$this->load->library('facebook');
-			$all_pages = $this->Publisher_model->get_allrecords('facebook_pages', array('user_id' => $userID, 'active_deactive_status' => 1));
-			$data['user_pages'] = $all_pages;
-			$this->load->view('layouts/publisher/facebookbulkupload', $data);
-		}
+		$this->load->library('facebook');
+		$all_pages = $this->Publisher_model->get_allrecords('facebook_pages', array('user_id' => $userID, 'active_deactive_status' => 1));
+		$data["data"]['user_pages'] = $all_pages;
+		$this->load->view('layouts/publisher/facebookbulkupload', $data);
 	}
 
 	public function schedule()
@@ -828,27 +817,25 @@ class Home extends CI_Controller
 		$this->sessioncheck();
 		$userID = App::Session()->get('userid');
 		$role_status = $this->Publisher_model->get_specific_role('Rss Feed', $userID);
-		$roles_data['roles'] = $this->Publisher_model->get_active_roles($userID);
-		$this->load->view('templates/publisher/header', $roles_data);
 		$status = @$role_status->status;
 		if ($status == "" || $status == 'InActive') {
 			$this->load->view('layouts/publisher/access_denied');
 		} else {
 			$this->load->library('facebook');
 			$all_pages = $this->Publisher_model->get_allrecords('facebook_pages', array('user_id' => $userID, 'active_deactive_status' => 1));
-			$data['user_pages'] = $all_pages;
+			$data["data"]['user_pages'] = $all_pages;
 			$pinterest_boards = $this->Publisher_model->get_allrecords('pinterest_boards', array('user_id' => $userID, 'active_deactive_status' => 1));
-			$data['pinterest_boards'] = $pinterest_boards;
-			$data['ig_accounts'] = $this->Publisher_model->get_allrecords('instagram_users', array('user_id' => $userID, 'active' => 'y', 'active_deactive_status' => 1));
-			$data['fb_groups'] = $this->Publisher_model->get_allrecords('facebook_groups', array('user_id' => $userID, 'active' => 'y', 'active_deactive_status' => 1));
-			$data['tiktoks'] = $this->Publisher_model->get_allrecords('tiktok', array('user_id' => $userID));
-			$data['pinterest_login_url'] = $this->Publisher_model->get_pinterest_login_url();
-			$data['instagram_login_url'] = $this->Publisher_model->get_instagram_login_url();
-			$data['user'] = $this->Publisher_model->get_allrecords('user', array('id' => $userID));
+			$data["data"]['pinterest_boards'] = $pinterest_boards;
+			$data["data"]['ig_accounts'] = $this->Publisher_model->get_allrecords('instagram_users', array('user_id' => $userID, 'active' => 'y', 'active_deactive_status' => 1));
+			$data["data"]['fb_groups'] = $this->Publisher_model->get_allrecords('facebook_groups', array('user_id' => $userID, 'active' => 'y', 'active_deactive_status' => 1));
+			$data["data"]['tiktoks'] = $this->Publisher_model->get_allrecords('tiktok', array('user_id' => $userID));
+			$data["data"]['pinterest_login_url'] = $this->Publisher_model->get_pinterest_login_url();
+			$data["data"]['instagram_login_url'] = $this->Publisher_model->get_instagram_login_url();
+			$data["data"]['user'] = $this->Publisher_model->get_allrecords('user', array('id' => $userID));
 			$this->db->select('used,quota')->from('package_feature_user_limit')->where('uid', $userID);
 			$query = $this->db->get()->result();
-			$data['package_feature_user_limit'] = $query[0]->used;
-			$data['package_feature_user_quota'] = $query[0]->quota;
+			$data["data"]['package_feature_user_limit'] = $query[0]->used;
+			$data["data"]['package_feature_user_quota'] = $query[0]->quota;
 
 			$this->load->view('layouts/publisher/automation', $data);
 		}
@@ -875,13 +862,7 @@ class Home extends CI_Controller
 
 	public function calendar()
 	{
-		// check user session
 		$this->sessioncheck();
-		// ger user id from session
-		$userID = App::Session()->get('userid');
-		$roles_data['roles'] = $this->Publisher_model->get_active_roles($userID);
-		$this->load->view('templates/publisher/header', $roles_data);
-		// load analytics view
 		$this->load->view('layouts/publisher/calendar');
 	}
 
@@ -906,12 +887,28 @@ class Home extends CI_Controller
 	{
 		$this->sessioncheck();
 		$userID = App::Session()->get('userid');
-		$roles_data['roles'] = $this->Publisher_model->get_active_roles($userID);
-		$this->load->view('templates/publisher/header', $roles_data);
-
 		$user = $this->Publisher_model->retrieve_record('user', $userID);
-		$data['user'] = $user;
+		$data["data"]['user'] = $user;
 		$this->load->view('layouts/publisher/url_tracking', $data);
+	}
+
+	public function edit_url($id = null)
+	{
+		if (!empty($id)) {
+			$sql = "select tracking_urls.*, utm_urls.url_id, utm_urls.type, utm_urls.value from tracking_urls join utm_urls on tracking_urls.id = utm_urls.url_id where tracking_urls.id=" . $id;
+			$query = $this->db->query($sql);
+			$utms = $query->result_array();
+			// user id
+			$userID = App::Session()->get('userid');
+			// get user
+			$user = $this->Publisher_model->retrieve_record('user', $userID);
+			$data["data"]['user'] = $user;
+			// utms
+			$data["data"]['utms'] = $utms;
+			$this->load->view('layouts/publisher/url_tracking_edit', $data);
+		} else {
+			redirect(SITEURL . "url-tracking");
+		}
 	}
 
 	public function instagrambulkupload()
@@ -1278,20 +1275,18 @@ class Home extends CI_Controller
 		$this->sessioncheck();
 		$userID = App::Session()->get('userid');
 		$role_status = $this->Publisher_model->get_specific_role('Update Profile', $userID);
-		$roles_data['roles'] = $this->Publisher_model->get_active_roles($userID);
-		$this->load->view('templates/publisher/header', $roles_data);
 		if ($role_status->status == 'InActive') {
 			$this->load->view('layouts/publisher/access_denied');
 		} else {
 			$userdata = $this->Publisher_model->get_allrecords('user', array('id' => $userID));
-			$data['fname'] = $userdata[0]->fname;
-			$data['lname'] = $userdata[0]->lname;
-			$data['ph'] = $userdata[0]->ph;
-			$data['email'] = $userdata[0]->email;
-			$data['username'] = $userdata[0]->username;
-			$data['fb_profile'] = $userdata[0]->fbprofile;
-			$data['fb_page'] = $userdata[0]->fbpage;
-			$data['gmt'] = $userdata[0]->gmt;
+			$data["data"]['fname'] = $userdata[0]->fname;
+			$data["data"]['lname'] = $userdata[0]->lname;
+			$data["data"]['ph'] = $userdata[0]->ph;
+			$data["data"]['email'] = $userdata[0]->email;
+			$data["data"]['username'] = $userdata[0]->username;
+			$data["data"]['fb_profile'] = $userdata[0]->fbprofile;
+			$data["data"]['fb_page'] = $userdata[0]->fbpage;
+			$data["data"]['gmt'] = $userdata[0]->gmt;
 			$this->load->view('layouts/publisher/editprofile', $data);
 		}
 	}
