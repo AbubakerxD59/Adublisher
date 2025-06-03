@@ -620,14 +620,12 @@ class Home extends CI_Controller
 	{
 		$this->sessioncheck();
 		$userID = App::Session()->get('userid');
-		$roles_data['roles'] = $this->Publisher_model->get_active_roles($userID);
-		$this->load->view('templates/publisher/header', $roles_data);
 		if (App::Session()->get('team_role') != 'owner') {
 			$this->load->view('layouts/publisher/access_denied');
 		} else {
 			$user = $this->Publisher_model->retrieve_record('user', $userID);
 			$data = $this->Publisher_model->changedomainowner($userID);
-			$data['user'] = $user;
+			$data["data"]['user'] = $user;
 			$this->load->view('layouts/publisher/affiliatetrafficsummary', $data);
 		}
 	}
@@ -695,9 +693,6 @@ class Home extends CI_Controller
 		$userID = App::Session()->get('userid');
 		$team_role = App::Session()->get('team_role');
 		$role_status = $this->Publisher_model->get_specific_role('Campaign', $userID);
-		$roles_data['roles'] = $this->Publisher_model->get_active_roles($userID);
-		$this->load->view('templates/publisher/header', $roles_data);
-
 		if ($role_status->status == 'InActive') {
 			$this->load->view('layouts/publisher/access_denied');
 		} else {
@@ -707,17 +702,17 @@ class Home extends CI_Controller
 			$request = $this->input->post_get('request');
 			$all_pages = $this->Publisher_model->get_allrecords('facebook_pages', array('user_id' => $userID));
 			$data = $this->get_campaigns($request, $cat, 'all', $keyword);
-			$data['pages'] = (array) $all_pages;
+			$data["data"]['pages'] = (array) $all_pages;
 			$all_boards = $this->Publisher_model->get_allrecords('pinterest_boards', array('user_id' => $userID));
-			$data['boards'] = (array) $all_boards;
+			$data["data"]['boards'] = (array) $all_boards;
 			$all_ig_users = $this->Publisher_model->get_allrecords('instagram_users', array('user_id' => $userID, 'active' => 'y'));
-			$data['ig_users'] = (array) $all_ig_users;
-			$data['fb_groups'] = $this->Publisher_model->get_allrecords('facebook_groups', array('user_id' => $userID, 'active' => 'y'));
-			$data['instagram_login_url'] = $this->Publisher_model->get_instagram_login_url();
-			$data['pinterest_login_url'] = $this->Publisher_model->get_pinterest_login_url();
-			$data['pages'] = $this->Publisher_model->get_allrecords('facebook_pages', array('user_id' => $userID, 'active_deactive_status' => 1));
-			$data['user_domains'] = $this->Publisher_model->get_allrecords('articledomains', array('user_id' => $userID, 'status' => 'active'));
-			$data['user'] = $this->Publisher_model->retrieve_record('user', $userID);
+			$data["data"]['ig_users'] = (array) $all_ig_users;
+			$data["data"]['fb_groups'] = $this->Publisher_model->get_allrecords('facebook_groups', array('user_id' => $userID, 'active' => 'y'));
+			$data["data"]['instagram_login_url'] = $this->Publisher_model->get_instagram_login_url();
+			$data["data"]['pinterest_login_url'] = $this->Publisher_model->get_pinterest_login_url();
+			$data["data"]['pages'] = $this->Publisher_model->get_allrecords('facebook_pages', array('user_id' => $userID, 'active_deactive_status' => 1));
+			$data["data"]['user_domains'] = $this->Publisher_model->get_allrecords('articledomains', array('user_id' => $userID, 'status' => 'active'));
+			$data["data"]['user'] = $this->Publisher_model->retrieve_record('user', $userID);
 			$team_where[0]['key'] = "team_id";
 			$team_where[0]['value'] = $team_id;
 			$users = $this->Publisher_model->list_records('user', 0, 1000, $team_where);
@@ -727,12 +722,12 @@ class Home extends CI_Controller
 				$query = $this->db->query("select ROUND(sum(earning) , 2) as earn from revenue where user_id = '" . $user->id . "'");
 				$users[$key]->totalearn = $earning + $query->row()->earn;
 			}
-			$data['users'] = $users;
+			$data["data"]['users'] = $users;
 			$domain_where[0]['key'] = "user_id";
 			$domain_where[0]['value'] = $userID;
-			$data['domains'] = $this->Publisher_model->list_records('domains', 0, 2000, $domain_where, 'id', 'DESC');
-			$data['redirect_links'] = $this->Publisher_model->changedomainowner($userID);
-			$data['analytic_domains'] = $this->Publisher_model->list_records('articledomains', 0, 2000, $domain_where, 'id', 'DESC');
+			$data["data"]['domains'] = $this->Publisher_model->list_records('domains', 0, 2000, $domain_where, 'id', 'DESC');
+			$data["data"]['redirect_links'] = $this->Publisher_model->changedomainowner($userID);
+			$data["data"]['analytic_domains'] = $this->Publisher_model->list_records('articledomains', 0, 2000, $domain_where, 'id', 'DESC');
 			if ($team_role == 'owner') {
 				$this->load->view('layouts/publisher/affiliatecampaigns', $data);
 			} else {
@@ -743,13 +738,11 @@ class Home extends CI_Controller
 	public function addcampaign()
 	{
 
-		$data['categories'] = $this->Publisher_model->list_records('link_cat', 0, 1000);
-		$this->load->view('templates/publisher/header');
+		$data["data"]['categories'] = $this->Publisher_model->list_records('link_cat', 0, 1000);
 		$this->load->view('layouts/publisher/affiliateaddcampaign', $data);
 	}
 	public function affiliateeditcampaign($id)
 	{
-
 		$where[0]['key'] = 'user_id';
 		$where[0]['value'] = App::Session()->get('userid');
 		$data['campaign'] = $this->Publisher_model->retrieve_record('link', $id, $where);
@@ -762,7 +755,6 @@ class Home extends CI_Controller
 	{
 		$this->Publisher_model->add_new_menu($id);
 	}
-
 
 	public function groups()
 	{

@@ -14,7 +14,7 @@ $(document).ready(function () {
     // Clipboard initialization
     var clipboard = new ClipboardJS('.click_to_copy');
     // Click to copy
-    $(document).on('click', '.click_to_copy', function () {
+    $('.click_to_copy').on('click', function () {
         alertbox('Success', 'Email Copied!', 'success');
     });
 });

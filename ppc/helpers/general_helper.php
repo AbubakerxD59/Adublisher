@@ -6022,3 +6022,17 @@ function url_segments($segment = null)
 		return false;
 	}
 }
+
+function format_utc($utc_offset)
+{
+	if ($utc_offset > 0) {
+		if ($utc_offset < 10) {
+			$utc_offset = "UTC+0" . $utc_offset;
+		} else {
+			$utc_offset = "UTC+" . $utc_offset;
+		}
+	} else {
+		$utc_offset = "UTC-" . $utc_offset;
+	}
+	return $utc_offset;
+}

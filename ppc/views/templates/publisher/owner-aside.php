@@ -85,7 +85,7 @@ if ($membership_id == "0") {
                     <li class="nav-devider mb-2 mt-1"></li>
                     <li class="nav-header">EVERGREEN</li>
                     <li class="nav-item">
-                        <a class="waves-effect waves-dark nav-link <?php echo url_segments("recycle") ? "active" : ""; ?> " href="<?= SITEURL; ?>recycle" aria-expanded="false">
+                        <a class="waves-effect waves-dark nav-link <?php echo url_segments("recycle") || url_segments('add-campaign') ? "active" : ""; ?> " href="<?= SITEURL; ?>recycle" aria-expanded="false">
                             <i class="nav-icon mdi mdi-bullhorn"></i>
                             <p class="hide-menu">Recycle <?= $inactive_lock ?>
                             </p>

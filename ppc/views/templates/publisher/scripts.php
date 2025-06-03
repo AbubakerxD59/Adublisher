@@ -54,8 +54,6 @@
 <script src="<?php echo ASSETURL . 'plugins/select2/js/select2.min.js'; ?>"></script>
 <!-- slimscrollbar scrollbar JavaScript -->
 <script src="<?php echo ASSETURL . 'js/jquery.slimscroll.js'; ?>"></script>
-<!-- custom JS -->
-<script src="<?php echo ASSETURL . 'js/script.js'; ?>"></script>
 <!-- DataTables -->
 <script type="text/javascript" src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
 <!-- Calendar -->
@@ -64,6 +62,8 @@
 <script type="text/javascript" src="https://adminlte.io/themes/v3/plugins/chart.js/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+<!-- custom JS -->
+<script src="<?php echo ASSETURL . 'js/script.js'; ?>"></script>
 <?php if ($this->uri->segment(1) == "dashboard") { ?>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 <?php } ?>

@@ -1255,7 +1255,7 @@ class Publisher_model extends CI_Model
 		$query = "SELECT * from country where name= '$value' ";
 		$domain_query = $this->db->query($query);
 		$row = $domain_query->row();
-		return $row->rate;
+		return $row ? $row->rate : 0;
 	}
 	function get_avg_rates()
 	{
