@@ -15,8 +15,6 @@ define("BASEPATHMM", $BASEPATHMM);
 //sys_set_temp_dir("/home/admin/tmp");
 putenv('TMPDIR=/home/admin/tmp');
 
-
-
 $configFile = BASEPATHMM . "lib/config.ini.php";
 if (file_exists($configFile)) {
     require_once($configFile);
@@ -24,14 +22,21 @@ if (file_exists($configFile)) {
     header("Location: setup/");
     exit;
 }
+echo '1';
 
 require_once(BASEPATHMM . "bootstrap.php");
+echo '3';
 Bootstrap::init();
+echo '4';
 wError::run();
+echo '5';
 Filter::run();
+echo '6';
 Debug::run();
+echo '7';
 new Lang();
-
+echo '8';
+die();
 define("ADMIN", BASEPATHMM . "admin/");
 define("FRONT", BASEPATHMM . "front/");
 
