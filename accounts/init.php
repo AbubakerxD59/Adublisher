@@ -34,9 +34,9 @@ Filter::run();
 echo '6';
 Debug::run();
 echo '7';
+die();
 new Lang();
 echo '8';
-die();
 define("ADMIN", BASEPATHMM . "admin/");
 define("FRONT", BASEPATHMM . "front/");
 
