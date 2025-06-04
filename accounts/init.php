@@ -22,21 +22,13 @@ if (file_exists($configFile)) {
     header("Location: setup/");
     exit;
 }
-echo '1';
 
 require_once(BASEPATHMM . "bootstrap.php");
-echo '3';
 Bootstrap::init();
-echo '4';
 wError::run();
-echo '5';
 Filter::run();
-echo '6';
 Debug::run();
-echo '7';
-die();
 new Lang();
-echo '8';
 define("ADMIN", BASEPATHMM . "admin/");
 define("FRONT", BASEPATHMM . "front/");
 
