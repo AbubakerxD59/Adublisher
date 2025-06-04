@@ -28,7 +28,10 @@ Bootstrap::init();
 wError::run();
 Filter::run();
 Debug::run();
+echo '1';
 new Lang();
+echo '2';
+die();
 define("ADMIN", BASEPATHMM . "admin/");
 define("FRONT", BASEPATHMM . "front/");
 
