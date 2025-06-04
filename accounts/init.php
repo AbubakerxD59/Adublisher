@@ -29,12 +29,9 @@ wError::run();
 Filter::run();
 Debug::run();
 echo '1';
-new Lang();
-echo '2';
-die();
+// new Lang();
 define("ADMIN", BASEPATHMM . "admin/");
 define("FRONT", BASEPATHMM . "front/");
-
 $dir = '';
 $url = preg_replace("#/+#", "/", $_SERVER['HTTP_HOST'] . '/' . $dir);
 
