@@ -56,9 +56,7 @@ define("_WOJO", true);
  */
 // define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
 define('ENVIRONMENT', 'development');
-echo '1';	
 require_once('accounts/init.php');
-die();
 
 /*
  *---------------------------------------------------------------
