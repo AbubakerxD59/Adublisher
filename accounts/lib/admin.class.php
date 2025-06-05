@@ -28,7 +28,8 @@ class Admin
 		ini_set('display_errors', 1);
         if (App::Auth()->email == "writer@mailplux.com") {
             
-            $url = "https://www.adublisher.com/accounts/admin/blogs";
+            $url = "http://13.232.32.149/accounts/admin/blogs";
+            // $url = "https://www.adublisher.com/accounts/admin/blogs";
             header("Location: ".$url);
         }
         $tpl = App::View(BASEPATHMM . 'view/');
