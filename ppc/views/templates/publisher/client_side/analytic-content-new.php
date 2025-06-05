@@ -18,7 +18,7 @@
          </div>
          <div class="col-12">
              <div class="container img-container-center">
-                 <img src="<?php echo ASSETURL . 'images/Analytics-Illustration.PNG'; ?>" class="h-100 w-100">
+                 <img src="<?php echo ASSETURL . 'images/Analytics-Illustration.png'; ?>" class="h-100 w-100">
              </div>
          </div>
      </div>
