@@ -1,5 +1,5 @@
 <?php
-
+echo '2';
 /**
  * Init
  *
@@ -11,6 +11,8 @@
 if (!defined("_WOJO"))
     die('Direct access to this location is not allowed.');
 $BASEPATHMM = str_replace("init.php", "", realpath(__FILE__));
+echo '<pre>';
+print_r($BASEPATHMM);
 define("BASEPATHMM", $BASEPATHMM);
 //sys_set_temp_dir("/home/admin/tmp");
 putenv('TMPDIR=/home/admin/tmp');
@@ -22,17 +24,17 @@ if (file_exists($configFile)) {
     header("Location: setup/");
     exit;
 }
-
+echo ' 02 ';
 require_once(BASEPATHMM . "bootstrap.php");
 Bootstrap::init();
 wError::run();
 Filter::run();
 Debug::run();
-echo '2';
+echo ' 2 ';
 new Lang();
-echo '3';
+echo ' 3 ';
 define("ADMIN", BASEPATHMM . "admin/");
-echo '4';
+echo ' 4 ';
 define("FRONT", BASEPATHMM . "front/");
 $dir = '';
 $url = preg_replace("#/+#", "/", $_SERVER['HTTP_HOST'] . '/' . $dir);
