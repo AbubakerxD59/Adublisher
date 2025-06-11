@@ -2,18 +2,15 @@
      <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
+    # Disable Apache's default directory file searching
+    DirectoryIndex disabled
     RewriteEngine On
-    # Handle Authorization Header
-    RewriteCond %{HTTP:Authorization} .
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [L,R=301]
-    # Send Requests To Front Controller...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+    # Redirect non-www to www
     RewriteCond %{HTTP_HOST} ^adublisher\.com$ [NC]
     RewriteRule ^(.*)$ https://www.adublisher.com/$1 [L,R=301]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    # And if the request is not for a real directory
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Then route it through index.php
+    RewriteRule ^(.*)$ index.php/$1 [L]
 </IfModule>
