@@ -53,7 +53,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // short links
 $route["link/(:any)/(:any)"] = "rest/publisher/Usersrest/url_redirect/$1/$2";
 // index page
-$route['default_controller'] = 'publisher/Home';
+$route['default_controller'] = 'Welcome';
 // new pages
 $route['calendar-view'] = 'publisher/Home/calendar_view';
 $route['analytic'] = 'publisher/Home/analytic_view';
