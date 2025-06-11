@@ -16,4 +16,5 @@
     RewriteRule ^(.*)$ index.php/$1 [L]
     RewriteCond %{HTTP_HOST} ^adublisher\.com$ [NC]
     RewriteRule ^(.*)$ https://www.adublisher.com/$1 [L,R=301]
+    
 </IfModule>
