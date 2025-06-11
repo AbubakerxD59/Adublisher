@@ -28,7 +28,7 @@ Bootstrap::init();
 wError::run();
 Filter::run();
 Debug::run();
-new Lang();
+// new Lang();
 define("ADMIN", BASEPATHMM . "admin/");
 define("FRONT", BASEPATHMM . "front/");
 $dir = '';
