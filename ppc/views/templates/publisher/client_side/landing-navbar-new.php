@@ -133,12 +133,12 @@
                 } else {
                 ?>
                     <button class="btn nav-btn btn-transparent align-items-center" href="#features" type="button">
-                        <a href="<?php echo SITEURL . 'login'; ?>">
+                        <a href="<?php echo SITEURL . '/login'; ?>">
                             <i class='bx bx-log-in-circle'></i> Login
                         </a>
                     </button>
                     <button class="btn nav-btn btn-colored" type="button">
-                        <a href="<?php echo SITEURL . 'register'; ?>">
+                        <a href="<?php echo SITEURL . '/register'; ?>">
                             Sign up
                         </a>
                     </button>

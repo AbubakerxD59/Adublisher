@@ -22,9 +22,9 @@
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="blog__banner__thumbnail">
-                    <a href="<?php echo SITEURL . 'blog/' . $latest_blog[0]->slug; ?>">
+                    <a href="<?php echo SITEURL . 'blog/' . @$latest_blog[0]->slug; ?>">
                         <img class="img-fluid w-100 h-100" alt="Thumbail"
-                            src="<?php echo SITEURL . '/assets/blogs/' . $latest_blog[0]->thumbnail; ?>">
+                            src="<?php echo SITEURL . '/assets/blogs/' . @$latest_blog[0]->thumbnail; ?>">
                     </a>
                 </div>
             </div>
@@ -45,12 +45,12 @@
                     </div>
                     <div>
                         <h1 class="p-0 my-4 mx-0">
-                            <a href="<?php echo SITEURL . 'blog/' . $latest_blog[0]->slug ?>">
-                                <?php echo $latest_blog[0]->title; ?>
+                            <a href="<?php echo SITEURL . 'blog/' . @$latest_blog[0]->slug ?>">
+                                <?php echo @$latest_blog[0]->title; ?>
                             </a>
                         </h1>
                         <p>
-                            <?php echo $latest_blog[0]->short_description; ?>
+                            <?php echo @$latest_blog[0]->short_description; ?>
                         </p>
                     </div>
                     <div class="blog__author">
@@ -61,7 +61,7 @@
                             <p class="author__banner__name blog-bnr">Drm Yii</p>
                         </div>
                         <span class="date">
-                            <?php echo date('F d, Y', strtotime($latest_blog[0]->published_at)); ?>
+                            <?php echo date('F d, Y', strtotime(@$latest_blog[0]->published_at)); ?>
                         </span>
                     </div>
                 </div>
