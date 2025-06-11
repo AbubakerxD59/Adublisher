@@ -1398,3 +1398,646 @@ DEBUG - 2025-06-11 16:56:12 --> Global POST, GET and COOKIE data sanitized
 INFO - 2025-06-11 16:56:12 --> Input Class Initialized
 INFO - 2025-06-11 16:56:12 --> Language Class Initialized
 ERROR - 2025-06-11 16:56:12 --> 404 Page Not Found: Assets/css
+INFO - 2025-06-11 18:06:45 --> Config Class Initialized
+INFO - 2025-06-11 18:06:45 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:06:45 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:06:45 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:06:45 --> URI Class Initialized
+DEBUG - 2025-06-11 18:06:45 --> No URI present. Default controller set.
+INFO - 2025-06-11 18:06:45 --> Router Class Initialized
+INFO - 2025-06-11 18:06:45 --> Output Class Initialized
+INFO - 2025-06-11 18:06:45 --> Security Class Initialized
+DEBUG - 2025-06-11 18:06:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:06:45 --> Input Class Initialized
+INFO - 2025-06-11 18:06:45 --> Language Class Initialized
+INFO - 2025-06-11 18:06:45 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:06:45 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:06:45 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:06:45 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:06:45 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:06:45 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:06:45 --> Email Class Initialized
+INFO - 2025-06-11 18:06:45 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:06:45 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:06:46 --> Controller Class Initialized
+INFO - 2025-06-11 18:06:46 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/seo-new.php
+INFO - 2025-06-11 18:06:46 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-header-new.php
+INFO - 2025-06-11 18:06:46 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-navbar-new.php
+INFO - 2025-06-11 18:06:46 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-content-new.php
+INFO - 2025-06-11 18:06:46 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/external_head_scripts.php
+INFO - 2025-06-11 18:06:46 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-footer-new.php
+INFO - 2025-06-11 18:06:46 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/landing-new.php
+INFO - 2025-06-11 18:06:46 --> Final output sent to browser
+DEBUG - 2025-06-11 18:06:46 --> Total execution time: 0.3677
+INFO - 2025-06-11 18:06:46 --> Config Class Initialized
+INFO - 2025-06-11 18:06:46 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:06:46 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:06:46 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:06:46 --> URI Class Initialized
+INFO - 2025-06-11 18:06:46 --> Router Class Initialized
+INFO - 2025-06-11 18:06:46 --> Config Class Initialized
+INFO - 2025-06-11 18:06:46 --> Hooks Class Initialized
+INFO - 2025-06-11 18:06:46 --> Output Class Initialized
+INFO - 2025-06-11 18:06:46 --> Security Class Initialized
+DEBUG - 2025-06-11 18:06:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:06:46 --> Input Class Initialized
+INFO - 2025-06-11 18:06:46 --> Language Class Initialized
+ERROR - 2025-06-11 18:06:46 --> 404 Page Not Found: Assets/css
+DEBUG - 2025-06-11 18:06:46 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:06:46 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:06:46 --> URI Class Initialized
+INFO - 2025-06-11 18:06:46 --> Router Class Initialized
+INFO - 2025-06-11 18:06:46 --> Output Class Initialized
+INFO - 2025-06-11 18:06:46 --> Config Class Initialized
+INFO - 2025-06-11 18:06:46 --> Hooks Class Initialized
+INFO - 2025-06-11 18:06:46 --> Security Class Initialized
+DEBUG - 2025-06-11 18:06:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:06:46 --> Input Class Initialized
+INFO - 2025-06-11 18:06:46 --> Language Class Initialized
+DEBUG - 2025-06-11 18:06:46 --> UTF-8 Support Enabled
+ERROR - 2025-06-11 18:06:46 --> 404 Page Not Found: Assets/css
+INFO - 2025-06-11 18:06:46 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:06:46 --> URI Class Initialized
+INFO - 2025-06-11 18:06:46 --> Router Class Initialized
+INFO - 2025-06-11 18:06:46 --> Output Class Initialized
+INFO - 2025-06-11 18:06:46 --> Security Class Initialized
+DEBUG - 2025-06-11 18:06:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:06:46 --> Input Class Initialized
+INFO - 2025-06-11 18:06:46 --> Language Class Initialized
+ERROR - 2025-06-11 18:06:46 --> 404 Page Not Found: Assets/css
+INFO - 2025-06-11 18:18:26 --> Config Class Initialized
+INFO - 2025-06-11 18:18:26 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:18:26 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:26 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:18:26 --> URI Class Initialized
+DEBUG - 2025-06-11 18:18:26 --> No URI present. Default controller set.
+INFO - 2025-06-11 18:18:26 --> Router Class Initialized
+INFO - 2025-06-11 18:18:26 --> Output Class Initialized
+INFO - 2025-06-11 18:18:26 --> Security Class Initialized
+DEBUG - 2025-06-11 18:18:26 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:26 --> Input Class Initialized
+INFO - 2025-06-11 18:18:26 --> Language Class Initialized
+INFO - 2025-06-11 18:18:26 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:18:26 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:18:26 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:18:26 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:18:26 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:18:26 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:18:26 --> Email Class Initialized
+INFO - 2025-06-11 18:18:26 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:18:26 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:18:27 --> Controller Class Initialized
+INFO - 2025-06-11 18:18:27 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/seo-new.php
+INFO - 2025-06-11 18:18:27 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-header-new.php
+INFO - 2025-06-11 18:18:27 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-navbar-new.php
+INFO - 2025-06-11 18:18:27 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-content-new.php
+INFO - 2025-06-11 18:18:27 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/external_head_scripts.php
+INFO - 2025-06-11 18:18:27 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-footer-new.php
+INFO - 2025-06-11 18:18:27 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/landing-new.php
+INFO - 2025-06-11 18:18:27 --> Final output sent to browser
+DEBUG - 2025-06-11 18:18:27 --> Total execution time: 0.3462
+INFO - 2025-06-11 18:18:27 --> Config Class Initialized
+INFO - 2025-06-11 18:18:27 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:18:27 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:27 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:18:27 --> URI Class Initialized
+INFO - 2025-06-11 18:18:27 --> Config Class Initialized
+INFO - 2025-06-11 18:18:27 --> Router Class Initialized
+INFO - 2025-06-11 18:18:27 --> Hooks Class Initialized
+INFO - 2025-06-11 18:18:27 --> Output Class Initialized
+DEBUG - 2025-06-11 18:18:27 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:27 --> Security Class Initialized
+INFO - 2025-06-11 18:18:27 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:18:27 --> URI Class Initialized
+DEBUG - 2025-06-11 18:18:27 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:27 --> Input Class Initialized
+INFO - 2025-06-11 18:18:27 --> Language Class Initialized
+INFO - 2025-06-11 18:18:27 --> Config Class Initialized
+INFO - 2025-06-11 18:18:27 --> Hooks Class Initialized
+ERROR - 2025-06-11 18:18:27 --> 404 Page Not Found: Assets/css
+INFO - 2025-06-11 18:18:27 --> Router Class Initialized
+DEBUG - 2025-06-11 18:18:27 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:27 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:18:27 --> Output Class Initialized
+INFO - 2025-06-11 18:18:27 --> URI Class Initialized
+INFO - 2025-06-11 18:18:27 --> Router Class Initialized
+INFO - 2025-06-11 18:18:27 --> Output Class Initialized
+INFO - 2025-06-11 18:18:27 --> Security Class Initialized
+DEBUG - 2025-06-11 18:18:27 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:27 --> Input Class Initialized
+INFO - 2025-06-11 18:18:27 --> Language Class Initialized
+ERROR - 2025-06-11 18:18:27 --> 404 Page Not Found: Assets/css
+INFO - 2025-06-11 18:18:27 --> Security Class Initialized
+DEBUG - 2025-06-11 18:18:27 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:27 --> Input Class Initialized
+INFO - 2025-06-11 18:18:27 --> Language Class Initialized
+ERROR - 2025-06-11 18:18:27 --> 404 Page Not Found: Assets/css
+INFO - 2025-06-11 18:18:31 --> Config Class Initialized
+INFO - 2025-06-11 18:18:31 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:18:31 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:31 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:18:31 --> URI Class Initialized
+INFO - 2025-06-11 18:18:31 --> Router Class Initialized
+INFO - 2025-06-11 18:18:31 --> Output Class Initialized
+INFO - 2025-06-11 18:18:31 --> Security Class Initialized
+DEBUG - 2025-06-11 18:18:31 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:31 --> Input Class Initialized
+INFO - 2025-06-11 18:18:31 --> Language Class Initialized
+INFO - 2025-06-11 18:18:31 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:18:31 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:18:31 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:18:31 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:18:31 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:18:31 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:18:31 --> Email Class Initialized
+INFO - 2025-06-11 18:18:31 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:18:31 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:18:31 --> Controller Class Initialized
+INFO - 2025-06-11 18:18:31 --> Model "Publisher_model" initialized
+INFO - 2025-06-11 18:18:31 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/login_view.php
+INFO - 2025-06-11 18:18:31 --> Final output sent to browser
+DEBUG - 2025-06-11 18:18:31 --> Total execution time: 0.3535
+INFO - 2025-06-11 18:18:33 --> Config Class Initialized
+INFO - 2025-06-11 18:18:33 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:18:33 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:33 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:18:33 --> URI Class Initialized
+DEBUG - 2025-06-11 18:18:33 --> No URI present. Default controller set.
+INFO - 2025-06-11 18:18:33 --> Router Class Initialized
+INFO - 2025-06-11 18:18:33 --> Output Class Initialized
+INFO - 2025-06-11 18:18:33 --> Security Class Initialized
+DEBUG - 2025-06-11 18:18:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:33 --> Input Class Initialized
+INFO - 2025-06-11 18:18:33 --> Language Class Initialized
+INFO - 2025-06-11 18:18:33 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:18:33 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:18:33 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:18:33 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:18:33 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:18:33 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:18:33 --> Email Class Initialized
+INFO - 2025-06-11 18:18:33 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:18:33 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:18:34 --> Controller Class Initialized
+INFO - 2025-06-11 18:18:34 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/seo-new.php
+INFO - 2025-06-11 18:18:34 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-header-new.php
+INFO - 2025-06-11 18:18:34 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-navbar-new.php
+INFO - 2025-06-11 18:18:34 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-content-new.php
+INFO - 2025-06-11 18:18:34 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/external_head_scripts.php
+INFO - 2025-06-11 18:18:34 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-footer-new.php
+INFO - 2025-06-11 18:18:34 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/landing-new.php
+INFO - 2025-06-11 18:18:34 --> Final output sent to browser
+DEBUG - 2025-06-11 18:18:34 --> Total execution time: 0.3647
+INFO - 2025-06-11 18:18:38 --> Config Class Initialized
+INFO - 2025-06-11 18:18:38 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:18:38 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:38 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:18:38 --> URI Class Initialized
+DEBUG - 2025-06-11 18:18:38 --> No URI present. Default controller set.
+INFO - 2025-06-11 18:18:38 --> Router Class Initialized
+INFO - 2025-06-11 18:18:38 --> Output Class Initialized
+INFO - 2025-06-11 18:18:38 --> Security Class Initialized
+DEBUG - 2025-06-11 18:18:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:38 --> Input Class Initialized
+INFO - 2025-06-11 18:18:38 --> Language Class Initialized
+INFO - 2025-06-11 18:18:38 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:18:38 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:18:38 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:18:38 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:18:38 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:18:38 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:18:38 --> Email Class Initialized
+INFO - 2025-06-11 18:18:38 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:18:38 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:18:38 --> Controller Class Initialized
+INFO - 2025-06-11 18:18:38 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/seo-new.php
+INFO - 2025-06-11 18:18:38 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-header-new.php
+INFO - 2025-06-11 18:18:38 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-navbar-new.php
+INFO - 2025-06-11 18:18:38 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-content-new.php
+INFO - 2025-06-11 18:18:38 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/external_head_scripts.php
+INFO - 2025-06-11 18:18:38 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-footer-new.php
+INFO - 2025-06-11 18:18:38 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/landing-new.php
+INFO - 2025-06-11 18:18:38 --> Final output sent to browser
+DEBUG - 2025-06-11 18:18:38 --> Total execution time: 0.3549
+INFO - 2025-06-11 18:18:39 --> Config Class Initialized
+INFO - 2025-06-11 18:18:39 --> Hooks Class Initialized
+INFO - 2025-06-11 18:18:39 --> Config Class Initialized
+INFO - 2025-06-11 18:18:39 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:18:39 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:39 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:18:39 --> URI Class Initialized
+INFO - 2025-06-11 18:18:39 --> Router Class Initialized
+INFO - 2025-06-11 18:18:39 --> Output Class Initialized
+INFO - 2025-06-11 18:18:39 --> Security Class Initialized
+DEBUG - 2025-06-11 18:18:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:39 --> Input Class Initialized
+INFO - 2025-06-11 18:18:39 --> Language Class Initialized
+ERROR - 2025-06-11 18:18:39 --> 404 Page Not Found: Assets/css
+DEBUG - 2025-06-11 18:18:39 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:39 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:18:39 --> URI Class Initialized
+INFO - 2025-06-11 18:18:39 --> Router Class Initialized
+INFO - 2025-06-11 18:18:39 --> Output Class Initialized
+INFO - 2025-06-11 18:18:39 --> Security Class Initialized
+INFO - 2025-06-11 18:18:39 --> Config Class Initialized
+INFO - 2025-06-11 18:18:39 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:18:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:39 --> Input Class Initialized
+INFO - 2025-06-11 18:18:39 --> Language Class Initialized
+DEBUG - 2025-06-11 18:18:39 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:39 --> Utf8 Class Initialized
+ERROR - 2025-06-11 18:18:39 --> 404 Page Not Found: Assets/css
+INFO - 2025-06-11 18:18:39 --> URI Class Initialized
+INFO - 2025-06-11 18:18:39 --> Router Class Initialized
+INFO - 2025-06-11 18:18:39 --> Output Class Initialized
+INFO - 2025-06-11 18:18:39 --> Security Class Initialized
+DEBUG - 2025-06-11 18:18:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:39 --> Input Class Initialized
+INFO - 2025-06-11 18:18:39 --> Language Class Initialized
+ERROR - 2025-06-11 18:18:39 --> 404 Page Not Found: Assets/css
+INFO - 2025-06-11 18:18:58 --> Config Class Initialized
+INFO - 2025-06-11 18:18:58 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:18:58 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:58 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:18:58 --> URI Class Initialized
+INFO - 2025-06-11 18:18:58 --> Router Class Initialized
+INFO - 2025-06-11 18:18:58 --> Output Class Initialized
+INFO - 2025-06-11 18:18:58 --> Security Class Initialized
+DEBUG - 2025-06-11 18:18:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:58 --> Input Class Initialized
+INFO - 2025-06-11 18:18:58 --> Language Class Initialized
+INFO - 2025-06-11 18:18:58 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:18:58 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:18:58 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:18:58 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:18:58 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:18:58 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:18:58 --> Email Class Initialized
+INFO - 2025-06-11 18:18:58 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:18:58 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:18:58 --> Controller Class Initialized
+INFO - 2025-06-11 18:18:58 --> Model "Publisher_model" initialized
+INFO - 2025-06-11 18:18:58 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/login_view.php
+INFO - 2025-06-11 18:18:58 --> Final output sent to browser
+DEBUG - 2025-06-11 18:18:58 --> Total execution time: 0.3520
+INFO - 2025-06-11 18:18:59 --> Config Class Initialized
+INFO - 2025-06-11 18:18:59 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:18:59 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:18:59 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:18:59 --> URI Class Initialized
+DEBUG - 2025-06-11 18:18:59 --> No URI present. Default controller set.
+INFO - 2025-06-11 18:18:59 --> Router Class Initialized
+INFO - 2025-06-11 18:18:59 --> Output Class Initialized
+INFO - 2025-06-11 18:18:59 --> Security Class Initialized
+DEBUG - 2025-06-11 18:18:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:18:59 --> Input Class Initialized
+INFO - 2025-06-11 18:18:59 --> Language Class Initialized
+INFO - 2025-06-11 18:18:59 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:18:59 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:18:59 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:18:59 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:18:59 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:18:59 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:18:59 --> Email Class Initialized
+INFO - 2025-06-11 18:18:59 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:18:59 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:19:00 --> Controller Class Initialized
+INFO - 2025-06-11 18:19:00 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/seo-new.php
+INFO - 2025-06-11 18:19:00 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-header-new.php
+INFO - 2025-06-11 18:19:00 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-navbar-new.php
+INFO - 2025-06-11 18:19:00 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-content-new.php
+INFO - 2025-06-11 18:19:00 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/external_head_scripts.php
+INFO - 2025-06-11 18:19:00 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-footer-new.php
+INFO - 2025-06-11 18:19:00 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/landing-new.php
+INFO - 2025-06-11 18:19:00 --> Final output sent to browser
+DEBUG - 2025-06-11 18:19:00 --> Total execution time: 0.3487
+INFO - 2025-06-11 18:19:02 --> Config Class Initialized
+INFO - 2025-06-11 18:19:02 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:02 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:02 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:02 --> URI Class Initialized
+INFO - 2025-06-11 18:19:02 --> Router Class Initialized
+INFO - 2025-06-11 18:19:02 --> Output Class Initialized
+INFO - 2025-06-11 18:19:02 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:02 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:02 --> Input Class Initialized
+INFO - 2025-06-11 18:19:02 --> Language Class Initialized
+INFO - 2025-06-11 18:19:02 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:19:02 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:19:02 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:19:02 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:19:02 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:19:02 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:19:02 --> Email Class Initialized
+INFO - 2025-06-11 18:19:02 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:19:02 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:19:03 --> Controller Class Initialized
+INFO - 2025-06-11 18:19:03 --> Model "Publisher_model" initialized
+INFO - 2025-06-11 18:19:03 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/signup_view.php
+INFO - 2025-06-11 18:19:03 --> Final output sent to browser
+DEBUG - 2025-06-11 18:19:03 --> Total execution time: 0.3480
+INFO - 2025-06-11 18:19:03 --> Config Class Initialized
+INFO - 2025-06-11 18:19:03 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:03 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:03 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:03 --> URI Class Initialized
+DEBUG - 2025-06-11 18:19:03 --> No URI present. Default controller set.
+INFO - 2025-06-11 18:19:03 --> Router Class Initialized
+INFO - 2025-06-11 18:19:03 --> Output Class Initialized
+INFO - 2025-06-11 18:19:03 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:03 --> Input Class Initialized
+INFO - 2025-06-11 18:19:03 --> Language Class Initialized
+INFO - 2025-06-11 18:19:03 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:19:03 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:19:03 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:19:03 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:19:03 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:19:03 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:19:03 --> Email Class Initialized
+INFO - 2025-06-11 18:19:03 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:19:03 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:19:04 --> Controller Class Initialized
+INFO - 2025-06-11 18:19:04 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/seo-new.php
+INFO - 2025-06-11 18:19:04 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-header-new.php
+INFO - 2025-06-11 18:19:04 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-navbar-new.php
+INFO - 2025-06-11 18:19:04 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-content-new.php
+INFO - 2025-06-11 18:19:04 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/external_head_scripts.php
+INFO - 2025-06-11 18:19:04 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-footer-new.php
+INFO - 2025-06-11 18:19:04 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/landing-new.php
+INFO - 2025-06-11 18:19:04 --> Final output sent to browser
+DEBUG - 2025-06-11 18:19:04 --> Total execution time: 0.3440
+INFO - 2025-06-11 18:19:07 --> Config Class Initialized
+INFO - 2025-06-11 18:19:07 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:07 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:07 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:07 --> URI Class Initialized
+INFO - 2025-06-11 18:19:07 --> Router Class Initialized
+INFO - 2025-06-11 18:19:07 --> Output Class Initialized
+INFO - 2025-06-11 18:19:07 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:07 --> Input Class Initialized
+INFO - 2025-06-11 18:19:07 --> Language Class Initialized
+INFO - 2025-06-11 18:19:07 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:19:07 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:19:07 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:19:07 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:19:07 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:19:07 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:19:07 --> Email Class Initialized
+INFO - 2025-06-11 18:19:07 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:19:07 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:19:08 --> Controller Class Initialized
+INFO - 2025-06-11 18:19:08 --> Model "Publisher_model" initialized
+INFO - 2025-06-11 18:19:08 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/seo-new.php
+INFO - 2025-06-11 18:19:08 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-header-new.php
+INFO - 2025-06-11 18:19:08 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-navbar-new.php
+INFO - 2025-06-11 18:19:08 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-faq-new.php
+INFO - 2025-06-11 18:19:08 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-newsletter-new.php
+INFO - 2025-06-11 18:19:08 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/calendar-content-new.php
+INFO - 2025-06-11 18:19:08 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/external_head_scripts.php
+INFO - 2025-06-11 18:19:08 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-footer-new.php
+INFO - 2025-06-11 18:19:08 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/calendar_view.php
+INFO - 2025-06-11 18:19:08 --> Final output sent to browser
+DEBUG - 2025-06-11 18:19:08 --> Total execution time: 0.3541
+INFO - 2025-06-11 18:19:12 --> Config Class Initialized
+INFO - 2025-06-11 18:19:12 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:12 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:12 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:12 --> URI Class Initialized
+INFO - 2025-06-11 18:19:12 --> Router Class Initialized
+INFO - 2025-06-11 18:19:12 --> Output Class Initialized
+INFO - 2025-06-11 18:19:12 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:12 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:12 --> Input Class Initialized
+INFO - 2025-06-11 18:19:12 --> Language Class Initialized
+INFO - 2025-06-11 18:19:12 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:19:12 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:19:12 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:19:12 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:19:12 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:19:12 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:19:12 --> Email Class Initialized
+INFO - 2025-06-11 18:19:12 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:19:12 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:19:13 --> Controller Class Initialized
+INFO - 2025-06-11 18:19:13 --> Model "Publisher_model" initialized
+INFO - 2025-06-11 18:19:13 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/seo-new.php
+INFO - 2025-06-11 18:19:13 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-header-new.php
+INFO - 2025-06-11 18:19:13 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-navbar-new.php
+INFO - 2025-06-11 18:19:13 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-faq-new.php
+INFO - 2025-06-11 18:19:13 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-newsletter-new.php
+INFO - 2025-06-11 18:19:13 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/calendar-content-new.php
+INFO - 2025-06-11 18:19:13 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/external_head_scripts.php
+INFO - 2025-06-11 18:19:13 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-footer-new.php
+INFO - 2025-06-11 18:19:13 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/calendar_view.php
+INFO - 2025-06-11 18:19:13 --> Final output sent to browser
+DEBUG - 2025-06-11 18:19:13 --> Total execution time: 0.3503
+INFO - 2025-06-11 18:19:15 --> Config Class Initialized
+INFO - 2025-06-11 18:19:15 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:15 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:15 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:15 --> URI Class Initialized
+INFO - 2025-06-11 18:19:15 --> Router Class Initialized
+INFO - 2025-06-11 18:19:15 --> Output Class Initialized
+INFO - 2025-06-11 18:19:15 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:15 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:15 --> Input Class Initialized
+INFO - 2025-06-11 18:19:15 --> Language Class Initialized
+INFO - 2025-06-11 18:19:15 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:19:15 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:19:15 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:19:15 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:19:15 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:19:15 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:19:15 --> Email Class Initialized
+INFO - 2025-06-11 18:19:15 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:19:15 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:19:16 --> Controller Class Initialized
+INFO - 2025-06-11 18:19:16 --> Model "Publisher_model" initialized
+INFO - 2025-06-11 18:19:16 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/seo-new.php
+INFO - 2025-06-11 18:19:16 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-header-new.php
+INFO - 2025-06-11 18:19:16 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-navbar-new.php
+INFO - 2025-06-11 18:19:16 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-faq-new.php
+INFO - 2025-06-11 18:19:16 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-newsletter-new.php
+INFO - 2025-06-11 18:19:16 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/link-shortener-content-new.php
+INFO - 2025-06-11 18:19:16 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/external_head_scripts.php
+INFO - 2025-06-11 18:19:16 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-footer-new.php
+INFO - 2025-06-11 18:19:16 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/link_shortener_view.php
+INFO - 2025-06-11 18:19:16 --> Final output sent to browser
+DEBUG - 2025-06-11 18:19:16 --> Total execution time: 0.3479
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/newlandingpage
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/general
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/newlandingpage
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/newlandingpage
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/newlandingpage
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/newlandingpage
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/newlandingpage
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/newlandingpage
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/newlandingpage
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/newlandingpage
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/newlandingpage
+INFO - 2025-06-11 18:19:16 --> Config Class Initialized
+INFO - 2025-06-11 18:19:16 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:16 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:16 --> URI Class Initialized
+INFO - 2025-06-11 18:19:16 --> Router Class Initialized
+INFO - 2025-06-11 18:19:16 --> Output Class Initialized
+INFO - 2025-06-11 18:19:16 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:16 --> Input Class Initialized
+INFO - 2025-06-11 18:19:16 --> Language Class Initialized
+ERROR - 2025-06-11 18:19:16 --> 404 Page Not Found: Assets/newlandingpage
+INFO - 2025-06-11 18:19:17 --> Config Class Initialized
+INFO - 2025-06-11 18:19:17 --> Hooks Class Initialized
+DEBUG - 2025-06-11 18:19:17 --> UTF-8 Support Enabled
+INFO - 2025-06-11 18:19:17 --> Utf8 Class Initialized
+INFO - 2025-06-11 18:19:17 --> URI Class Initialized
+DEBUG - 2025-06-11 18:19:17 --> No URI present. Default controller set.
+INFO - 2025-06-11 18:19:17 --> Router Class Initialized
+INFO - 2025-06-11 18:19:17 --> Output Class Initialized
+INFO - 2025-06-11 18:19:17 --> Security Class Initialized
+DEBUG - 2025-06-11 18:19:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-06-11 18:19:17 --> Input Class Initialized
+INFO - 2025-06-11 18:19:17 --> Language Class Initialized
+INFO - 2025-06-11 18:19:17 --> Loader Class Initialized
+DEBUG - 2025-06-11 18:19:17 --> Config file loaded: C:\xampp\htdocs\adublisher\ppc\config/facebook.php
+INFO - 2025-06-11 18:19:17 --> Helper loaded: url_helper
+INFO - 2025-06-11 18:19:17 --> Helper loaded: file_helper
+INFO - 2025-06-11 18:19:17 --> Helper loaded: general_helper
+INFO - 2025-06-11 18:19:17 --> Database Driver Class Initialized
+INFO - 2025-06-11 18:19:17 --> Email Class Initialized
+INFO - 2025-06-11 18:19:17 --> Helper loaded: form_helper
+INFO - 2025-06-11 18:19:17 --> Form Validation Class Initialized
+INFO - 2025-06-11 18:19:17 --> Controller Class Initialized
+INFO - 2025-06-11 18:19:17 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/seo-new.php
+INFO - 2025-06-11 18:19:17 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-header-new.php
+INFO - 2025-06-11 18:19:17 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-navbar-new.php
+INFO - 2025-06-11 18:19:17 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-content-new.php
+INFO - 2025-06-11 18:19:17 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/external_head_scripts.php
+INFO - 2025-06-11 18:19:17 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\templates/publisher/client_side/landing-footer-new.php
+INFO - 2025-06-11 18:19:17 --> File loaded: C:\xampp\htdocs\adublisher\ppc\views\layouts/publisher/client_side/landing-new.php
+INFO - 2025-06-11 18:19:17 --> Final output sent to browser
+DEBUG - 2025-06-11 18:19:17 --> Total execution time: 0.3555
