@@ -50,11 +50,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['default_controller'] = 'publisher/Home';
 // short links
 $route["link/(:any)/(:any)"] = "rest/publisher/Usersrest/url_redirect/$1/$2";
+// index page
+$route['default_controller'] = 'publisher/Home';
 // new pages
-$route['landing-page'] = 'publisher/Home/landing_page_view';
 $route['calendar-view'] = 'publisher/Home/calendar_view';
 $route['analytic'] = 'publisher/Home/analytic_view';
 $route['automations'] = 'publisher/Home/automation_view';
@@ -759,4 +759,3 @@ $route['deletepinterestboard'] = 'rest/publisher/Authrest/deletepinterestboard';
 $route['deleteinstaaccount'] = 'rest/publisher/Authrest/deleteinstaaccount';
 $route['deletefbgroup'] = 'rest/publisher/Authrest/deletefbgroup';
 $route['deleteyoutube'] = 'rest/publisher/Authrest/deleteyoutube';
-

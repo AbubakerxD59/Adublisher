@@ -1,10 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-//require(APPPATH.'libraries/REST_Controller.php');
-
-use voku\helper\HtmlDomParser;
-
-/*class home extends REST_Controller  {*/
 
 class Home extends CI_Controller
 {
@@ -40,13 +35,7 @@ class Home extends CI_Controller
 	{
 		$this->load->view('layouts/publisher/client_side/landing-new');
 	}
-	public function landing_page_view()
-	{
-		// $this->load->view('layouts/publisher/client_side/landing-new');
-		$packages = $this->Publisher_model->getPakcages();
-		$data['packages'] = $packages;
-		$this->load->view('layouts/publisher/landing', $data);
-	}
+
 	public function calendar_view()
 	{
 		$this->load->view('layouts/publisher/client_side/calendar_view');
