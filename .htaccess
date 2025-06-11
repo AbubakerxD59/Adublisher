@@ -13,7 +13,7 @@
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+    RewriteRule ^(.*)$ index.php/$1 [L]
     RewriteCond %{HTTP_HOST} ^adublisher\.com$ [NC]
     RewriteRule ^(.*)$ https://www.adublisher.com/$1 [L,R=301]
 </IfModule>
