@@ -851,17 +851,6 @@ class Home extends CI_Controller
 	{
 
 		$this->load->view('layouts/publisher/client_side/link_shortener_view');
-		// if (!$this->Publisher_model->check_logged()) {
-		// 	$this->load->view('layouts/publisher/client_side/link_shortener_view');
-		// } else {
-		// 	$userID = App::Session()->get('userid');
-		// 	$roles_data['roles'] = $this->Publisher_model->get_active_roles($userID);
-		// 	$this->load->view('templates/publisher/header', $roles_data);
-
-		// 	$user = $this->Publisher_model->retrieve_record('user', $userID);
-		// 	$data['user'] = $user;
-		// 	$this->load->view('layouts/publisher/link_shortener', $data);
-		// }
 	}
 
 	public function url_tracking()

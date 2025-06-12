@@ -401,7 +401,7 @@
 }
 
 .bg-img-holder {
-    background: url(images/bannerCurve2.svg);
+    background: url(../images/bannerCurve2.svg);
     background-position: bottom;
     background-size: cover;
 }
@@ -420,13 +420,13 @@
 }
 
 .content-img-section:nth-of-type(even) {
-    background: url(images/SVGBlobFeatures1.svg);
+    background: url(../images/SVGBlobFeatures1.svg);
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .content-img-section:nth-of-type(odd) {
-    background: url(images/SVGBlobFeatures2.svg);
+    background: url(../images/SVGBlobFeatures2.svg);
     background-size: contain;
     background-position: right;
     background-repeat: no-repeat;

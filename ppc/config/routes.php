@@ -72,8 +72,8 @@ $route['forgot-password'] = 'publisher/Home/forgot_password_view';
 $route['404_override'] = '';
 ####### before login #######
 
-$route['signup'] = 'publisher/Home/signup';
-$route['signin'] = 'publisher/Home/signin';
+// $route['signup'] = 'publisher/Home/signup';
+// $route['signin'] = 'publisher/Home/signin';
 $route['terms'] = 'publisher/Home/terms';
 $route['privacy'] = 'publisher/Home/privacy';
 $route['termsfb'] = 'publisher/Home/termsfb';
