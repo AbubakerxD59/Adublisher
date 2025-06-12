@@ -68,8 +68,8 @@ require_once('accounts/init.php');
  */
 switch (ENVIRONMENT) {
 	case 'development':
-		error_reporting(-1);
-		ini_set('display_errors', 1);
+		error_reporting(E_ALL); // This is good for development
+		ini_set('display_errors', '1'); // This is also important
 		break;
 
 	case 'testing':

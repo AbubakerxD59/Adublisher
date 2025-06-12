@@ -43,10 +43,7 @@ class Core
 	 */
 	private function getSettings()
 	{
-		echo '-';
 		$row = Db::run()->select(self::sTable, null, array('id' => 1))->result();
-		echo '11';
-		die();
 		$this->company = $row->company;
 		$this->site_dir = $row->site_dir;
 		$this->site_email = $row->site_email;
