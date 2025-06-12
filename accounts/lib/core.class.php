@@ -30,6 +30,7 @@ class Core
 	public function __construct()
 	{
 		$this->getSettings();
+		echo 'here'; die();
 		($this->dtz) ? ini_set('date.timezone', $this->dtz) : date_default_timezone_set('UTC');
 		Locale::setDefault($this->locale);
 	}
