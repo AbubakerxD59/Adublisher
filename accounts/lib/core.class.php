@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Core Class
  *
@@ -29,7 +30,7 @@ class Core
 	 */
 	public function __construct()
 	{
-		echo 'here'; die();
+		echo 'here';
 		$this->getSettings();
 		($this->dtz) ? ini_set('date.timezone', $this->dtz) : date_default_timezone_set('UTC');
 		Locale::setDefault($this->locale);
@@ -42,8 +43,10 @@ class Core
 	 */
 	private function getSettings()
 	{
+		echo '-';
 		$row = Db::run()->select(self::sTable, null, array('id' => 1))->result();
-
+		echo '11';
+		die();
 		$this->company = $row->company;
 		$this->site_dir = $row->site_dir;
 		$this->site_email = $row->site_email;
@@ -83,7 +86,6 @@ class Core
 		$this->backup = $row->backup;
 		$this->wojov = $row->wojov;
 		$this->wojon = $row->wojon;
-
 	}
 
 	/**
