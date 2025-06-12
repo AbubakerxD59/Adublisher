@@ -43,9 +43,9 @@ class Core
 	private function getSettings()
 	{
 		echo '1';
-		$row = Db::run()->select("settings")->result();
+		$row = (new Db)->select("settings")->result();
 		echo '2';
-		die();
+		// die();
 		// $row = Db::run()->select(self::sTable, null, array('id' => 1))->result();
 		$this->company = $row->company;
 		$this->site_dir = $row->site_dir;

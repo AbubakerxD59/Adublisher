@@ -290,7 +290,7 @@ class Db extends PDO
     public function select($sTable = '', $aColumn = array(), $aWhere = array(), $sOther = '')
     {
         echo 'here2';
-        die();
+        // die();
         $error = false;
 
         if (!is_array($aColumn)) {
