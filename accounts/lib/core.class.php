@@ -30,7 +30,6 @@ class Core
 	 */
 	public function __construct()
 	{
-		echo 'here';
 		$this->getSettings();
 		($this->dtz) ? ini_set('date.timezone', $this->dtz) : date_default_timezone_set('UTC');
 		Locale::setDefault($this->locale);
@@ -43,7 +42,11 @@ class Core
 	 */
 	private function getSettings()
 	{
-		$row = Db::run()->select(self::sTable, null, array('id' => 1))->result();
+		echo '1';
+		$row = Db::run()->select("settings")->result();
+		echo '2';
+		die();
+		// $row = Db::run()->select(self::sTable, null, array('id' => 1))->result();
 		$this->company = $row->company;
 		$this->site_dir = $row->site_dir;
 		$this->site_email = $row->site_email;

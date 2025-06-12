@@ -27,7 +27,6 @@ final class Lang
      */
     public function __construct()
     {
-        echo '1';
         self::get();
     }
 
@@ -53,39 +52,25 @@ final class Lang
      */
     private static function get()
     {
-        echo '2';
         $core = App::Core();
-        die();
         if (isset($_COOKIE['LANG_MMP'])) {
-            echo '2';
             $sel_lang = sanitize($_COOKIE['LANG_MMP'], 2);
-            echo '3';
             $vlang = self::fetchLanguage($sel_lang);
-            echo '4';
             if (in_array($sel_lang, $vlang)) {
-                echo '5';
                 Core::$language = $sel_lang;
             } else {
-                echo '6';
                 Core::$language = $core->lang;
             }
             if (file_exists(BASEPATHMM . self::langdir . Core::$language . ".lang.xml")) {
-                echo '7';
                 self::$word = self::set(BASEPATHMM . self::langdir . Core::$language . ".lang.xml", Core::$language);
             } else {
                 self::$word = self::set(BASEPATHMM . self::langdir . $core->lang . ".lang.xml", $core->lang);
             }
-            echo '8';
         } else {
-            echo '9';
             Core::$language = $core->lang;
-            echo '01';
             self::$word = self::set(BASEPATHMM . self::langdir . $core->lang . ".lang.xml", $core->lang);
         }
-        echo '02';
         self::$lang = "_" . Core::$language;
-        echo '03';
-        die();
         return self::$word;
     }
 
