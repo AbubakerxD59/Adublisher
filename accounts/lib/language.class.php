@@ -27,6 +27,7 @@ final class Lang
      */
     public function __construct()
     {
+        echo '1';
         self::get();
     }
 
@@ -52,8 +53,8 @@ final class Lang
      */
     private static function get()
     {
+        echo '2';
         $core = App::Core();
-        echo '1';
         die();
         if (isset($_COOKIE['LANG_MMP'])) {
             echo '2';
