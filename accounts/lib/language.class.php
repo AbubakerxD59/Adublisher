@@ -53,7 +53,8 @@ final class Lang
     private static function get()
     {
         $core = App::Core();
-     echo '1';
+        echo '1';
+        die();
         if (isset($_COOKIE['LANG_MMP'])) {
             echo '2';
             $sel_lang = sanitize($_COOKIE['LANG_MMP'], 2);
