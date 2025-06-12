@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Core Class
  *
@@ -42,11 +41,8 @@ class Core
 	 */
 	private function getSettings()
 	{
-		echo '1';
-		$row = (new Db)->select("settings")->result();
-		echo '2';
-		// die();
-		// $row = Db::run()->select(self::sTable, null, array('id' => 1))->result();
+		$row = Db::run()->select(self::sTable, null, array('id' => 1))->result();
+
 		$this->company = $row->company;
 		$this->site_dir = $row->site_dir;
 		$this->site_email = $row->site_email;
@@ -86,6 +82,7 @@ class Core
 		$this->backup = $row->backup;
 		$this->wojov = $row->wojov;
 		$this->wojon = $row->wojon;
+
 	}
 
 	/**
