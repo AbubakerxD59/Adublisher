@@ -518,7 +518,7 @@ $route['edit_article/(:num)'] = 'publisher/home/edit_article';
 ######## Pinterest #####
 // $route['pinterest'] = 'publisher/Home/pinterest_redirect';
 
-$route['get_pinterest_access_token'] = 'publisher/Home/get_pinterest_access_token';
+$route['pinterest_callback'] = 'publisher/Home/get_pinterest_access_token';
 $route['get_pinterest_boards'] = 'publisher/Home/get_pinterest_boards';
 
 // create pin to pinterest board
