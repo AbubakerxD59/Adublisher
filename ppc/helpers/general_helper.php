@@ -2722,26 +2722,30 @@ function getNextPostTime($table, $userID, $page, $timeslots, $for_update = array
 	return localToUTC($next_post_date_time, $user->gmt, "Y-m-d  H:i:s");
 }
 
-function saveImageFromUrl($image_url, $user_id, $page_id = '', $name = 'profile_pic')
+function saveImageFromUrl($url, $user_id, $page_id = '', $name = '_profile_pic')
 {
-	$download_folder = 'assets/uploads/';
-	$file_name = $user_id . '_' . $page_id . '_' . $name . '.webp';
-	$full_download_path = $_SERVER['DOCUMENT_ROOT'] . $download_folder;
-	$target_file_path = $full_download_path . $file_name;
-	if (!is_dir($full_download_path)) {
-		mkdir($full_download_path, 0777, TRUE);
+	$image = file_get_contents($url);
+	if ($image === false) {
+		return  "";
 	}
-	if (file_exists($target_file_path)) {
-		unlink($target_file_path);
+	// Create a new file in the assets folder
+	$extension = getImageExtensionFromUrl($url);
+	$ext = 'webp';
+	$filename = $user_id . '_' . $page_id . '_' . $name . '.' . $ext;
+	$destinationPath = $_SERVER['DOCUMENT_ROOT'] . "/assets/bulkuploads/" . $filename;
+	if (file_exists($destinationPath)) {
+		remove_file($filename);
 	}
-	$image_data = @file_get_contents($image_url);
-	if ($image_data === FALSE) {
-		return "";
+	$fileHandle = fopen($destinationPath, 'wb');
+	// Write the video content to local storage using fput
+	$write = fwrite($fileHandle, $image);
+	// Close the file stream
+	fclose($fileHandle);
+	if($write){
+		return $filename;
 	}
-	if (file_put_contents($target_file_path, $image_data)) {
-		return $file_name;
-	} else {
-		return "";
+	else{
+		return '';
 	}
 }
 
@@ -2756,7 +2760,6 @@ function getImageExtensionFromUrl($url)
 {
 	// Parse the URL to get the path
 	$path = parse_url($url, PHP_URL_PATH);
-
 	// Extract the extension from the path
 	$extension = pathinfo($path, PATHINFO_EXTENSION);
 
