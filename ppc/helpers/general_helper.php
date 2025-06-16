@@ -2722,7 +2722,7 @@ function getNextPostTime($table, $userID, $page, $timeslots, $for_update = array
 	return localToUTC($next_post_date_time, $user->gmt, "Y-m-d  H:i:s");
 }
 
-function saveImageFromUrl($url, $user_id, $page_id = '', $name = '_profile_pic')
+function saveImageFromUrl($url, $user_id, $page_id = '', $name = 'profile_pic')
 {
 	$image = file_get_contents($url);
 	if ($image === false) {
