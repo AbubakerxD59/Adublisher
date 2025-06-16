@@ -979,6 +979,7 @@ class Home extends CI_Controller
 	{
 		$this->load->library('facebook');
 		$access_token = $this->Publisher_model->get_facebook_access_token();
+		dd($access_token);
 		if ($access_token) {
 			$userID = App::Session()->get('userid');
 			$user = $this->facebook->request('get', '/me?fields=id,name,email,picture', $access_token);
@@ -1054,16 +1055,16 @@ class Home extends CI_Controller
 					}
 				}
 			} else {
-				redirect(SITEURL . 'facebook?status=false');
+				redirect(SITEURL . 'facebook');
 			}
 			if ($result) {
 				redirect(SITEURL . 'social-accounts');
 				// redirect(SITEURL . 'facebook?status=true');
 			} else {
-				redirect(SITEURL . 'facebook?status=false');
+				redirect(SITEURL . 'facebook');
 			}
 		} else {
-			redirect(SITEURL . 'facebook?status=false');
+			redirect(SITEURL . 'facebook');
 		}
 	}
 
