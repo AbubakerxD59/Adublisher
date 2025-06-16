@@ -8,7 +8,7 @@
             if (empty($user->facebook_id && $user->facebook_name)) {
             ?>
                 <img style="width:40px;height:40px;"
-                    src="<?php echo ASSETURL . 'images/icons/facebook-circle.svg'; ?>"
+                    src="<?php echo ASSETURL . 'images/Icons/facebook-circle.svg'; ?>"
                     class="rounded mr-3" alt="profile_pic">
                 <a href="<?php echo $connect_facebook; ?>"
                     class="btn btn-info btn-sm authorize">Authorize Facebook</a>
@@ -20,7 +20,7 @@
                         <div class="col-md-5 col-sm-5 col-6">
                             <div class="connected">
                                 <img style="width:40px;height:40px;"
-                                    src="<?php echo ASSETURL . 'images/icons/facebook-circle.svg'; ?>"
+                                    src="<?php echo ASSETURL . 'images/Icons/facebook-circle.svg'; ?>"
                                     class="rounded" alt="profile_pic"><br>
                                 <!-- <i style="font-size: 20px; color:#295396;" class="fa fa-check"></i>&nbsp; -->
                                 <span
@@ -52,7 +52,7 @@
             if (empty($pinterest_boards)) {
             ?>
                 <img style="width:40px;height:40px;"
-                    src="<?php echo ASSETURL . 'images/icons/pinterest-circle.svg'; ?>"
+                    src="<?php echo ASSETURL . 'images/Icons/pinterest-circle.svg'; ?>"
                     class="rounded mr-3" alt="profile_pic">
                 <!-- make the above anchor link into button -->
                 <a href="<?php echo $pinterest_login_url ?>"
@@ -65,7 +65,7 @@
                         <div class="col-md-5 col-sm-5 col-6">
                             <div class="connected">
                                 <img style="width:40px;height:40px;"
-                                    src="<?php echo ASSETURL . 'images/icons/pinterest-circle.svg'; ?>"
+                                    src="<?php echo ASSETURL . 'images/Icons/pinterest-circle.svg'; ?>"
                                     class="rounded" alt="profile_pic"><br>
                                 <!-- <i class="fa fa-check" style="font-size: 20px; color:#e71b22;"></i>&nbsp; -->
                                 <span
@@ -97,7 +97,7 @@
             if (empty($ig_accounts)) {
             ?>
                 <img style="width:40px;height:40px;"
-                    src="<?php echo ASSETURL . 'images/icons/instagram-circle.svg'; ?>"
+                    src="<?php echo ASSETURL . 'images/Icons/instagram-circle.svg'; ?>"
                     class="rounded mr-3" alt="profile_pic">
                 <a style="margin-left: 5px;"
                     href="<?php echo $instagram_login_url ?>"
@@ -110,7 +110,7 @@
                         <div class="col-md-5 col-sm-5 col-6">
                             <div class="connected">
                                 <img style="width:40px;height:40px;"
-                                    src="<?php echo ASSETURL . 'images/icons/instagram-circle.svg'; ?>"
+                                    src="<?php echo ASSETURL . 'images/Icons/instagram-circle.svg'; ?>"
                                     class="rounded" alt="profile_pic"><br>
                                 <span
                                     class="fw-bold h6"><?php echo $ig_accounts[0]->instagram_username; ?></span>
@@ -144,7 +144,7 @@
             if (count($youtube_google_auth) == 0) {
             ?>
                 <img style="width:40px; height:40px;"
-                    src="<?php echo ASSETURL . 'images/icons/youtube-circle.svg'; ?>"
+                    src="<?php echo ASSETURL . 'images/Icons/youtube-circle.svg'; ?>"
                     class="rounded mr-3" alt="profile_pic">
                 <a style="margin-left: 5px;" href="<?php echo $google_login_url ?>"
                     class="btn btn-info btn-sm authorize">Authorize YouTube</a>
@@ -158,7 +158,7 @@
                         <div class="col-md-5 col-sm-5 col-6">
                             <div class="connected">
                                 <img style="width:40px; height:40px;"
-                                    src="<?php echo ASSETURL . 'images/icons/youtube-circle.svg'; ?>"
+                                    src="<?php echo ASSETURL . 'images/Icons/youtube-circle.svg'; ?>"
                                     class="rounded" alt="profile_pic"><br>
                                 <span
                                     class="fw-bold h6"><?php echo $user->google_name; ?></span>
@@ -192,7 +192,7 @@
             if (count($tiktoks) == 0) {
             ?>
                 <img style="width:40px; height:40px;"
-                    src="<?php echo ASSETURL . 'images/icons/tiktok-circle.svg'; ?>" class="rounded mr-3"
+                    src="<?php echo ASSETURL . 'images/Icons/tiktok-circle.svg'; ?>" class="rounded mr-3"
                     alt="profile_pic">
                 <a style="margin-left: 5px;" href="<?php echo $tiktok_login ?>"
                     class="btn btn-info btn-sm authorize">Authorize TikTok</a>
@@ -206,7 +206,7 @@
                         <div class="col-md-5 col-sm-5 col-6">
                             <div class="connected">
                                 <img style="width:40px; height:40px;"
-                                    src="<?php echo ASSETURL . 'images/icons/tiktok-circle.svg'; ?>"
+                                    src="<?php echo ASSETURL . 'images/Icons/tiktok-circle.svg'; ?>"
                                     class="rounded" alt="profile_pic"><br>
                                 <span
                                     class="fw-bold h6"><?php echo $tiktoks[0]->username; ?></span>
@@ -288,7 +288,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                     ?>
                         <tr>
                             <td class="title"> <img style="width:40px;height:40px;"
-                                    src="<?php echo ASSETURL . 'images/icons/facebook-circle.svg'; ?>"
+                                    src="<?php echo ASSETURL . 'images/Icons/facebook-circle.svg'; ?>"
                                     class="rounded" alt="profile_pic">
                                 <b><?php echo $page_item->page_name ?></b>
                             </td>
@@ -329,7 +329,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                     ?>
                         <tr>
                             <td class="title"> <img style="width:40px;height:40px;"
-                                    src="<?php echo ASSETURL . 'images/icons/pinterest-circle.svg'; ?>"
+                                    src="<?php echo ASSETURL . 'images/Icons/pinterest-circle.svg'; ?>"
                                     class="rounded" alt="profile_pic">
                                 <b><?php echo $board_item->name; ?></b>
                             </td>
@@ -367,7 +367,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                         <tr>
                             <td class="title"> <img
                                     style="width:30px;height:30px;margin:0px 5px;"
-                                    src="<?php echo ASSETURL . 'images/icons/instagram-circle.svg'; ?>"
+                                    src="<?php echo ASSETURL . 'images/Icons/instagram-circle.svg'; ?>"
                                     class="rounded" alt="profile_pic">
                                 <b><?php echo $ig_item->instagram_username; ?></b>
                             </td>
@@ -444,7 +444,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                     ?>
                         <tr>
                             <td class="title"> <img style="width:35px;margin:0px 5px;"
-                                    src="<?php echo ASSETURL . 'images/icons/youtube-circle.svg'; ?>"
+                                    src="<?php echo ASSETURL . 'images/Icons/youtube-circle.svg'; ?>"
                                     class="rounded" alt="profile_pic">
                                 <b><?php echo $youtube_channel->channel_title; ?></b>
                             </td>
@@ -546,7 +546,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                 if (empty($user->facebook_id && $user->facebook_name)) {
                                 ?>
                                     <img style="width:40px;height:40px;"
-                                        src="<?php echo ASSETURL . 'images/icons/facebook-circle.svg'; ?>"
+                                        src="<?php echo ASSETURL . 'images/Icons/facebook-circle.svg'; ?>"
                                         class="rounded" alt="profile_pic">
                                     <a href="<?php echo $connect_facebook; ?>"
                                         class="btn btn-info btn-sm authorize">Authorize Facebook</a>
@@ -558,7 +558,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                             <div class="col-md-5 col-sm-5 col-6">
                                                 <div class="connected">
                                                     <img style="width:40px;height:40px;"
-                                                        src="<?php echo ASSETURL . 'images/icons/facebook-circle.svg'; ?>"
+                                                        src="<?php echo ASSETURL . 'images/Icons/facebook-circle.svg'; ?>"
                                                         class="rounded" alt="profile_pic"><br>
                                                     <!-- <i style="font-size: 20px; color:#295396;" class="fa fa-check"></i>&nbsp; -->
                                                     <span
@@ -589,7 +589,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                 if (empty($pinterest_boards)) {
                                 ?>
                                     <img style="width:40px;height:40px;"
-                                        src="<?php echo ASSETURL . 'images/icons/pinterest-circle.svg'; ?>"
+                                        src="<?php echo ASSETURL . 'images/Icons/pinterest-circle.svg'; ?>"
                                         class="rounded" alt="profile_pic">
                                     <!-- make the above anchor link into button -->
                                     <a href="<?php echo $pinterest_login_url ?>"
@@ -603,7 +603,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                             <div class="col-md-5 col-sm-5 col-6">
                                                 <div class="connected">
                                                     <img style="width:40px;height:40px;"
-                                                        src="<?php echo ASSETURL . 'images/icons/pinterest-circle.svg'; ?>"
+                                                        src="<?php echo ASSETURL . 'images/Icons/pinterest-circle.svg'; ?>"
                                                         class="rounded" alt="profile_pic"><br>
                                                     <!-- <i class="fa fa-check" style="font-size: 20px; color:#e71b22;"></i>&nbsp; -->
                                                     <span
@@ -637,7 +637,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                 if (empty($ig_accounts)) {
                                 ?>
                                     <img style="width:30px;height:30px; margin-left: 5px;"
-                                        src="<?php echo ASSETURL . 'images/icons/instagram-circle.svg'; ?>"
+                                        src="<?php echo ASSETURL . 'images/Icons/instagram-circle.svg'; ?>"
                                         class="rounded" alt="profile_pic">
                                     <a style="margin-left: 5px;"
                                         href="<?php echo $instagram_login_url ?>"
@@ -651,7 +651,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                             <div class="col-md-5 col-sm-5 col-6">
                                                 <div class="connected">
                                                     <img style="width:30px;height:30px;"
-                                                        src="<?php echo ASSETURL . 'images/icons/instagram-circle.svg'; ?>"
+                                                        src="<?php echo ASSETURL . 'images/Icons/instagram-circle.svg'; ?>"
                                                         class="rounded" alt="profile_pic"><br>
                                                     <span
                                                         class="fw-bold h6"><?php echo $ig_accounts[0]->instagram_username; ?></span>
@@ -734,7 +734,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                     ?>
                                         <tr>
                                             <td class="title"> <img style="width:40px;height:40px;"
-                                                    src="<?php echo ASSETURL . 'images/icons/facebook-circle.svg'; ?>"
+                                                    src="<?php echo ASSETURL . 'images/Icons/facebook-circle.svg'; ?>"
                                                     class="rounded" alt="profile_pic">
                                                 <b><?php echo $page_item->page_name ?></b>
                                             </td>
@@ -769,7 +769,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                     ?>
                                         <tr>
                                             <td class="title"> <img style="width:40px;height:40px;"
-                                                    src="<?php echo ASSETURL . 'images/icons/pinterest-circle.svg'; ?>"
+                                                    src="<?php echo ASSETURL . 'images/Icons/pinterest-circle.svg'; ?>"
                                                     class="rounded" alt="profile_pic">
                                                 <b><?php echo $board_item->name; ?></b>
                                             </td>
@@ -801,7 +801,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                         <tr>
                                             <td class="title"> <img
                                                     style="width:30px;height:30px;margin:0px 5px;"
-                                                    src="<?php echo ASSETURL . 'images/icons/instagram-circle.svg'; ?>"
+                                                    src="<?php echo ASSETURL . 'images/Icons/instagram-circle.svg'; ?>"
                                                     class="rounded" alt="profile_pic">
                                                 <b><?php echo $ig_item->instagram_username; ?></b>
                                             </td>
@@ -866,7 +866,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                     ?>
                                         <tr>
                                             <td class="title"> <img style="width:35px;margin:0px 5px;"
-                                                    src="<?php echo ASSETURL . 'images/icons/youtube-circle.svg'; ?>"
+                                                    src="<?php echo ASSETURL . 'images/Icons/youtube-circle.svg'; ?>"
                                                     class="rounded" alt="profile_pic">
                                                 <b><?php echo $youtube_channel->channel_title; ?></b>
                                             </td>
