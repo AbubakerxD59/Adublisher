@@ -979,10 +979,10 @@ class Home extends CI_Controller
 	{
 		$this->load->library('facebook');
 		$access_token = $this->Publisher_model->get_facebook_access_token();
-		dd([$access_token]);
 		if ($access_token) {
 			$user_id = App::Session()->get('userid');
 			$user = $this->facebook->request('get', '/me?fields=id,name,email,picture', $access_token);
+			dd([$user]);
 			if (!isset($user['error'])) {
 				$data = $user;
 				$profile_pic = isset($data['picture']['data']['url']) ? saveImageFromUrl($data['picture']['data']['url'], $user_id, 'facebok') : '';

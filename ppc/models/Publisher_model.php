@@ -1798,6 +1798,7 @@ class Publisher_model extends CI_Model
 		} else {
 			$this->db->where($where);
 		}
+
 		$query = $this->db->get($table);
 		if ($query->num_rows() > 0) {
 			$this->db->where($where);
@@ -1805,17 +1806,7 @@ class Publisher_model extends CI_Model
 			$this->db->update($table, $params);
 			return $query->row()->id;
 		} else {
-			$this->db->select('*')->from('facebook_groups')->where('group_id', $params['group_id']);
-			$query2 = $this->db->get()->result_array();
-			if (!empty($query2)) {
-				$this->db->set('user_id', $params['user_id']);
-				$this->db->set('active_deactive_status', 1);
-				$this->db->where('group_id', $params['user_id']);
-				$this->db->update($table);
-				return $query->row()->id;
-			} else {
-				return $this->create_record($table, $params);
-			}
+			return $this->create_record($table, $params);
 		}
 	}
 
@@ -4734,7 +4725,6 @@ class Publisher_model extends CI_Model
 		$redirect_uri = $this->config->item('facebook_login_redirect_url');
 		$params = 'client_id=' . $facebook_app_id . '&redirect_uri=' . $redirect_uri . '&client_secret=' . $facebook_app_secret . '&code=' . $code;
 		$response = $this->facebook->request('POST', 'oauth/access_token?' . $params, [], '');
-		dd([$response]);
 		if (isset($response['access_token'])) {
 			$result = $this->get_fb_exchange_token($facebook_app_id, $facebook_app_secret, $response['access_token']);
 			return $result;
