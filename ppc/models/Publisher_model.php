@@ -4723,7 +4723,6 @@ class Publisher_model extends CI_Model
 	{
 		$this->load->library('facebook');
 		$code = $this->input->get('code');
-		$user_id = App::Session()->get('userid');
 		$facebook_app_id = FACEBOOK_CLIENT_ID;
 		$facebook_app_secret = FACEBOOK_CLIENT_SECRET;
 		$redirect_uri = $this->config->item('facebook_login_redirect_url');
@@ -4731,7 +4730,6 @@ class Publisher_model extends CI_Model
 		$response = $this->facebook->request('POST', 'oauth/access_token?' . $params, [], '');
 		if (isset($response['access_token'])) {
 			$result = $this->get_fb_exchange_token($facebook_app_id, $facebook_app_secret, $response['access_token']);
-			// $result = $response['access_token'];
 			return $result;
 		} else {
 			return false;

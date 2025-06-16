@@ -979,92 +979,95 @@ class Home extends CI_Controller
 	{
 		$this->load->library('facebook');
 		$access_token = $this->Publisher_model->get_facebook_access_token();
-		dd($access_token);
 		if ($access_token) {
-			$userID = App::Session()->get('userid');
+			$user_id = App::Session()->get('userid');
 			$user = $this->facebook->request('get', '/me?fields=id,name,email,picture', $access_token);
 			if (!isset($user['error'])) {
 				$data = $user;
-			}
-			$user_data = [];
-			$user_data['facebook_id'] = $data['id'];
-			$user_data['facebook_name'] = $data['name'];
-			$user_data['facebook_email'] = isset($data['email']) ? $data['email'] : '';
-			$profile_pic = isset($data['picture']['data']['url']) ? saveImageFromUrl($data['picture']['data']['url'], $userID, 'facebok') : '';
-			$user_data['facebook_dp'] = $profile_pic;
-			$user_data['facebook_permanent_token'] = $access_token;
-			$user_data['facebook_permanent_token_genarated_date'] = date("Y-m-d");
-			$result = $this->Publisher_model->update_record('user', $user_data, $userID);
-
-			$facebook_check = $this->Publisher_model->get_allrecords('facebook', array('user_id' => $userID, 'facebook_id' => $data['id']));
-			if (count($facebook_check) > 0) {
-				$facebook_check = $facebook_check[0];
-				$facebook_data = [
-					'name' => $data['name'],
-					'email' => $data['email'],
-					'profile_pic' => $profile_pic
+				$profile_pic = isset($data['picture']['data']['url']) ? saveImageFromUrl($data['picture']['data']['url'], $user_id, 'facebok') : '';
+				$user_data = [
+					"facebook_id" => $data["id"],
+					"facebook_name" => $data["name"],
+					"facebook_email" => isset($data['email']) ? $data['email'] : '',
+					"facebook_dp" => $profile_pic,
+					"facebook_permanent_token" => $access_token,
+					"facebook_permanent_token_genarated_date" => date("Y-m-d"),
 				];
-				$this->Publisher_model->update_record('facebook', $facebook_data, $facebook_check->id);
-			} else {
+				$result = $this->Publisher_model->update_record('user', $user_data, $user_id);
 				$facebook_data = [
-					'user_id' => $userID,
+					'user_id' => $user_id,
 					'facebook_id' => $data['id'],
 					'name' => $data['name'],
 					'email' => $data['email'],
 					'profile_pic' => $profile_pic,
 				];
-				$this->Publisher_model->create_record('facebook', $facebook_data);
-			}
-			$pages = $this->facebook->request('get', '/me/accounts', $access_token);
-			$user_pages = $pages['data'];
-			if (count($user_pages) > 0) {
+				$this->Publisher_model->create_or_update_record("facebook", $facebook_data, ["user_id" => $user_id, "facebook" => $data["id"]]);
+				// $facebook_check = $this->Publisher_model->get_allrecords('facebook', array('user_id' => $user_id, 'facebook_id' => $data['id']));
+				// if (count($facebook_check) > 0) {
+				// 	$facebook_check = $facebook_check[0];
+				// 	$facebook_data = [
+				// 		'name' => $data['name'],
+				// 		'email' => $data['email'],
+				// 		'profile_pic' => $profile_pic
+				// 	];
+				// 	$this->Publisher_model->update_record('facebook', $facebook_data, $facebook_check->id);
+				// } else {
+
+				// 	$this->Publisher_model->create_record('facebook', $facebook_data);
+				// }
+				$pages = $this->facebook->request('get', '/me/accounts', $access_token);
+				$user_pages = $pages['data'];
 				foreach ($user_pages as $page) {
 					if (!limit_check(AUTHORIZE_SOCIAL_ACCOUNTS_ID, 2)) {
 						continue;
 					}
 					$page_id = $page['id'];
 					$page_access_token = $page['access_token'];
-					// check page will check if there is already a page with same page id and user id
-					$where = array('id' => $page_id, 'user_id' => $userID);
-					$check_page = $this->Publisher_model->check_page('facebook_pages', $where);
-					$profile_pic = get_fb_page_profile_pic(App::Session()->get('userid'), $page_id, $page_access_token);
-					if (!empty($check_page)) {
-						//Now if there is already page we will update its active_deactive_status to 1.
-						$params = array('id' => $page_id, 'user_id' => $userID, 'name' => $page['name'], 'access_token' => $page_access_token);
-						$get_primary_id_in_return_of_table = $this->Publisher_model->update_active_deactive_status('facebook_pages', $params);
-						if ($get_primary_id_in_return_of_table) {
-							$this->db->where('channel_id', $get_primary_id_in_return_of_table)->where('user_id', $userID);
-							$this->db->where('type', 'facebook');
-							$this->db->set('active_deactive_status', 1);
-							$this->db->update('channels_scheduler');
+					$profile_pic = get_fb_page_profile_pic($user_id, $page_id, $page_access_token);
+					$page_data = [
+						"user_id" => $user_id,
+						"page_id" => $page_id,
+						"page_name" => $page['name'],
+						"profile_pic" => $profile_pic,
+						"access_token" => $page_access_token
+					];
+					$row = $this->Publisher_model->create_or_update_record("facebook_pages", $page_data, ["user_id" => $user_id, "page_id" => $page_id]);
+					resources_update('up', AUTHORIZE_SOCIAL_ACCOUNTS_ID);
 
-							$this->db->where('id', $get_primary_id_in_return_of_table);
-							$this->db->set('profile_pic', $profile_pic);
-							$this->db->update('facebook_pages');
-							resources_update('up', AUTHORIZE_SOCIAL_ACCOUNTS_ID);
-						}
-					} else {
-						$page_data['user_id'] = $userID;
-						$page_data['page_id'] = $page_id;
-						$page_data['page_name'] = $page['name'];
-						$page_data['image_url'] = '';
-						$page_data['profile_pic'] = $profile_pic;
-						$page_data['access_token'] = $page_access_token;
-						$users = $this->Publisher_model->create_record('facebook_pages', $page_data);
-						resources_update('up', AUTHORIZE_SOCIAL_ACCOUNTS_ID);
-					}
+					$this->Publisher_model->update_record_mc("channels_scheduler", ["active_deactive_status" => 1], [["key" => "user_id", "value" => $user_id], ["key" => "channel_id", "value" => $row], ["key" => "type", "value" => "facebook"]]);
+					// if (!empty($check_page)) {
+					// 	//Now if there is already page we will update its active_deactive_status to 1.
+					// 	$params = array('id' => $page_id, 'user_id' => $user_id, 'name' => $page['name'], 'access_token' => $page_access_token);
+					// 	$get_primary_id_in_return_of_table = $this->Publisher_model->update_active_deactive_status('facebook_pages', $params);
+					// 	if ($get_primary_id_in_return_of_table) {
+					// 		$this->db->where('channel_id', $get_primary_id_in_return_of_table)->where('user_id', $user_id);
+					// 		$this->db->where('type', 'facebook');
+					// 		$this->db->set('active_deactive_status', 1);
+					// 		$this->db->update('channels_scheduler');
+
+					// 		$this->db->where('id', $get_primary_id_in_return_of_table);
+					// 		$this->db->set('profile_pic', $profile_pic);
+					// 		$this->db->update('facebook_pages');
+					// 		resources_update('up', AUTHORIZE_SOCIAL_ACCOUNTS_ID);
+					// 	}
+					// } else {
+					// 	$page_data['user_id'] = $user_id;
+					// 	$page_data['page_id'] = $page_id;
+					// 	$page_data['page_name'] = $page['name'];
+					// 	$page_data['profile_pic'] = $profile_pic;
+					// 	$page_data['access_token'] = $page_access_token;
+					// 	$users = $this->Publisher_model->create_record('facebook_pages', $page_data);
+					// }
 				}
-			} else {
-				redirect(SITEURL . 'facebook');
 			}
 			if ($result) {
 				redirect(SITEURL . 'social-accounts');
 				// redirect(SITEURL . 'facebook?status=true');
 			} else {
-				redirect(SITEURL . 'facebook');
+				redirect(SITEURL . 'social-accounts');
 			}
 		} else {
-			redirect(SITEURL . 'facebook');
+			redirect(SITEURL . 'social-accounts');
 		}
 	}
 
