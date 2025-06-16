@@ -1791,7 +1791,13 @@ class Publisher_model extends CI_Model
 	// create or update record
 	function create_or_update_record($table, $params = null, $where = null)
 	{
-		$this->db->where($where);
+		if (is_array($where)) {
+			foreach ($where as $key => $value) {
+				$this->db->where($key, $value);
+			}
+		} else {
+			$this->db->where($where);
+		}
 		$query = $this->db->get($table);
 		if ($query->num_rows() > 0) {
 			$this->db->where($where);
