@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2017 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Http;
 
 /**
@@ -104,8 +106,10 @@ class GraphRawResponse
      */
     public function setHttpResponseCodeFromHeader($rawResponseHeader)
     {
-        dd([$rawResponseHeader]);
         preg_match('|HTTP/\d\.\d\s+(\d+)\s+.*|', $rawResponseHeader, $match);
+        if (count($match) == 0) {
+            preg_match('|HTTP/\d\s+(\d+)\s+.*|', $rawResponseHeader, $match);
+        }
         $this->httpResponseCode = (int)$match[1];
     }
 
