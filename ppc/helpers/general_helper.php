@@ -485,14 +485,13 @@ if (!function_exists('localToUTC')) {
 		}
 	}
 
-	function dd($p1 = null, $p2 = null, $p3 = null, $p4 = null, $p5 = null, $p6 = null)
+	function dd(array $data)
 	{
-		print_pre($p1);
-		print_pre($p2);
-		print_pre($p3);
-		print_pre($p4);
-		print_pre($p5);
-		print_pre($p6);
+		foreach ($data as $key => $value) {
+			echo $key . ': ';
+			print_pre($value);
+			echo '<br>';
+		}
 		die();
 	}
 
