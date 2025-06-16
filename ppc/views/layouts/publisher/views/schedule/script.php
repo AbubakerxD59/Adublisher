@@ -875,7 +875,7 @@
         // chech if type is facebook 
         if (elem.type == "facebook") {
             node +=
-                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?= BulkAssets ?>images/facebook_logo.png" class="rounded" alt="facebook_logo">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?php echo BulkAssets; ?>'+elem.profile_pic+'" class="rounded" alt="facebook_logo">' +
                 elem.channel_name + '</p> </button>'
 
         } else if (elem.type == "pinterest") {
