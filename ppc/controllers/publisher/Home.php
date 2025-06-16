@@ -979,6 +979,7 @@ class Home extends CI_Controller
 	{
 		$this->load->library('facebook');
 		$access_token = $this->Publisher_model->get_facebook_access_token();
+		dd([$access_token]);
 		if ($access_token) {
 			$user_id = App::Session()->get('userid');
 			$user = $this->facebook->request('get', '/me?fields=id,name,email,picture', $access_token);

@@ -487,8 +487,7 @@ if (!function_exists('localToUTC')) {
 
 	function dd(array $data)
 	{
-		foreach ($data as $key => $value) {
-			echo $key . ': ';
+		foreach ($data as $value) {
 			print_pre($value);
 			echo '<br>';
 		}

@@ -4734,6 +4734,7 @@ class Publisher_model extends CI_Model
 		$redirect_uri = $this->config->item('facebook_login_redirect_url');
 		$params = 'client_id=' . $facebook_app_id . '&redirect_uri=' . $redirect_uri . '&client_secret=' . $facebook_app_secret . '&code=' . $code;
 		$response = $this->facebook->request('POST', 'oauth/access_token?' . $params, [], '');
+		dd([$response]);
 		if (isset($response['access_token'])) {
 			$result = $this->get_fb_exchange_token($facebook_app_id, $facebook_app_secret, $response['access_token']);
 			return $result;
