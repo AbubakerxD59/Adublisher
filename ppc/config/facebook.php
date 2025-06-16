@@ -61,7 +61,7 @@ $config['instagram_permissions'] = [
     'instagram_manage_comments',
 ];
 
-$config['facebook_graph_version'] = 'v22.0';
+$config['facebook_graph_version'] = 'v23.0';
 
 $config['facebook_auth_on_load'] = TRUE;
 

@@ -4044,7 +4044,7 @@ class Publisher_model extends CI_Model
 		$instagram_redirect_uri = SITEURL . "get_instagram_access_token";
 		$permissions = $this->config->item('instagram_permissions');
 		$scopes = implode(',', $permissions);
-		$login_url = 'https://www.facebook.com/v22.0/dialog/oauth?client_id=' . INSTAGRAM_CLIENT_ID . '&redirect_uri=' . $instagram_redirect_uri . '&scope=' . $scopes;
+		$login_url = 'https://www.facebook.com/v23.0/dialog/oauth?client_id=' . INSTAGRAM_CLIENT_ID . '&redirect_uri=' . $instagram_redirect_uri . '&scope=' . $scopes;
 		return $login_url;
 	}
 
@@ -4055,7 +4055,7 @@ class Publisher_model extends CI_Model
 		$instagram_redirect_uri = SITEURL . "get_instagram_access_token";
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://graph.facebook.com/v22.0/oauth/access_token?client_id=' . INSTAGRAM_CLIENT_ID . '&redirect_uri=' . $instagram_redirect_uri . '&client_secret=' . INSTAGRAM_CLIENT_SECRET . '&code=' . $code,
+			CURLOPT_URL => 'https://graph.facebook.com/v23.0/oauth/access_token?client_id=' . INSTAGRAM_CLIENT_ID . '&redirect_uri=' . $instagram_redirect_uri . '&client_secret=' . INSTAGRAM_CLIENT_SECRET . '&code=' . $code,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
@@ -4182,7 +4182,7 @@ class Publisher_model extends CI_Model
 	{
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://graph.facebook.com/v22.0/' . $instagram_id . '/media',
+			CURLOPT_URL => 'https://graph.facebook.com/v23.0/' . $instagram_id . '/media',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
@@ -4216,7 +4216,7 @@ class Publisher_model extends CI_Model
 
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://graph.facebook.com/v22.0/' . $ig_user['instagram_id'] . '/media_publish',
+			CURLOPT_URL => 'https://graph.facebook.com/v23.0/' . $ig_user['instagram_id'] . '/media_publish',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
@@ -4296,7 +4296,7 @@ class Publisher_model extends CI_Model
 		$facebook_app_id = $this->config->item('facebook_app_id');
 
 		$scope = 'publish_to_groups';
-		$login_url = 'https://www.facebook.com/v22.0/dialog/oauth?client_id=' . $facebook_app_id . '&redirect_uri=' . $redirect_uri . '&scope=' . $scope;
+		$login_url = 'https://www.facebook.com/v23.0/dialog/oauth?client_id=' . $facebook_app_id . '&redirect_uri=' . $redirect_uri . '&scope=' . $scope;
 		return $login_url;
 	}
 
@@ -4317,7 +4317,7 @@ class Publisher_model extends CI_Model
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://graph.facebook.com/v22.0/oauth/access_token?client_id=' . $facebook_app_id . '&redirect_uri=' . $redirect_uri . '&client_secret=' . $facebook_app_secret . '&code=' . $code,
+			CURLOPT_URL => 'https://graph.facebook.com/v23.0/oauth/access_token?client_id=' . $facebook_app_id . '&redirect_uri=' . $redirect_uri . '&client_secret=' . $facebook_app_secret . '&code=' . $code,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
@@ -4375,7 +4375,7 @@ class Publisher_model extends CI_Model
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://graph.facebook.com/v22.0/me/groups',
+			CURLOPT_URL => 'https://graph.facebook.com/v23.0/me/groups',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
@@ -4434,9 +4434,9 @@ class Publisher_model extends CI_Model
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://graph.facebook.com/v22.0/' . $group_id . '/' . $param,
-			// CURLOPT_URL => 'https://graph.facebook.com/v22.0/' . $group_id . '/photos',
-			// CURLOPT_URL => 'https://graph.facebook.com/v22.0/' . $group_id . '/feed',
+			CURLOPT_URL => 'https://graph.facebook.com/v23.0/' . $group_id . '/' . $param,
+			// CURLOPT_URL => 'https://graph.facebook.com/v23.0/' . $group_id . '/photos',
+			// CURLOPT_URL => 'https://graph.facebook.com/v23.0/' . $group_id . '/feed',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
@@ -4467,7 +4467,7 @@ class Publisher_model extends CI_Model
 		// $access_token = $user['fbgroups_access_token'];
 
 		// Set the URL for the Facebook Graph API endpoint
-		$url = 'https://graph.facebook.com/v22.0/' . $group_id . '/photos';
+		$url = 'https://graph.facebook.com/v23.0/' . $group_id . '/photos';
 
 		// Prepare the POST data
 		$postData = array(
@@ -4560,7 +4560,7 @@ class Publisher_model extends CI_Model
 																																																														   $curl = curl_init();
 
 																																																														   curl_setopt_array($curl, array(
-																																																															   CURLOPT_URL => "https://graph.facebook.com/v22.0/$group_id/$param",
+																																																															   CURLOPT_URL => "https://graph.facebook.com/v23.0/$group_id/$param",
 																																																															   CURLOPT_RETURNTRANSFER => true,
 																																																															   CURLOPT_ENCODING => '',
 																																																															   CURLOPT_MAXREDIRS => 10,
@@ -4582,7 +4582,7 @@ class Publisher_model extends CI_Model
 
 	// private function getGroupAdmins($group_id, $access_token)
 	// {
-	//     $url = "https://graph.facebook.com/v22.0/$group_id/admins?access_token=$access_token";
+	//     $url = "https://graph.facebook.com/v23.0/$group_id/admins?access_token=$access_token";
 
 	//     $curl = curl_init();
 	//     curl_setopt_array($curl, array(
@@ -4598,7 +4598,7 @@ class Publisher_model extends CI_Model
 	// }
 	// private function getGroupInfo($group_id, $access_token)
 	// {
-	//     $url = "https://graph.facebook.com/v22.0/$group_id?fields=id,name,parent,members.admin_only&access_token=$access_token";
+	//     $url = "https://graph.facebook.com/v23.0/$group_id?fields=id,name,parent,members.admin_only&access_token=$access_token";
 
 	//     $curl = curl_init();
 	//     curl_setopt_array($curl, array(
@@ -5283,7 +5283,7 @@ class Publisher_model extends CI_Model
 
 	public function country_data($page_id, $access_token, $since, $until)
 	{
-		$url = 'https://graph.facebook.com/v22.0/' . $page_id . '/insights?';
+		$url = 'https://graph.facebook.com/v23.0/' . $page_id . '/insights?';
 		$query_params = [
 			'access_token' => $access_token,
 			'since' => $since,
@@ -5332,7 +5332,7 @@ class Publisher_model extends CI_Model
 
 	public function city_data($page_id, $access_token, $since, $until)
 	{
-		$url = 'https://graph.facebook.com/v22.0/' . $page_id . '/insights?';
+		$url = 'https://graph.facebook.com/v23.0/' . $page_id . '/insights?';
 		$query_params = [
 			'access_token' => $access_token,
 			'since' => $since,
