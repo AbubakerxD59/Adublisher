@@ -985,7 +985,7 @@ class Home extends CI_Controller
 			if (!isset($user['error'])) {
 				$data = $user;
 				$profile_pic = isset($data['picture']['data']['url']) ? saveImageFromUrl($data['picture']['data']['url'], $user_id, $data["id"]) : '';
-				dd($profile_pic);
+				dd([$profile_pic]);
 				$user_data = [
 					"facebook_id" => $data["id"],
 					"facebook_name" => $data["name"],
