@@ -2722,7 +2722,7 @@ function getNextPostTime($table, $userID, $page, $timeslots, $for_update = array
 	return localToUTC($next_post_date_time, $user->gmt, "Y-m-d  H:i:s");
 }
 
-function saveImageFromUrl($image_url, $user_id, $page_id = '', $name = '_profile_pic')
+function saveImageFromUrl($image_url, $user_id, $page_id = '', $name = 'profile_pic')
 {
 	$download_folder = 'assets/uploads/';
 	$file_name = $user_id . '_' . $page_id . '_' . $name . '.webp';
