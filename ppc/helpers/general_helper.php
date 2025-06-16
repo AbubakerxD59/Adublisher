@@ -2722,30 +2722,27 @@ function getNextPostTime($table, $userID, $page, $timeslots, $for_update = array
 	return localToUTC($next_post_date_time, $user->gmt, "Y-m-d  H:i:s");
 }
 
-function saveImageFromUrl($url, $user_id, $page_id = '', $name = '_profile_pic')
+function saveImageFromUrl($image_url, $user_id, $page_id = '', $name = '_profile_pic')
 {
-	// Download the image from the URL
-	$image = file_get_contents($url);
-
-	if ($image === false) {
-		echo "Error downloading image from URL: $url";
-		return false;
+	$download_folder = 'assets/uploads/';
+	$file_name = $user_id . '_' . $page_id . '_' . $name . '.webp';
+	$full_download_path = $_SERVER['DOCUMENT_ROOT'] . $download_folder;
+	$target_file_path = $full_download_path . $file_name;
+	if (!is_dir($full_download_path)) {
+		mkdir($full_download_path, 0777, TRUE);
 	}
-	// Create a new file in the assets folder
-	$extension = getImageExtensionFromUrl($url);
-	$ext = !empty($extension) ? $extension : 'png';
-	$filename = $user_id . '_' . $page_id . $name . '.' . $ext;
-	$destinationPath = $_SERVER['DOCUMENT_ROOT'] . "/assets/bulkuploads/" . $filename;
-	if (file_exists($destinationPath)) {
-		return $filename;
+	if (file_exists($target_file_path)) {
+		unlink($target_file_path);
 	}
-	$fileHandle = fopen($destinationPath, 'wb');
-	// Write the video content to local storage using fput
-	fwrite($fileHandle, $image);
-	// Close the file stream
-	fclose($fileHandle);
-
-	return $filename;
+	$image_data = @file_get_contents($image_url);
+	if ($image_data === FALSE) {
+		return "";
+	}
+	if (file_put_contents($target_file_path, $image_data)) {
+		return $file_name;
+	} else {
+		return "";
+	}
 }
 
 function tiktok_image_url($url, $value)

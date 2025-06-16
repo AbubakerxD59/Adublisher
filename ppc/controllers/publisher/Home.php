@@ -982,10 +982,9 @@ class Home extends CI_Controller
 		if ($access_token) {
 			$user_id = App::Session()->get('userid');
 			$user = $this->facebook->request('get', '/me?fields=id,name,email,picture', $access_token);
-			dd([$user]);
 			if (!isset($user['error'])) {
 				$data = $user;
-				$profile_pic = isset($data['picture']['data']['url']) ? saveImageFromUrl($data['picture']['data']['url'], $user_id, 'facebok') : '';
+				$profile_pic = isset($data['picture']['data']['url']) ? saveImageFromUrl($data['picture']['data']['url'], $user_id, $data["id"]) : '';
 				$user_data = [
 					"facebook_id" => $data["id"],
 					"facebook_name" => $data["name"],
