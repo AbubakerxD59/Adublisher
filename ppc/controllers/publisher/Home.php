@@ -1002,7 +1002,6 @@ class Home extends CI_Controller
 					'profile_pic' => $profile_pic,
 				];
 				$facebook_id =	$this->Publisher_model->create_or_update_record("facebook", $facebook_data, ["user_id" => $user_id, "facebook_id" => $data["id"]]);
-				dd([$facebook_id]);
 
 				// $facebook_check = $this->Publisher_model->get_allrecords('facebook', array('user_id' => $user_id, 'facebook_id' => $data['id']));
 				// if (count($facebook_check) > 0) {
