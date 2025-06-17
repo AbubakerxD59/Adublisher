@@ -1331,10 +1331,11 @@
                         $.each(response.data.fbpages, function(index, value) {
                             if (value.channel_active == 1) {
                                 facebook_check = true;
+                                var facebook_page_icon = "<?= BulkAssets; ?>/"+value.profile_pic;
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 fb_channel channel-button' data-type='facebook' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:25px;height:25px;' src='" + facebook_logo + "' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:25px;height:25px;' src='" + facebook_page_icon + "' class='rounded' alt='profile_pic'> " +
                                     value.page_name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
