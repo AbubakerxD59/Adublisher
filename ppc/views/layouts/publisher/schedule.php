@@ -16,7 +16,9 @@
             <img class="animation__shake" src="<?php echo ASSETURL . 'images/logo-icon.png'; ?>" alt="Adublisher-Logo" height="60" width="60">
         </div>
         <!-- Navbar -->
-        <?php $this->load->view("templates/publisher/navbar"); ?>
+        <?php
+        $this->load->view("templates/publisher/navbar");
+        ?>
         <!-- Main Sidebar Container -->
         <?php
         App::Session()->get('team_role') == "affiliate" ? $this->load->view('templates/publisher/affiliate-aside') : $this->load->view('templates/publisher/owner-aside');
@@ -49,7 +51,7 @@
     </footer>
     <?php
     $this->load->view("templates/publisher/scripts");
-    $this->load->view("templates/publisher/views/schedule/manifest");
+    $this->load->view("layouts/publisher/views/schedule/manifest");
     $this->load->view('templates/publisher/external_head_scripts');
     $this->load->view("layouts/publisher/views/schedule/script");
     ?>
