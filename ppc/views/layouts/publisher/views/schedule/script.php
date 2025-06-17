@@ -1,4 +1,5 @@
 <script type="text/javascript">
+    var facebook_logo = "<?= ASSETURL ?>images/icons/facebook-circle.svg";
     Dropzone.autoDiscover = false;
     $(function() {
         setTimeout(() => {
@@ -859,10 +860,8 @@
                 '"><img  style="height:250px;" loading="lazy" src="' + elem.link +
                 '" alt="img" class="img-fluid blog-img-height w-100" /></a></div>'
         } else {
-            node += '<div class="blog-image cursor-pointer"><a class="gallery" href="' +
-                SITEURL + 'assets/bulkuploads/' + elem.link + '" title="' + elem.post_date +
-                '"><img  style="height:250px;" loading="lazy" src="' + SITEURL +
-                'assets/bulkuploads/' + elem.link +
+            node += '<div class="blog-image cursor-pointer"><a class="gallery" href="<?= BulkAssets ?>' + elem.link + '" title="' + elem.post_date +
+                '"><img  style="height:250px;" loading="lazy" src="<?= BulkAssets ?>' + elem.link +
                 '" alt="img" class="img-fluid blog-img-height w-100" /></a></div>'
         }
         if (elem.title != '') {
@@ -875,7 +874,7 @@
         // chech if type is facebook 
         if (elem.type == "facebook") {
             node +=
-                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?php echo BulkAssets; ?>'+elem.profile_pic+'" class="rounded" alt="facebook_logo">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + facebook_logo + '" class="rounded" alt="facebook_logo">' +
                 elem.channel_name + '</p> </button>'
 
         } else if (elem.type == "pinterest") {
@@ -888,7 +887,7 @@
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == "fb_groups") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?= BulkAssets ?>images/fb_group_logo.png" class="rounded mx-1" alt="facebook_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + facebook_logo + '" class="rounded mx-1" alt="facebook_logo">' +
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == 'youtube') {
             node +=
@@ -968,25 +967,23 @@
         node += '<div class="card blog-widget">'
         node += '<div class="card-body">';
         if (elem.link_type == "full") {
-            node += '<div class="blog-image cursor-pointer"><a class="gallery" href="' +
-                elem.link + '" title="' + elem.post_date +
-                '"><img  style="height:250px;" loading="lazy" src="' + elem.link +
-                '" alt="img" class="img-fluid blog-img-height w-100" /></a></div>'
-
+            node += '<div class="blog-image cursor-pointer">';
+            node += '<a class="gallery" href="' + elem.link + '" title="' + elem.post_date + '">';
+            node += '<img  style="height:250px;" loading="lazy" src="' + elem.link + '" alt="img" class="img-fluid blog-img-height w-100" />';
+            node += '</a></div>';
         } else {
-            node += '<div class="blog-image cursor-pointer"><a class="gallery" href="' +
-                SITEURL + 'assets/bulkuploads/' + elem.link + '" title="' + elem.post_date +
-                '"><img  style="height:250px;" loading="lazy" src="' + SITEURL +
-                'assets/bulkuploads/' + elem.link +
-                '" alt="img" class="img-fluid blog-img-height w-100" /></a></div>'
+            node += '<div class="blog-image cursor-pointer">';
+            node += '<a class="gallery" href="<?php echo BulkAssets; ?>' + elem.link + '" title="' + elem.post_date + '">';
+            node += '<img  style="height:250px;" loading="lazy" src="<?php echo BulkAssets; ?>' + elem.link + '" alt="img" class="img-fluid blog-img-height w-100" />';
+            node += '</a></div>';
 
         }
-        node += '<p class="my-1" style="height:35px;overflow: auto;" title="' + elem.title +
-            '"><strong>' + elem.title.slice(0, 30) + '...</strong></p>'
+        node += '<p class="my-1" style="height:35px;overflow: auto;" title="' + elem.title + '">';
+        node += '<strong>' + elem.title.slice(0, 30) + '...</strong></p>';
         // chech if type is facebook 
         if (elem.type == "facebook") {
             node +=
-                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?= BulkAssets ?>images/facebook_logo.png" class="rounded" alt="facebook_logo">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + facebook_logo + '" class="rounded" alt="facebook_logo">' +
                 elem.channel_name + '</p> </button>'
 
 
@@ -1333,14 +1330,13 @@
                     if (response.data.fbpages.length > 0) {
                         var youtube_check = false;
                         var facebook_check = false;
-                        $.each(response.data.fbpages, function(index,
-                            value) {
+                        $.each(response.data.fbpages, function(index, value) {
                             if (value.channel_active == 1) {
                                 facebook_check = true;
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 fb_channel channel-button' data-type='facebook' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:25px;height:25px;' src='<?= BulkAssets ?>"+value.profile_pic+"' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:25px;height:25px;' src='" + facebook_logo + "' class='rounded' alt='profile_pic'> " +
                                     value.page_name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1348,7 +1344,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 fb_channel channel-button active' data-type='facebook' data-id='" +
                                     value.id +
-                                    "' ><img style='width:25px;height:25px;' src='<?= BulkAssets ?>images/facebook_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' ><img style='width:25px;height:25px;' src='" + facebook_logo + "' class='rounded' alt='profile_pic'> " +
                                     value.page_name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1357,8 +1353,7 @@
                     }
 
                     if (response.data.boards.length > 0) {
-                        $.each(response.data.boards, function(index,
-                            value) {
+                        $.each(response.data.boards, function(index, value) {
                             if (value.channel_active == 1) {
                                 facebook_check = false;
                                 $("#channels").append(

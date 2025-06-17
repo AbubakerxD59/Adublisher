@@ -47,7 +47,7 @@
 <!--stickey kit -->
 <script src="<?php echo ASSETURL . 'plugins/sticky-kit-master/sticky-kit.min.js'; ?>"></script>
 <script src="<?php echo ASSETURL . 'plugins/toastr/toastr.min.js'; ?>"></script>
-<script src="<?php echo ASSETURL . 'plugins/sweetalert/sweetalert.min.js'; ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="<?php echo ASSETURL . 'plugins/moment/moment.min.js'; ?>"></script>
 <script src="<?php echo ASSETURL . 'plugins/daterangepicker/daterangepicker.js'; ?>"></script>
 <script src="<?php echo ASSETURL . 'plugins/clipboard/clipboard.min.js'; ?>"></script>

@@ -42,3 +42,5 @@
 <link rel="stylesheet" href="<?php echo ASSETURL . 'css/switch.css'; ?>">
 <!-- Datatable -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
+<!-- Sweetalert -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">

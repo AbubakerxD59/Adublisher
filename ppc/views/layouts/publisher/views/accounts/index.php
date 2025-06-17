@@ -251,20 +251,11 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                     class="chosen-select chosen-all_channels_timeslots form-control">
                     <?php
                     for ($i = 0; $i < 24; $i++) {
-                        if (in_array($i, $clean)) {
                     ?>
-                            <option selected="selected" value="<?= $i; ?>">
-                                <?= $i % 12 ? $i % 12 : 12 ?>:00
-                                <?= $i >= 12 ? 'pm' : 'am' ?>
-                            </option>
-                        <?php
-                        } else {
-                        ?>
-                            <option value="<?= $i; ?>"><?= $i % 12 ? $i % 12 : 12 ?>:00
-                                <?= $i >= 12 ? 'pm' : 'am' ?>
-                            </option>
+                        <option value="<?= $i; ?>"><?= $i % 12 ? $i % 12 : 12 ?>:00
+                            <?= $i >= 12 ? 'pm' : 'am' ?>
+                        </option>
                     <?php
-                        }
                     }
                     ?>
                 </select>

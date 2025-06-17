@@ -4709,7 +4709,6 @@ class Usersrest extends REST_Controller
 					$img_path = $file_name;
 				}
 			}
-			dd('here', $size, $img_path);
 
 			if (count($fbpages) > 0) {
 				// check post scheduling for Facebook

@@ -195,27 +195,31 @@
                 ?>
             </select>
         </span>
-        <button class="btn btn-outline-info refresh m-l-5  pull-right mr-3"
-            style="display: none;">
-            <i class="fa fa-hourglass pointer"></i> Refresh
-        </button>
-        <button class="btn btn-outline-success shuffle m-l-5 pull-right mr-3"
-            style="display: none;">
-            <i class="fa fa-refresh pointer"></i> Shuffle
-        </button>
-        <button class="btn btn-outline-danger deleteall m-l-5  pull-right mr-3"
-            style="display: none;">
-            <i class="fa fa-trash pointer"></i> Delete All
-        </button>
     </div>
-    <div class="row">
-        <button class="btn btn-info bulk_upload_scheduled mx-1">Scheduled
-            Posts</button>
-        <button class="btn btn-secondary bulk_upload_published mx-1">Published
-            Posts</button>
+    <div class="col-md-12 d-flex justify-content-between">
+        <div class="d-flex">
+            <button class="btn btn-info bulk_upload_scheduled mx-1">Scheduled
+                Posts</button>
+            <button class="btn btn-secondary bulk_upload_published mx-1">Published
+                Posts</button>
+        </div>
+        <div class="d-flex">
+            <button class="btn btn-outline-info refresh m-l-5  pull-right mr-3"
+                style="display: none;">
+                <i class="fa fa-hourglass pointer"></i> Refresh
+            </button>
+            <button class="btn btn-outline-success shuffle m-l-5 pull-right mr-3"
+                style="display: none;">
+                <i class="fa fa-refresh pointer"></i> Shuffle
+            </button>
+            <button class="btn btn-outline-danger deleteall m-l-5  pull-right mr-3"
+                style="display: none;">
+                <i class="fa fa-trash pointer"></i> Delete All
+            </button>
+        </div>
     </div>
 </div>
-<div class="row m-t-10  el-element-overlay popup-gallery" id="sceduled"></div>
+<div class="row mt-4  el-element-overlay popup-gallery" id="sceduled"></div>
 
 <!-- youtube section -->
 <div class="col-md-6 m-t-10"></div>
