@@ -3614,9 +3614,7 @@ class Usersrest extends REST_Controller
 
 		$config['allowed_types'] = 'jpg|png|jpeg';
 		$config['overwrite'] = true;
-		$config['max_size'] = '102400';
-		//$config['max_width']  = '2000';
-		// $config['max_height']  = '1000';
+		$config['max_size'] = '65536';
 		$config['file_name'] = $userID . "_" . time() . "_" . $_FILES[$image]["name"];
 		$this->load->library('upload', $config);
 
@@ -5104,14 +5102,6 @@ class Usersrest extends REST_Controller
 					} else {
 						$error_message[] = "Failed to publish on Instagram.";
 					}
-					// $this_id = $this->publish_ig_single_media($ig_user['instagram_id'], $ig_user['access_token'], $image_path, $title);
-					// if ($this_id['status']) {
-					// 	$success_message[] = "Posts are published on Instagram successfully.";
-					// 	$removeError = removeCronJobError($userID, 'instagram_error');
-					// 	sleep(1);
-					// } else {
-					// 	$error_message[] = "Failed to publish on Instagram.";
-					// }
 				}
 			} else {
 				$error_message[] = "Insatagram:- The image aspect ratio is not within the required range.";
