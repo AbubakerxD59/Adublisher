@@ -53,8 +53,7 @@
                     success: function(response) {
                         if (response.status) {
                             setTimeout(function() {
-                                var lastUrlIndex = urls.length -
-                                    1;
+                                var lastUrlIndex = urls.length - 1;
                                 fetchedUrl = urls[lastUrlIndex];
                                 fetchedThumbnail =
                                     '<webhighlights-link-preview url="' +
@@ -62,8 +61,7 @@
                                     '"></webhighlights-link-preview>';
                                 $("#previewbox").removeAttr(
                                     "hidden");
-                                $("#previewbox").html(
-                                    fetchedThumbnail);
+                                $("#previewbox").html(fetchedThumbnail);
                             }, 500);
                         } else {
                             $('#channel_title_visible').val('');

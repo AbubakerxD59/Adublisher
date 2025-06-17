@@ -37,7 +37,7 @@
 <!-- Magnifix Popup -->
 <script src="<?php echo ASSETURL . 'plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js'; ?>"></script>
 <!-- manifest JS -->
-<script src="<?php echo ASSETURL . 'js/manifest.js'; ?>"></script>
+<!-- <script src="<?php echo ASSETURL . 'js/manifest.js'; ?>"></script> -->
 <!-- Clipboard -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
 <!-- Bootstrap tether Core JavaScript -->

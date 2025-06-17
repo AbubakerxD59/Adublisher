@@ -49,6 +49,7 @@
     </footer>
     <?php
     $this->load->view("templates/publisher/scripts");
+    $this->load->view("templates/publisher/views/schedule/manifest");
     $this->load->view('templates/publisher/external_head_scripts');
     $this->load->view("layouts/publisher/views/schedule/script");
     ?>
