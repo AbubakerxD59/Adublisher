@@ -54,6 +54,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route["link/(:any)/(:any)"] = "rest/publisher/Usersrest/url_redirect/$1/$2";
 // index page
 $route['default_controller'] = 'Welcome';
+// php info
+$route["php-info"] = "publisher/Home/php_info";
 // new pages
 $route['calendar-view'] = 'publisher/Home/calendar_view';
 $route['analytic'] = 'publisher/Home/analytic_view';

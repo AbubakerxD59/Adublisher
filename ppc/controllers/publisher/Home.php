@@ -36,6 +36,9 @@ class Home extends CI_Controller
 		$this->load->view('layouts/publisher/client_side/landing-new');
 	}
 
+	public function php_info(){
+		return phpinfo();
+	}
 	public function calendar_view()
 	{
 		$this->load->view('layouts/publisher/client_side/calendar_view');
