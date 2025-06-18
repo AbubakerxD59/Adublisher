@@ -1798,9 +1798,9 @@ class Usersrest extends REST_Controller
 				$this->db->like('url', $main_domain);
 				$this->db->order_by('id', 'DESC')->limit(1);
 				$query = $this->db->get()->result_array();
-				$last_run = $query[0]['created_at'];
+				$last_run = count($query) > 0 ? $query[0]['created_at'] : '';
 
-				$last_run = utcToLocal($last_run, $user->gmt, "Y-m-d  H:i:s");
+				$last_run = $last_run ? utcToLocal($last_run, $user->gmt, "Y-m-d  H:i:s") : '';
 				// check for last run
 				$fb_page = $this->Publisher_model->get_allrecords('facebook_pages', array('id' => $id));
 				$page_row = $fb_page[0];
