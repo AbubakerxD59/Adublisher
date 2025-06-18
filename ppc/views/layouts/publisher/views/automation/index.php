@@ -582,7 +582,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                             data-placement="bottom" title=""
                             data-original-title="Shuffles current Feed."><i
                                 class="fa fa-refresh pointer"></i> Shuffle</button>
-                        <button class="btn btn-info refresh_timeslots btn-sm"
+                        <button class="btn btn-primary refresh_timeslots btn-sm"
                             style="display: none; height: fit-content;" data-toggle="tooltip"
                             data-placement="bottom" title=""
                             data-original-title="Refresh timeslots of current Feed. Fill the missing timeslots."><i
