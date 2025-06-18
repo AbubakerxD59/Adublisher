@@ -25,15 +25,15 @@
 <?php
 if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts) > 0 || count($fb_groups) > 0) {
 ?>
-    <div class="container">
-        <div class="row">
+    <div>
+        <div>
             <!-- Rss -->
             <div class="col-md-4 automation-socials p-2 active" id="rss">
-                <img src="<?= GeneralAssets ?>images/rss_logo.png" width="80"><br><br>
+                <img src="<?= ASSETURL ?>images/rss_logo.png" width="80"><br><br>
                 <small>Your Regular <strong>Rss Feed</strong></small>
             </div>
             <!-- Shopify -->
-            <div class="col-md-4 automation-socials" id="shopify">
+            <!-- <div class="col-md-4 automation-socials" id="shopify">
                 <div class="row p-2">
                     <div class="col-md-8">
                         <img src="<?= GeneralAssets ?>images/shopify_attachments/shopify_logo.png" width="80">
@@ -52,16 +52,16 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                 </div>
                 <br>
                 <small>Want to fetch your Shopify Store products? Click Here <a data-toggle="modal" href="#shopify-modal">more info!</a></small>
-            </div>
+            </div> -->
             <!-- youtube -->
-            <div class="col-md-4 automation-socials p-2" id="youtube">
+            <!-- <div class="col-md-4 automation-socials p-2" id="youtube">
                 <img src="<?= GeneralAssets ?>images/youtube_logo.png" width="50"><br><br>
                 <small>Coming Soon!</small>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- End -->
-    <div class="col-md-4 align-self-center">
+    <!-- <div class="col-md-4 align-self-center">
         <?php if (empty($user[0]->shopify_adminApiAccessToken)): ?>
             <button type="button" class="btn btn-info shopify-attach-button float-right" data-toggle="modal" data-target="#staticBackdrop">
                 <i class="fa-brands fa-shopify">&nbsp;</i> Attach Shopify
@@ -71,7 +71,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                 <i class="fa-brands fa-shopify">&nbsp;</i> Disconnect Shopify
             </button>
         <?php endif; ?>
-    </div>
+    </div> -->
     <div class="card my-2 social-active-color" id="allstepsdiv">
         <div class="card-body">
             <div class="row my-2">
@@ -144,10 +144,14 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                         <div class="col-md-7 pl-3"> <small> Turn Rss posting ON and
                                 OFF</small> </div>
                         <div class="col-md-5">
-                            <div class="switch">
-                                <label>OFF<input type="checkbox" class="rssposting"><span
-                                        class="lever switch-col-light-blue"></span>ON</label>
-                            </div>
+                            <label class="switch">
+                                <input type="checkbox" class="rssposting" checked="">
+                                <div class="slider"></div>
+                                <div class="slider-card">
+                                    <div class="slider-card-face slider-card-front"></div>
+                                    <div class="slider-card-face slider-card-back"></div>
+                                </div>
+                            </label>
                         </div>
                     </div>
                     <div class="row forshopify" style="display: none;">
@@ -189,9 +193,9 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                 </div>
                 <div class="form-group col-md-4" id="step3">
                     <div id="step-3-rss">
-                        <label><b>Step 3-</b> Feed URL: <i class="mdi mdi-help-circle-outline"
-                                data-toggle="tooltip" data-placement="bottom" title=""
-                                data-original-title="Third step is to input Rss Feed Link"></i>
+                        <label>
+                            <b>Step 3-</b> Feed URL:
+                            <i class="mdi mdi-help-circle-outline" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Third step is to input Rss Feed Link"></i>
                         </label>
                         <div class="to-be-cloned-container">
                             <div class="input-group">
@@ -199,16 +203,17 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                     class="form-control to-be-cloned-input original-input"
                                     style="cursor:pointer;" id="rss_feed"
                                     placeholder="Please enter url..." autocomplete="off">
-                                <div class="input-group-append">
-                                    <button
-                                        class="on_off btn btn-sm btn-danger fa fa-trash-o text-danger pointer delete_rss"
-                                        style="display:block; border: 1px solid red !important; border-radius: 0; padding: 12px;">
-                                    </button>
-                                </div>
-                                <br>
                                 <button
-                                    class="fetch_ten_more btn btn-sm btn-info pointer fa-brands fa-get-pocket"
-                                    style="display:block; border: 1px solid #1e88e5 !important; border-radius: 0; padding: 12px;"></button>
+                                    class="on_off btn btn-sm btn-danger fa fa-trash-o text-danger pointer delete_rss"
+                                    style="display:block; border: 1px solid red !important; border-radius: 0; padding: 12px;">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+
+                                <button
+                                    class="fetch_ten_more btn btn-sm btn-info pointer"
+                                    style="display:block; border: 1px solid #1e88e5 !important; border-radius: 0; padding: 12px;">
+                                    <i class="fas fa-arrow-alt-circle-down"></i>
+                                </button>
                             </div>
                             <small class="last-run-small"></small>
                         </div>
@@ -244,11 +249,9 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
         </div>
     </div>
     <!-- Shopify Attach Modal -->
-    <div class="shopify" style="display: inline;">
+    <!-- <div class="shopify" style="display: inline;">
         <p class="m-2">Must read <a data-toggle="modal" href="#shopify-modal">this info! </a> while connecting Shopify Store.</p>
-        <!-- Button trigger modal -->
         <button type="button" style="padding: 8px 11px; border-radius: 0;" class="btn btn-info float-left shopify-int-button" data-toggle="modal" data-target="#staticBackdrop">Attach Shopify</button>
-        <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -295,9 +298,9 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Shopify Info Modal -->
-    <div class="modal fade" id="shopify-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- <div class="modal fade" id="shopify-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -531,14 +534,14 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Showing Shopify Instruction Images on POP Up -->
-    <div class="image-popup-overlay" id="imagePopupOverlay">
+    <!-- <div class="image-popup-overlay" id="imagePopupOverlay">
         <div class="image-popup-content">
             <span class="close-btn" onclick="closeImagePopup()">&times;</span>
             <img id="popupImage" class="img-fluid" src="" alt="Popup Image">
         </div>
-    </div>
+    </div> -->
     <!-- End Shopify -->
     <div class="card ">
         <div class="card-header ">

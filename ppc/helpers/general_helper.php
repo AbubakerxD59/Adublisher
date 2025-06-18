@@ -2741,10 +2741,9 @@ function saveImageFromUrl($url, $user_id, $page_id = '', $name = 'profile_pic')
 	$write = fwrite($fileHandle, $image);
 	// Close the file stream
 	fclose($fileHandle);
-	if($write){
+	if ($write) {
 		return $filename;
-	}
-	else{
+	} else {
 		return '';
 	}
 }
