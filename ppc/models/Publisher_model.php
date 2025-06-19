@@ -3156,7 +3156,6 @@ class Publisher_model extends CI_Model
 			),
 		));
 		$data = json_decode(curl_exec($curl), true);
-		dd([$data]);
 		$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
 		if ($http_code != '200') {
@@ -3178,6 +3177,7 @@ class Publisher_model extends CI_Model
 		} else {
 			$this->db->insert('pinterest_users', $pinterest_data);
 		}
+		$user_account = user_account_get($data['access_token']);
 		redirect(SITEURL . 'get_pinterest_boards/');
 	}
 
