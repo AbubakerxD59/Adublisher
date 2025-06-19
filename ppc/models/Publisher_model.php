@@ -3156,6 +3156,7 @@ class Publisher_model extends CI_Model
 			),
 		));
 		$data = json_decode(curl_exec($curl), true);
+		dd([$data]);
 		$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
 		if ($http_code != '200') {
