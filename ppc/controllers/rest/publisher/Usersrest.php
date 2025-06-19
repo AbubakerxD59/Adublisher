@@ -6272,7 +6272,7 @@ class Usersrest extends REST_Controller
 				$sitemap_rss_link = $this->post('sitemap_rss_link'); // The rss link for which more posts are demanded //
 				$this->db->select('rss_link')->from('pinterest_boards')->where('id', $page);
 				$result = $this->db->get()->result();
-				$decoded_rss_link = json_decode($result[0]->rss_link, true);
+				$decoded_rss_link = !empty($result[0]->rss_link) ? json_decode($result[0]->rss_link, true) : [];
 				if (in_array($sitemap_rss_link, $decoded_rss_link)) {
 					limit_check(RSS_FEED_OLD_POST_FETCH_ID);
 					$response = pin_board_fetch_past_posts($sitemap_rss_link, $page, $userID, 1);
