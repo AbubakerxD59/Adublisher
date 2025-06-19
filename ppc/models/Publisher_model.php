@@ -3135,7 +3135,7 @@ class Publisher_model extends CI_Model
 	public function get_pinterest_access_token()
 	{
 		$code = $_GET["code"];
-		$redirect_uri = SITEURL . "get_pinterest_access_token/";
+		$redirect_uri = SITEURL . "pinterest_callback/";
 		$client_id = PINTEREST_CLIENT_ID;
 		$client_secret = PINTEREST_CLIENT_SECRET;
 		$encoded = base64_encode("{$client_id}:{$client_secret}");
