@@ -3239,7 +3239,6 @@ class Publisher_model extends CI_Model
 		$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
 		$boards = json_decode($response, true);
-		dd([$boards]);
 		if ($http_code != 200) {
 			throw new Exception('Error : Failed to get user information');
 		}
