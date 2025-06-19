@@ -1,5 +1,6 @@
 <script type="text/javascript">
     var facebook_logo = "<?= ASSETURL ?>images/icons/facebook-circle.svg";
+    var pinterest_logo = "<?= ASSETURL ?>images/icons/pinterest-circle.svg";
     Dropzone.autoDiscover = false;
     $(function() {
         setTimeout(() => {
@@ -877,7 +878,7 @@
 
         } else if (elem.type == "pinterest") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?= BulkAssets ?>images/pinterest_logo.png" class="rounded" alt="pinterest_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + pinterest_logo + '" class="rounded" alt="pinterest_logo">' +
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == "instagram") {
             node +=
@@ -987,7 +988,7 @@
 
         } else if (elem.type == "pinterest") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?= BulkAssets ?>images/pinterest_logo.png" class="rounded" alt="pinterest_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src=' + pinterest_logo + '" class="rounded" alt="pinterest_logo">' +
                 elem.channel_name + '</p> </button>'
 
         } else if (elem.type == "instagram") {
@@ -1331,7 +1332,7 @@
                         $.each(response.data.fbpages, function(index, value) {
                             if (value.channel_active == 1) {
                                 facebook_check = true;
-                                var facebook_page_icon = "<?= BulkAssets; ?>/"+value.profile_pic;
+                                var facebook_page_icon = "<?= BulkAssets; ?>/" + value.profile_pic;
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 fb_channel channel-button' data-type='facebook' data-id='" +
                                     value.id +
@@ -1358,7 +1359,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:25px;height:25px;' src='<?= BulkAssets ?>images/pinterest_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:25px;height:25px;' src='" + pinterest_logo + "' class='rounded' alt='profile_pic'> " +
                                     value.name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1366,7 +1367,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button active' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' ><img style='width:25px;height:25px;' src='<?= BulkAssets ?>images/pinterest_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' ><img style='width:25px;height:25px;' src='" + pinterest_logo + "' class='rounded' alt='profile_pic'> " +
                                     value.name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1539,7 +1540,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:25px;height:25px;' src='<?= BulkAssets ?>images/pinterest_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:25px;height:25px;' src='" + pinterest_logo + "' class='rounded' alt='profile_pic'> " +
                                     value.name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1547,7 +1548,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button active' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' ><img style='width:25px;height:25px;' src='<?= BulkAssets ?>images/pinterest_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' ><img style='width:25px;height:25px;' src='" + pinterest_logo + "' class='rounded' alt='profile_pic'> " +
                                     value.name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
