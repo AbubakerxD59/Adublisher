@@ -1,6 +1,6 @@
 <script type="text/javascript">
-    var facebook_logo = "<?= ASSETURL ?>images/icons/facebook-circle.svg";
-    var pinterest_logo = "<?= ASSETURL ?>images/icons/pinterest-circle.svg";
+    var facebook_logo = "<?= ASSETURL ?>images/Icons/facebook-circle.svg";
+    var pinterest_logo = "<?= ASSETURL ?>images/Icons/pinterest-circle.svg";
     Dropzone.autoDiscover = false;
     $(function() {
         setTimeout(() => {
