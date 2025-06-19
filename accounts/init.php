@@ -86,10 +86,8 @@ define('SERVER_TZ', 'America/Toronto');
 // Test credential
 define('STRIPE_PUBLISHABLE_KEY', 'pk_test_eLIe6vRiQYd6vHoaDKrfrMIK');
 define('STRIPE_SECRET_KEY', 'sk_test_dPLesifQRZgflEOk4yy4x6Ih');
-defined('PINTEREST_CLIENT_ID') or define('PINTEREST_CLIENT_ID', '1483446');
-defined('PINTEREST_CLIENT_SECRET') or define('PINTEREST_CLIENT_SECRET', 'badc1731c5cf0e0588c79b0cda785a52e59f9ff8');
-// defined('PINTEREST_CLIENT_ID') or define('PINTEREST_CLIENT_ID', '1511913');
-// defined('PINTEREST_CLIENT_SECRET') or define('PINTEREST_CLIENT_SECRET', 'dd99270ef26a1e48b5405063f4911d096c5c519d');
+defined('PINTEREST_CLIENT_ID') or define('PINTEREST_CLIENT_ID', '1523051');
+defined('PINTEREST_CLIENT_SECRET') or define('PINTEREST_CLIENT_SECRET', '7a38aa506baccb9615adcfefd4a015bf6e6616a2');
 // facebook credentials
 defined('FACEBOOK_CLIENT_ID') or define('FACEBOOK_CLIENT_ID', '1262896354847218');
 defined('FACEBOOK_CLIENT_SECRET') or define('FACEBOOK_CLIENT_SECRET', '33c33582e27e4d4fa22f0f677062af1f');
@@ -98,8 +96,6 @@ defined('INSTAGRAM_CLIENT_ID') or define('INSTAGRAM_CLIENT_ID', '126289635484721
 defined('INSTAGRAM_CLIENT_SECRET') or define('INSTAGRAM_CLIENT_SECRET', '33c33582e27e4d4fa22f0f677062af1f');
 defined('REVIEW_REQUEST') or define('REVIEW_REQUEST', '');
 // google auth credentials
-// defined('GOOGLE_CLIENT_ID') or define('GOOGLE_CLIENT_ID', "273614127476-rhvm1f21mkuo56gf9iortn7cah8u948p.apps.googleusercontent.com");
-// defined('GOOGLE_CLIENT_SECRET') or define('GOOGLE_CLIENT_SECRET', "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");
 defined('GOOGLE_CLIENT_ID') or define('GOOGLE_CLIENT_ID', "548300249090-he2ucj6u2fe0lmr87ek0r5kjqbk37r4o.apps.googleusercontent.com");
 defined('GOOGLE_CLIENT_SECRET') or define('GOOGLE_CLIENT_SECRET', "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");
 // AWS S3 Bucket credentials
@@ -109,8 +105,6 @@ defined('S3_CLIENT_SECRET') or define('S3_CLIENT_SECRET', "aL99lrthPp4Fd5/m2SVBb
 // CALENDARIFIC
 defined('CALENDARIFIC_API_KEY') or define('CALENDARIFIC_API_KEY', "7XbVPY1CdlvbxtigvLHR6EzFF9yGN1Dd");
 // TIKTOK
-// defined('TIKTOK_CLIENT_KEY') or define('TIKTOK_CLIENT_KEY', 'sbawnq8unlvx1nm9sf');
-// defined('TIKTOK_CLIENT_SECRET') or define('TIKTOK_CLIENT_SECRET', 'HM61AHUpyvhDiMX4LFilEqbOflWaQjTF');
 defined('TIKTOK_CLIENT_KEY') or define('TIKTOK_CLIENT_KEY', 'awh2hd6t7wkeenh4');
 defined('TIKTOK_CLIENT_SECRET') or define('TIKTOK_CLIENT_SECRET', 'xofpLVwJ4l3CrQQlNDqy2rezxBoECYYo');
 defined('TIKTOK_REDIRECT_URI') or define('TIKTOK_REDIRECT_URI', SITEURL . 'tiktok/redirect');
