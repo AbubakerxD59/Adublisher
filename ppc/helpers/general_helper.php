@@ -4991,7 +4991,7 @@ function pin_board_publish_now($post, $board, $pinterest_user)
 		'board_id' => $board->board_id,
 		'image' => $image_link,
 		'content_type' => 'image_url',
-		'access_token' => $pinterest_user->access_token
+		'access_token' => $access_token
 	];
 	$result = $CI->Publisher_model->publish_pin_curl($data);
 	$result = json_decode($result, true);
