@@ -3181,7 +3181,7 @@ class Publisher_model extends CI_Model
 		redirect(SITEURL . 'get_pinterest_boards/');
 	}
 
-	public function refresh_pinterest_access_token($refresh_token)
+	public function refresh_pinterest_access_token($refresh_token, $id)
 	{
 		$client_id = PINTEREST_CLIENT_ID;
 		$client_secret = PINTEREST_CLIENT_SECRET;
@@ -3216,7 +3216,7 @@ class Publisher_model extends CI_Model
 				"expires_in" => time() + $data["expires_in"],
 				"refresh_token_expires_in" => time() + $data["refresh_token_expires_in"],
 			];
-			$this->update_record_mc("pinterest_users", $update, [["key" => $refresh_token, "value" => $refresh_token]]);
+			$this->update_record("pinterest_users", $update, $id);
 			$access_token = $data["access_token"];
 		} else {
 			$access_token = '';

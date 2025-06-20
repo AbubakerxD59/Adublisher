@@ -6046,7 +6046,7 @@ function check_pinterest_access_token($pinterest_user)
 	$now = time();
 	$expires_in = $pinterest_user->expires_in;
 	if ($now >= $expires_in) {
-		$access_token = $CI->Publisher_model->refresh_pinterest_access_token($pinterest_user->refresh_token);
+		$access_token = $CI->Publisher_model->refresh_pinterest_access_token($pinterest_user->refresh_token, $pinterest_user->id);
 	}
 	return $access_token;
 }
