@@ -3166,8 +3166,8 @@ class Publisher_model extends CI_Model
 		$pinterest_data['user_id'] = $user_id;
 		$pinterest_data['access_token'] = $data['access_token'];
 		$pinterest_data['refresh_token'] = $data['refresh_token'];
-		$pinterest_data['expires_in'] = $data['expires_in'];
-		$pinterest_data['refresh_token_expires_in'] = $data['refresh_token_expires_in'];
+		$pinterest_data['expires_in'] = time() + $data['expires_in'];
+		$pinterest_data['refresh_token_expires_in'] = time() + $data['refresh_token_expires_in'];
 		$pinterest_user = $this->get_allrecords('pinterest_users', array('user_id' => $user_id));
 		if (count($pinterest_user) > 0) {
 			$pinterest_user = $pinterest_user[0];
@@ -3198,7 +3198,7 @@ class Publisher_model extends CI_Model
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => 'grant_type=refresh_token&refresh_token=' . $refresh_token . '&scope=boards:read,pins:read,boards:write,pins:write',
+			CURLOPT_POSTFIELDS => 'grant_type=refresh_token&refresh_token=' . $refresh_token,
 			CURLOPT_HTTPHEADER => array(
 				'Content-Type: application/x-www-form-urlencoded',
 				'Authorization: Basic ' . $encoded,
@@ -3209,11 +3209,7 @@ class Publisher_model extends CI_Model
 		$data = json_decode(curl_exec($curl), true);
 		$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
-
-		// if ($http_code != '200') {
-		// 	throw new Exception('Error : '.$data['message'].'');
-		// 	// throw new Exception('Error : Failed to refresh access token');
-		// }
+		dd([$data]);
 		return $data;
 	}
 
@@ -3798,7 +3794,6 @@ class Publisher_model extends CI_Model
 	public function publish_pin_curl($data)
 	{
 		if (isset($data['content_type'])) {
-			$access_token = refresh_pinterest_access_token($data['access_token']);
 			$curlopt_postfields = '';
 			$link = rtrim($data['link']);
 			if ($data['content_type'] == 'image_path') {

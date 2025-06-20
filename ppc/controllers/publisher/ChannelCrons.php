@@ -717,21 +717,12 @@ class ChannelCrons extends CI_Controller
 	{
 		try {
 			$pinterest_users = $this->Publisher_model->get_allrecords('pinterest_users', ['access_token !=' => '']);
-
 			foreach ($pinterest_users as $pinterest_user) {
 				$user_id = $pinterest_user->user_id;
-				$error_column_name = 'pinterest_error';
-				$function_name = 'refresh_pinterest_accesstoken_cronjob';
-				$updated_at = $pinterest_user->updated_at;
-				$updated_at = date('Y-m-d', strtotime($updated_at));
-				$today = date('Y-m-d');
-				$datediff = strtotime($today) - strtotime($updated_at);
-				$datediff = floor($datediff / (60 * 60 * 24));
-				echo $pinterest_user->user_id . " : " . $datediff . " : ";
-
-				if ($datediff > 28) {
+				$now = time();
+				$expires_in = $pinterest_user->expires_in;
+				if ($now >= $expires_in) {
 					$refreshed_access_token = $this->Publisher_model->refresh_pinterest_access_token($pinterest_user->refresh_token);
-
 					if (isset($refreshed_access_token['access_token'])) {
 						$data = [];
 						$data['access_token'] = $refreshed_access_token['access_token'];

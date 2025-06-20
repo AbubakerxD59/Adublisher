@@ -4974,6 +4974,8 @@ function user_agent()
 function pin_board_publish_now($post, $board, $pinterest_user)
 {
 	$CI = &get_instance();
+	// check for access token validity
+	$access_token = check_pinterest_access_token($pinterest_user);
 	if (strlen($post->post_title) > 101) {
 		$post_title = $post->post_title;
 		$title = !empty($post_title) ? substr($post_title, 0, 100) : $post_title;
@@ -6032,4 +6034,17 @@ function format_utc($utc_offset)
 		$utc_offset = "UTC-" . $utc_offset;
 	}
 	return $utc_offset;
+}
+
+function check_pinterest_access_token($pinterest_user)
+{
+	$CI = &get_instance();
+	$access_token = $pinterest_user->access_token;
+	$now = time();
+	$expires_in = $pinterest_user->expires_in;
+	// if ($now >= $expires_in) {
+	// 	$access_token = $CI->Publisher_model->refresh_pinterest_access_token($pinterest_user->refresh_token);
+	// }
+	$access_token = $CI->Publisher_model->refresh_pinterest_access_token($pinterest_user->refresh_token);
+	return $access_token;
 }
