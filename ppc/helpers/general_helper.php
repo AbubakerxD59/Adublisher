@@ -5002,8 +5002,9 @@ function pin_board_publish_now($post, $board, $pinterest_user)
 		$post_data_this['published'] = 0;
 		foreach ($result as $key => $value) {
 			if ($key == "id") {
-				$post_data_this['error'] = "success: Pin id = " . $value;
+				$post_data_this['error'] = $value;
 				$post_data_this['published'] = 1;
+				$post_data_this["post_id"] = $value;
 			}
 		}
 		if (isset($result['code']) && $result['message']) {
