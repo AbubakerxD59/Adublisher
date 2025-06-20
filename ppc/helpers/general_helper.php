@@ -4995,6 +4995,8 @@ function pin_board_publish_now($post, $board, $pinterest_user)
 	];
 	$result = $CI->Publisher_model->publish_pin_curl($data);
 	$result = json_decode($result, true);
+	echo '<pre>'; print_r($data); echo '<br>';
+	echo '<pre>'; print_r($result);
 	if ($result) {
 		$post_data_this['error'] = '';
 		$post_data_this['published'] = 0;
@@ -6043,9 +6045,8 @@ function check_pinterest_access_token($pinterest_user)
 	$access_token = $pinterest_user->access_token;
 	$now = time();
 	$expires_in = $pinterest_user->expires_in;
-	// if ($now >= $expires_in) {
-	// 	$access_token = $CI->Publisher_model->refresh_pinterest_access_token($pinterest_user->refresh_token);
-	// }
-	$access_token = $CI->Publisher_model->refresh_pinterest_access_token($pinterest_user->refresh_token);
+	if ($now >= $expires_in) {
+		$access_token = $CI->Publisher_model->refresh_pinterest_access_token($pinterest_user->refresh_token);
+	}
 	return $access_token;
 }

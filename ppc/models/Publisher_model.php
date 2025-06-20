@@ -3209,8 +3209,19 @@ class Publisher_model extends CI_Model
 		$data = json_decode(curl_exec($curl), true);
 		$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
-		dd([$data]);
-		return $data;
+		if (isset($data["access_token"])) {
+			$update = [
+				"access_token" => $data["access_token"],
+				"refresh_token" => $data["refresh_token"],
+				"expires_in" => time() + $data["expires_in"],
+				"refresh_token_expires_in" => time() + $data["access_token"],
+			];
+			$this->update_record_mc("pinterest_users", $update, [["key" => $refresh_token, "value" => $refresh_token]]);
+			$access_token = $data["access_token"];
+		} else {
+			$access_token = '';
+		}
+		return $access_token;
 	}
 
 	public function get_pinterest_boards()
