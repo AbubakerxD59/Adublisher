@@ -3835,8 +3835,7 @@ class Publisher_model extends CI_Model
 			}
 			$curl = curl_init();
 			curl_setopt_array($curl, array(
-				CURLOPT_URL => 'https://api-sandbox.pinterest.com/v5/pins',
-				// CURLOPT_URL => 'https://api.pinterest.com/v5/pins',
+				CURLOPT_URL => 'https://api.pinterest.com/v5/pins',
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_ENCODING => '',
 				CURLOPT_MAXREDIRS => 10,
