@@ -4974,6 +4974,7 @@ function user_agent()
 function pin_board_publish_now($post, $board, $pinterest_user)
 {
 	$CI = &get_instance();
+	$pinterest_user = $pinterest_user[0];
 	// check for access token validity
 	$access_token = check_pinterest_access_token($pinterest_user);
 	if (strlen($post->post_title) > 101) {
@@ -4990,7 +4991,7 @@ function pin_board_publish_now($post, $board, $pinterest_user)
 		'board_id' => $board->board_id,
 		'image' => $image_link,
 		'content_type' => 'image_url',
-		'access_token' => $pinterest_user[0]->access_token
+		'access_token' => $pinterest_user->access_token
 	];
 	$result = $CI->Publisher_model->publish_pin_curl($data);
 	$result = json_decode($result, true);
