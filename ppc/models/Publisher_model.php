@@ -3214,7 +3214,7 @@ class Publisher_model extends CI_Model
 				"access_token" => $data["access_token"],
 				"refresh_token" => $data["refresh_token"],
 				"expires_in" => time() + $data["expires_in"],
-				"refresh_token_expires_in" => time() + $data["access_token"],
+				"refresh_token_expires_in" => time() + $data["refresh_token_expires_in"],
 			];
 			$this->update_record_mc("pinterest_users", $update, [["key" => $refresh_token, "value" => $refresh_token]]);
 			$access_token = $data["access_token"];
