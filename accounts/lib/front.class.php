@@ -112,7 +112,9 @@ class Front
 			$username = Utility::randomString();
 			$core = App::Core();
 			if ($core->reg_verify == 1) {
-				$active = "t";
+				// for testing
+				// $active = "t";
+				$active = "y";
 			} elseif ($core->auto_verify == 0) {
 				$active = "n";
 			} else {
