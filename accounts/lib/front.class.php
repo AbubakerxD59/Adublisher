@@ -173,7 +173,6 @@ class Front
 			//Rates 
 			$rates = Db::run()->select('country')->results();
 			foreach ($rates as $key => $val) {
-
 				$data_user_rate['f_id'] = $team_id;
 				$data_user_rate['c_id'] = $val->id;
 				$data_user_rate['rate'] = $val->rate;
@@ -199,7 +198,7 @@ class Front
 				if (!empty($_POST['package_id'])) {
 					$row = Db::run()->first(Membership::mTable, '*', array("id" => $_POST['package_id']));
 				} else {
-					$row = Db::run()->first(Membership::mTable, '*', array("id" => 4));
+					$row = Db::run()->first(Membership::mTable, '*', array("title" => "FREE"));
 				}
 
 				$datam = array(
@@ -228,7 +227,6 @@ class Front
 					'recurring' => 1,
 					'active' => 1,
 				);
-
 				if ($row->id == 4) {
 					$udata['expire'] = Date::NumberOfDays('+30 day');
 				}
@@ -269,7 +267,7 @@ class Front
 					}
 				}
 			}
-			$cronjob_url = "https://www.adublisher.com/emailSending";
+			// $cronjob_url = "https://www.adublisher.com/emailSending";
 			if ($core->reg_verify == 1) {
 				$message = Lang::$word->M_INFO7;
 				$mailer = Mailer::sendMail();
@@ -398,46 +396,47 @@ class Front
 			}
 			$loginuser = App::Auth()->login($safe->email, $safe->password, false);
 			$message = Lang::$word->M_INFO8;
-			if ($core->notify_admin) {
-				$mailer = Mailer::sendMail();
-				$tpl = Db::run()->first(Content::eTable, array("body", "subject"), array('typeid' => 'notifyAdmin'));
-				if ($tpl) {
-					$body = str_replace(array(
-						'[LOGO]',
-						'[DATE]',
-						'[EMAIL]',
-						'[COMPANY]',
-						'[NAME]',
-						'[IP]',
-						'[FB]',
-						'[TW]',
-						'[SITEURLMM]'
-					), array(
-						Utility::getLogo(),
-						date('Y'),
-						$safe->email,
-						$core->company,
-						'',
-						// $data['fname'] . ' ' . $data['lname'],
-						Url::getIP(),
-						$core->social->facebook,
-						$core->social->twitter,
-						SITEURLMM
-					), $tpl->body);
-					$email_cron_data = array(
-						'email' => $core->site_email,
-						'username' => $core->company,
-						'body' => $body,
-						'company_name' => $core->company,
-						'site_email' => $core->site_email,
-						'subject' => $tpl->subject,
-						'type' => 'notifyAdmin',
-						'status' => 0 //pending
-					);
-					Db::run()->insert('email_cron', $email_cron_data);
-				}
-			}
-			App::Core()->run_php_background($cronjob_url);
+			// comment for testing
+			// if ($core->notify_admin) {
+			// 	$mailer = Mailer::sendMail();
+			// 	$tpl = Db::run()->first(Content::eTable, array("body", "subject"), array('typeid' => 'notifyAdmin'));
+			// 	if ($tpl) {
+			// 		$body = str_replace(array(
+			// 			'[LOGO]',
+			// 			'[DATE]',
+			// 			'[EMAIL]',
+			// 			'[COMPANY]',
+			// 			'[NAME]',
+			// 			'[IP]',
+			// 			'[FB]',
+			// 			'[TW]',
+			// 			'[SITEURLMM]'
+			// 		), array(
+			// 			Utility::getLogo(),
+			// 			date('Y'),
+			// 			$safe->email,
+			// 			$core->company,
+			// 			'',
+			// 			// $data['fname'] . ' ' . $data['lname'],
+			// 			Url::getIP(),
+			// 			$core->social->facebook,
+			// 			$core->social->twitter,
+			// 			SITEURLMM
+			// 		), $tpl->body);
+			// 		$email_cron_data = array(
+			// 			'email' => $core->site_email,
+			// 			'username' => $core->company,
+			// 			'body' => $body,
+			// 			'company_name' => $core->company,
+			// 			'site_email' => $core->site_email,
+			// 			'subject' => $tpl->subject,
+			// 			'type' => 'notifyAdmin',
+			// 			'status' => 0 //pending
+			// 		);
+			// 		Db::run()->insert('email_cron', $email_cron_data);
+			// 	}
+			// }
+			// App::Core()->run_php_background($cronjob_url);
 			if (Db::run()->affected()) {
 				$json['type'] = 'success';
 				$json['title'] = Lang::$word->SUCCESS;
