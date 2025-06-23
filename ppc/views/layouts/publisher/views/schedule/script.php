@@ -2365,6 +2365,7 @@
                 // For example, remove the button on success
                 if (response.status) {
                     $('.delete-button-modal[data-id="' + id + '"]').closest('tr').remove();
+                    $('.channel-button[data-id="' + id + '"]').remove();
                     $('#limit_check').val('1');
                     swal({
                         title: "Success",
