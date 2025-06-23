@@ -4270,7 +4270,11 @@ function isImage($url)
 
 	// Check if the request was successful (HTTP status code 200) and if the content-type is an image
 	if ($httpCode == 200 && strstr(curl_getinfo($ch, CURLINFO_CONTENT_TYPE), 'image/')) {
-		$imageInfo = getimagesize($url);
+		if (strpos($url, "bulkuploads")) {
+			return true;
+		} else {
+			$imageInfo = getimagesize($url);
+		}
 		if ($imageInfo !== false) {
 			return true; // The URL is an image
 		}
@@ -4995,8 +4999,11 @@ function pin_board_publish_now($post, $board, $pinterest_user)
 	];
 	$result = $CI->Publisher_model->publish_pin_curl($data);
 	$result = json_decode($result, true);
-	echo '<pre>'; print_r($data); echo '<br>';
-	echo '<pre>'; print_r($result);
+	echo '<pre>';
+	print_r($data);
+	echo '<br>';
+	echo '<pre>';
+	print_r($result);
 	if ($result) {
 		$post_data_this['error'] = '';
 		$post_data_this['published'] = 0;
@@ -5190,7 +5197,8 @@ function pin_board_queue_publish_now($post, $board, $pinterest_user)
 			remove_from_s3bucket($post->video_path);
 		}
 	} else { //for image, link
-		$image_link = isImage($image_path) ? $image_path : fetchImage($request_url, 'pinterest');
+		$image_link = $image_path;
+		// $image_link = isImage($image_path) ? $image_path : fetchImage($request_url, 'pinterest');
 		$data = [
 			'title' => $title,
 			'description' => $title,
