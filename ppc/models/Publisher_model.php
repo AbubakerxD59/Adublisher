@@ -3177,12 +3177,8 @@ class Publisher_model extends CI_Model
 		} else {
 			$this->db->insert('pinterest_users', $pinterest_data);
 		}
-		$user_account = user_account_get($data['access_token']);
-		if (isset($user_account["id"])) {
-			$profile_image = saveImageFromUrl($user_account["profile_image"], $user_id, $user_account["id"]);
-			$this->update_record('pinterest_users', ["profile_pic" => $profile_image], $pinterest_user->id);
-		}
-		redirect(SITEURL . 'get_pinterest_boards/');
+		$this->get_pinterest_boards($pinterest_user);
+		redirect(SITEURL . 'schedule/');
 	}
 
 	public function refresh_pinterest_access_token($refresh_token, $id)
@@ -3228,7 +3224,7 @@ class Publisher_model extends CI_Model
 		return $access_token;
 	}
 
-	public function get_pinterest_boards()
+	public function get_pinterest_boards($pin_user = null)
 	{
 		$user_id = App::Session()->get('userid');
 		$access_token = $this->db->select('access_token')->from('pinterest_users')->where('user_id', $user_id)->get()->row('access_token');
@@ -3256,6 +3252,12 @@ class Publisher_model extends CI_Model
 		}
 		$board_owner = "";
 		if (isset($boards['items'])) {
+			$pinterest_user = $this->retrieve_record("pinterest_users", $pin_user->id);
+			$user_account = user_account_get($pinterest_user->access_token);
+			$profile_image = null;
+			if (isset($user_account["id"])) {
+				$profile_image = saveImageFromUrl($user_account["profile_image"], $user_id, $user_account["id"]);
+			}
 			$boards = $boards['items'];
 			$board_owner = isset($boards[0]['owner']['username']) ? $boards[0]['owner']['username'] : '';
 			foreach ($boards as $board) {
@@ -3275,7 +3277,9 @@ class Publisher_model extends CI_Model
 						['key' => 'id', 'value' => $pinterest_board->id]
 					];
 					$update = array(
+						'pin_id' => $pin_user->id,
 						'name' => $board_name,
+						'profile_pic' => $profile_image,
 						'description' => $board_description,
 						'follower_count' => $followers,
 						'privacy' => $board_privacy,
@@ -3294,7 +3298,9 @@ class Publisher_model extends CI_Model
 					$data = [
 						'user_id' => $user_id,
 						'board_id' => $board_id,
+						'pin_id' => $pin_user->id,
 						'name' => $board_name,
+						'profile_pic' => $profile_image,
 						'description' => $board_description,
 						'follower_count' => $followers,
 						'privacy' => $board_privacy
