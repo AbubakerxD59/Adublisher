@@ -12,7 +12,6 @@
                 <?php
                 if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts) > 0 || count($fb_groups) > 0 || count($youtube_channels) || count($tiktoks)) {
                 ?>
-                    <hr>
                     <div class="row <?= REVIEW_REQUEST; ?>">
                         <div class="col-md-12 d-flex my-3">
                             <div class="col-5">
