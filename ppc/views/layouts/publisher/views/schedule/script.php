@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    var facebook_page_icon = pinterest_page_icon = '';
+    var facebook_page_icon = pinterest_board_icon = '';
     var facebook_logo = "<?= ASSETURL ?>images/Icons/facebook-circle.svg";
     var pinterest_logo = "<?= ASSETURL ?>images/Icons/pinterest-circle.svg";
     Dropzone.autoDiscover = false;
@@ -1331,7 +1331,7 @@
                         var youtube_check = false;
                         var facebook_check = false;
                         $.each(response.data.fbpages, function(index, value) {
-                            facebook_page_icon = "<?= BulkAssets; ?>/" + value.profile_pic;
+                            facebook_page_icon = "<?= BulkAssets; ?>" + value.profile_pic;
                             if (value.channel_active == 1) {
                                 facebook_check = true;
                                 $("#channels").append(
@@ -1355,25 +1355,25 @@
 
                     if (response.data.boards.length > 0) {
                         $.each(response.data.boards, function(index, value) {
-                            pinterest_page_icon =
-                                if (value.channel_active == 1) {
-                                    facebook_check = false;
-                                    $("#channels").append(
-                                        "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button' data-type='pinterest' data-id='" +
-                                        value.id +
-                                        "' style='border: 2px solid green;'><img style='width:25px;height:25px;' src='" + pinterest_logo + "' class='rounded' alt='profile_pic'> " +
-                                        value.name +
-                                        "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
-                                        "</button>");
-                                } else {
-                                    $("#channels").append(
-                                        "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button active' data-type='pinterest' data-id='" +
-                                        value.id +
-                                        "' ><img style='width:25px;height:25px;' src='" + pinterest_logo + "' class='rounded' alt='profile_pic'> " +
-                                        value.name +
-                                        "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
-                                        "</button>");
-                                }
+                            pinterest_board_icon = "<?= BulkAssets ?>" + value.profile_pic;
+                            if (value.channel_active == 1) {
+                                facebook_check = false;
+                                $("#channels").append(
+                                    "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button' data-type='pinterest' data-id='" +
+                                    value.id +
+                                    "' style='border: 2px solid green;'><img style='width:25px;height:25px;' src='" + pinterest_logo + "' class='rounded' alt='profile_pic'> " +
+                                    value.name +
+                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
+                                    "</button>");
+                            } else {
+                                $("#channels").append(
+                                    "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button active' data-type='pinterest' data-id='" +
+                                    value.id +
+                                    "' ><img style='width:25px;height:25px;' src='" + pinterest_logo + "' class='rounded' alt='profile_pic'> " +
+                                    value.name +
+                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
+                                    "</button>");
+                            }
                         });
                     }
 

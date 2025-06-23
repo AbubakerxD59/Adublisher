@@ -53,7 +53,7 @@
                                     ?>
                                         <tr>
                                             <td class="title"> <img style="width:40px;height:40px;"
-                                                    src="<?php echo BulkAssets . $page_item->profile_pic; ?>"
+                                                    src="<?= $page_item->profile_pic ? BulkAssets . $page_item->profile_pic : ASSETURL . 'images/Icons/facebook-circle.svg'; ?>"
                                                     class="rounded" alt="profile_pic">
                                                 <b><?php echo $page_item->page_name ?></b>
                                             </td>
@@ -94,7 +94,7 @@
                                     ?>
                                         <tr>
                                             <td class="title"> <img style="width:40px;height:40px;"
-                                                    src="<?php echo ASSETURL . 'images/Icons/pinterest-circle.svg'; ?>"
+                                                    src="<?= $board_item->profile_pic ? BulkAssets . $board_item->profile_pic : ASSETURL . 'images/Icons/pinterest-circle.svg'; ?>"
                                                     class="rounded" alt="profile_pic">
                                                 <b><?php echo $board_item->name; ?></b>
                                             </td>
