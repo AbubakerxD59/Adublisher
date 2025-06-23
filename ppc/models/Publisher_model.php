@@ -3128,7 +3128,7 @@ class Publisher_model extends CI_Model
 		$client_secret = PINTEREST_CLIENT_SECRET;
 		$redirect_url = SITEURL . "pinterest_callback/";
 		$pinterest = new Pinterest($client_id, $client_secret);
-		$login_url = $pinterest->auth->getLoginUrl($redirect_url, array('boards:read', 'pins:read', 'boards:write', 'pins:write'));
+		$login_url = $pinterest->auth->getLoginUrl($redirect_url, array('boards:read', 'pins:read', 'boards:write', 'pins:write', 'user_accounts:read'));
 		return $login_url;
 	}
 
