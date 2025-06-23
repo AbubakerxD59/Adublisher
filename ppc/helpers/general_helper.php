@@ -4749,7 +4749,7 @@ function notify_via_email($postData, $page, $type, $error_message)
 
 function make_image_url($image)
 {
-	$newPath = str_replace("/home/admin/web/adublisher.com/public_html/", SITEURL, $image);
+	$newPath = str_replace("/var/www/html/Adublisher/", SITEURL, $image);
 	return $newPath;
 }
 
@@ -5224,7 +5224,7 @@ function pin_board_queue_publish_now($post, $board, $pinterest_user)
 		foreach ($result as $key => $value) {
 			if ($key == "id") {
 				$post_id = $value;
-				$response = "Pin id =" . $value;
+				$response = $value;
 				$status = 1;
 			}
 		}

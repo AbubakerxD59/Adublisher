@@ -113,7 +113,6 @@ class ChannelCrons extends CI_Controller
 	public function pinterestPublish()
 	{
 		$posts = $this->Publisher_model->getScheduledPostsFromChannels('channels_scheduler', 'pinterest');
-		print_pre($posts);
 		foreach ($posts as $post) {
 			$user_id = $post->user_id;			
 			$this->Publisher_model->update_record('channels_scheduler', ['status' => '2', 'response' => 'Processing'], $post->id);
@@ -157,7 +156,7 @@ class ChannelCrons extends CI_Controller
 				if (strpos($post->link, 'http://') !== false || strpos($post->link, 'https://') !== false) {
 					$image_path = $post->link;
 				} else {
-					$image_path = "/home/admin/web/adublisher.com/public_html/assets/bulkuploads/" . $post->link;
+					$image_path = BulkAssets. $post->link;
 				}
 				$post->post_title = !empty($post->post_title) ? $post->post_title : "";
 				$request_url = !empty($post->site_us_pc) ? $post->site_us_pc : "";
@@ -173,7 +172,6 @@ class ChannelCrons extends CI_Controller
 				$result = $this->Publisher_model->publish_pin_curl($data);
 			}
 			$result = json_decode($result, true);
-			print_pre($result);
 			if (isset($result['id'])) {
 				$response = array('status' => '1', 'response' => $result['id'], 'post_id' => $result['id']);
 				$this->Publisher_model->update_record('channels_scheduler', $response, $post->id);
