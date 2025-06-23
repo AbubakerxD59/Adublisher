@@ -3171,13 +3171,15 @@ class Publisher_model extends CI_Model
 		$pinterest_user = $this->get_allrecords('pinterest_users', array('user_id' => $user_id));
 		if (count($pinterest_user) > 0) {
 			$pinterest_user = $pinterest_user[0];
-			$this->db->where('id', $pinterest_user->id);
+			$pin_user_id = $pinterest_user->id;
+			$this->db->where('id', $pin_user_id);
 			$this->db->set(['active' => 'y', 'updated_at' => date('Y-m-d H:i:s')]);
 			$this->db->update('pinterest_users', $pinterest_data);
 		} else {
 			$this->db->insert('pinterest_users', $pinterest_data);
+			$pin_user_id = $this->db->insert_id();
 		}
-		$this->get_pinterest_boards($pinterest_user);
+		$this->get_pinterest_boards($pin_user_id);
 		redirect(SITEURL . 'schedule/');
 	}
 
@@ -3224,7 +3226,7 @@ class Publisher_model extends CI_Model
 		return $access_token;
 	}
 
-	public function get_pinterest_boards($pin_user = null)
+	public function get_pinterest_boards($pin_user_id = null)
 	{
 		$user_id = App::Session()->get('userid');
 		$access_token = $this->db->select('access_token')->from('pinterest_users')->where('user_id', $user_id)->get()->row('access_token');
@@ -3252,7 +3254,7 @@ class Publisher_model extends CI_Model
 		}
 		$board_owner = "";
 		if (isset($boards['items'])) {
-			$pinterest_user = $this->retrieve_record("pinterest_users", $pin_user->id);
+			$pinterest_user = $this->retrieve_record("pinterest_users", $pin_user_id);
 			$user_account = user_account_get($pinterest_user->access_token);
 			$profile_image = null;
 			if (isset($user_account["id"])) {
@@ -3277,7 +3279,7 @@ class Publisher_model extends CI_Model
 						['key' => 'id', 'value' => $pinterest_board->id]
 					];
 					$update = array(
-						'pin_id' => $pin_user->id,
+						'pin_id' => $pin_user_id,
 						'name' => $board_name,
 						'profile_pic' => $profile_image,
 						'description' => $board_description,
