@@ -3300,7 +3300,7 @@ class Publisher_model extends CI_Model
 					$data = [
 						'user_id' => $user_id,
 						'board_id' => $board_id,
-						'pin_id' => $pin_user->id,
+						'pin_id' => $pin_user_id,
 						'name' => $board_name,
 						'profile_pic' => $profile_image,
 						'description' => $board_description,
