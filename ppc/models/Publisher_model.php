@@ -3177,7 +3177,7 @@ class Publisher_model extends CI_Model
 		} else {
 			$this->db->insert('pinterest_users', $pinterest_data);
 		}
-		// $user_account = user_account_get($data['access_token']);
+		$user_account = user_account_get($data['access_token']);
 		redirect(SITEURL . 'get_pinterest_boards/');
 	}
 
