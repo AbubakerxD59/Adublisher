@@ -173,7 +173,7 @@ class ChannelCrons extends CI_Controller
 			}
 			$result = json_decode($result, true);
 			if (isset($result['id'])) {
-				$response = array('status' => '1', 'response' => $result['id'], 'post_id' => $result['id']);
+				$response = array('status' => '1', 'response' => "Your post has been Published Successfully!", 'post_id' => $result['id']);
 				$this->Publisher_model->update_record('channels_scheduler', $response, $post->id);
 
 				remove_file($post->link);
