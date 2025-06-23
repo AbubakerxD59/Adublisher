@@ -4244,7 +4244,6 @@ class Usersrest extends REST_Controller
 			), REST_Controller::HTTP_OK);
 		} else {
 			$active_channels = $this->Publisher_model->get_active_channels_settings($user_id);
-			dd([$active_channels]);
 			$fbpages = $active_channels['fbpages'];
 			$boards = $active_channels['boards'];
 			$ig_accounts = $active_channels['ig_accounts'];
@@ -4252,6 +4251,14 @@ class Usersrest extends REST_Controller
 			$tiktoks = $active_channels['tiktoks'];
 			$error_array = [];
 			$success_array = [];
+			if (count($boards) > 0) {
+				if (empty($result['image'])) {
+					$this->response(array(
+						'status' => false,
+						'message' => 'No image is provided',
+					), REST_Controller::HTTP_OK);
+				}
+			}
 			$size = count($fbpages) + count($boards) + count($ig_accounts) + count($fb_groups) + count($tiktoks);
 			if ($size > 0) {
 				if (count($boards) > 0) {
