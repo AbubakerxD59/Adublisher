@@ -725,7 +725,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                                     ?>
                                         <tr>
                                             <td class="title"> <img style="width:40px;height:40px;"
-                                                    src="<?php echo ASSETURL . 'images/Icons/facebook-circle.svg'; ?>"
+                                                    src="<?php echo BulkAssets . $page_item->profile_pic; ?>"
                                                     class="rounded" alt="profile_pic">
                                                 <b><?php echo $page_item->page_name ?></b>
                                             </td>
