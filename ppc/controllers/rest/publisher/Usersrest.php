@@ -4244,6 +4244,7 @@ class Usersrest extends REST_Controller
 			), REST_Controller::HTTP_OK);
 		} else {
 			$active_channels = $this->Publisher_model->get_active_channels_settings($user_id);
+			dd([$active_channels]);
 			$fbpages = $active_channels['fbpages'];
 			$boards = $active_channels['boards'];
 			$ig_accounts = $active_channels['ig_accounts'];
