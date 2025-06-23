@@ -6025,7 +6025,7 @@ function user_account_get($access_token)
 		),
 	));
 	$data = json_decode(curl_exec($curl), true);
-	dd([$data]);
+	return $data;
 }
 
 function url_segments($segment = null)

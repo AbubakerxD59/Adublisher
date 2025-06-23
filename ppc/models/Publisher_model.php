@@ -3178,6 +3178,10 @@ class Publisher_model extends CI_Model
 			$this->db->insert('pinterest_users', $pinterest_data);
 		}
 		$user_account = user_account_get($data['access_token']);
+		if (isset($user_account["id"])) {
+			$profile_image = saveImageFromUrl($user_account["profile_image"], $user_id, $user_account["id"]);
+			$this->update_record('pinterest_users', ["profile_pic" => $profile_image], $pinterest_user->id);
+		}
 		redirect(SITEURL . 'get_pinterest_boards/');
 	}
 
