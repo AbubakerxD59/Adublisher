@@ -5200,6 +5200,7 @@ function pin_board_queue_publish_now($post, $board, $pinterest_user)
 			'content_type' => 'image_path',
 			'access_token' => $pinterest_user[0]->access_token,
 		];
+		dd($data);
 		$result = $CI->Publisher_model->publish_pin_curl($data);
 		$result = json_decode($result, true);
 	}
