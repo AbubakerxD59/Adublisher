@@ -12,9 +12,9 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="<?php echo ASSETURL . 'images/logo-icon.png'; ?>" alt="Adublisher-Logo" height="60" width="60">
-        </div>
+        </div> -->
         <!-- Navbar -->
         <?php
         $this->load->view("templates/publisher/navbar");

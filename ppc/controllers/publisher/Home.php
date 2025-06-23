@@ -785,6 +785,8 @@ class Home extends CI_Controller
 			$data["data"]['fb_groups'] = $this->Publisher_model->get_allrecords('facebook_groups', array('user_id' => $userID, 'active' => 'y'));
 			// facebook login
 			$data["data"]['connect_facebook'] = $this->Publisher_model->get_facebook_login_url();
+			// youtube channels
+			$data["data"]['youtube_channels'] = $this->Publisher_model->get_allrecords('youtube_channels', array('user_id' => $userID, 'active' => '1'));
 			// tiktok
 			$data['tiktoks'] = $this->Publisher_model->get_allrecords('tiktok', array('user_id' => $userID));
 			$this->load->view('layouts/publisher/schedule', $data);

@@ -1,8 +1,17 @@
 <!-- #channel_settings -->
 <div class="row">
     <input type="hidden" id="action_name" value="" />
-    <div class="col-md-12 m-b-10" id="channels"></div>
-    <div class="col-md-12 scroll-bar">
+    <div class="col-12 d-flex justify-content-between">
+        <div class="col-md-11 m-b-10" id="channels"></div>
+        <div class="col-md-1 text-right">
+            <?php
+            if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts) > 0 || count($fb_groups) > 0 || count($youtube_channels) || count($tiktoks)) {
+            ?>
+                <span class="pointer"><i class="fa fa-cog" data-toggle="modal" data-target="#channel_settings_modal_lg"></i></span>
+            <?php
+            }
+            ?>
+        </div>
     </div>
     <div class="col-12 social_content">
         <div class="col-md-12 m-t-10">
@@ -223,3 +232,5 @@
 
 <!-- youtube section -->
 <div class="col-md-6 m-t-10"></div>
+
+<?php $this->load->view("layouts/publisher/views/schedule/modals", $data) ?>

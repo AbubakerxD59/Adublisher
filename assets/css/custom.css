@@ -10,3 +10,11 @@
 .chosen-container-multi .chosen-choices {
     padding: 5px 5px !important;
 }
+
+.pointer {
+    cursor: pointer !important;
+}
+
+.chosen-container{
+    min-width: 100% !important;
+}

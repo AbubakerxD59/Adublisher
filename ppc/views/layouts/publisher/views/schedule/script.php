@@ -2443,3 +2443,151 @@
         };
     });
 </script>
+
+<script>
+    $(".chosen_all_channels_timeslots").on('change', function() {
+        var time_slots = $(this).val();
+        var dataOBJ = {
+            'timeslots': time_slots,
+        }
+        $.ajax({
+            type: "POST",
+            url: "<?php echo SITEURL; ?>all_channels_slots",
+            data: dataOBJ,
+            dataType: "json",
+            success: function(response) {
+                alertbox("Success", response.message, "success");
+                $(".chosen-fbpages_timeslots").val(time_slots);
+                $(".chosen-fbpages_timeslots").trigger("chosen:updated");
+                $(".chosen-boards_timeslots").val(time_slots);
+                $(".chosen-boards_timeslots").trigger("chosen:updated");
+                $(".chosen-ig_timeslots").val(time_slots);
+                $(".chosen-ig_timeslots").trigger("chosen:updated")
+                $(".chosen-fbgroup_timeslots").val(time_slots);
+                $(".chosen-fbgroup_timeslots").trigger("chosen:updated")
+                $(".chosen-yt_channel_slots").val(time_slots);
+                $(".chosen-yt_channel_slots").trigger("chosen:updated")
+                $(".chosen-tiktok-time-slots").val(time_slots);
+                $(".chosen-tiktok-time-slots").trigger("chosen:updated")
+            },
+            error: function() {
+                alertbox("Error", response.message, "error");
+            }
+        });
+    });
+
+    // Function to handle delete action
+    function handleDelete(id, pageType, button, action) {
+        var rss_feed_engine_url;
+        if (pageType == 'facebook') {
+            rss_feed_engine_url = 'deletefbpage';
+        } else if (pageType == 'pinterest') {
+            rss_feed_engine_url = 'deletepinterestboard';
+        } else if (pageType == 'instagram') {
+            rss_feed_engine_url = 'deleteinstaaccount';
+        } else if (pageType == 'fbgroup') {
+            rss_feed_engine_url = 'deletefbgroup';
+        } else if (pageType == 'youtube') {
+            rss_feed_engine_url = 'deleteyoutube';
+        } else if (pageType == 'tiktok') {
+            rss_feed_engine_url = 'deletetiktok';
+        }
+        // Send an AJAX request to delete the page
+        $.ajax({
+            url: "<?php echo SITEURL; ?>" + rss_feed_engine_url,
+            method: 'POST',
+            data: {
+                id: id,
+                action: action
+            }, // Include the action in the request
+            success: function(response) {
+                // Handle the success response as needed
+                // For example, remove the button on success
+                if (response.status) {
+                    $('.delete-button[data-id="' + id + '"]').closest('tr').remove();
+                    $('#limit_check').val('1');
+                    swal({
+                        title: "Success",
+                        text: response.message,
+                        type: "success",
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "OK!",
+                        closeOnConfirm: true
+                    });
+                    // setTimeout(function () {
+                    //     location.reload();
+                    // }, 2000);
+                }
+            },
+            error: function(xhr, status, error) {
+                // Handle errors here
+                console.error(error);
+            }
+        });
+    }
+    // Event delegation to handle hover and delete
+    var deleteButton = $('.delete-button-modal'); // Find the delete button inside the channel-button
+    // Mouse enter, show the delete button by setting opacity to 1
+    deleteButton.on("mouseenter", function() {
+        $(this).css('opacity', '1');
+    });
+    deleteButton.on("mouseleave", function() {
+        $(this).css('opacity', '0.5');
+    });
+
+    deleteButton.on("click", function(e) {
+        e.stopPropagation(); // Prevent the button click from triggering the button's click event
+        var id = $(this).data("id");
+        var pageType = $(this).data("type"); // Get the type of the clicked button
+        // Defining text and button text variables depending on the channel 
+        var confirmationText;
+        var confirmationTextInside;
+        var disconnectOnly;
+        var disconnectDeleteScheduledPosts;
+        if (pageType == 'facebook') {
+            confirmationText = "Are you sure you want to delete this Facebook page?";
+            confirmationTextInside = "Disconnect This Facebook Page Only |or| Also Delete It's Scheduled Posts?";
+            disconnectOnly = "Disconnect Facebook Page Only";
+            disconnectDeleteScheduledPosts = "Disconnect Facebook Page and Delete Scheduled Posts";
+        } else if (pageType == 'pinterest') {
+            confirmationText = "Are you sure you want to delete this Pinterest board?";
+            confirmationTextInside = "Disconnect This Pinterest Board Only |or| Also Delete It's Scheduled Posts?";
+            disconnectOnly = "Disconnect Pinterest Board Only";
+            disconnectDeleteScheduledPosts = "Disconnect Pinterest Board and Delete Scheduled Posts";
+        } else if (pageType == 'instagram') {
+            confirmationText = "Are you sure you want to delete this Instagram account?";
+            confirmationTextInside = "Disconnect Instagram Only |or| Also Delete It's Scheduled Posts?";
+            disconnectOnly = "Disconnect Instagram Only";
+            disconnectDeleteScheduledPosts = "Disconnect Instagram and Delete Scheduled Posts";
+        } else if (pageType == 'fbgroup') {
+            confirmationText = "Are you sure you want to delete this Facebook group?";
+            confirmationTextInside = "Disconnect This Facebook Group Only |or| Also Delete It's Scheduled Posts?";
+            disconnectOnly = "Disconnect Facebook Group Only";
+            disconnectDeleteScheduledPosts = "Disconnect Facebook Group and Delete Scheduled Posts";
+        } else if (pageType == 'youtube') {
+            confirmationText = "Are you sure you want to delete this YouTube channel?";
+            confirmationTextInside = "Disconnect This YouTube channel Only |or| Also Delete It's Scheduled Posts?";
+            disconnectOnly = "Disconnect YouTube channel Only";
+            disconnectDeleteScheduledPosts = "Disconnect YouTube channel and Delete Scheduled Posts";
+        } else if (pageType == 'tiktok') {
+            confirmationText = "Are you sure you want to delete this TikTok account?";
+            confirmationTextInside = "Disconnect This Tiktok Account Only |or| Also Delete It's Scheduled Posts?";
+            disconnectOnly = "Disconnect TikTok channel Only";
+            disconnectDeleteScheduledPosts = "Disconnect TikTok account and Delete Scheduled Posts";
+        }
+        // Show a SweetAlert confirmation dialog with an additional option
+        swal({
+            title: "Are you sure?",
+            text: confirmationText,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "Cancel",
+            closeOnConfirm: true
+        }, function(isConfirmed) {
+            var action = "disconnect_and_delete"
+            handleDelete(id, pageType, deleteButton, action);
+        });
+    });
+</script>
