@@ -987,7 +987,7 @@
 
         } else if (elem.type == "pinterest") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src=' + pinterest_board_icon + '" class="rounded" alt="pinterest_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + pinterest_board_icon + '" class="rounded" alt="pinterest_logo">' +
                 elem.channel_name + '</p> </button>'
 
         } else if (elem.type == "instagram") {
