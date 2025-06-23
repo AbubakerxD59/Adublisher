@@ -5180,7 +5180,13 @@ function pin_board_queue_publish_now($post, $board, $pinterest_user)
 	$user_id = $post->user_id;
 	$title = $post->post_title;
 	$title = strlen($title) > 101 ? substr($title, 0, 95) : $title;
-	$image_path = strpos($post->link, 'http://') !== false || strpos($post->link, 'https://') !== false ? $post->link : BulkAssets . $post->link;
+	if (strpos($post->link, 'http://') !== false || strpos($post->link, 'https://') !== false) {
+		$image_path = $post->link;
+		$content_type = "image_url";
+	} else {
+		$image_path = BulkAssets . $post->link;
+		$content_type = "image_path";
+	}
 	$request_url = empty($post->site_us_pc) ? '' : $post->site_us_pc;
 	if (!empty($post->video_path)) { //for video
 		$data = [
@@ -5205,7 +5211,7 @@ function pin_board_queue_publish_now($post, $board, $pinterest_user)
 			'board_id' => $board->board_id,
 			'link' => $request_url,
 			'image' => $image_link,
-			'content_type' => 'image_path',
+			'content_type' => $content_type,
 			'access_token' => $pinterest_user[0]->access_token,
 		];
 		dd([$data]);
