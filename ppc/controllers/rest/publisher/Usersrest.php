@@ -6283,35 +6283,51 @@ class Usersrest extends REST_Controller
 				$decoded_rss_link = !empty($result[0]->rss_link) ? json_decode($result[0]->rss_link, true) : [];
 				if (in_array($sitemap_rss_link, $decoded_rss_link)) {
 					limit_check(RSS_FEED_OLD_POST_FETCH_ID);
+					$data = [
+						'user_id' => $userID,
+						'page_id' => $page,
+						'type' => 'pinterest_past',
+						'url' => $sitemap_rss_link,
+						'published' => 0
+					];
+					$this->db->insert('rss_links', $data);
 					// $response = pin_board_fetch_past_posts($sitemap_rss_link, $page, $userID, 1);
 					$cron_url = 'https://www.adublisher.com/fetchPastRssFeed';
 				} else {
 					limit_check(RSS_FEED_LATEST_POST_FETCH_ID);
+					$data = [
+						'user_id' => $userID,
+						'page_id' => $page,
+						'type' => 'pinterest',
+						'url' => $sitemap_rss_link,
+						'published' => 0
+					];
+					$this->db->insert('rss_links', $data);
 					// $response = pin_board_fetch_more_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
 					$cron_url = 'https://www.adublisher.com/fetchRssFeed';
 				}
 				// if ($response['status']) {
-					$store_rss_link[] = $this->post('sitemap_rss_link'); // The rss link for which more posts 	are demanded // 
-					$this->db->select('rss_link')->from('pinterest_boards')->where('id', $page);
-					$result = $this->db->get()->result();
-					if (empty($result[0]->rss_link)) {
-						$encode_rss_links = json_encode($store_rss_link);
-					} else {
-						$decoded_rss_link = json_decode($result[0]->rss_link, true);
-						// Check if the link already exists in $decoded_rss_link
-						if (($key = array_search($store_rss_link[0], $decoded_rss_link)) !== false) {
-							$store_rss_link = []; // Set $store_rss_link to empty array if it already exists
-						}
-						$all_links = array_merge($decoded_rss_link, $store_rss_link);
-						$all_links = array_values($all_links); // Reset keys
-						$encode_rss_links = json_encode($all_links);
+				$store_rss_link[] = $this->post('sitemap_rss_link'); // The rss link for which more posts 	are demanded // 
+				$this->db->select('rss_link')->from('pinterest_boards')->where('id', $page);
+				$result = $this->db->get()->result();
+				if (empty($result[0]->rss_link)) {
+					$encode_rss_links = json_encode($store_rss_link);
+				} else {
+					$decoded_rss_link = json_decode($result[0]->rss_link, true);
+					// Check if the link already exists in $decoded_rss_link
+					if (($key = array_search($store_rss_link[0], $decoded_rss_link)) !== false) {
+						$store_rss_link = []; // Set $store_rss_link to empty array if it already exists
 					}
-					$page_data['rss_link'] = $encode_rss_links;
-					$result = $this->Publisher_model->update_record('pinterest_boards', $page_data, $page);
-					$removeError = removeCronJobError($userID, 'pinterest_error');
-					// run cronjob for fetching rss feed
-					run_php_background($cron_url);
-					$this->response(['status' => true, 'message' => "Good Work!! We are setting up your awesome feed, Please Wait."], REST_Controller::HTTP_OK);
+					$all_links = array_merge($decoded_rss_link, $store_rss_link);
+					$all_links = array_values($all_links); // Reset keys
+					$encode_rss_links = json_encode($all_links);
+				}
+				$page_data['rss_link'] = $encode_rss_links;
+				$result = $this->Publisher_model->update_record('pinterest_boards', $page_data, $page);
+				$removeError = removeCronJobError($userID, 'pinterest_error');
+				// run cronjob for fetching rss feed
+				run_php_background($cron_url);
+				$this->response(['status' => true, 'message' => "Good Work!! We are setting up your awesome feed, Please Wait."], REST_Controller::HTTP_OK);
 				// } else {
 				// 	$this->response(['status' => false, 'message' => $response['error']], REST_Controller::HTTP_BAD_REQUEST);
 				// }
