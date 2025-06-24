@@ -1894,8 +1894,6 @@ class ChannelCrons extends CI_Controller
 
 	public function fetch_rss_feed()
 	{
-		error_reporting(-1);
-		ini_set('display_errors', 1);
 		$where = [
 			[
 				'key' => 'published',
@@ -1927,7 +1925,11 @@ class ChannelCrons extends CI_Controller
 					$timeslots = json_decode($board->time_slots_rss);
 					if (count($timeslots) > 0) {
 						$timeslots = implode(',', $timeslots);
-						$response = pin_board_fetch_more_posts($value->url, $value->page_id, $value->user_id, $timeslots, 0);
+						$count = 1;
+						do {
+							$response = pin_board_fetch_more_posts($value->url, $value->page_id, $value->user_id, $timeslots, 0);
+							$count++;
+						} while (!$response["status"] && $count <= 3);
 					}
 				}
 			}
@@ -1979,8 +1981,6 @@ class ChannelCrons extends CI_Controller
 
 	public function fetch_past_rss_feed()
 	{
-		error_reporting(-1);
-		ini_set('display_errors', 1);
 		$where = [
 			[
 				'key' => 'published',
@@ -2015,7 +2015,7 @@ class ChannelCrons extends CI_Controller
 						do {
 							$response = pin_board_fetch_past_posts($value->url, $value->page_id, $value->user_id, 0);
 							$count++;
-						} while (!$response["status"] || $count <= 3);
+						} while (!$response["status"] && $count <= 3);
 					}
 				}
 			}

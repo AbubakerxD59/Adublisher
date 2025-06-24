@@ -1261,37 +1261,41 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 		]
 	];
 	$context = stream_context_create($contextOptions);
-	$file = file_get_contents($links, FALSE, $context);
-	$single_feed = simplexml_load_string((string) $file);
-
-	if ($mode == 1) {
-		if (!$single_feed || empty($single_feed)) {
-			$response = array(
-				'status' => false,
-				'error' => 'Your provided link has not valid RSS feed, Please fix and try again.'
-			);
-		} else {
-			$data = [
-				'user_id' => $userID,
-				'page_id' => $page,
-				'type' => 'pinterest',
-				'url' => $url,
-				'published' => 0
-			];
-			$CI->db->insert('rss_links', $data);
-			$response = array(
-				'status' => true,
-				'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
-			);
-		}
-		return $response;
+	$file = @file_get_contents($links, FALSE, $context);
+	if ($file === false) {
+		return [
+			"status" => false
+		];
 	}
-
-	if (empty($single_feed)) {
-		$false_link = $links;
-	} else {
-		$feed[] = $single_feed;
+	$single_feed = @simplexml_load_string((string) $file);
+	if ($single_feed === false || empty($single_feed)) {
+		return [
+			"status" => false
+		];
 	}
+	// if ($mode == 1) {
+	// 	if (!$single_feed || empty($single_feed)) {
+	// 		$response = array(
+	// 			'status' => false,
+	// 			'error' => 'Your provided link has not valid RSS feed, Please fix and try again.'
+	// 		);
+	// 	} else {
+	// 		$data = [
+	// 			'user_id' => $userID,
+	// 			'page_id' => $page,
+	// 			'type' => 'pinterest',
+	// 			'url' => $url,
+	// 			'published' => 0
+	// 		];
+	// 		$CI->db->insert('rss_links', $data);
+	// 		$response = array(
+	// 			'status' => true,
+	// 			'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
+	// 		);
+	// 	}
+	// 	return $response;
+	// }
+	$feed[] = $single_feed;
 	if ($feed) {
 		foreach ($feed as $data) {
 			if (!empty($data)) {
