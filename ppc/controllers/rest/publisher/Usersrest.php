@@ -6311,7 +6311,7 @@ class Usersrest extends REST_Controller
 					$removeError = removeCronJobError($userID, 'pinterest_error');
 					// run cronjob for fetching rss feed
 					run_php_background($cron_url);
-					$this->response(['status' => true, 'message' => $response['message']], REST_Controller::HTTP_OK);
+					$this->response(['status' => true, 'message' => "Good Work!! We are setting up your awesome feed, Please Wait."], REST_Controller::HTTP_OK);
 				// } else {
 				// 	$this->response(['status' => false, 'message' => $response['error']], REST_Controller::HTTP_BAD_REQUEST);
 				// }
