@@ -6290,7 +6290,7 @@ class Usersrest extends REST_Controller
 					// $response = pin_board_fetch_more_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
 					$cron_url = 'https://www.adublisher.com/fetchRssFeed';
 				}
-				if ($response['status']) {
+				// if ($response['status']) {
 					$store_rss_link[] = $this->post('sitemap_rss_link'); // The rss link for which more posts 	are demanded // 
 					$this->db->select('rss_link')->from('pinterest_boards')->where('id', $page);
 					$result = $this->db->get()->result();
@@ -6312,9 +6312,9 @@ class Usersrest extends REST_Controller
 					// run cronjob for fetching rss feed
 					run_php_background($cron_url);
 					$this->response(['status' => true, 'message' => $response['message']], REST_Controller::HTTP_OK);
-				} else {
-					$this->response(['status' => false, 'message' => $response['error']], REST_Controller::HTTP_BAD_REQUEST);
-				}
+				// } else {
+				// 	$this->response(['status' => false, 'message' => $response['error']], REST_Controller::HTTP_BAD_REQUEST);
+				// }
 			}
 			//-------------------------------------------------Site mapping End------------------------------------------------//
 			//---------------------------------------------Submit Process Starting---------------------------------------------//
