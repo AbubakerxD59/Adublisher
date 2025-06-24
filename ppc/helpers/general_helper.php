@@ -1883,35 +1883,40 @@ function pin_board_fetch_past_posts($url, $board_id, $user_id, $mode)
 			// context options
 			$arrContextOptions = array('http' => ['method' => "GET", 'header' => "User-Agent: curl/7.68.0\r\n", 'ignore_errors' => true], "ssl" => array("verify_peer" => false, "verify_peer_name" => false,));
 			// load xml from sitemap.xml
-			$xml = simplexml_load_file($sitemapUrl);
-			if (!$xml) {
+			$xml = @simplexml_load_file($sitemapUrl);
+			if ($xml == false) {
+				$response = [
+					'status' => false,
+				];
+				return $response;
+			} else {
 				$sitemapContent = file_get_contents($sitemapUrl, false, stream_context_create($arrContextOptions));
 				if (!empty($sitemapContent)) {
 					$xml = simplexml_load_string($sitemapContent);
 				}
 			}
-			if ($mode == '1') {
-				if (count($xml) == 0) {
-					$response = array(
-						'status' => false,
-						'error' => 'Provided Feed URL do not has valid Sitemap Data!'
-					);
-				} else {
-					$data = [
-						'user_id' => $user_id,
-						'page_id' => $board_id,
-						'type' => 'pinterest_past',
-						'url' => $url,
-						'published' => 0
-					];
-					$CI->db->insert('rss_links', $data);
-					$response = array(
-						'status' => true,
-						'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
-					);
-				}
-				return $response;
-			}
+			// if ($mode == '1') {
+			// 	if (count($xml) == 0) {
+			// 		$response = array(
+			// 			'status' => false,
+			// 			'error' => 'Provided Feed URL do not has valid Sitemap Data!'
+			// 		);
+			// 	} else {
+			// 		$data = [
+			// 			'user_id' => $user_id,
+			// 			'page_id' => $board_id,
+			// 			'type' => 'pinterest_past',
+			// 			'url' => $url,
+			// 			'published' => 0
+			// 		];
+			// 		$CI->db->insert('rss_links', $data);
+			// 		$response = array(
+			// 			'status' => true,
+			// 			'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
+			// 		);
+			// 	}
+			// 	return $response;
+			// }
 			if (count($xml) > 0) {
 				$filteredSitemaps = [];
 				foreach ($xml->sitemap as $sitemap) {

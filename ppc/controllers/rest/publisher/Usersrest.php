@@ -6283,11 +6283,11 @@ class Usersrest extends REST_Controller
 				$decoded_rss_link = !empty($result[0]->rss_link) ? json_decode($result[0]->rss_link, true) : [];
 				if (in_array($sitemap_rss_link, $decoded_rss_link)) {
 					limit_check(RSS_FEED_OLD_POST_FETCH_ID);
-					$response = pin_board_fetch_past_posts($sitemap_rss_link, $page, $userID, 1);
+					// $response = pin_board_fetch_past_posts($sitemap_rss_link, $page, $userID, 1);
 					$cron_url = 'https://www.adublisher.com/fetchPastRssFeed';
 				} else {
 					limit_check(RSS_FEED_LATEST_POST_FETCH_ID);
-					$response = pin_board_fetch_more_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
+					// $response = pin_board_fetch_more_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
 					$cron_url = 'https://www.adublisher.com/fetchRssFeed';
 				}
 				if ($response['status']) {

@@ -114,7 +114,7 @@ class ChannelCrons extends CI_Controller
 	{
 		$posts = $this->Publisher_model->getScheduledPostsFromChannels('channels_scheduler', 'pinterest');
 		foreach ($posts as $post) {
-			$user_id = $post->user_id;			
+			$user_id = $post->user_id;
 			$this->Publisher_model->update_record('channels_scheduler', ['status' => '2', 'response' => 'Processing'], $post->id);
 			$pinterest_user = $this->Publisher_model->get_allrecords('pinterest_users', ['user_id' => $user_id]);
 			$board = $this->Publisher_model->get_allrecords('pinterest_boards', ['user_id' => $user_id, 'id' => $post->channel_id]);
@@ -156,7 +156,7 @@ class ChannelCrons extends CI_Controller
 				if (strpos($post->link, 'http://') !== false || strpos($post->link, 'https://') !== false) {
 					$image_path = $post->link;
 				} else {
-					$image_path = BulkAssets. $post->link;
+					$image_path = BulkAssets . $post->link;
 				}
 				$post->post_title = !empty($post->post_title) ? $post->post_title : "";
 				$request_url = !empty($post->site_us_pc) ? $post->site_us_pc : "";
@@ -703,8 +703,6 @@ class ChannelCrons extends CI_Controller
 							$this->Publisher_model->create_single_pinterest_rss_feed($user->id, $board->id, $title, $src, $FinalUrl, $board->time_slots_rss);
 						}
 					}
-
-
 				} // foreach
 			} // pkg info
 		}
@@ -983,8 +981,6 @@ class ChannelCrons extends CI_Controller
 							$this->Publisher_model->create_single_ig_rss_feed($ig_user->user_id, $ig_user->id, $title, $src, $FinalUrl, $ig_user->time_slots_rss);
 						}
 					}
-
-
 				} // pkg info
 
 			} catch (Exception $ex) {
@@ -1169,8 +1165,7 @@ class ChannelCrons extends CI_Controller
 							// update cronjob row
 							$this->Publisher_model->update_record('analytics_cronjob', array('posts_count' => $post_count), $cron_id);
 						}
-					}
-					while (!empty($after));
+					} while (!empty($after));
 					print_pre($post_count);
 				}
 			}
@@ -1365,7 +1360,6 @@ class ChannelCrons extends CI_Controller
 										}
 									}
 								}
-
 							}
 						}
 					}
@@ -1444,7 +1438,6 @@ class ChannelCrons extends CI_Controller
 						$check_insight = $check_insight[0];
 						$this->db->where('id', $check_insight->id);
 						$this->db->update('facebook_page_daily_insights', $data);
-
 					} else {
 						$this->db->insert('facebook_page_daily_insights', $data);
 					}
@@ -1628,7 +1621,6 @@ class ChannelCrons extends CI_Controller
 							updateCronJobError($user_id, $error_column_name, $channel_name, $function_name, 'Failed to fetch the RSS feed from' . $link); // helper function
 						}
 					}
-
 				}
 			}
 		} catch (Exception $e) {
@@ -2019,7 +2011,11 @@ class ChannelCrons extends CI_Controller
 					$timeslots = json_decode($board->time_slots_rss);
 					if (count($timeslots) > 0) {
 						$timeslots = implode(',', $timeslots);
-						$response = pin_board_fetch_past_posts($value->url, $value->page_id, $value->user_id, 0);
+						$count = 1;
+						do {
+							$response = pin_board_fetch_past_posts($value->url, $value->page_id, $value->user_id, 0);
+							$count++;
+						} while (!$response["status"] || $count <= 3);
 					}
 				}
 			}
