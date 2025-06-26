@@ -22,7 +22,6 @@ class S3_upload
             'Key' => $key,
             'SourceFile' => $file,
         ]);
-        dd([$result]);
         try {
             $result = $this->s3->putObject([
                 'Bucket' => 'adublisherbucket',
