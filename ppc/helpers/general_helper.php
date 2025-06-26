@@ -2738,7 +2738,6 @@ function saveImageFromUrl($url, $user_id, $page_id = '', $name = 'profile_pic')
 		return  "";
 	}
 	// Create a new file in the assets folder
-	$extension = getImageExtensionFromUrl($url);
 	$ext = 'webp';
 	$filename = $user_id . '_' . $page_id . '_' . $name . '.' . $ext;
 	$destinationPath = $_SERVER['DOCUMENT_ROOT'] . "/assets/bulkuploads/" . $filename;

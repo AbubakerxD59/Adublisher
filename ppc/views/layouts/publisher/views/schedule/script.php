@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    var facebook_page_icon = pinterest_board_icon = '';
+    var facebook_page_icon = pinterest_board_icon = tiktok_account_icon = '';
     Dropzone.autoDiscover = false;
     $(function() {
         setTimeout(() => {
@@ -893,7 +893,7 @@
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == 'tiktok') {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?= BulkAssets ?>images/tiktok_logo.png" class="rounded mx-1" alt="tiktok_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + tiktok_account_icon + '" class="rounded mx-1" alt="tiktok_logo">' +
                 elem.channel_name + '</p> </button>'
         }
 
@@ -1451,13 +1451,13 @@
                         });
                     }
                     if (response.data.tiktoks.length > 0) {
-                        $.each(response.data.tiktoks, function(index,
-                            value) {
+                        $.each(response.data.tiktoks, function(index, value) {
+                            tiktok_account_icon = "<?= BulkAssets ?>" + value.profile_pic;
                             if (value.channel_active == 1) {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/tiktok_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded' alt='profile_pic'> " +
                                     value.username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1465,7 +1465,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button active' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' ><img style='width:20px;' src='<?= BulkAssets ?>images/tiktok_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded' alt='profile_pic'> " +
                                     value.username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1638,7 +1638,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/tiktok_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded' alt='profile_pic'> " +
                                     value.username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1646,7 +1646,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button active' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' ><img style='width:20px;' src='<?= BulkAssets ?>images/tiktok_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded' alt='profile_pic'> " +
                                     value.username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
