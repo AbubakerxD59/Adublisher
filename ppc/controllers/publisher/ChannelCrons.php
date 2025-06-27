@@ -1832,6 +1832,7 @@ class ChannelCrons extends CI_Controller
 					do {
 						sleep(0.5);
 						$publish = $this->tiktok->fetch_status($access_token, $response['publish_id']);
+						echo '<pre>'; print_r($publish);
 					} while (!in_array($publish['status'], ['PUBLISH_COMPLETE', 'FAILED']));
 					if (isset($publish['status']) && $publish['status'] == 'PUBLISH_COMPLETE') {
 						remove_file($value->image);

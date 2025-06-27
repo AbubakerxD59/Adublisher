@@ -144,7 +144,7 @@ class Tiktok
             // post photos to tiktok
             $photos = $post->photos($params);
             echo '<pre>'; print_r($params); echo '<br>';
-            echo '<pre>'; print_r($photos); die();
+            echo '<pre>'; print_r($photos);
             if (!empty($photos['error']['message'])) {
                 return array(
                     'error' => $photos['error']['code'],
