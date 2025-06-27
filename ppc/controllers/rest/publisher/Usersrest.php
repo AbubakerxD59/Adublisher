@@ -10229,7 +10229,10 @@ class Usersrest extends REST_Controller
 				'last_run' => ''
 			];
 		} else {
-			$return_link_and_last_run = [];
+			$return_link_and_last_run[] = [
+				'link' => '',
+				'last_run' => ''
+			];
 			foreach ($decoded_rss_link as $links) {
 				if (empty($links)) {
 					continue;
@@ -10274,7 +10277,7 @@ class Usersrest extends REST_Controller
 				$new_result[$key]['post_date'] = utcToLocal($row->post_datetime, $user->gmt, "F j, Y, g:i a");
 				$new_result[$key]['post_time'] = utcToLocal($row->post_datetime, $user->gmt, "H:i A");
 			}
-			$this->response(['status' => true, 'data' => $new_result, 'time_slots' => $page->time_slots_rss, 'rss_active' => $page->rss_active, 'shopify_active' => 0, 'rss_link' => $return_link_and_last_run, 'last_shopify_run' => $last_shopify_run, 'count' => count($total_posts), 'scheduled_until' => $scheduled_until], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+			$this->response(['status' => true, 'data' => $new_result, 'time_slots' => $page->time_slots_rss, 'rss_active' => $page->rss_active ? $page->rss_active : 0, 'shopify_active' => 0, 'rss_link' => $return_link_and_last_run, 'last_shopify_run' => $last_shopify_run, 'count' => count($total_posts), 'scheduled_until' => $scheduled_until], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
 
 		} else {
 			//Set the response and exit
