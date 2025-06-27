@@ -1,11 +1,13 @@
 <?php
 require __DIR__ . '/tiktok/src/TikTok/autoload.php';
+
 use TikTok\Authentication\Authentication;
 use TikTok\User\User;
 use TikTok\Request\Params;
 use TikTok\Post\Post;
 use TikTok\Request\Fields;
 use TikTok\Video\Video;
+
 class Tiktok
 {
     public $authentication;
@@ -56,19 +58,19 @@ class Tiktok
             $user = new User($config);
             $params = Params::getFieldsParam( // params keys the field array and implodes array to string on comma
                 array( // user fields to request
-                    'open_id', 		// scope user.info.basic
-                    'union_id', 		// scope user.info.basic
-                    'avatar_url', 		// scope user.info.basic
+                    'open_id',         // scope user.info.basic
+                    'union_id',         // scope user.info.basic
+                    'avatar_url',         // scope user.info.basic
                     'avatar_url_100',       // scope user.info.basic
-                    'avatar_large_url', 	// scope user.info.basic
-                    'display_name', 	// scope user.info.basic
-                    'bio_description', 	// scope user.info.profile
-                    'profile_deep_link', 	// scope user.info.profile
-                    'is_verified', 		// scope user.info.profile
-                    'follower_count', 	// scope user.info.stats
-                    'following_count', 	// scope user.info.stats
-                    'likes_count', 		// scope user.info.stats
-                    'video_count' 		// scope user.info.stats
+                    'avatar_large_url',     // scope user.info.basic
+                    'display_name',     // scope user.info.basic
+                    'bio_description',     // scope user.info.profile
+                    'profile_deep_link',     // scope user.info.profile
+                    'is_verified',         // scope user.info.profile
+                    'follower_count',     // scope user.info.stats
+                    'following_count',     // scope user.info.stats
+                    'likes_count',         // scope user.info.stats
+                    'video_count'         // scope user.info.stats
                 )
             );
             $userInfo = $user->getSelf($params);
@@ -125,7 +127,6 @@ class Tiktok
     {
         if (!empty($access_token)) {
             // check and refresh access token
-            // $access_token = refresh_tiktok_access_token($access_token);
             $post = new Post(array('access_token' => $access_token));
             $params = array(
                 Fields::MEDIA_TYPE => 'PHOTO',
@@ -142,6 +143,8 @@ class Tiktok
             );
             // post photos to tiktok
             $photos = $post->photos($params);
+            echo '<pre>'; print_r($params); echo '<br>';
+            echo '<pre>'; print_r($photos); die();
             if (!empty($photos['error']['message'])) {
                 return array(
                     'error' => $photos['error']['code'],
@@ -212,4 +215,3 @@ class Tiktok
         return $videoList;
     }
 }
-?>

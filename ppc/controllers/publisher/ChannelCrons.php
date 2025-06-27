@@ -1798,7 +1798,6 @@ class ChannelCrons extends CI_Controller
 			]
 		];
 		$unpublished_posts = $this->Publisher_model->list_records('publish_posts', 0, 10, $where, 'id', 'asc');
-		print_pre($unpublished_posts);
 		foreach ($unpublished_posts as $key => $value) {
 			// change status to publish
 			$update = [
@@ -1813,7 +1812,6 @@ class ChannelCrons extends CI_Controller
 				$this->load->library('tiktok');
 				$tiktok_acc = $tiktok_acc[0];
 				$access_token = refresh_tiktok_access_token($tiktok_acc->access_token);
-				print_pre($access_token);
 				$error_postData = ['title' => $value->title, 'image' => $type == 'image' ? BulkAssets . $value->image : ''];
 				if ($type == 'image') {
 					$postData = array(
@@ -1830,7 +1828,6 @@ class ChannelCrons extends CI_Controller
 					);
 					$response = $this->tiktok->publish_video($postData, $access_token);
 				}
-				print_pre($response);
 				if (isset($response['publish_id'])) {
 					do {
 						sleep(0.5);
