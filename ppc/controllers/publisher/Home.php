@@ -314,9 +314,9 @@ class Home extends CI_Controller
 
 	public function testing()
 	{
-		$this->load->library('feedfetcher'); // Load our custom library
+		$this->load->library('feedFetcher'); // Load our custom library
 		$feed = $this->feedfetcher->fetchFeedItems("https://infodate.me");
-		print_pre($feed); die();
+		dd([$feed]);
 		// error_reporting(-1);
 		// ini_set('display_errors', 1);
 		// $tiktok = $this->Publisher_model->get_allrecords('tiktok', ['user_id' => '2210']);
