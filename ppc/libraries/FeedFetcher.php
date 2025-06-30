@@ -710,7 +710,7 @@ class FeedFetcher
         $path = isset($baseParts['path']) ? $baseParts['path'] : '';
 
         // Handle path
-        if (str_starts_with($relativeUrl, '/')) {
+        if ($this->starts_with($relativeUrl, '/')) {
             // Root-relative
             return $scheme . $host . $port . $relativeUrl;
         } else {
@@ -719,5 +719,10 @@ class FeedFetcher
             if ($dir === '.') $dir = ''; // Handle root directory case
             return $scheme . $host . $port . $dir . '/' . $relativeUrl;
         }
+    }
+
+    function starts_with($haystack, $needle)
+    {
+        return substr($haystack, 0, strlen($needle)) === $needle;
     }
 }
