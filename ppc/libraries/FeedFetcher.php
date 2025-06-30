@@ -42,6 +42,7 @@ class FeedFetcher
         }
 
         // 2. Discover RSS Feed URL
+        print_pre($websiteUrl);
         $rssFeedUrl = $this->discoverRssFeed($websiteUrl);
 
         if (!$rssFeedUrl) {
@@ -157,7 +158,7 @@ class FeedFetcher
      */
     protected function discoverRssFeed($websiteUrl)
     {
-        try {
+        // try {
             $response = $this->guzzleClient->get($websiteUrl);
             $html = (string)$response->getBody();
 
@@ -173,6 +174,7 @@ class FeedFetcher
             // <link rel="alternate" type="application/rss+xml" href="..." />
             // <link rel="alternate" type="application/atom+xml" href="..." />
             $nodes = $xpath->query('//link[@rel="alternate" and (contains(@type, "rss+xml") or contains(@type, "atom+xml"))]');
+            print_pre($nodes);
 
             foreach ($nodes as $node) {
                 $href = $node->getAttribute('href');
@@ -186,11 +188,11 @@ class FeedFetcher
                     }
                 }
             }
-        } catch (RequestException $e) {
-            log_message('error', 'Network error discovering RSS for ' . $websiteUrl . ': ' . $e->getMessage());
-        } catch (Exception $e) {
-            log_message('error', 'Error discovering RSS for ' . $websiteUrl . ': ' . $e->getMessage());
-        }
+        // } catch (RequestException $e) {
+        //     log_message('error', 'Network error discovering RSS for ' . $websiteUrl . ': ' . $e->getMessage());
+        // } catch (Exception $e) {
+        //     log_message('error', 'Error discovering RSS for ' . $websiteUrl . ': ' . $e->getMessage());
+        // }
 
         return false;
     }
