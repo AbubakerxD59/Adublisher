@@ -288,7 +288,7 @@ class FeedFetcher
             log_message('debug', 'Checking common sitemap candidate: ' . $sitemapCandidate);
             try {
                 $response = $this->guzzleClient->head($sitemapCandidate, ['http_errors' => false]);
-                if ($response->getStatusCode() === 200 && str_contains($response->getHeaderLine('Content-Type'), 'xml')) {
+                if ($response->getStatusCode() === 200 && $this->my_str_contains($response->getHeaderLine('Content-Type'), 'xml')) {
                     log_message('info', 'Sitemap found at common location: ' . $sitemapCandidate);
                     return $sitemapCandidate;
                 }
@@ -472,7 +472,7 @@ class FeedFetcher
             $images[] = (string)$media->thumbnail['url'];
         }
         // 2. Enclosure tag
-        elseif (isset($item->enclosure) && isset($item->enclosure['url']) && str_contains((string)$item->enclosure['type'], 'image')) {
+        elseif (isset($item->enclosure) && isset($item->enclosure['url']) && $this->my_str_contains((string)$item->enclosure['type'], 'image')) {
             $images[] = (string)$item->enclosure['url'];
         }
 
@@ -547,7 +547,7 @@ class FeedFetcher
                         $headResponse = $this->guzzleClient->head($absoluteSrc, ['http_errors' => false]); // Don't throw exceptions on 404/500
                         if ($headResponse->getStatusCode() === 200) {
                             $contentType = $headResponse->getHeaderLine('Content-Type');
-                            if (str_contains($contentType, 'image')) {
+                            if ($this->my_str_contains($contentType, 'image')) {
                                 // For accurate dimensions, getimagesize from a stream might be better
                                 // or download temporarily.
                                 // For now, let's assume it downloads or finds it quickly.
@@ -721,8 +721,13 @@ class FeedFetcher
         }
     }
 
-    function starts_with($haystack, $needle)
+    protected function starts_with($haystack, $needle)
     {
         return substr($haystack, 0, strlen($needle)) === $needle;
+    }
+
+    function my_str_contains($haystack, $needle)
+    {
+        return strpos($haystack, $needle) !== false;
     }
 }
