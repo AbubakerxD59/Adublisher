@@ -2020,31 +2020,27 @@ class Usersrest extends REST_Controller
 					// $response = fb_page_fetch_more_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
 					$cron_url = 'https://www.adublisher.com/fetchRssFeed';
 				}
-				if ($response['status']) {
-					$store_rss_link[] = $this->post('sitemap_rss_link'); // The rss link for which more posts 	are demanded // 
-					$this->db->select('rss_link')->from('facebook_pages')->where('id', $page);
-					$result = $this->db->get()->result();
-					if (empty($result[0]->rss_link) || $result[0]->rss_link == 'null') {
-						$encode_rss_links = json_encode($store_rss_link);
-					} else {
-						$decoded_rss_link = json_decode($result[0]->rss_link, true);
-						// Check if the link already exists in $decoded_rss_link
-						if (($key = array_search($store_rss_link[0], $decoded_rss_link)) !== false) {
-							$store_rss_link = []; // Set $store_rss_link to empty array if it already exists
-						}
-						$all_links = array_merge($decoded_rss_link, $store_rss_link);
-						$all_links = array_values($all_links); // Reset keys
-						$encode_rss_links = json_encode($all_links);
-					}
-					$page_data['rss_link'] = $encode_rss_links;
-					$result = $this->Publisher_model->update_record('facebook_pages', $page_data, $page);
-					$removeError = removeCronJobError($userID, 'facebook_page_error');
-					// run cronjob for fetching rss feed
-					run_php_background($cron_url);
-					$this->response(['status' => true, 'message' => $response['message']], REST_Controller::HTTP_OK);
+				$store_rss_link[] = $this->post('sitemap_rss_link'); // The rss link for which more posts 	are demanded // 
+				$this->db->select('rss_link')->from('facebook_pages')->where('id', $page);
+				$result = $this->db->get()->result();
+				if (empty($result[0]->rss_link) || $result[0]->rss_link == 'null') {
+					$encode_rss_links = json_encode($store_rss_link);
 				} else {
-					$this->response(['status' => false, 'message' => $response['error']], REST_Controller::HTTP_BAD_REQUEST);
+					$decoded_rss_link = json_decode($result[0]->rss_link, true);
+					// Check if the link already exists in $decoded_rss_link
+					if (($key = array_search($store_rss_link[0], $decoded_rss_link)) !== false) {
+						$store_rss_link = []; // Set $store_rss_link to empty array if it already exists
+					}
+					$all_links = array_merge($decoded_rss_link, $store_rss_link);
+					$all_links = array_values($all_links); // Reset keys
+					$encode_rss_links = json_encode($all_links);
 				}
+				$page_data['rss_link'] = $encode_rss_links;
+				$result = $this->Publisher_model->update_record('facebook_pages', $page_data, $page);
+				$removeError = removeCronJobError($userID, 'facebook_page_error');
+				// run cronjob for fetching rss feed
+				run_php_background($cron_url);
+				$this->response(['status' => true, 'message' => "Good Work!! We are setting up your awesome feed, Please Wait"], REST_Controller::HTTP_OK);
 			} // if condition
 			//-------------------------------------------------Site mapping End------------------------------------------------//
 		}
