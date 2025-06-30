@@ -1,11 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-use DOMDocument;
-use SimpleXMLElement;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use DOMXPath;
 
 class FeedFetcher
 {
@@ -21,7 +18,10 @@ class FeedFetcher
             'timeout'  => $this->timeout,
             'allow_redirects' => true,
             'headers' => [
-                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Accept'     => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                'Accept-Language' => 'en-US,en;q=0.5',
+                'Connection' => 'keep-alive',
             ]
         ]);
         log_message('debug', 'FeedFetcher Library Initialized');
@@ -158,7 +158,7 @@ class FeedFetcher
      */
     protected function discoverRssFeed($websiteUrl)
     {
-        // try {
+        try {
             $response = $this->guzzleClient->get($websiteUrl);
             $html = (string)$response->getBody();
 
@@ -188,11 +188,11 @@ class FeedFetcher
                     }
                 }
             }
-        // } catch (RequestException $e) {
-        //     log_message('error', 'Network error discovering RSS for ' . $websiteUrl . ': ' . $e->getMessage());
-        // } catch (Exception $e) {
-        //     log_message('error', 'Error discovering RSS for ' . $websiteUrl . ': ' . $e->getMessage());
-        // }
+        } catch (RequestException $e) {
+            log_message('error', 'Network error discovering RSS for ' . $websiteUrl . ': ' . $e->getMessage());
+        } catch (Exception $e) {
+            log_message('error', 'Error discovering RSS for ' . $websiteUrl . ': ' . $e->getMessage());
+        }
 
         return false;
     }

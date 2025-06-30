@@ -1116,51 +1116,122 @@ if (!function_exists('recent_posts_api')) {
 function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 {
 	$CI = &get_instance();
-	$CI->load->library('feedFetcher'); // Load our custom library
-	$feed = $CI->feedfetcher->fetchFeedItems($url, 0);
-	if ($feed["success"]) {
-		$items = $feed["items"];
-		foreach ($items as $data) {
-			// utm checks on url
-			$utm_details = [];
-			$utm_check = false;
-			$url_detail = getDomain($data["link"]);
-			if (!empty($url_detail['url'])) {
-				$domain = $url_detail['url'];
-				$utm_details = getUtm($domain, $userID);
-				if (count($utm_details) > 0) {
-					$utm_check = true;
-				}
-			}
-			$utmPostUrl = $data["link"];
-			if ($utm_check) {
-				$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $page_detail->page_name, 'facebook');
-			}
-			// utm checks end
-			$where_rss = [];
-			$where_rss[0]['key'] = 'url';
-			$where_rss[0]['value'] = $utmPostUrl;
-			$where_rss[1]['key'] = 'page_id';
-			$where_rss[1]['value'] = $page;
-			$where_rss[2]['key'] = 'user_id';
-			$where_rss[2]['value'] = $userID;
-			// $where_rss[3]['key'] = 'posted';
-			// $where_rss[3]['value'] = 0;
-			$present = $CI->Publisher_model->count_records('rsssceduler', $where_rss);
-			if (!$present) {
-				$img_path = $data['main_image'];
-				if (empty($img_path)) {
-					$img_path = base_url('assets/general/images/no_image_found.jpg');
-				}
-				if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
-					resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
-					create_single_rss_feed($userID, $page, $data["title"], $img_path, $utmPostUrl, $timeslots, 'latest');
+	$CI->load->database();
+	$page_detail = $CI->Publisher_model->retrieve_record('facebook_pages', $page);
+	$links = $CI->Publisher_model->appendFeedToUrl($url);
+	$userAgent = user_agent();
+	ini_set('user_agent', $userAgent);
+	$contextOptions = [
+		'http' => [
+			'user_agent' => $userAgent,
+			'ignore_errors' => true
+		]
+	];
+	$context = stream_context_create($contextOptions);
+	$file = file_get_contents($links, FALSE, $context);
+	$single_feed = simplexml_load_string((string) $file);
+	if ($mode == 1) {
+		if (!$single_feed || empty($single_feed)) {
+			$response = array(
+				'status' => false,
+				'error' => 'Your provided link has not valid RSS feed, Please fix and try again.'
+			);
+		} else {
+			$data = [
+				'user_id' => $userID,
+				'page_id' => $page_detail->page_id,
+				'type' => 'facebook',
+				'url' => $url,
+				'published' => 0
+			];
+			$CI->db->insert('rss_links', $data);
+			$response = array(
+				'status' => true,
+				'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
+			);
+		}
+		return $response;
+	}
+
+	if (empty($single_feed)) {
+		$false_link = $links;
+	} else {
+		$feed[] = $single_feed;
+	}
+	if ($feed) {
+		foreach ($feed as $data) {
+			// $rss = simplexml_load_string($data);
+			if (!empty($data)) {
+				$i = 1;
+				if (isset($data->channel->item)) {
+					$items_count = count($data->channel->item);
+					$few_issues = [];
+					foreach ($data->channel->item as $item) {
+						$items_count--;
+						$item = $data->channel->item[$items_count];
+						if ($i > 10) {
+							break;
+						}
+						$metaOfUrlt = metaOfUrlt($item->link, 'other');
+						if (count($metaOfUrlt) > 0) {
+							// utm checks on url
+							$utm_details = [];
+							$utm_check = false;
+							$url_detail = getDomain($item->link);
+							if (!empty($url_detail['url'])) {
+								$domain = $url_detail['url'];
+								$utm_details = getUtm($domain, $userID);
+								if (count($utm_details) > 0) {
+									$utm_check = true;
+								}
+							}
+							$utmPostUrl = $item->link;
+							if ($utm_check) {
+								$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $page_detail->page_name, 'facebook');
+							}
+							// utm checks end
+
+							$where_rss = [];
+							$where_rss[0]['key'] = 'url';
+							$where_rss[0]['value'] = $utmPostUrl;
+							$where_rss[1]['key'] = 'page_id';
+							$where_rss[1]['value'] = $page;
+							$where_rss[2]['key'] = 'user_id';
+							$where_rss[2]['value'] = $userID;
+							// $where_rss[3]['key'] = 'posted';
+							// $where_rss[3]['value'] = 0;
+							$present = $CI->Publisher_model->count_records('rsssceduler', $where_rss);
+							if (!$present) {
+								$i++;
+								$img_path = $metaOfUrlt['image'];
+								if (empty($img_path)) {
+									$img_path = base_url('assets/general/images/no_image_found.jpg');
+								}
+								if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
+									resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
+									create_single_rss_feed($userID, $page, $item->title, $img_path, $utmPostUrl, $timeslots, 'latest');
+								} else {
+									$response = [
+										'status' => false,
+										'error' => 'Your resource limit has been reached'
+									];
+								}
+							}
+						} else {
+							$few_issues['errors'][] = $item->link;
+						}
+					}
 				} else {
-					$response = [
+					$response = array(
 						'status' => false,
-						'error' => 'Your resource limit has been reached'
-					];
+						'error' => 'Your provided link has not valid RSS feed, Please fix and try again'
+					);
 				}
+			} else {
+				$response = array(
+					'status' => false,
+					'error' => 'Your provided link has not valid RSS feed, Please fix and try again'
+				);
 			}
 		}
 		// Set the flag to true after the foreach loop
@@ -1172,7 +1243,7 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 	} else {
 		$response = array(
 			'status' => false,
-			'error' => $feed["error"]
+			'error' => 'Your provided link has not valid RSS feed, Please fix and try again.'
 		);
 	}
 	return $response;
@@ -1181,52 +1252,103 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 {
 	$CI = &get_instance();
-	$CI->load->library('feedFetcher'); // Load our custom library
-	$feed = $CI->feedfetcher->fetchFeedItems($url, 0);
-	print_pre($feed);
-	if ($feed["success"]) {
-		$items = $feed["items"];
-		foreach ($items as $data) {
-			$utm_details = [];
-			$utm_check = false;
-			$url_detail = getDomain($data["link"]);
-			if (!empty($url_detail['url'])) {
-				$domain = $url_detail['url'];
-				$utm_details = getUtm($domain, $userID);
-				if (count($utm_details) > 0) {
-					$utm_check = true;
-				}
-			}
-			$utmPostUrl = $data["link"];
-			$pin_user = $CI->Publisher_model->get_allrecords('pinterest_users', ['user_id' => $userID]);
-			$pin_user = $pin_user[0];
-			if ($utm_check) {
-				$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $pin_user->username, 'pinterest');
-			}
-			// utm checks end
-			$where_rss[0]['key'] = 'url';
-			$where_rss[0]['value'] = $utmPostUrl;
-			$where_rss[1]['key'] = 'board_id';
-			$where_rss[1]['value'] = $page;
-			$where_rss[2]['key'] = 'user_id';
-			$where_rss[2]['value'] = $userID;
-			$present = $CI->Publisher_model->count_records('pinterest_scheduler', $where_rss);
-			print_pre($present);
-			if (!$present) {
-				$img_path = $data["main_image"];
-				if (empty($img_path)) {
-					$img_path = base_url('assets/general/images/no_image_found.jpg');
-				}
-				if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
-					resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
-					create_single_pinterest_rss_feed($userID, $page, $data["title"], $img_path, $utmPostUrl, $timeslots, 'latest');
+	$links = $CI->Publisher_model->appendFeedToUrl($url);
+	$userAgent = user_agent();
+	$contextOptions = [
+		'http' => [
+			'user_agent' => $userAgent,
+			'ignore_errors' => true
+		]
+	];
+	$context = stream_context_create($contextOptions);
+	$file = @file_get_contents($links, FALSE, $context);
+	if ($file === false) {
+		return [
+			"status" => false
+		];
+	}
+	$single_feed = @simplexml_load_string((string) $file);
+	if ($single_feed === false || empty($single_feed)) {
+		return [
+			"status" => false
+		];
+	}
+	$feed[] = $single_feed;
+	if ($feed) {
+		foreach ($feed as $data) {
+			if (!empty($data)) {
+				$i = 1;
+				if (isset($data->channel->item)) {
+					$items_count = count($data->channel->item);
+					$few_issues = [];
+					foreach ($data->channel->item as $item) {
+						$items_count--;
+						$item = $data->channel->item[$items_count];
+						if ($i > 10) {
+							break;
+						}
+						$metaOfUrlt = metaOfUrlt($item->link, 'pinterest');
+						if (count($metaOfUrlt) > 0) {
+							// utm checks on url
+							$utm_details = [];
+							$utm_check = false;
+							$url_detail = getDomain($item->link);
+							if (!empty($url_detail['url'])) {
+								$domain = $url_detail['url'];
+								$utm_details = getUtm($domain, $userID);
+								if (count($utm_details) > 0) {
+									$utm_check = true;
+								}
+							}
+							$utmPostUrl = $item->link;
+							$pin_user = $CI->Publisher_model->get_allrecords('pinterest_users', ['user_id' => $userID]);
+							$pin_user = $pin_user[0];
+							if ($utm_check) {
+								$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $pin_user->username, 'pinterest');
+							}
+							// utm checks end
+							$where_rss[0]['key'] = 'url';
+							$where_rss[0]['value'] = $utmPostUrl;
+							$where_rss[1]['key'] = 'board_id';
+							$where_rss[1]['value'] = $page;
+							$where_rss[2]['key'] = 'user_id';
+							$where_rss[2]['value'] = $userID;
+							// $where_rss[3]['key'] = 'published';
+							// $where_rss[3]['value'] = 0;
+							$present = $CI->Publisher_model->count_records('pinterest_scheduler', $where_rss);
+							if (!$present) {
+								$i++;
+								$img_path = $metaOfUrlt['image'];
+								if (empty($img_path)) {
+									$img_path = base_url('assets/general/images/no_image_found.jpg');
+								}
+								if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
+									resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
+									create_single_pinterest_rss_feed($userID, $page, $item->title, $img_path, $utmPostUrl, $timeslots, 'latest');
+								} else {
+									$response = [
+										'status' => false,
+										'error' => 'Your resource limit has been reached'
+									];
+									break;
+								}
+							}
+						} else {
+							$few_issues['errors'][] = $item->link;
+						}
+						sleep(rand(2, 5));
+					}
 				} else {
-					$response = [
+					$response = array(
 						'status' => false,
-						'error' => 'Your resource limit has been reached'
-					];
-					break;
+						'error' => 'Your provided link has not valid RSS feed, Please fix and try again'
+					);
 				}
+			} else {
+				$response = array(
+					'status' => false,
+					'error' => 'Your provided link has not valid RSS feed, Please fix and try again'
+				);
 			}
 		}
 		$response = array(
@@ -1236,7 +1358,7 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 	} else {
 		$response = array(
 			'status' => false,
-			'error' => $feed["error"]
+			'error' => 'Your provided link has not valid RSS feed, Please fix and try again.'
 		);
 	}
 	return $response;
@@ -1245,53 +1367,122 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 function ig_user_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 {
 	$CI = &get_instance();
-	$CI->load->library('feedFetcher'); // Load our custom library
-	$feed = $CI->feedfetcher->fetchFeedItems($url, 0);
-	if ($feed["success"]) {
-		$items = $feed["items"];
-		foreach ($items as $data) {
-			$utm_details = [];
-			$utm_check = false;
-			$url_detail = getDomain($data["link"]);
-			if (!empty($url_detail['url'])) {
-				$domain = $url_detail['url'];
-				$utm_details = getUtm($domain, $userID);
-				if (count($utm_details) > 0) {
-					$utm_check = true;
-				}
-			}
-			$utmPostUrl = $data["link"];
-			$ig_user = $CI->Publisher_model->get_allrecords('instagram_users', ['user_id' => $userID]);
-			$ig_user = $ig_user[0];
-			if ($utm_check) {
-				$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $ig_user->instagram_username, 'instagram');
-			}
-			// utm checks end
-			$where_rss = [];
-			$where_rss[0]['key'] = 'url';
-			$where_rss[0]['value'] = $utmPostUrl;
-			$where_rss[1]['key'] = 'ig_id';
-			$where_rss[1]['value'] = $page;
-			$where_rss[2]['key'] = 'user_id';
-			$where_rss[2]['value'] = $userID;
-			// $where_rss[3]['key'] = 'published';
-			// $where_rss[3]['value'] = 0;
-			$present = $CI->Publisher_model->count_records('instagram_scheduler', $where_rss);
-			if (!$present) {
-				$img_path = $data['main_image'];
-				if (empty($img_path)) {
-					$img_path = base_url('assets/general/images/no_image_found.jpg');
-				}
-				if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
-					resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
-					create_single_ig_rss_feed($userID, $page, $data["title"], $img_path, $utmPostUrl, $timeslots, 'latest');
+	$links = $CI->Publisher_model->appendFeedToUrl($url);
+	$userAgent = user_agent();
+	$contextOptions = [
+		'http' => [
+			'user_agent' => $userAgent,
+			'ignore_errors' => true
+		]
+	];
+	$context = stream_context_create($contextOptions);
+	$file = file_get_contents($links, FALSE, $context);
+	$single_feed = simplexml_load_string((string) $file);
+
+	if ($mode == 1) {
+		if (!$single_feed || empty($single_feed)) {
+			$response = array(
+				'status' => false,
+				'error' => 'Your provided link has not valid RSS feed, Please fix and try again.'
+			);
+		} else {
+			$data = [
+				'user_id' => $userID,
+				'page_id' => $page,
+				'type' => 'instagram',
+				'url' => $url,
+				'published' => 0
+			];
+			$CI->db->insert('rss_links', $data);
+			$response = array(
+				'status' => true,
+				'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
+			);
+		}
+		return $response;
+	}
+
+	if (empty($single_feed)) {
+		$false_link = $links;
+	} else {
+		$feed[] = $single_feed;
+	}
+	if ($feed) {
+		foreach ($feed as $data) {
+			if (!empty($data)) {
+				$i = 1;
+				if (isset($data->channel->item)) {
+					$items_count = count($data->channel->item);
+					$few_issues = [];
+					foreach ($data->channel->item as $item) {
+						$items_count--;
+						$item = $data->channel->item[$items_count];
+						if ($i > 10) {
+							break;
+						}
+						$metaOfUrlt = metaOfUrlt($item->link, 'other');
+						if (count($metaOfUrlt) > 0) {
+							// utm checks on url
+							$utm_details = [];
+							$utm_check = false;
+							$url_detail = getDomain($item->link);
+							if (!empty($url_detail['url'])) {
+								$domain = $url_detail['url'];
+								$utm_details = getUtm($domain, $userID);
+								if (count($utm_details) > 0) {
+									$utm_check = true;
+								}
+							}
+							$utmPostUrl = $item->link;
+							$ig_user = $CI->Publisher_model->get_allrecords('instagram_users', ['user_id' => $userID]);
+							$ig_user = $ig_user[0];
+							if ($utm_check) {
+								$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $ig_user->instagram_username, 'instagram');
+							}
+							// utm checks end
+
+							$where_rss = [];
+							$where_rss[0]['key'] = 'url';
+							$where_rss[0]['value'] = $utmPostUrl;
+							$where_rss[1]['key'] = 'ig_id';
+							$where_rss[1]['value'] = $page;
+							$where_rss[2]['key'] = 'user_id';
+							$where_rss[2]['value'] = $userID;
+							// $where_rss[3]['key'] = 'published';
+							// $where_rss[3]['value'] = 0;
+							$present = $CI->Publisher_model->count_records('instagram_scheduler', $where_rss);
+							if (!$present) {
+								$i++;
+								$img_path = $metaOfUrlt['image'];
+								if (empty($img_path)) {
+									$img_path = base_url('assets/general/images/no_image_found.jpg');
+								}
+								if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
+									resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
+									create_single_ig_rss_feed($userID, $page, $item->title, $img_path, $utmPostUrl, $timeslots, 'latest');
+								} else {
+									$response = [
+										'status' => false,
+										'error' => 'Your resource limit has been reached'
+									];
+									break;
+								}
+							}
+						} else {
+							$few_issues['errors'][] = $item->link;
+						}
+					}
 				} else {
-					$response = [
+					$response = array(
 						'status' => false,
-						'error' => 'Your resource limit has been reached'
-					];
-					break;
+						'error' => 'Your provided link has not valid RSS feed, Please fix and try again'
+					);
 				}
+			} else {
+				$response = array(
+					'status' => false,
+					'error' => 'Your provided link has not valid RSS feed, Please fix and try again'
+				);
 			}
 		}
 		$response = array(
@@ -1301,7 +1492,7 @@ function ig_user_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 	} else {
 		$response = array(
 			'status' => false,
-			'error' => $feed["error"]
+			'error' => 'Your provided link has not valid RSS feed, Please fix and try again.'
 		);
 	}
 	return $response;
@@ -1644,168 +1835,210 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 function pin_board_fetch_past_posts($url, $board_id, $user_id, $mode)
 {
 	$CI = &get_instance();
-	$CI->load->library('feedFetcher'); // Load our custom library
-	$feed = $CI->feedfetcher->fetchSitemapItems($url, 0);
-	if ($feed["success"]) {
+	$CI->load->database();
+	$CI->load->library('getMetaInfo');
+
+	if (empty($url)) {
+		$response = [
+			'status' => false,
+			'error' => 'Feed URL is empty!'
+		];
+	} else {
+		// pinterest board
 		$pin_board = $CI->Publisher_model->retrieve_record('pinterest_boards', $board_id);
+		// pinterest user
 		$pin_user = $CI->Publisher_model->get_allrecords('pinterest_users', ['user_id' => $user_id]);
-		$CI->Publisher_model->update_last_run($board_id, 'last_run', 'pinterest_boards');
-		$items = $feed["items"];
-		foreach ($items as $data) {
-			// Check if the URL is already in the database
-			$utmPostUrl = $data["link"];
-			$utm_details = [];
-			$utm_check = false;
-			$url_detail = getDomain($utmPostUrl);
-			if (!empty($url_detail['url'])) {
-				$domain = $url_detail['url'];
-				$utm_details = getUtm($domain, $user_id);
-				if (count($utm_details) > 0) {
-					$utm_check = true;
+		$pin_user = $pin_user[0];
+		// auth user
+		$user = $CI->Publisher_model->retrieve_record('user', $user_id);
+		// update last run for pinterest board
+		$CI->Publisher_model->update_last_run($pin_board->id, 'last_run', 'pinterest_boards');
+		// check user membership and user existence
+		$user_check = user_check($user_id);
+		if ($user_check['status']) {
+			$parsed_url = parse_url($url);
+			// Extract the protocol, domain, and append "sitemap.xml" to it
+			if (isset($parsed_url['scheme']) && isset($parsed_url['host'])) {
+				$main_domain = $parsed_url['scheme'] . '://' . $parsed_url['host'];
+				$http_domain = 'http://' . $parsed_url['host'];
+				$sitemapUrl = $main_domain . '/sitemap.xml';
+			}
+			// context options
+			$arrContextOptions = array('http' => ['method' => "GET", 'header' => "User-Agent: curl/7.68.0\r\n", 'ignore_errors' => true], "ssl" => array("verify_peer" => false, "verify_peer_name" => false,));
+			// load xml from sitemap.xml
+			$xml = @simplexml_load_file($sitemapUrl);
+			if ($xml == false) {
+				$response = [
+					'status' => false,
+				];
+				return $response;
+			} else {
+				$sitemapContent = file_get_contents($sitemapUrl, false, stream_context_create($arrContextOptions));
+				if (!empty($sitemapContent)) {
+					$xml = simplexml_load_string($sitemapContent);
 				}
 			}
-			if ($utm_check) {
-				$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $pin_user[0]->username, 'pinterest');
-			}
-			// utm check on url
-			$where_rss = [];
-			$where_rss[0]['key'] = 'url';
-			$where_rss[0]['value'] = $utmPostUrl;
-			$where_rss[1]['key'] = 'board_id';
-			$where_rss[1]['value'] = $board_id;
-			$where_rss[2]['key'] = 'user_id';
-			$where_rss[2]['value'] = $user_id;
-			$present = $CI->Publisher_model->count_records('pinterest_scheduler', $where_rss);
-			print_pre($present);
-			if (!$present) {
-				$img_path = $data["main_image"];
-				if (empty($img_path)) {
-					$img_path = base_url('assets/general/images/no_image_found.jpg');
+			// if ($mode == '1') {
+			// 	if (count($xml) == 0) {
+			// 		$response = array(
+			// 			'status' => false,
+			// 			'error' => 'Provided Feed URL do not has valid Sitemap Data!'
+			// 		);
+			// 	} else {
+			// 		$data = [
+			// 			'user_id' => $user_id,
+			// 			'page_id' => $board_id,
+			// 			'type' => 'pinterest_past',
+			// 			'url' => $url,
+			// 			'published' => 0
+			// 		];
+			// 		$CI->db->insert('rss_links', $data);
+			// 		$response = array(
+			// 			'status' => true,
+			// 			'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
+			// 		);
+			// 	}
+			// 	return $response;
+			// }
+			if (count($xml) > 0) {
+				$filteredSitemaps = [];
+				foreach ($xml->sitemap as $sitemap) {
+					$loc = (string) $sitemap->loc;
+					// Check if the <loc> element contains "post-sitemap" or "sitemap-post"
+					if (strpos($loc, "post-sitemap") !== false || strpos($loc, "sitemap-post") !== false || strpos($loc, "sitemap-") !== false) {
+						$filteredSitemaps[] = $sitemap;
+					}
 				}
-				if (limit_check(RSS_FEED_OLD_POST_FETCH_ID, 2, $user_id)) {
-					resources_update('up', RSS_FEED_OLD_POST_FETCH_ID, $user_id);
-					$CI->Publisher_model->create_single_pinterest_rss_feed($user_id, $board_id, $data['title'], $img_path, $utmPostUrl, $pin_board->time_slots_rss, 'past');
+				usort($filteredSitemaps, function ($a, $b) {
+					$numberA = intval(preg_replace('/\D/', '', $a->loc));
+					$numberB = intval(preg_replace('/\D/', '', $b->loc));
+					return $numberB - $numberA; // Sort in descending order
+				});
+				$selectedSitemap = $filteredSitemaps[0];
+				$desiredPostCount = 20;
+				$loc = (string) $selectedSitemap->loc;
+				if (
+					strpos($loc, "post-sitemap") !== false ||
+					strpos($loc, "sitemap-post") !== false ||
+					strpos($loc, "sitemap-") !== false
+				) {
+					$sitemapUrl = $loc; // Use the filtered URL
+					$sitemapXml = simplexml_load_file($sitemapUrl);
+					if (!$sitemapXml) {
+						$sitemapContent = file_get_contents($sitemapUrl, false, stream_context_create($arrContextOptions));
+						if (!empty($sitemapContent)) {
+							$sitemapXml = simplexml_load_string($sitemapContent);
+						}
+					}
+					// Now here we will sort the URL in descending order based on the last modified date so we will get the latest posts first //
+					$urlLastModArray = [];
+					foreach ($sitemapXml->url as $url) {
+						$urlString = (string) $url->loc;
+						$lastModString = (string) $url->lastmod;
+						$lastModTimestamp = strtotime($lastModString);
+						// Store URLs and last modification dates in a multidimensional array
+						$urlLastModArray[$lastModTimestamp][] = [
+							'loc' => $urlString,
+							'lastmod' => $lastModString
+						];
+					}
+					// Sort the multidimensional array by keys (last modification dates) in descending order
+					krsort($urlLastModArray);
+					// Create a new SimpleXMLElement object to mimic the original structure
+					$newSitemapXml = new SimpleXMLElement('<urlset></urlset>');
+					foreach ($urlLastModArray as $lastModTimestamp => $urls) {
+						foreach ($urls as $urlData) {
+							$urlNode = $newSitemapXml->addChild('url');
+							$urlNode->addChild('loc', $urlData['loc']);
+							$urlNode->addChild('lastmod', $urlData['lastmod']);
+						}
+					}
+					// descending order complete with same structure as xml//
+					$postCount = 0;
+					foreach ($newSitemapXml->url as $url) {
+						$utmPostUrl = '';
+						if ($postCount >= $desiredPostCount) {
+							break;
+						}
+						$postUrl = (string) $url->loc; // Cast to string to get the URL
+						if ($postUrl == $main_domain . '/' || $postUrl == $http_domain . '/') {
+							continue; // Skip the first iteration
+						}
+						// Check if the URL is already in the database
+						// utm checks on url
+						$utmPostUrl = $postUrl;
+
+						$utm_details = [];
+						$utm_check = false;
+						$url_detail = getDomain($utmPostUrl);
+						if (!empty($url_detail['url'])) {
+							$domain = $url_detail['url'];
+							$utm_details = getUtm($domain, $user_id);
+							if (count($utm_details) > 0) {
+								$utm_check = true;
+							}
+						}
+						if ($utm_check) {
+							$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $pin_user->username, 'pinterest');
+						}
+						// utm check on url
+						$where_rss = [];
+						$where_rss[0]['key'] = 'url';
+						$where_rss[0]['value'] = $utmPostUrl;
+						$where_rss[1]['key'] = 'board_id';
+						$where_rss[1]['value'] = $board_id;
+						$where_rss[2]['key'] = 'user_id';
+						$where_rss[2]['value'] = $user_id;
+						// $where_rss[3]['key'] = 'published';
+						// $where_rss[3]['value'] = 0;
+						$present = $CI->Publisher_model->count_records('pinterest_scheduler', $where_rss);
+						if ($present > 0) {
+							continue;
+						} else {
+							// get url info and save it to database
+							$CI->load->library('getMetaInfo');
+							// Fetching Single Post data
+							$data = $CI->getmetainfo->get_info($postUrl, 'pinterest');
+							if (empty($data['image'])) {
+								continue;
+							} else {
+								if (limit_check(RSS_FEED_OLD_POST_FETCH_ID, 2, $user->id)) {
+									resources_update('up', RSS_FEED_OLD_POST_FETCH_ID, $user->id);
+									$CI->Publisher_model->create_single_pinterest_rss_feed($user->id, $pin_board->id, $data['title'], $data['image'], $utmPostUrl, $pin_board->time_slots_rss, 'past');
+									// increase post count
+									$postCount++;
+								} else {
+									$response = [
+										'status' => false,
+										'message' => 'Your resource limit has been reached'
+									];
+									break;
+								}
+							}
+						}
+					}
+					$response = [
+						'status' => true,
+						'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
+					];
 				} else {
 					$response = [
 						'status' => false,
-						'message' => 'Your resource limit has been reached'
+						'error' => 'Sitemap Data not found!'
 					];
-					break;
 				}
-			}
-		}
-		$response = [
-			"status" => true
-		];
-	} else {
-		return array(
-			"status" => false,
-			"error" => $feed["error"]
-		);
-	}
-	return $response;
-	$parsed_url = parse_url($url);
-	// Extract the protocol, domain, and append "sitemap.xml" to it
-	if (isset($parsed_url['scheme']) && isset($parsed_url['host'])) {
-		$main_domain = $parsed_url['scheme'] . '://' . $parsed_url['host'];
-		$http_domain = 'http://' . $parsed_url['host'];
-		$sitemapUrl = $main_domain . '/sitemap.xml';
-	}
-	// context options
-	$arrContextOptions = array('http' => ['method' => "GET", 'header' => "User-Agent: curl/7.68.0\r\n", 'ignore_errors' => true], "ssl" => array("verify_peer" => false, "verify_peer_name" => false,));
-	// load xml from sitemap.xml
-	$xml = @simplexml_load_file($sitemapUrl);
-	if ($xml == false) {
-		$response = [
-			'status' => false,
-		];
-		return $response;
-	} else {
-		$sitemapContent = file_get_contents($sitemapUrl, false, stream_context_create($arrContextOptions));
-		if (!empty($sitemapContent)) {
-			$xml = simplexml_load_string($sitemapContent);
-		}
-	}
-	if (count($xml) > 0) {
-		$filteredSitemaps = [];
-		foreach ($xml->sitemap as $sitemap) {
-			$loc = (string) $sitemap->loc;
-			// Check if the <loc> element contains "post-sitemap" or "sitemap-post"
-			if (strpos($loc, "post-sitemap") !== false || strpos($loc, "sitemap-post") !== false || strpos($loc, "sitemap-") !== false) {
-				$filteredSitemaps[] = $sitemap;
-			}
-		}
-		usort($filteredSitemaps, function ($a, $b) {
-			$numberA = intval(preg_replace('/\D/', '', $a->loc));
-			$numberB = intval(preg_replace('/\D/', '', $b->loc));
-			return $numberB - $numberA; // Sort in descending order
-		});
-		$selectedSitemap = $filteredSitemaps[0];
-		$desiredPostCount = 20;
-		$loc = (string) $selectedSitemap->loc;
-		if (
-			strpos($loc, "post-sitemap") !== false ||
-			strpos($loc, "sitemap-post") !== false ||
-			strpos($loc, "sitemap-") !== false
-		) {
-			$sitemapUrl = $loc; // Use the filtered URL
-			$sitemapXml = simplexml_load_file($sitemapUrl);
-			if (!$sitemapXml) {
-				$sitemapContent = file_get_contents($sitemapUrl, false, stream_context_create($arrContextOptions));
-				if (!empty($sitemapContent)) {
-					$sitemapXml = simplexml_load_string($sitemapContent);
-				}
-			}
-			// Now here we will sort the URL in descending order based on the last modified date so we will get the latest posts first //
-			$urlLastModArray = [];
-			foreach ($sitemapXml->url as $url) {
-				$urlString = (string) $url->loc;
-				$lastModString = (string) $url->lastmod;
-				$lastModTimestamp = strtotime($lastModString);
-				// Store URLs and last modification dates in a multidimensional array
-				$urlLastModArray[$lastModTimestamp][] = [
-					'loc' => $urlString,
-					'lastmod' => $lastModString
+			} else {
+				$response = [
+					'status' => false,
+					'error' => 'Failed to fetch the RSS feed'
 				];
 			}
-			// Sort the multidimensional array by keys (last modification dates) in descending order
-			krsort($urlLastModArray);
-			// Create a new SimpleXMLElement object to mimic the original structure
-			$newSitemapXml = new SimpleXMLElement('<urlset></urlset>');
-			foreach ($urlLastModArray as $lastModTimestamp => $urls) {
-				foreach ($urls as $urlData) {
-					$urlNode = $newSitemapXml->addChild('url');
-					$urlNode->addChild('loc', $urlData['loc']);
-					$urlNode->addChild('lastmod', $urlData['lastmod']);
-				}
-			}
-			// descending order complete with same structure as xml//
-			$postCount = 0;
-			foreach ($newSitemapXml->url as $url) {
-				$utmPostUrl = '';
-				if ($postCount >= $desiredPostCount) {
-					break;
-				}
-				$postUrl = (string) $url->loc; // Cast to string to get the URL
-				if ($postUrl == $main_domain . '/' || $postUrl == $http_domain . '/') {
-					continue; // Skip the first iteration
-				}
-			}
-			$response = [
-				'status' => true,
-				'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
-			];
 		} else {
 			$response = [
 				'status' => false,
-				'error' => 'Sitemap Data not found!'
+				'error' => $user_check['message']
 			];
 		}
-	} else {
-		$response = [
-			'status' => false,
-			'error' => 'Failed to fetch the RSS feed'
-		];
 	}
 	return $response;
 }
@@ -4727,8 +4960,7 @@ function user_agent()
 	$agent[] = "Mozilla/5.0 (Linux; Android 10; HTC Desire 21 pro 5G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.127 Mobile Safari/537.36";
 	$agent[] = "Mozilla/5.0 (Linux; Android 10; Wildfire U20 5G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.136 Mobile Safari/537.36";
 	$agent[] = "Mozilla/5.0 (Linux; Android 6.0; HTC One X10 Build/MRA58K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.98 Mobile Safari/537.36";
-	return "Adublisher RSS Bot";
-	// return $agent[RAND(0, 60)];
+	return $agent[RAND(0, 60)];
 }
 function pin_board_publish_now($post, $board, $pinterest_user)
 {
