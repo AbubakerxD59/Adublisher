@@ -1918,6 +1918,7 @@ class ChannelCrons extends CI_Controller
 			}
 			if ($type == 'pinterest') {
 				$pinterest_board = $this->Publisher_model->get_allrecords('pinterest_boards', array('id' => $value->page_id));
+				print_pre($pinterest_board);
 				if (count($pinterest_board) > 0) {
 					$board = $pinterest_board[0];
 					$timeslots = json_decode($board->time_slots_rss);
@@ -2012,8 +2013,9 @@ class ChannelCrons extends CI_Controller
 						$count = 1;
 						do {
 							$response = pin_board_fetch_past_posts($value->url, $value->page_id, $value->user_id, 0);
+							print_pre($response);
 							$count++;
-						} while (!$response["status"] && $count <= 3);
+						} while (!$response["status"] || $count <= 3);
 					}
 				}
 			}
