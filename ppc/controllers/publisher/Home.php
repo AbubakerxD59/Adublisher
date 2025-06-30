@@ -314,14 +314,17 @@ class Home extends CI_Controller
 
 	public function testing()
 	{
-		error_reporting(-1);
-		ini_set('display_errors', 1);
-		$tiktok = $this->Publisher_model->get_allrecords('tiktok', ['user_id' => '2210']);
-		$tiktok = $tiktok[0];
-		$this->load->library('tiktok');
-		$access_token = refresh_tiktok_access_token($tiktok->access_token);
-		$videos = $this->tiktok->get_videos($access_token);
-		dd('here', $videos);
+		$this->load->library('feedfetcher'); // Load our custom library
+		$feed = $this->feedfetcher->fetchFeedItems("https://infodate.me");
+		print_pre($feed); die();
+		// error_reporting(-1);
+		// ini_set('display_errors', 1);
+		// $tiktok = $this->Publisher_model->get_allrecords('tiktok', ['user_id' => '2210']);
+		// $tiktok = $tiktok[0];
+		// $this->load->library('tiktok');
+		// $access_token = refresh_tiktok_access_token($tiktok->access_token);
+		// $videos = $this->tiktok->get_videos($access_token);
+		// dd('here', $videos);
 	}
 
 	private function create_thumbnail($image_path, $text)

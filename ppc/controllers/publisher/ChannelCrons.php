@@ -1832,7 +1832,8 @@ class ChannelCrons extends CI_Controller
 					do {
 						sleep(0.5);
 						$publish = $this->tiktok->fetch_status($access_token, $response['publish_id']);
-						echo '<pre>'; print_r($publish);
+						echo '<pre>';
+						print_r($publish);
 					} while (!in_array($publish['status'], ['PUBLISH_COMPLETE', 'FAILED']));
 					if (isset($publish['status']) && $publish['status'] == 'PUBLISH_COMPLETE') {
 						remove_file($value->image);
@@ -1899,7 +1900,6 @@ class ChannelCrons extends CI_Controller
 			]
 		];
 		$unpublished_links = $this->Publisher_model->list_records('rss_links', 0, 1, $where, 'id', 'asc');
-		print_pre($unpublished_links);
 		foreach ($unpublished_links as $key => $value) {
 			// update publish column
 			$this->Publisher_model->update_record('rss_links', ['published' => '2'], $value->id);
@@ -1918,7 +1918,6 @@ class ChannelCrons extends CI_Controller
 			}
 			if ($type == 'pinterest') {
 				$pinterest_board = $this->Publisher_model->get_allrecords('pinterest_boards', array('id' => $value->page_id));
-				print_pre($pinterest_board);
 				if (count($pinterest_board) > 0) {
 					$board = $pinterest_board[0];
 					$timeslots = json_decode($board->time_slots_rss);
@@ -1927,7 +1926,6 @@ class ChannelCrons extends CI_Controller
 						$count = 1;
 						do {
 							$response = pin_board_fetch_more_posts($value->url, $value->page_id, $value->user_id, $timeslots, 0);
-							print_pre($response);
 							$count++;
 						} while (!$response["status"] && $count <= 3);
 					}
@@ -1945,7 +1943,6 @@ class ChannelCrons extends CI_Controller
 			}
 			if ($type == 'tiktok') {
 				$tiktok = $this->Publisher_model->retrieve_record('tiktok', $value->page_id);
-				print_pre($tiktok);
 				if ($tiktok) {
 					$timeslots = json_decode($tiktok->time_slots_rss);
 					if (count($timeslots) > 0) {
@@ -2011,12 +2008,11 @@ class ChannelCrons extends CI_Controller
 					$timeslots = json_decode($board->time_slots_rss);
 					if (count($timeslots) > 0) {
 						$timeslots = implode(',', $timeslots);
-						$count = 1;
-						do {
-							$response = pin_board_fetch_past_posts($value->url, $value->page_id, $value->user_id, 0);
-							print_pre($response);
-							$count++;
-						} while (!$response["status"] || $count <= 3);
+						// $count = 1;
+						// do {
+						$response = pin_board_fetch_past_posts($value->url, $value->page_id, $value->user_id, 0);
+						// $count++;
+						// } while (!$response["status"] || $count <= 3);
 					}
 				}
 			}
