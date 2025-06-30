@@ -1116,8 +1116,8 @@ if (!function_exists('recent_posts_api')) {
 function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 {
 	$CI = &get_instance();
-	$CI->load->library('feedfetcher'); // Load our custom library
-	$feed = $CI->feedfetcher->fetchFeedItems($url, 0);
+	$CI->load->library('feedFetcher'); // Load our custom library
+	$feed = $CI->feedFetcher->fetchFeedItems($url, 0);
 	if ($feed["success"]) {
 		$items = $feed["items"];
 		foreach ($items as $data) {
@@ -1181,8 +1181,8 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 {
 	$CI = &get_instance();
-	$CI->load->library('feedfetcher'); // Load our custom library
-	$feed = $CI->feedfetcher->fetchFeedItems($url, 0);
+	$CI->load->library('feedFetcher'); // Load our custom library
+	$feed = $CI->feedFetcher->fetchFeedItems($url, 0);
 	if ($feed["success"]) {
 		$items = $feed["items"];
 		foreach ($items as $data) {
@@ -1244,8 +1244,8 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 function ig_user_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 {
 	$CI = &get_instance();
-	$CI->load->library('feedfetcher'); // Load our custom library
-	$feed = $CI->feedfetcher->fetchFeedItems($url, 0);
+	$CI->load->library('feedFetcher'); // Load our custom library
+	$feed = $CI->feedFetcher->fetchFeedItems($url, 0);
 	if ($feed["success"]) {
 		$items = $feed["items"];
 		foreach ($items as $data) {
@@ -1643,11 +1643,11 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 function pin_board_fetch_past_posts($url, $board_id, $user_id, $mode)
 {
 	$CI = &get_instance();
-	$CI->load->library('feedfetcher'); // Load our custom library
+	$CI->load->library('feedFetcher'); // Load our custom library
 	$pin_board = $CI->Publisher_model->retrieve_record('pinterest_boards', $board_id);
 	$pin_user = $CI->Publisher_model->get_allrecords('pinterest_users', ['user_id' => $user_id]);
 	$CI->Publisher_model->update_last_run($board_id, 'last_run', 'pinterest_boards');
-	$feed = $CI->feedfetcher->fetchSitemapItems($url, 0);
+	$feed = $CI->feedFetcher->fetchSitemapItems($url, 0);
 	if ($feed["success"]) {
 		$items = $feed["items"];
 		foreach ($items as $data) {

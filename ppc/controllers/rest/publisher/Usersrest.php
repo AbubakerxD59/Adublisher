@@ -2012,12 +2012,12 @@ class Usersrest extends REST_Controller
 				if (in_array($sitemap_rss_link, $decoded_rss_link)) {
 					// old post
 					limit_check(RSS_FEED_OLD_POST_FETCH_ID);
-					$response = fb_page_fetch_past_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
+					// $response = fb_page_fetch_past_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
 					$cron_url = 'https://www.adublisher.com/fetchPastRssFeed';
 				} else {
 					// latest posts
 					limit_check(RSS_FEED_LATEST_POST_FETCH_ID);
-					$response = fb_page_fetch_more_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
+					// $response = fb_page_fetch_more_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
 					$cron_url = 'https://www.adublisher.com/fetchRssFeed';
 				}
 				if ($response['status']) {
