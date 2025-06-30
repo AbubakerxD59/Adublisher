@@ -38,7 +38,7 @@ class FeedFetcher
         // 1. Sanitize and Validate URL
         if (filter_var($websiteUrl, FILTER_VALIDATE_URL) === FALSE) {
             log_message('error', 'Invalid website URL provided: ' . $websiteUrl);
-            return ['error' => 'Invalid website URL.'];
+            return ['success' => false, 'error' => 'Invalid website URL.'];
         }
 
         // 2. Discover RSS Feed URL
@@ -46,7 +46,7 @@ class FeedFetcher
 
         if (!$rssFeedUrl) {
             log_message('info', 'No RSS feed found for: ' . $websiteUrl);
-            return ['error' => 'No RSS feed found for this website.'];
+            return ['success' => false, 'error' => 'No RSS feed found for this website.'];
         }
 
         log_message('info', 'Discovered RSS Feed URL: ' . $rssFeedUrl);
@@ -56,7 +56,7 @@ class FeedFetcher
 
         if (!$feedData || empty($feedData['items'])) {
             log_message('error', 'Failed to fetch or parse RSS feed from: ' . $rssFeedUrl);
-            return ['error' => 'Failed to fetch or parse the RSS feed.'];
+            return ['success' => false, 'error' => 'Failed to fetch or parse the RSS feed.'];
         }
 
         log_message('info', 'Successfully fetched ' . count($feedData['items']) . ' items from feed.');
@@ -74,7 +74,7 @@ class FeedFetcher
     {
         if (filter_var($websiteUrl, FILTER_VALIDATE_URL) === FALSE) {
             log_message('error', 'Invalid website URL provided for sitemap: ' . $websiteUrl);
-            return ['error' => 'Invalid website URL.'];
+            return ['success' => false, 'error' => 'Invalid website URL.'];
         }
 
         // Ensure base URL ends with a slash for proper resolution
@@ -86,7 +86,7 @@ class FeedFetcher
 
         if (!$sitemapUrl) {
             log_message('info', 'No sitemap found for: ' . $baseUrl);
-            return ['error' => 'No sitemap found for this website.'];
+            return ['success' => false, 'error' => 'No sitemap found for this website.'];
         }
 
         log_message('info', 'Discovered Sitemap URL: ' . $sitemapUrl);
@@ -94,7 +94,7 @@ class FeedFetcher
         $urls = $this->parseSitemap($sitemapUrl, []); // Use an empty array to track processed URLs
         if (empty($urls)) {
             log_message('error', 'No URLs found in sitemap(s) from: ' . $sitemapUrl);
-            return ['error' => 'No URLs found in the sitemap.'];
+            return ['success' => false, 'error' => 'No URLs found in the sitemap.'];
         }
 
         $processedItems = [];

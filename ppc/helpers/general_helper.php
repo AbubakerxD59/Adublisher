@@ -1183,6 +1183,7 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 	$CI = &get_instance();
 	$CI->load->library('feedFetcher'); // Load our custom library
 	$feed = $CI->feedfetcher->fetchFeedItems($url, 0);
+	print_pre($feed);
 	if ($feed["success"]) {
 		$items = $feed["items"];
 		foreach ($items as $data) {
