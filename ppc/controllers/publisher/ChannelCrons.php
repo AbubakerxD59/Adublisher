@@ -1674,9 +1674,11 @@ class ChannelCrons extends CI_Controller
 				if ($type == 'video') { //for video
 					$error_postData['image'] = '';
 					$file_url = get_from_s3bucket($value->video_path, 1);
+					print_pre($file_url);
 					if ($file_url['status']) {
 						$file_name = $file_url['file_name'];
 						$postData = ['description' => $value->title, 'file_url' => $file_name];
+						print_pre($postData);
 						$result = $this->facebook->request('POST', '/' . $page->page_id . '/videos', $postData, $access_token);
 					}
 				}
