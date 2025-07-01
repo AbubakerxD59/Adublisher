@@ -5028,7 +5028,7 @@ class Usersrest extends REST_Controller
 						$comment = make_utm_string($comment, $comment_utm['utm_details'], $page['page_name'], 'facebook');
 					}
 					// store request in a cronjob for publishing
-					$file_name = $has_video ? '' : $file_name;
+					$file_name = $has_video ? $file_name : '';
 					$data = [
 						'user_id' => $userID,
 						'page_id' => $page['page_id'],
@@ -5062,7 +5062,7 @@ class Usersrest extends REST_Controller
 					$comment = make_utm_string($comment, $comment_utm['utm_details'], $tiktok['username'], 'type');
 				}
 				// store request in a cronjob for publishing
-				$file_name = $has_video ? '' : $file_name;
+				$file_name = $has_video ? $file_name : '';
 				$data = [
 					'user_id' => $userID,
 					'page_id' => $tiktok['open_id'],
