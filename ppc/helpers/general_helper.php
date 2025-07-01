@@ -1262,7 +1262,7 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 	];
 	$context = stream_context_create($contextOptions);
 	$file = @file_get_contents($links, FALSE, $context);
-	if ($file === false) {
+	if ($file === false || empty($file)) {
 		return [
 			"status" => false
 		];
@@ -1274,22 +1274,13 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 		];
 	}
 	$feed[] = $single_feed;
-	if ($feed) {
+	if (count($feed) > 0) {
 		foreach ($feed as $data) {
 			if (!empty($data)) {
-				$i = 1;
 				if (isset($data->channel->item)) {
-					$items_count = count($data->channel->item);
-					$few_issues = [];
 					foreach ($data->channel->item as $item) {
-						$items_count--;
-						$item = $data->channel->item[$items_count];
-						if ($i > 10) {
-							break;
-						}
 						$metaOfUrlt = metaOfUrlt($item->link, 'pinterest');
 						if (count($metaOfUrlt) > 0) {
-							// utm checks on url
 							$utm_details = [];
 							$utm_check = false;
 							$url_detail = getDomain($item->link);
@@ -1306,18 +1297,15 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 							if ($utm_check) {
 								$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $pin_user->username, 'pinterest');
 							}
-							// utm checks end
 							$where_rss[0]['key'] = 'url';
 							$where_rss[0]['value'] = $utmPostUrl;
 							$where_rss[1]['key'] = 'board_id';
 							$where_rss[1]['value'] = $page;
 							$where_rss[2]['key'] = 'user_id';
 							$where_rss[2]['value'] = $userID;
-							// $where_rss[3]['key'] = 'published';
-							// $where_rss[3]['value'] = 0;
 							$present = $CI->Publisher_model->count_records('pinterest_scheduler', $where_rss);
+							print_pre($present);
 							if (!$present) {
-								$i++;
 								$img_path = $metaOfUrlt['image'];
 								if (empty($img_path)) {
 									$img_path = base_url('assets/general/images/no_image_found.jpg');
@@ -1333,8 +1321,6 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 									break;
 								}
 							}
-						} else {
-							$few_issues['errors'][] = $item->link;
 						}
 						sleep(rand(2, 5));
 					}

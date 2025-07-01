@@ -1,5 +1,7 @@
 <?php
+
 use voku\helper\HtmlDomParser;
+
 require_once 'amazon/vendor/autoload.php';
 class GetMetaInfo
 {
@@ -63,7 +65,7 @@ class GetMetaInfo
 
 		if ($err) {
 			// echo "cURL Error #:" . $err;
-			return ['title' => "cURL Error #:" . $err, 'image' => ''];
+			return ['title' => $err, 'image' => ''];
 		} else {
 			$dom = new DOMDocument();
 			@$dom->loadHTML($response);
@@ -118,6 +120,7 @@ class GetMetaInfo
 					if (empty($ogimage) && $meta->getAttribute('name') == 'twitter:image') {
 						$ogimage = $meta->getAttribute('content');
 					}
+					sleep(2);
 				}
 
 				if ($ogimage && $ogimagesecure && $ogimage == $ogimagesecure) {
@@ -137,6 +140,7 @@ class GetMetaInfo
 						$src = $image->getAttribute('src');
 						$meta_image = $src;
 					}
+					sleep(2);
 				}
 			}
 			if (empty($meta_image)) {
@@ -148,6 +152,7 @@ class GetMetaInfo
 						$src = $image;
 						$meta_image = $src;
 					}
+					sleep(2);
 				}
 			}
 			if (empty($meta_title)) {
@@ -165,7 +170,6 @@ class GetMetaInfo
 			}
 			return ['title' => cleanString($meta_title), 'image' => $meta_image];
 		}
-
 	}
 	function get_string_between($string, $start, $end)
 	{
@@ -210,6 +214,7 @@ class GetMetaInfo
 				$pinterest_image = $image;
 				break;
 			}
+			sleep(2);
 		}
 		if ($pin_image && $pinterest_image != '' && $pinterest_image != null) {
 			$meta_image = $pinterest_image;

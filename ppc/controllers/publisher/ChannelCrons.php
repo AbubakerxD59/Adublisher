@@ -1925,6 +1925,7 @@ class ChannelCrons extends CI_Controller
 						do {
 							$response = pin_board_fetch_more_posts($value->url, $value->page_id, $value->user_id, $timeslots, 0);
 							$count++;
+							sleep(rand(2, 5));
 						} while (!$response["status"] && $count <= 3);
 					}
 				}

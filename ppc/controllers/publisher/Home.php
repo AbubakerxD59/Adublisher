@@ -1026,6 +1026,7 @@ class Home extends CI_Controller
 				// 	$this->Publisher_model->create_record('facebook', $facebook_data);
 				// }
 				$pages = $this->facebook->request('get', '/me/accounts', $access_token);
+				dd([$pages]);
 				$user_pages = $pages['data'];
 				foreach ($user_pages as $page) {
 					if (!limit_check(AUTHORIZE_SOCIAL_ACCOUNTS_ID, 2)) {
