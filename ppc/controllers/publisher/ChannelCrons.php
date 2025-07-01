@@ -1673,7 +1673,7 @@ class ChannelCrons extends CI_Controller
 				}
 				if ($type == 'video') { //for video
 					$error_postData['image'] = '';
-					$file_url = get_from_s3bucket($value->video_path, 1);
+					$file_url = get_from_s3bucket($value->video_path);
 					print_pre($file_url);
 					if ($file_url['status']) {
 						$file_name = $file_url['file_name'];
