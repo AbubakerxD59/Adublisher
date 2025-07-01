@@ -1678,15 +1678,12 @@ class ChannelCrons extends CI_Controller
 						$file_name = BulkAssets . $file_url['file_name'];
 						$postData = ['description' => $value->title, 'file_url' => $file_name];
 						$result = $this->facebook->request('POST', '/' . $page->page_id . '/videos', $postData, $access_token);
-						if ($result["id"]) {
-							remove_file($file_url['file_name']);
-						}
+						remove_file($file_url['file_name']);
 					}
 				}
+				remove_file($value->image);
+				remove_from_s3bucket($value->video_path);
 				if (isset($result['id'])) {
-					remove_file($value->image);
-					remove_from_s3bucket($value->video_path);
-
 					resources_update('up', POST_PUBLISHING_FB_ID);
 					if (!empty($value->comment)) {
 						$this->Publisher_model->publish_comments($result['id'], $value->comment, (string) $access_token);
