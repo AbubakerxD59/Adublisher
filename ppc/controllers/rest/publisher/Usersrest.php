@@ -2013,11 +2013,26 @@ class Usersrest extends REST_Controller
 					// old post
 					limit_check(RSS_FEED_OLD_POST_FETCH_ID);
 					// $response = fb_page_fetch_past_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
+					$data = [
+						'user_id' => $userID,
+						'page_id' => $page,
+						'type' => 'facebook_past',
+						'url' => $sitemap_rss_link,
+						'published' => 0
+					];
+					$this->db->insert('rss_links', $data);
 					$cron_url = 'https://www.adublisher.com/fetchPastRssFeed';
 				} else {
 					// latest posts
 					limit_check(RSS_FEED_LATEST_POST_FETCH_ID);
-					// $response = fb_page_fetch_more_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
+					$data = [
+						'user_id' => $userID,
+						'page_id' => $page,
+						'type' => 'facebook',
+						'url' => $sitemap_rss_link,
+						'published' => 0
+					];
+					$this->db->insert('rss_links', $data);
 					$cron_url = 'https://www.adublisher.com/fetchRssFeed';
 				}
 				$store_rss_link[] = $this->post('sitemap_rss_link'); // The rss link for which more posts 	are demanded // 
