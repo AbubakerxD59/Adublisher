@@ -1653,28 +1653,7 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 					$xml = simplexml_load_string($sitemapContent);
 				}
 			}
-			if ($mode == '1') {
-				if (count($xml) == 0) {
-					$response = array(
-						'status' => false,
-						'error' => 'Provided Feed URL do not has valid Sitemap Data!'
-					);
-				} else {
-					$data = [
-						'user_id' => $user_id,
-						'page_id' => $fb_page->page_id,
-						'type' => 'facebook_past',
-						'url' => $url,
-						'published' => 0
-					];
-					$CI->db->insert('rss_links', $data);
-					$response = array(
-						'status' => true,
-						'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
-					);
-				}
-				return $response;
-			}
+
 			if (count($xml) > 0) {
 				$filteredSitemaps = [];
 				foreach ($xml->sitemap as $sitemap) {
@@ -1731,6 +1710,7 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 					// descending order complete with same structure as xml//
 					$postCount = 0;
 					foreach ($newSitemapXml->url as $url) {
+						print_pre($url);
 						$utmPostUrl = '';
 						if ($postCount >= $desiredPostCount) {
 							break;
@@ -1791,6 +1771,7 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 								}
 							}
 						}
+						sleep(2);
 					}
 					$response = [
 						'status' => true,

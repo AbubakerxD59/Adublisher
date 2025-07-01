@@ -1991,13 +1991,21 @@ class ChannelCrons extends CI_Controller
 			// update publish column
 			$type = $value->type;
 			if ($type == 'facebook_past') {
+				print_pre('1');
 				$facebook_page = $this->Publisher_model->get_allrecords('facebook_pages', array('page_id' => $value->page_id, 'user_id' => $value->user_id));
 				if (count($facebook_page) > 0) {
 					$page = $facebook_page[0];
 					$timeslots = json_decode($page->time_slots_rss);
+					print_pre('2');
 					if (count($timeslots) > 0) {
+						print_pre('3');
 						$timeslots = implode(',', $timeslots);
-						$response = fb_page_fetch_past_posts($value->url, $page->id, $value->user_id, $timeslots, 0);
+						$count = 1;
+						do {
+							$response = fb_page_fetch_past_posts($value->url, $page->id, $value->user_id, $timeslots, 0);
+							$count++;
+							sleep(rand(2, 5));
+						} while (!$response["status"] && $count <= 3);
 					}
 				}
 			}
@@ -2012,6 +2020,7 @@ class ChannelCrons extends CI_Controller
 						do {
 							$response = pin_board_fetch_past_posts($value->url, $value->page_id, $value->user_id, 0);
 							$count++;
+							sleep(rand(2, 5));
 						} while (!$response["status"] && $count <= 3);
 					}
 				}
