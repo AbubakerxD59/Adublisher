@@ -875,7 +875,7 @@ if (!function_exists('get_from_s3bucket')) {
 			// move to aws s3 bucket
 			$file_name = str_replace('assets/bulkuploads/', '', $key);
 			$aws = $CI->s3_upload->get_from_aws($key);
-			dd([$aws]);
+			dd([$aws, $file_name, $key]);
 			if ($aws) {
 				if ($mode == 1) { //for url
 					$file_name = $aws['@metadata']['effectiveUri'];
@@ -1753,7 +1753,7 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 							$data = $CI->getmetainfo->get_info($postUrl, 'other');
 							if (empty($data['image'])) {
 								$data["image"] = null;
-							} 
+							}
 							// else {
 							// }
 							if (limit_check(RSS_FEED_OLD_POST_FETCH_ID, 2, $user->id)) {
