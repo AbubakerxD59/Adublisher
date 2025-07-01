@@ -1992,7 +1992,7 @@ class ChannelCrons extends CI_Controller
 			$type = $value->type;
 			if ($type == 'facebook_past') {
 				print_pre('1');
-				$facebook_page = $this->Publisher_model->get_allrecords('facebook_pages', array('page_id' => $value->page_id, 'user_id' => $value->user_id));
+				$facebook_page = $this->Publisher_model->get_allrecords('facebook_pages', array('id' => $value->page_id, 'user_id' => $value->user_id));
 				if (count($facebook_page) > 0) {
 					$page = $facebook_page[0];
 					$timeslots = json_decode($page->time_slots_rss);
