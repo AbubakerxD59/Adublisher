@@ -991,6 +991,7 @@ class Home extends CI_Controller
 		if ($access_token) {
 			$user_id = App::Session()->get('userid');
 			$user = $this->facebook->request('get', '/me?fields=id,name,email,picture', $access_token);
+			dd([$user]);
 			if (!isset($user['error'])) {
 				$data = $user;
 				$profile_pic = isset($data['picture']['data']['url']) ? saveImageFromUrl($data['picture']['data']['url'], $user_id, $data["id"]) : '';
@@ -1026,7 +1027,6 @@ class Home extends CI_Controller
 				// 	$this->Publisher_model->create_record('facebook', $facebook_data);
 				// }
 				$pages = $this->facebook->request('get', '/me/accounts', $access_token);
-				dd([$pages]);
 				$user_pages = $pages['data'];
 				foreach ($user_pages as $page) {
 					if (!limit_check(AUTHORIZE_SOCIAL_ACCOUNTS_ID, 2)) {
