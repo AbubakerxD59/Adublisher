@@ -62,12 +62,12 @@ class ChannelCrons extends CI_Controller
 			if ($quote) { //for quote publishing
 				$result = $this->facebook->request('POST', "/" . $page->page_id . "/feed", ['message' => $post->post_title], $access_token);
 			} else if (!empty($post->video_path)) { //for video publishing
-				$file_url = get_from_s3bucket($post->video_path, 1);
+				$file_url = get_from_s3bucket($post->video_path);
 				if ($file_url['status']) {
 					$file_name = $file_url['file_name'];
 					$postData = [
 						'description' => $post->post_title,
-						'file_url' => $file_name
+						'file_url' => BulkAssets . $file_name
 					];
 					$result = $this->facebook->request('POST', '/' . $page->page_id . '/videos', $postData, $access_token);
 				} else {
