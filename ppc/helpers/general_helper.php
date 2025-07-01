@@ -1753,7 +1753,7 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 							if (empty($data['image'])) {
 								$data["image"] = null;
 							} 
-							else {
+							// else {
 							// }
 							if (limit_check(RSS_FEED_OLD_POST_FETCH_ID, 2, $user->id)) {
 								resources_update('up', RSS_FEED_OLD_POST_FETCH_ID, $user->id);
