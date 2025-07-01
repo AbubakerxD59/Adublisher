@@ -1669,7 +1669,7 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 					return $numberB - $numberA; // Sort in descending order
 				});
 				$selectedSitemap = $filteredSitemaps[0];
-				$desiredPostCount = 20;
+				$desiredPostCount = 10;
 				$loc = (string) $selectedSitemap->loc;
 				if (
 					strpos($loc, "post-sitemap") !== false ||
@@ -1744,31 +1744,28 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 						$where_rss[1]['value'] = $page_id;
 						$where_rss[2]['key'] = 'user_id';
 						$where_rss[2]['value'] = $user_id;
-						// $where_rss[3]['key'] = 'posted';
-						// $where_rss[3]['value'] = 0;
 						$present = $CI->Publisher_model->count_records('rsssceduler', $where_rss);
-						if ($present > 0) {
-							continue;
-						} else {
+						if (!$present) {
 							// get url info and save it to database
 							$CI->load->library('getMetaInfo');
 							// Fetching Single Post data
 							$data = $CI->getmetainfo->get_info($postUrl, 'other');
 							if (empty($data['image'])) {
-								continue;
+								$data["image"] = null;
+							} 
+							else {
+							// }
+							if (limit_check(RSS_FEED_OLD_POST_FETCH_ID, 2, $user->id)) {
+								resources_update('up', RSS_FEED_OLD_POST_FETCH_ID, $user->id);
+								create_single_rss_feed($user->id, $page_id, $data['title'], $data['image'], $utmPostUrl, $timeslots, 'past');
+								// increase post count
+								$postCount++;
 							} else {
-								if (limit_check(RSS_FEED_OLD_POST_FETCH_ID, 2, $user->id)) {
-									resources_update('up', RSS_FEED_OLD_POST_FETCH_ID, $user->id);
-									create_single_rss_feed($user->id, $page_id, $data['title'], $data['image'], $utmPostUrl, $timeslots, 'past');
-									// increase post count
-									$postCount++;
-								} else {
-									$response = [
-										'status' => false,
-										'message' => 'Your resource limit has been reached'
-									];
-									break;
-								}
+								$response = [
+									'status' => false,
+									'message' => 'Your resource limit has been reached'
+								];
+								break;
 							}
 						}
 						sleep(2);
