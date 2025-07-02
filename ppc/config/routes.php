@@ -678,7 +678,7 @@ $route['fetchPastRssFeed'] = 'publisher/ChannelCrons/fetch_past_rss_feed';
 $route['emailSending'] = 'publisher/ChannelCrons/email_sending';
 
 // instagram
-$route['get_instagram_access_token'] = 'rest/publisher/Usersrest/get_instagram_access_token';
+$route['instagram_callback'] = 'rest/publisher/Usersrest/get_instagram_access_token';
 $route['get_user_fb_pages'] = 'rest/publisher/Usersrest/get_user_fb_pages';
 $route['get_user_ig_account_id'] = 'rest/publisher/Usersrest/get_user_ig_account_id';
 $route['get_user_ig_account_details'] = 'rest/publisher/Usersrest/get_user_ig_account_details';

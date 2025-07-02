@@ -4057,7 +4057,7 @@ class Publisher_model extends CI_Model
 	// instagram
 	public function get_instagram_login_url()
 	{
-		$instagram_redirect_uri = SITEURL . "get_instagram_access_token";
+		$instagram_redirect_uri = SITEURL . "instagram_callback";
 		$permissions = $this->config->item('instagram_permissions');
 		$scopes = implode(',', $permissions);
 		$login_url = 'https://www.facebook.com/v23.0/dialog/oauth?client_id=' . INSTAGRAM_CLIENT_ID . '&redirect_uri=' . $instagram_redirect_uri . '&scope=' . $scopes;
@@ -4068,7 +4068,7 @@ class Publisher_model extends CI_Model
 	{
 		$this->load->library('facebook');
 		$code = $this->input->get('code');
-		$instagram_redirect_uri = SITEURL . "get_instagram_access_token";
+		$instagram_redirect_uri = SITEURL . "instagram_callback";
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => 'https://graph.facebook.com/v23.0/oauth/access_token?client_id=' . INSTAGRAM_CLIENT_ID . '&redirect_uri=' . $instagram_redirect_uri . '&client_secret=' . INSTAGRAM_CLIENT_SECRET . '&code=' . $code,
