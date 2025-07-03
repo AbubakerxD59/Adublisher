@@ -4141,6 +4141,10 @@ class Publisher_model extends CI_Model
 		$user_id = App::Session()->get('userid');
 		$ig_account_info = $this->facebook->request('get', $ig_account_id . '?fields=id,username', $ig_access_token);
 		if (isset($ig_account_info['id'])) {
+			// get user details
+			$user = $this->facebook->request('get', '/me?fields=id,name,email,picture', $ig_access_token);
+			dd($user);
+			// get user details
 			$data = [
 				'user_id' => $user_id,
 				'instagram_id' => $ig_account_id,
