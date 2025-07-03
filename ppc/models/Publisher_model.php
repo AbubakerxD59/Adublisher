@@ -4143,7 +4143,7 @@ class Publisher_model extends CI_Model
 		if (isset($ig_account_info['id'])) {
 			// get user details
 			$user = $this->facebook->request('get', '/me?fields=id,name,email,picture', $ig_access_token);
-			$profile_pic = isset($data['picture']['data']['url']) ? saveImageFromUrl($user['picture']['data']['url'], $user_id, $user["id"]) : '';
+			$profile_pic = isset($user['picture']['data']['url']) ? saveImageFromUrl($user['picture']['data']['url'], $user_id, $user["id"]) : '';
 			// get user details
 			$data = [
 				'user_id' => $user_id,
