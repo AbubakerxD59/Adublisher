@@ -1880,7 +1880,7 @@ class ChannelCrons extends CI_Controller
 					}
 				}
 				if ($type == "video") {
-					$response = publish_reels_to_instagram($ig_user->instagram_id, $ig_user->access_token, $value->video_path);
+					$response = publish_reels_to_instagram($ig_user->fb_page_id, $ig_user->access_token, $value->video_path);
 					dd([$response]);
 				}
 			} else {
