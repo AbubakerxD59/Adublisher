@@ -1863,7 +1863,6 @@ class ChannelCrons extends CI_Controller
 			]
 		];
 		$unpublished_posts = $this->Publisher_model->list_records('publish_posts', 0, 10, $where, 'id', 'asc');
-		print_pre($unpublished_posts);
 		foreach ($unpublished_posts as $key => $value) {
 			// change status to in progress
 			$this->Publisher_model->update_record('publish_posts', array('published' => '2'), $value->id);
