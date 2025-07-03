@@ -4258,6 +4258,54 @@ class Publisher_model extends CI_Model
 		return $response;
 	}
 
+	// publish reels to instagram
+	public function create_ig_reel_session($ig_id, $ig_access_token)
+	{
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://graph.facebook.com/v23.0/' . $ig_id . '/video_reels',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => array('upload_phase' => "start"),
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $ig_access_token,
+			),
+		));
+		$response = curl_exec($curl);
+		curl_close($curl);
+		$response = json_decode($response, true);
+		return $response;
+	}
+
+	public function upload_ig_reel_session($video_id, $ig_access_token, $video_url)
+	{
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://rupload.facebook.com/video-upload/v23.0/' . $video_id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => array('file_url' => $video_url),
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $ig_access_token,
+			),
+		));
+		$response = curl_exec($curl);
+		curl_close($curl);
+		$response = json_decode($response, true);
+		dd([$response]);
+		return $response;
+	}
+
 	public function create_single_ig_rss_feed($userID, $ig_id, $title, $img_path, $url, $timeslots)
 	{
 		$post_date_time = $this->getNextPostTime("instagram_scheduler", $userID, $ig_id, $timeslots);

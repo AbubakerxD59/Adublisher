@@ -4678,6 +4678,21 @@ function publish_ig_single_media($instagram_id, $access_token, $img_url, $captio
 	}
 }
 
+function publish_reels_to_instagram($ig_id, $ig_access_token, $video_url){
+	$CI = &get_instance();
+	$upload_session = $CI->Publisher_model->create_ig_reel_session($ig_id, $ig_access_token);
+	if($upload_session["video_id"]){
+		$upload_file = $CI->Publisher_model->upload_ig_reel_session($upload_session["video_id"], $ig_access_token, $video_url);
+	}
+	else{
+		$response = [
+			"success" => false,
+			"error" => $upload_session
+		];
+	}
+	return $response;
+}
+
 function notify_via_email($postData, $page, $type, $error_message)
 {
 	$CI = &get_instance();

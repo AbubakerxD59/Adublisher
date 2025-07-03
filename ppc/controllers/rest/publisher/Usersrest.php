@@ -5082,38 +5082,46 @@ class Usersrest extends REST_Controller
 			}
 		}
 		$image_path = SITEURL . "assets/bulkuploads/" . $file_name;
-		// Publish on Facebook Groups
-		// if (count($fb_groups) > 0) {
-		// 	foreach ($fb_groups as $group) {
-		// 		if ($has_video) {
-		// 			continue;
-		// 		}
-		// 		$fb_group_result = $this->Publisher_model->publish_to_facebook_group($group['group_id'], $image_path, $title, false);
-		// 		if ($fb_group_result) {
-		// 			$success_message[] = "Posts are published on Facebook Group successfully.";
-		// 			sleep(1);
-		// 		} else {
-		// 			$error_message[] = "Failed to publish on Facebook Group.";
-		// 		}
-		// 	}
-		// }
 		// Publish on Instagram Accounts
 		if (count($ig_users) > 0) {
 			// Check the ratio of the image
-			$aspect_ratio = $upload_data['image_width'] / $upload_data['image_height'];
-			$aspect_ratio = round($aspect_ratio, 2);
-			if ($aspect_ratio <= 1.91 && $aspect_ratio >= 4 / 5) {
-				foreach ($ig_users as $ig_user) {
-					if ($has_video) {
-						continue;
+			if (empty($video_path)) {
+				$aspect_ratio = $upload_data['image_width'] / $upload_data['image_height'];
+				$aspect_ratio = round($aspect_ratio, 2);
+				if ($aspect_ratio <= 1.91 && $aspect_ratio >= 4 / 5) {
+					foreach ($ig_users as $ig_user) {
+						if ($has_video) {
+							continue;
+						}
+						limit_check(POST_PUBLISHING_INST_ID);
+						$data = [
+							'user_id' => $userID,
+							'page_id' => $ig_user['instagram_id'],
+							'type' => 'instagram',
+							'title' => $title,
+							'image' => $image_path,
+							'published' => 0
+						];
+						$instagram_response = $this->db->insert('publish_posts', $data);
+						if ($instagram_response) {
+							$success_message[] = "Your post(s) are being Published!";
+						} else {
+							$error_message[] = "Failed to publish on Instagram.";
+						}
 					}
+				} else {
+					$error_message[] = "Insatagram:- The image aspect ratio is not within the required range.";
+				}
+			} else {
+				foreach ($ig_users as $ig_user) {
 					limit_check(POST_PUBLISHING_INST_ID);
 					$data = [
 						'user_id' => $userID,
 						'page_id' => $ig_user['instagram_id'],
 						'type' => 'instagram',
 						'title' => $title,
-						'image' => $image_path,
+						'image' => '',
+						'video_path' => $video_path,
 						'published' => 0
 					];
 					$instagram_response = $this->db->insert('publish_posts', $data);
@@ -5123,8 +5131,6 @@ class Usersrest extends REST_Controller
 						$error_message[] = "Failed to publish on Instagram.";
 					}
 				}
-			} else {
-				$error_message[] = "Insatagram:- The image aspect ratio is not within the required range.";
 			}
 		}
 		// cronjob for publishing facebook posts

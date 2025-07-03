@@ -1880,6 +1880,10 @@ class ChannelCrons extends CI_Controller
 						$this->Publisher_model->update_record('publish_posts', array('published' => '-1', 'error' => 'Failed to publish on Instagram.'), $value->id);
 					}
 				}
+				if ($type == "video") {
+					$response = publish_reels_to_instagram($ig_user->instagram_id, $ig_user->access_token, $value->video_path);
+					dd([$response]);
+				}
 			} else {
 				continue;
 			}
