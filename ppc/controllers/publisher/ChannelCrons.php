@@ -1863,20 +1863,17 @@ class ChannelCrons extends CI_Controller
 			]
 		];
 		$unpublished_posts = $this->Publisher_model->list_records('publish_posts', 0, 10, $where, 'id', 'asc');
+		print_pre($unpublished_posts);
 		foreach ($unpublished_posts as $key => $value) {
-			// change status to publish
-			$update = [
-				'published' => 1,
-			];
-			$this->db->where('id', $value->id);
-			$this->db->update('publish_posts', $update);
-			// change status to publish
+			// change status to in progress
+			$this->Publisher_model->update_record('publish_posts', array('published' => '2'), $value->id);
+			// change status to in progress
 			$type = !empty($value->image) ? 'image' : 'video';
 			$ig_user = $this->Publisher_model->get_allrecords('instagram_users', array('user_id' => $value->user_id, 'instagram_id' => $value->page_id));
 			if (count($ig_user) > 0) {
 				$ig_user = $ig_user[0];
 				if ($type == 'image') {
-					$response = publish_ig_single_media($ig_user->instagram_id, $ig_user->access_token, $value->image, $value->title);
+					$response = publish_ig_single_media($ig_user->instagram_id, $ig_user->access_token, $value->image, $value->title, $value->user_id);
 					if ($response['status']) {
 						$this->Publisher_model->update_record('publish_posts', array('published' => '1', 'error' => 'Posts are published on Instagram successfully.'), $value->id);
 					} else {

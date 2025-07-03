@@ -4647,14 +4647,15 @@ function infinity_preloader()
 	</svg>';
 	return $preloader;
 }
-function publish_ig_single_media($instagram_id, $access_token, $img_url, $caption)
+function publish_ig_single_media($instagram_id, $access_token, $img_url, $caption, $user_id = null)
 {
 	$CI = &get_instance();
-	$user_id = App::Session()->get('userid');
 	$container = $CI->Publisher_model->create_ig_media_container($instagram_id, $access_token, $img_url, $caption);
+	print_pre($container);
 	if (isset($container['id'])) {
 		// Step 2 of 2: Publish Container
 		$result = $CI->Publisher_model->publish_ig_media_container($user_id, $container['id']);
+		print_pre($result);
 		if (isset($result['id'])) {
 			return array(
 				'status' => true,
