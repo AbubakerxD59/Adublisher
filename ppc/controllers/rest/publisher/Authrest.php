@@ -699,7 +699,7 @@ class Authrest extends REST_Controller
                 $this->Publisher_model->delete_record('facebook_pages', $value->id);
                 resources_update('down', AUTHORIZE_SOCIAL_ACCOUNTS_ID);
             }
-            $this->Publisher_model->delete_where('facebook', ["key" => "user_id", "value" => $userID]);
+            $this->Publisher_model->delete_where('facebook', ["user_id", $userID]);
             $this->response(
                 [
                     'status' => TRUE,
