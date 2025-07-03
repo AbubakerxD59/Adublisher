@@ -505,7 +505,6 @@ class Authrest extends REST_Controller
             if ($status == "on") {
                 $result_posting = $this->Publisher_model->renewAutoPostsList($id, $type);
             }
-
         }
         $this->response(
             [
@@ -700,6 +699,7 @@ class Authrest extends REST_Controller
                 $this->Publisher_model->delete_record('facebook_pages', $value->id);
                 resources_update('down', AUTHORIZE_SOCIAL_ACCOUNTS_ID);
             }
+            $this->Publisher_model->delete_where('facebook', [["key" => "user_id", $userID]]);
             $this->response(
                 [
                     'status' => TRUE,
@@ -974,7 +974,6 @@ class Authrest extends REST_Controller
                 'message' => 'Please try again'
             ], REST_Controller::HTTP_NOT_FOUND);
         }
-
     }
 
     public function disconnectFacebookEvent_post()
@@ -1525,9 +1524,7 @@ class Authrest extends REST_Controller
             } else {
                 $this->response(['status' => false, 'message' => 'Facebook groups not disconnected'], REST_Controller::HTTP_OK); // NOT_FOUND (404) being the HTTP response code
             }
-
         }
-
     }
 
     public function deletefbpage_post()
