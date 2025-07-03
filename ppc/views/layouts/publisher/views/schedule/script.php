@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    var facebook_page_icon = pinterest_board_icon = tiktok_account_icon = '';
+    var facebook_page_icon = pinterest_board_icon = tiktok_account_icon = instagram_account_icon = '';
     Dropzone.autoDiscover = false;
     $(function() {
         setTimeout(() => {
@@ -881,7 +881,7 @@
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == "instagram") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?= BulkAssets ?>images/instagram_logo.png" class="rounded mx-1" alt="instagram_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + instagram_account_icon + '" class="rounded mx-1" alt="instagram_logo">' +
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == "fb_groups") {
             node +=
@@ -992,11 +992,11 @@
 
         } else if (elem.type == "instagram") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?= BulkAssets ?>images/instagram_logo.png" class="rounded mx-1" alt="instagram_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + instagram_account_icon + '" class="rounded mx-1" alt="instagram_logo">' +
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == "fb_groups") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?= BulkAssets ?>images/fb_group_logo.png" class="rounded mx-1" alt="instagram_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + instagram_account_icon + '" class="rounded mx-1" alt="instagram_logo">' +
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == 'youtube') {
             node +=
@@ -1377,14 +1377,14 @@
 
                     if (response.data.ig_accounts.length > 0) {
                         // $("#channels").append("<div class='col-md-12'><h4>Instagram Accounts</h4></div>");
-                        $.each(response.data.ig_accounts, function(index,
-                            value) {
+                        $.each(response.data.ig_accounts, function(index, value) {
+                            instagram_account_icon = "<?= BulkAssets ?>" + value.profile_pic;
                             if (value.channel_active == 1) {
                                 facebook_check = false;
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='<?= BulkAssets ?>images/instagram_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
                                     value.instagram_username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1392,7 +1392,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button active' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' ><img style='width:18px;height:18px;' src='<?= BulkAssets ?>images/instagram_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' ><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
                                     value.instagram_username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1409,7 +1409,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='<?= BulkAssets ?>images/fb_group_logo.png' class='rounded' alt='profile_pic'> " +
+                                        "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
                                         value.name +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
@@ -1417,7 +1417,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button active' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' ><img style='width:18px;height:18px;' src='<?= BulkAssets ?>images/fb_group_logo.png' class='rounded' alt='profile_pic'> " +
+                                        "' ><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
                                         value.name +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
@@ -1565,7 +1565,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='<?= BulkAssets ?>images/instagram_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
                                     value.instagram_username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1573,7 +1573,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button active' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' ><img style='width:18px;height:18px;' src='<?= BulkAssets ?>images/instagram_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' ><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
                                     value.instagram_username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1590,7 +1590,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='<?= BulkAssets ?>images/fb_group_logo.png' class='rounded' alt='profile_pic'> " +
+                                        "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
                                         value.name +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
@@ -1598,7 +1598,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button active' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' ><img style='width:18px;height:18px;' src='<?= BulkAssets ?>images/fb_group_logo.png' class='rounded' alt='profile_pic'> " +
+                                        "' ><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
                                         value.name +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
