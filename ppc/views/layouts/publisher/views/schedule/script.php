@@ -872,28 +872,28 @@
         // chech if type is facebook 
         if (elem.type == "facebook") {
             node +=
-                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + facebook_page_icon + '" class="rounded" alt="facebook_logo">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle" alt="facebook_logo">' +
                 elem.channel_name + '</p> </button>'
 
         } else if (elem.type == "pinterest") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + pinterest_board_icon + '" class="rounded" alt="pinterest_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + pinterest_board_icon + '" class="rounded-circle" alt="pinterest_logo">' +
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == "instagram") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + instagram_account_icon + '" class="rounded mx-1" alt="instagram_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle" alt="instagram_logo">' +
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == "fb_groups") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + facebook_page_icon + '" class="rounded mx-1" alt="facebook_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle" alt="facebook_logo">' +
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == 'youtube') {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?= BulkAssets ?>images/youtube_logo.png" class="rounded mx-1" alt="youtube_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="<?= BulkAssets ?>images/youtube_logo.png" class="rounded-circle" alt="youtube_logo">' +
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == 'tiktok') {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + tiktok_account_icon + '" class="rounded mx-1" alt="tiktok_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + tiktok_account_icon + '" class="rounded-circle" alt="tiktok_logo">' +
                 elem.channel_name + '</p> </button>'
         }
 
@@ -981,26 +981,26 @@
         // chech if type is facebook 
         if (elem.type == "facebook") {
             node +=
-                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + facebook_page_icon + '" class="rounded" alt="facebook_logo">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle" alt="facebook_logo">' +
                 elem.channel_name + '</p> </button>'
 
 
         } else if (elem.type == "pinterest") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + pinterest_board_icon + '" class="rounded" alt="pinterest_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + pinterest_board_icon + '" class="rounded-circle" alt="pinterest_logo">' +
                 elem.channel_name + '</p> </button>'
 
         } else if (elem.type == "instagram") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + instagram_account_icon + '" class="rounded mx-1" alt="instagram_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle" alt="instagram_logo">' +
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == "fb_groups") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="' + instagram_account_icon + '" class="rounded mx-1" alt="instagram_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle" alt="instagram_logo">' +
                 elem.channel_name + '</p> </button>'
         } else if (elem.type == 'youtube') {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:30px;height:30px;" src="<?= BulkAssets ?>images/youtube_logo.png" class="rounded mx-1" alt="instagram_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="<?= BulkAssets ?>images/youtube_logo.png" class="rounded-circle" alt="instagram_logo">' +
                 elem.channel_name + '</p> </button>'
         }
 
