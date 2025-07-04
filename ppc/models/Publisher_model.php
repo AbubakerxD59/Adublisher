@@ -4199,32 +4199,50 @@ class Publisher_model extends CI_Model
 	}
 
 	// create_ig_media_container
-	public function create_ig_media_container($instagram_id, $access_token, $img_url, $caption)
+	public function create_ig_media_container($instagram_id, $access_token, $img_url, $caption, $type = "image_url")
 	{
 		$curl = curl_init();
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://graph.facebook.com/v23.0/' . $instagram_id . '/media',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => array(
-				'image_url' => $img_url,
-				// 'caption' => $caption,
-			),
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' . $access_token,
-				'Cookie: fr=0yU8dJnv4LQIcuLWc..Bjv9Me.Od.AAA.0.0.Bj21fJ.AWWmDetS3aY; sb=HtO_YzSXeVGcyZ-4M5ajz7IE'
-			),
-		));
-
+		if ($type == "image_url") {
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'https://graph.facebook.com/v23.0/' . $instagram_id . '/media',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => array(
+					'image_url' => $img_url,
+				),
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $access_token,
+					'Cookie: fr=0yU8dJnv4LQIcuLWc..Bjv9Me.Od.AAA.0.0.Bj21fJ.AWWmDetS3aY; sb=HtO_YzSXeVGcyZ-4M5ajz7IE'
+				),
+			));
+		} else {
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'https://graph.facebook.com/v23.0/' . $instagram_id . '/media',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => array(
+					'video_url' => $img_url,
+					'media_type' => 'VIDEO'
+				),
+				CURLOPT_HTTPHEADER => array(
+					'Authorization: Bearer ' . $access_token,
+					'Cookie: fr=0yU8dJnv4LQIcuLWc..Bjv9Me.Od.AAA.0.0.Bj21fJ.AWWmDetS3aY; sb=HtO_YzSXeVGcyZ-4M5ajz7IE'
+				),
+			));
+		}
 		$response = curl_exec($curl);
 		$response = json_decode($response, true);
 		curl_close($curl);
-
 		return $response;
 	}
 
@@ -4234,7 +4252,6 @@ class Publisher_model extends CI_Model
 		$ig_user = $this->db->get_where('instagram_users', [
 			'user_id' => $user_id
 		])->row_array();
-
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => 'https://graph.facebook.com/v23.0/' . $ig_user['instagram_id'] . '/media_publish',
@@ -4251,10 +4268,33 @@ class Publisher_model extends CI_Model
 				'Cookie: fr=0yU8dJnv4LQIcuLWc..Bjv9Me.Od.AAA.0.0.Bj21fJ.AWWmDetS3aY; sb=HtO_YzSXeVGcyZ-4M5ajz7IE'
 			),
 		));
-
 		$response = json_decode(curl_exec($curl), true);
 		curl_close($curl);
+		return $response;
+	}
 
+	public function upload_ig_video($user_id, $media_container_id, $video_path)
+	{
+		$ig_user = $this->db->get_where('instagram_users', [
+			'user_id' => $user_id
+		])->row_array();
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://rupload.facebook.com/ig-api-upload/v23.0/' . $media_container_id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => array('file_url' => $video_path),
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: OAuth ' . $ig_user['access_token'],
+			),
+		));
+		$response = json_decode(curl_exec($curl), true);
+		curl_close($curl);
 		return $response;
 	}
 

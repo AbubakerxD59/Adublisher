@@ -4678,20 +4678,39 @@ function publish_ig_single_media($instagram_id, $access_token, $img_url, $captio
 	}
 }
 
-function publish_reels_to_instagram($ig_id, $ig_access_token, $video_url){
+function publish_reels_to_instagram($instagram_id, $access_token, $video_path, $caption, $user_id = null)
+{
 	$CI = &get_instance();
-	$upload_session = $CI->Publisher_model->create_ig_reel_session($ig_id, $ig_access_token);
-	print_pre($upload_session);
-	if($upload_session["video_id"]){
-		$upload_file = $CI->Publisher_model->upload_ig_reel_session($upload_session["video_id"], $ig_access_token, $video_url);
+	$container = $CI->Publisher_model->create_ig_media_container($instagram_id, $access_token, $video_path, $caption, "video_url");
+	print_pre($container);
+	if (isset($container['id'])) {
+		// Step 2 of 2: Publish Container
+		$result = $CI->Publisher_model->upload_ig_video($user_id, $container['id'], $video_path);
+		print_pre($result);
+		if (isset($result["success"])) {
+			$response = $CI->Publisher_model->publish_ig_media_container($user_id, $container['id']);
+			print_pre($response);
+		}
+		if (isset($result['id'])) {
+			return array(
+				'status' => true,
+				'data' => $result,
+				'message' => 'ig - post published Successfully',
+			);
+		} else {
+			return array(
+				'status' => false,
+				'data' => $result,
+				'message' => 'Some Problem occured, while publishing ig - post',
+			);
+		}
+	} else {
+		return array(
+			'status' => false,
+			'data' => $container,
+			'message' => 'Some Problem occured, while creating container - ig',
+		);
 	}
-	else{
-		$response = [
-			"success" => false,
-			"error" => $upload_session
-		];
-	}
-	return $response;
 }
 
 function notify_via_email($postData, $page, $type, $error_message)

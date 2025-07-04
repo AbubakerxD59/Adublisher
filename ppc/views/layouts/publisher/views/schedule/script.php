@@ -1,5 +1,9 @@
 <script type="text/javascript">
     var facebook_page_icon = pinterest_board_icon = tiktok_account_icon = instagram_account_icon = '';
+    var facebook_logo = <?= BulkAssets ?>+'images/Icons/facebook-circle.svg';
+    var pinterest_logo = <?= BulkAssets ?>+'images/Icons/pinterest-circle.svg';
+    var instagram_logo = <?= BulkAssets ?>+'images/Icons/instagram-circle.svg';
+    var tiktok_logo = <?= BulkAssets ?>+'images/Icons/tiktok-circle.svg';
     Dropzone.autoDiscover = false;
     $(function() {
         setTimeout(() => {
@@ -1337,7 +1341,6 @@
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.page_name + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             } else {
                                 $("#channels").append(
@@ -1345,7 +1348,6 @@
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.page_name + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             }
                         });
@@ -1361,7 +1363,6 @@
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.name + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             } else {
                                 $("#channels").append(
@@ -1369,7 +1370,6 @@
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.name + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             }
                         });
@@ -1386,7 +1386,6 @@
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.instagram_username + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             } else {
                                 $("#channels").append(
@@ -1394,7 +1393,6 @@
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.instagram_username + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             }
                         });
@@ -1411,7 +1409,6 @@
                                         value.id +
                                         "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.name + '</b>' +
-                                        "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
                                 } else {
                                     $("#channels").append(
@@ -1419,7 +1416,6 @@
                                         value.id +
                                         "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.name + '</b>' +
-                                        "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
                                 }
                             }
@@ -1436,7 +1432,6 @@
                                         value.id +
                                         "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.channel_title + '</b>' +
-                                        "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
                                 } else {
                                     $("#channels").append(
@@ -1444,7 +1439,6 @@
                                         value.id +
                                         "' ><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.channel_title + '</b>' +
-                                        "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
                                 }
                             }
@@ -1459,7 +1453,6 @@
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.username + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             } else {
                                 $("#channels").append(
@@ -1467,7 +1460,6 @@
                                     value.id +
                                     "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.username + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             }
                         });
@@ -1517,7 +1509,6 @@
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='<?= BulkAssets ?>images/facebook_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.page_name + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             } else {
                                 $("#channels").append(
@@ -1525,7 +1516,6 @@
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='<?= BulkAssets ?>images/facebook_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.page_name + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             }
                         });
@@ -1540,7 +1530,6 @@
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.name + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             } else {
                                 $("#channels").append(
@@ -1548,7 +1537,6 @@
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.name + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             }
                         });
@@ -1563,7 +1551,6 @@
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.instagram_username + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             } else {
                                 $("#channels").append(
@@ -1571,7 +1558,6 @@
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.instagram_username + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             }
                         });
@@ -1587,7 +1573,6 @@
                                         value.id +
                                         "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.name + '</b>' +
-                                        "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
                                 } else {
                                     $("#channels").append(
@@ -1595,7 +1580,6 @@
                                         value.id +
                                         "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.name + '</b>' +
-                                        "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
                                 }
                             }
@@ -1611,7 +1595,6 @@
                                         value.id +
                                         "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.channel_title + '</b>' +
-                                        "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
                                 } else {
                                     $("#channels").append(
@@ -1619,7 +1602,6 @@
                                         value.id +
                                         "' ><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.channel_title + '</b>' +
-                                        "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
                                 }
                             }
@@ -1633,7 +1615,6 @@
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.username + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             } else {
                                 $("#channels").append(
@@ -1641,7 +1622,6 @@
                                     value.id +
                                     "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.username + '</b>' +
-                                    "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
                             }
                         });
