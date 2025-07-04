@@ -4681,6 +4681,7 @@ function publish_ig_single_media($instagram_id, $access_token, $img_url, $captio
 function publish_reels_to_instagram($instagram_id, $access_token, $video_path, $caption, $user_id = null)
 {
 	$CI = &get_instance();
+	print_pre($video_path);
 	$container = $CI->Publisher_model->create_ig_media_container($instagram_id, $access_token, $video_path, $caption, "video_url");
 	print_pre($container);
 	if (isset($container['id'])) {
