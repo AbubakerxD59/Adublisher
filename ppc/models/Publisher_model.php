@@ -4232,7 +4232,7 @@ class Publisher_model extends CI_Model
 				CURLOPT_CUSTOMREQUEST => 'POST',
 				CURLOPT_POSTFIELDS => array(
 					'video_url' => $img_url,
-					'media_type' => 'VIDEO'
+					'media_type' => 'REELS'
 				),
 				CURLOPT_HTTPHEADER => array(
 					'Authorization: Bearer ' . $access_token,
