@@ -1,9 +1,9 @@
 <script type="text/javascript">
     var facebook_page_icon = pinterest_board_icon = tiktok_account_icon = instagram_account_icon = '';
-    var facebook_logo = <?= BulkAssets ?>+'images/Icons/facebook-circle.svg';
-    var pinterest_logo = <?= BulkAssets ?>+'images/Icons/pinterest-circle.svg';
-    var instagram_logo = <?= BulkAssets ?>+'images/Icons/instagram-circle.svg';
-    var tiktok_logo = <?= BulkAssets ?>+'images/Icons/tiktok-circle.svg';
+    var facebook_logo = <?= BulkAssets . 'images/Icons/facebook-circle.svg'; ?>;
+    var pinterest_logo = <?= BulkAssets . 'images/Icons/pinterest-circle.svg' ?> + ;
+    var instagram_logo = <?= BulkAssets . 'images/Icons/instagram-circle.svg' ?> + ;
+    var tiktok_logo = <?= BulkAssets . 'images/Icons/tiktok-circle.svg' ?> + ;
     Dropzone.autoDiscover = false;
     $(function() {
         setTimeout(() => {
