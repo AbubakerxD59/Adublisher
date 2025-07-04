@@ -4232,7 +4232,8 @@ class Publisher_model extends CI_Model
 				CURLOPT_CUSTOMREQUEST => 'POST',
 				CURLOPT_POSTFIELDS => array(
 					'video_url' => $img_url,
-					'media_type' => 'REELS'
+					'media_type' => 'REELS',
+					'upload_type' => 'resumable'
 				),
 				CURLOPT_HTTPHEADER => array(
 					'Authorization: Bearer ' . $access_token,
@@ -4315,7 +4316,7 @@ class Publisher_model extends CI_Model
 			CURLOPT_CUSTOMREQUEST => 'POST',
 			CURLOPT_POSTFIELDS => array('file_url' => $video_path),
 			CURLOPT_HTTPHEADER => array(
-				'Authorization: OAuth ' . $ig_user['access_token'],
+				'Authorization: Bearer ' . $ig_user['access_token'],
 			),
 		));
 		$response = json_decode(curl_exec($curl), true);
