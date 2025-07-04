@@ -4685,34 +4685,34 @@ function publish_reels_to_instagram($instagram_id, $access_token, $video_path, $
 	print_pre($container);
 	if (isset($container['id'])) {
 		$container_publish = false;
-		$container_status = $CI->Publisher_model->get_ig_media_container_status($user_id,  $container["id"]);
-		print_pre($container_status);
-		die();
-		// while (!$container_publish) {
-		// 	print_pre($container_status);
-		// 	if (isset($container_status["status_code"])) {
-		// 		$container_status = $container_status["status_code"] == "FINISHED" ? true : false;
-		// 		if ($container_status["status_code"] == "EXPIRED" || $container_status["status_code"] == "ERROR") {
-		// 			return array(
-		// 				'status' => false,
-		// 				'data' => $container_status,
-		// 				'message' => 'Some Problem occured, while publishing ig - post',
-		// 			);
-		// 		}
-		// 	}
-		// 	sleep(1);
-		// }
+		while (!$container_publish) {
+			$container_status = $CI->Publisher_model->get_ig_media_container_status($user_id,  $container["id"]);
+			if (isset($container_status["status_code"])) {
+				if ($container_status["status_code"] == "EXPIRED" || $container_status["status_code"] == "ERROR") {
+					break;
+				}
+				if ($container_status["status_code"] == "FINISHED" || $container_status["status_code"] == "PUBLISHED") {
+					$container_status = true;
+					break;
+				}
+				sleep(5);
+			} else {
+				break;
+			}
+		}
 		// Step 2 of 2: Publish Container
 		// for resumeable large files
 		// $result = $CI->Publisher_model->upload_ig_video($user_id, $container['id'], $video_path);
 		if ($container_publish) {
 			$result = $CI->Publisher_model->publish_ig_media_container($user_id, $container['id']);
+		} else {
+			return array(
+				'status' => false,
+				'data' => $container_status,
+				'message' => 'Some Problem occured, while publishing ig - post',
+			);
 		}
 		print_pre($result);
-		// if (isset($result["success"])) {
-		// 	$response = $CI->Publisher_model->publish_ig_media_container($user_id, $container['id']);
-		// 	print_pre($response);
-		// }
 		if (isset($result['id'])) {
 			return array(
 				'status' => true,

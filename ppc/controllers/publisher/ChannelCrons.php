@@ -1881,7 +1881,11 @@ class ChannelCrons extends CI_Controller
 				}
 				if ($type == "video") {
 					$response = publish_reels_to_instagram($ig_user->instagram_id, $ig_user->access_token, $value->video_path, $value->title, $value->user_id);
-					dd([$response]);
+					if ($response['status']) {
+						$this->Publisher_model->update_record('publish_posts', array('published' => '1', 'error' => 'Posts are published on Instagram successfully.'), $value->id);
+					} else {
+						$this->Publisher_model->update_record('publish_posts', array('published' => '-1', 'error' => $response["message"]), $value->id);
+					}
 				}
 			} else {
 				continue;
