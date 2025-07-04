@@ -1333,7 +1333,7 @@
                             if (value.channel_active == 1) {
                                 facebook_check = true;
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fb_channel channel-button' data-type='facebook' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fb_channel channel-button' data-type='facebook' data-id='" +
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.page_name + '</b>' +
@@ -1341,7 +1341,7 @@
                                     "</button>");
                             } else {
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fb_channel channel-button active' data-type='facebook' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fb_channel channel-button active' data-type='facebook' data-id='" +
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.page_name + '</b>' +
@@ -1357,7 +1357,7 @@
                             if (value.channel_active == 1) {
                                 facebook_check = false;
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right board_channel channel-button' data-type='pinterest' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 board_channel channel-button' data-type='pinterest' data-id='" +
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.name + '</b>' +
@@ -1365,7 +1365,7 @@
                                     "</button>");
                             } else {
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 board_channel channel-button active' data-type='pinterest' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right board_channel channel-button active' data-type='pinterest' data-id='" +
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.name + '</b>' +
@@ -1382,7 +1382,7 @@
                             if (value.channel_active == 1) {
                                 facebook_check = false;
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right ig_channel channel-button' data-type='instagram' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button' data-type='instagram' data-id='" +
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.instagram_username + '</b>' +
@@ -1390,7 +1390,7 @@
                                     "</button>");
                             } else {
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button active' data-type='instagram' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right ig_channel channel-button active' data-type='instagram' data-id='" +
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.instagram_username + '</b>' +
@@ -1407,7 +1407,7 @@
                                 if (value.channel_active == 1) {
                                     facebook_check = false;
                                     $("#channels").append(
-                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fbgroup_channel channel-button' data-type='fbgroup' data-id='" +
+                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button' data-type='fbgroup' data-id='" +
                                         value.id +
                                         "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.name + '</b>' +
@@ -1415,7 +1415,7 @@
                                         "</button>");
                                 } else {
                                     $("#channels").append(
-                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button active' data-type='fbgroup' data-id='" +
+                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fbgroup_channel channel-button active' data-type='fbgroup' data-id='" +
                                         value.id +
                                         "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.name + '</b>' +
@@ -1432,7 +1432,7 @@
                                 if (value.channel_active == 1) {
                                     youtube_check = true;
                                     $("#channels").append(
-                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right yt_channel channel-button' data-type='youtube' data-id='" +
+                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button' data-type='youtube' data-id='" +
                                         value.id +
                                         "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.channel_title + '</b>' +
@@ -1440,7 +1440,7 @@
                                         "</button>");
                                 } else {
                                     $("#channels").append(
-                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button active' data-type='youtube' data-id='" +
+                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right yt_channel channel-button active' data-type='youtube' data-id='" +
                                         value.id +
                                         "' ><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.channel_title + '</b>' +
@@ -1455,7 +1455,7 @@
                             tiktok_account_icon = "<?= BulkAssets ?>" + value.profile_pic;
                             if (value.channel_active == 1) {
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right tiktok_acc channel-button' data-type='tiktok' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button' data-type='tiktok' data-id='" +
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.username + '</b>' +
@@ -1463,7 +1463,7 @@
                                     "</button>");
                             } else {
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button active' data-type='tiktok' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right tiktok_acc channel-button active' data-type='tiktok' data-id='" +
                                     value.id +
                                     "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.username + '</b>' +
@@ -1509,12 +1509,11 @@
                     if (response.data.fbpages.length > 0) {
                         var youtube_check = false;
                         var facebook_check = false;
-                        $.each(response.data.fbpages, function(index,
-                            value) {
+                        $.each(response.data.fbpages, function(index, value) {
                             if (value.channel_active == 1) {
                                 facebook_check = true;
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fb_channel channel-button' data-type='facebook' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fb_channel channel-button' data-type='facebook' data-id='" +
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='<?= BulkAssets ?>images/facebook_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.page_name + '</b>' +
@@ -1522,7 +1521,7 @@
                                     "</button>");
                             } else {
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fb_channel channel-button active' data-type='facebook' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fb_channel channel-button active' data-type='facebook' data-id='" +
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='<?= BulkAssets ?>images/facebook_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.page_name + '</b>' +
@@ -1533,12 +1532,11 @@
                     }
 
                     if (response.data.boards.length > 0) {
-                        $.each(response.data.boards, function(index,
-                            value) {
+                        $.each(response.data.boards, function(index, value) {
                             if (value.channel_active == 1) {
                                 facebook_check = false;
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right board_channel channel-button' data-type='pinterest' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 board_channel channel-button' data-type='pinterest' data-id='" +
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.name + '</b>' +
@@ -1546,7 +1544,7 @@
                                     "</button>");
                             } else {
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 board_channel channel-button active' data-type='pinterest' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right board_channel channel-button active' data-type='pinterest' data-id='" +
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.name + '</b>' +
@@ -1557,13 +1555,11 @@
                     }
 
                     if (response.data.ig_accounts.length > 0) {
-                        // $("#channels").append("<div class='col-md-12'><h4>Instagram Accounts</h4></div>");
-                        $.each(response.data.ig_accounts, function(index,
-                            value) {
+                        $.each(response.data.ig_accounts, function(index, value) {
                             if (value.channel_active == 1) {
                                 facebook_check = false;
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right ig_channel channel-button' data-type='instagram' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button' data-type='instagram' data-id='" +
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.instagram_username + '</b>' +
@@ -1571,7 +1567,7 @@
                                     "</button>");
                             } else {
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button active' data-type='instagram' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right ig_channel channel-button active' data-type='instagram' data-id='" +
                                     value.id +
                                     "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.instagram_username + '</b>' +
@@ -1582,13 +1578,12 @@
                     }
 
                     if (response.data.fb_groups.length > 0) {
-                        $.each(response.data.fb_groups, function(index,
-                            value) {
+                        $.each(response.data.fb_groups, function(index, value) {
                             if (value.active == 'y') {
                                 if (value.channel_active == 1) {
                                     facebook_check = false;
                                     $("#channels").append(
-                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fbgroup_channel channel-button' data-type='fbgroup' data-id='" +
+                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button' data-type='fbgroup' data-id='" +
                                         value.id +
                                         "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.name + '</b>' +
@@ -1596,7 +1591,7 @@
                                         "</button>");
                                 } else {
                                     $("#channels").append(
-                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button active' data-type='fbgroup' data-id='" +
+                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fbgroup_channel channel-button active' data-type='fbgroup' data-id='" +
                                         value.id +
                                         "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.name + '</b>' +
@@ -1607,13 +1602,12 @@
                         });
                     }
                     if (response.data.yt_channels.length > 0) {
-                        $.each(response.data.yt_channels, function(index,
-                            value) {
+                        $.each(response.data.yt_channels, function(index, value) {
                             if (value.active == '1') {
                                 if (value.channel_active == 1) {
                                     youtube_check = true;
                                     $("#channels").append(
-                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right yt_channel channel-button' data-type='youtube' data-id='" +
+                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button' data-type='youtube' data-id='" +
                                         value.id +
                                         "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.channel_title + '</b>' +
@@ -1621,7 +1615,7 @@
                                         "</button>");
                                 } else {
                                     $("#channels").append(
-                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button active' data-type='youtube' data-id='" +
+                                        "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right yt_channel channel-button active' data-type='youtube' data-id='" +
                                         value.id +
                                         "' ><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
                                         '<b>' + value.channel_title + '</b>' +
@@ -1632,11 +1626,10 @@
                         });
                     }
                     if (response.data.tiktoks.length > 0) {
-                        $.each(response.data.tiktoks, function(index,
-                            value) {
+                        $.each(response.data.tiktoks, function(index, value) {
                             if (value.channel_active == 1) {
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right tiktok_acc channel-button' data-type='tiktok' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1  tiktok_acc channel-button' data-type='tiktok' data-id='" +
                                     value.id +
                                     "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.username + '</b>' +
@@ -1644,7 +1637,7 @@
                                     "</button>");
                             } else {
                                 $("#channels").append(
-                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button active' data-type='tiktok' data-id='" +
+                                    "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right tiktok_acc channel-button active' data-type='tiktok' data-id='" +
                                     value.id +
                                     "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
                                     '<b>' + value.username + '</b>' +
