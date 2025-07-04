@@ -4685,12 +4685,15 @@ function publish_reels_to_instagram($instagram_id, $access_token, $video_path, $
 	print_pre($container);
 	if (isset($container['id'])) {
 		// Step 2 of 2: Publish Container
-		$result = $CI->Publisher_model->upload_ig_video($user_id, $container['id'], $video_path);
+		// for resumeable large files
+		// $result = $CI->Publisher_model->upload_ig_video($user_id, $container['id'], $video_path);
+		$result = $CI->Publisher_model->publish_ig_media_container($user_id, $container['id']);
 		print_pre($result);
-		if (isset($result["success"])) {
-			$response = $CI->Publisher_model->publish_ig_media_container($user_id, $container['id']);
-			print_pre($response);
-		}
+		// die();
+		// if (isset($result["success"])) {
+		// 	$response = $CI->Publisher_model->publish_ig_media_container($user_id, $container['id']);
+		// 	print_pre($response);
+		// }
 		if (isset($result['id'])) {
 			return array(
 				'status' => true,
