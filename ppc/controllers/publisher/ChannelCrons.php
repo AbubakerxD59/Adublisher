@@ -1880,7 +1880,7 @@ class ChannelCrons extends CI_Controller
 					}
 				}
 				if ($type == "video") {
-					$video_path = get_from_s3bucket($value->video_path);
+					$video_path = get_from_s3bucket($value->video_path, 1);
 					$response = publish_reels_to_instagram($ig_user->instagram_id, $ig_user->access_token, $video_path, $value->title, $value->user_id);
 					if ($response['status']) {
 						$this->Publisher_model->update_record('publish_posts', array('published' => '1', 'error' => 'Posts are published on Instagram successfully.'), $value->id);
