@@ -1335,7 +1335,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 fb_channel channel-button' data-type='facebook' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.page_name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1343,7 +1343,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 fb_channel channel-button active' data-type='facebook' data-id='" +
                                     value.id +
-                                    "' ><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.page_name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1359,7 +1359,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1367,7 +1367,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button active' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1384,7 +1384,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.instagram_username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1392,7 +1392,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button active' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' ><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.instagram_username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1409,7 +1409,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' alt='profile_pic'> " +
+                                        "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                         value.name +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
@@ -1417,7 +1417,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button active' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' ><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' alt='profile_pic'> " +
+                                        "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                         value.name +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
@@ -1434,7 +1434,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' alt='profile_pic'> " +
+                                        "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle' alt='profile_pic'> " +
                                         value.channel_title +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
@@ -1442,7 +1442,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button active' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' ><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' alt='profile_pic'> " +
+                                        "' ><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle' alt='profile_pic'> " +
                                         value.channel_title +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
@@ -1457,7 +1457,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1465,7 +1465,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button active' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' alt='profile_pic'> " +
+                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1516,7 +1516,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 fb_channel channel-button' data-type='facebook' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='<?= BulkAssets ?>images/facebook_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='<?= BulkAssets ?>images/facebook_logo.png' class='rounded-circle' alt='profile_pic'> " +
                                     value.page_name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1524,7 +1524,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 fb_channel channel-button active' data-type='facebook' data-id='" +
                                     value.id +
-                                    "' ><img style='width:35px;height:35px;' src='<?= BulkAssets ?>images/facebook_logo.png' class='rounded' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='<?= BulkAssets ?>images/facebook_logo.png' class='rounded-circle' alt='profile_pic'> " +
                                     value.page_name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1540,7 +1540,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1548,7 +1548,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-0 pr-3 m-1 board_channel channel-button active' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.name +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1565,7 +1565,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.instagram_username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1573,7 +1573,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button active' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' ><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.instagram_username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1590,7 +1590,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
+                                        "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                         value.name +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
@@ -1598,7 +1598,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button active' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' ><img style='width:18px;height:18px;' src='" + instagram_account_icon + "' class='rounded' alt='profile_pic'> " +
+                                        "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                         value.name +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
@@ -1615,7 +1615,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded' alt='profile_pic'> " +
+                                        "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle' alt='profile_pic'> " +
                                         value.channel_title +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
@@ -1623,7 +1623,7 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button active' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' ><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded' alt='profile_pic'> " +
+                                        "' ><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle' alt='profile_pic'> " +
                                         value.channel_title +
                                         "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                         "</button>");
@@ -1638,7 +1638,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
@@ -1646,7 +1646,7 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button active' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded' alt='profile_pic'> " +
+                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle' alt='profile_pic'> " +
                                     value.username +
                                     "<span class='delete-button' style='cursor: pointer; opacity:0;'>&#10006;</span>" +
                                     "</button>");
