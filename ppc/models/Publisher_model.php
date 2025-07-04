@@ -4273,6 +4273,31 @@ class Publisher_model extends CI_Model
 		return $response;
 	}
 
+	public function get_ig_media_container_status($user_id, $media_container_id)
+	{
+		$ig_user = $this->db->get_where('instagram_users', [
+			'user_id' => $user_id
+		])->row_array();
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://graph.facebook.com/v23.0/' . $media_container_id . '?fields=status_code',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: Bearer ' . $ig_user['access_token'],
+				'Cookie: fr=0yU8dJnv4LQIcuLWc..Bjv9Me.Od.AAA.0.0.Bj21fJ.AWWmDetS3aY; sb=HtO_YzSXeVGcyZ-4M5ajz7IE'
+			),
+		));
+		$response = json_decode(curl_exec($curl), true);
+		curl_close($curl);
+		return $response;
+	}
+
 	public function upload_ig_video($user_id, $media_container_id, $video_path)
 	{
 		$ig_user = $this->db->get_where('instagram_users', [

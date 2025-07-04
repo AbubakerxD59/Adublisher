@@ -4684,12 +4684,29 @@ function publish_reels_to_instagram($instagram_id, $access_token, $video_path, $
 	$container = $CI->Publisher_model->create_ig_media_container($instagram_id, $access_token, $video_path, $caption, "video_url");
 	print_pre($container);
 	if (isset($container['id'])) {
+		$container_publish = false;
+		while (!$container_publish) {
+			$container_status = $CI->Publisher_model->get_ig_media_container_status($user_id,  $container["id"]);
+			print_pre($container_status);
+			if (isset($container_status["status_code"])) {
+				$container_status = $container_status["status_code"] == "FINISHED" ? true : false;
+				if ($container_status["status_code"] == "EXPIRED" || $container_status["status_code"] == "ERROR") {
+					return array(
+						'status' => false,
+						'data' => $container_status,
+						'message' => 'Some Problem occured, while publishing ig - post',
+					);
+				}
+			}
+			sleep(1);
+		}
 		// Step 2 of 2: Publish Container
 		// for resumeable large files
 		// $result = $CI->Publisher_model->upload_ig_video($user_id, $container['id'], $video_path);
-		$result = $CI->Publisher_model->publish_ig_media_container($user_id, $container['id']);
+		if ($container_publish) {
+			$result = $CI->Publisher_model->publish_ig_media_container($user_id, $container['id']);
+		}
 		print_pre($result);
-		// die();
 		// if (isset($result["success"])) {
 		// 	$response = $CI->Publisher_model->publish_ig_media_container($user_id, $container['id']);
 		// 	print_pre($response);
