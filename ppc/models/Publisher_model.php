@@ -4287,7 +4287,7 @@ class Publisher_model extends CI_Model
 			CURLOPT_TIMEOUT => 0,
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_CUSTOMREQUEST => 'GET',
 			CURLOPT_HTTPHEADER => array(
 				'Authorization: Bearer ' . $ig_user['access_token'],
 				'Cookie: fr=0yU8dJnv4LQIcuLWc..Bjv9Me.Od.AAA.0.0.Bj21fJ.AWWmDetS3aY; sb=HtO_YzSXeVGcyZ-4M5ajz7IE'
