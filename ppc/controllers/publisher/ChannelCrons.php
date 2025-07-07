@@ -1634,7 +1634,6 @@ class ChannelCrons extends CI_Controller
 		$where = [['key' => 'type', 'value' => 'facebook'], ['key' => 'published', 'value' => 0]];
 		$unpublished_posts = $this->Publisher_model->list_records('publish_posts', 0, 1, $where, 'id', 'asc');
 		foreach ($unpublished_posts as $key => $value) {
-			// $debug = debug($value->user_id);
 			// change status to publish
 			$this->Publisher_model->update_record('publish_posts', array('published' => '1'), $value->id);
 			if (empty($value->link) && empty($value->image) && empty($value->video_path)) {
@@ -1927,12 +1926,7 @@ class ChannelCrons extends CI_Controller
 					$timeslots = json_decode($board->time_slots_rss);
 					if (count($timeslots) > 0) {
 						$timeslots = implode(',', $timeslots);
-						$count = 1;
-						do {
-							$response = pin_board_fetch_more_posts($value->url, $value->page_id, $value->user_id, $timeslots, 0);
-							$count++;
-							sleep(rand(2, 5));
-						} while (!$response["status"] && $count <= 3);
+						$response = pin_board_fetch_more_posts($value->url, $value->page_id, $value->user_id, $timeslots, 0);
 					}
 				}
 			}
@@ -1997,21 +1991,13 @@ class ChannelCrons extends CI_Controller
 			// update publish column
 			$type = $value->type;
 			if ($type == 'facebook_past') {
-				print_pre('1');
 				$facebook_page = $this->Publisher_model->get_allrecords('facebook_pages', array('id' => $value->page_id, 'user_id' => $value->user_id));
 				if (count($facebook_page) > 0) {
 					$page = $facebook_page[0];
 					$timeslots = json_decode($page->time_slots_rss);
-					print_pre('2');
 					if (count($timeslots) > 0) {
-						print_pre('3');
 						$timeslots = implode(',', $timeslots);
-						$count = 1;
-						do {
-							$response = fb_page_fetch_past_posts($value->url, $page->id, $value->user_id, $timeslots, 0);
-							$count++;
-							sleep(rand(2, 5));
-						} while (!$response["status"] && $count <= 3);
+						$response = fb_page_fetch_past_posts($value->url, $page->id, $value->user_id, $timeslots, 0);
 					}
 				}
 			}
@@ -2022,12 +2008,7 @@ class ChannelCrons extends CI_Controller
 					$timeslots = json_decode($board->time_slots_rss);
 					if (count($timeslots) > 0) {
 						$timeslots = implode(',', $timeslots);
-						$count = 1;
-						do {
-							$response = pin_board_fetch_past_posts($value->url, $value->page_id, $value->user_id, 0);
-							$count++;
-							sleep(rand(2, 5));
-						} while (!$response["status"] && $count <= 3);
+						$response = pin_board_fetch_past_posts($value->url, $value->page_id, $value->user_id, 0);
 					}
 				}
 			}

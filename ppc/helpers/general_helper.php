@@ -1879,7 +1879,7 @@ function pin_board_fetch_past_posts($url, $board_id, $user_id, $mode)
 					return $numberB - $numberA; // Sort in descending order
 				});
 				$selectedSitemap = $filteredSitemaps[0];
-				$desiredPostCount = 20;
+				$desiredPostCount = 10;
 				$loc = (string) $selectedSitemap->loc;
 				if (
 					strpos($loc, "post-sitemap") !== false ||
@@ -2030,6 +2030,7 @@ function ig_user_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 		$user_check = user_check($user_id);
 		if ($user_check['status']) {
 			$parsed_url = parse_url($url);
+			sleep(1);
 			// Extract the protocol, domain, and append "sitemap.xml" to it
 			if (isset($parsed_url['scheme']) && isset($parsed_url['host'])) {
 				$main_domain = $parsed_url['scheme'] . '://' . $parsed_url['host'];
@@ -2040,33 +2041,13 @@ function ig_user_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 			$arrContextOptions = array('http' => ['method' => "GET", 'header' => "User-Agent: curl/7.68.0\r\n", 'ignore_errors' => true], "ssl" => array("verify_peer" => false, "verify_peer_name" => false,));
 			// load xml from sitemap.xml
 			$xml = simplexml_load_file($sitemapUrl);
+			sleep(1);
 			if (!$xml) {
 				$sitemapContent = file_get_contents($sitemapUrl, false, stream_context_create($arrContextOptions));
+				sleep(1);
 				if (!empty($sitemapContent)) {
 					$xml = simplexml_load_string($sitemapContent);
 				}
-			}
-			if ($mode == '1') {
-				if (count($xml) == 0) {
-					$response = array(
-						'status' => false,
-						'error' => 'Provided Feed URL do not has valid Sitemap Data!'
-					);
-				} else {
-					$data = [
-						'user_id' => $user_id,
-						'page_id' => $page_id,
-						'type' => 'instagram_past',
-						'url' => $url,
-						'published' => 0
-					];
-					$CI->db->insert('rss_links', $data);
-					$response = array(
-						'status' => true,
-						'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
-					);
-				}
-				return $response;
 			}
 			if (count($xml) > 0) {
 				$filteredSitemaps = [];
@@ -2083,7 +2064,7 @@ function ig_user_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 					return $numberB - $numberA; // Sort in descending order
 				});
 				$selectedSitemap = $filteredSitemaps[0];
-				$desiredPostCount = 20;
+				$desiredPostCount = 10;
 				$loc = (string) $selectedSitemap->loc;
 				if (
 					strpos($loc, "post-sitemap") !== false ||
@@ -2092,7 +2073,9 @@ function ig_user_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 				) {
 					$sitemapUrl = $loc; // Use the filtered URL
 					$sitemapXml = simplexml_load_file($sitemapUrl);
+					sleep(1);
 					if (!$sitemapXml) {
+						sleep(1);
 						$sitemapContent = file_get_contents($sitemapUrl, false, stream_context_create($arrContextOptions));
 						if (!empty($sitemapContent)) {
 							$sitemapXml = simplexml_load_string($sitemapContent);
@@ -2288,7 +2271,7 @@ function tiktok_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 					return $numberB - $numberA; // Sort in descending order
 				});
 				$selectedSitemap = $filteredSitemaps[0];
-				$desiredPostCount = 20;
+				$desiredPostCount = 10;
 				$loc = (string) $selectedSitemap->loc;
 				if (
 					strpos($loc, "post-sitemap") !== false ||

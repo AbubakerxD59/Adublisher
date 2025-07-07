@@ -7468,13 +7468,34 @@ class Usersrest extends REST_Controller
 				$decoded_rss_link = $decoded_rss_link ?? [];
 				if (in_array($sitemap_rss_link, $decoded_rss_link)) {
 					limit_check(RSS_FEED_OLD_POST_FETCH_ID);
-					$response = ig_user_fetch_past_posts($sitemap_rss_link, $id, $userID, $timeslots, 1);
+					// $response = ig_user_fetch_past_posts($sitemap_rss_link, $id, $userID, $timeslots, 1);
+					$data = [
+						'user_id' => $userID,
+						'page_id' => $id,
+						'type' => 'instagram_past',
+						'url' => $sitemap_rss_link,
+						'published' => 0
+					];
+					$this->db->insert('rss_links', $data);
+
 					$cron_url = 'https://www.adublisher.com/fetchPastRssFeed';
 				} else {
 					limit_check(RSS_FEED_LATEST_POST_FETCH_ID);
-					$response = ig_user_fetch_more_posts($sitemap_rss_link, $id, $userID, $timeslots, 1);
+					// $response = ig_user_fetch_more_posts($sitemap_rss_link, $id, $userID, $timeslots, 1);
+					$data = [
+						'user_id' => $userID,
+						'page_id' => $id,
+						'type' => 'instagram',
+						'url' => $sitemap_rss_link,
+						'published' => 0
+					];
+					$this->db->insert('rss_links', $data);
 					$cron_url = 'https://www.adublisher.com/fetchRssFeed';
 				}
+				$response = array(
+					'status' => true,
+					'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
+				);
 				if ($response['status']) {
 					// Store link in DB
 					$store_rss_link[] = $this->post('sitemap_rss_link'); // The rss link for which more posts are demanded // 
