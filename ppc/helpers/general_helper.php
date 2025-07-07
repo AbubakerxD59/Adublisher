@@ -874,17 +874,13 @@ if (!function_exists('get_from_s3bucket')) {
 			$CI->load->library('s3_upload');
 			// move to aws s3 bucket
 			$file_name = str_replace('assets/bulkuploads/', '', $key);
-			print_pre($file_name);
+			$destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/assets/bulkuploads/' . $file_name;
 			$aws = $CI->s3_upload->get_from_aws($key);
-			print_pre('aws: ' . $aws);
 			if ($aws) {
 				if ($mode == 1) { //for url
 					$file_name = $aws['@metadata']['effectiveUri'];
 				} else { //for file
-					$destinationPath = $_SERVER['DOCUMENT_ROOT'] . $key;
-					print_pre($destinationPath);
 					$fileHandle = fopen($destinationPath, 'wb');
-					print_pre($fileHandle);
 					// Write the video content to local storage using fput
 					fwrite($fileHandle, $aws['Body']);
 					// Close the file stream
