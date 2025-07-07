@@ -1865,7 +1865,7 @@ class ChannelCrons extends CI_Controller
 		$unpublished_posts = $this->Publisher_model->list_records('publish_posts', 0, 10, $where, 'id', 'asc');
 		foreach ($unpublished_posts as $key => $value) {
 			// change status to in progress
-			$this->Publisher_model->update_record('publish_posts', array('published' => '2'), $value->id);
+			// $this->Publisher_model->update_record('publish_posts', array('published' => '2'), $value->id);
 			// change status to in progress
 			$type = !empty($value->image) ? 'image' : 'video';
 			$ig_user = $this->Publisher_model->get_allrecords('instagram_users', array('user_id' => $value->user_id, 'instagram_id' => $value->page_id));
@@ -1880,7 +1880,8 @@ class ChannelCrons extends CI_Controller
 					}
 				}
 				if ($type == "video") {
-					$video_path = get_from_s3bucket($value->video_path, 0);
+					$video_path = get_from_s3bucket($value->video_path, 1);
+					dd([$video_path]);
 					$video_path = BulkAssets . $video_path["file_name"];
 					$response = publish_reels_to_instagram($ig_user->instagram_id, $ig_user->access_token, $video_path, $value->title, $value->user_id);
 					if ($response['status']) {
