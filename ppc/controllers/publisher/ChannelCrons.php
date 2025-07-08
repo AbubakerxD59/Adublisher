@@ -2200,6 +2200,20 @@ class ChannelCrons extends CI_Controller
 					$this->Publisher_model->delete_record('publish_now', $post->id);
 				}
 			}
+			if ($type == 'instagram_rss') {
+				$ig_user = $this->Publisher_model->retrieve_record('instagram_users', $post->page_id);
+				if (!empty($ig_user)) {
+					$post_data = $this->Publisher_model->retrieve_record('instagram_scheduler', $post->post_id);
+					$response = ig_media_publish_now($post_data, $ig_user);
+				} else {
+					if ($post->post_type == 'latest') {
+						resources_update('down', RSS_FEED_LATEST_POST_FETCH_ID, $post->user_id);
+					} elseif ($post->post_type == 'past') {
+						resources_update('down', RSS_FEED_OLD_POST_FETCH_ID, $post->user_id);
+					}
+					$this->Publisher_model->delete_record('publish_now', $post->id);
+				}
+			}
 			if (!$response['status']) {
 				if ($post->post_type == 'latest') {
 					resources_update('down', RSS_FEED_LATEST_POST_FETCH_ID, $post->user_id);

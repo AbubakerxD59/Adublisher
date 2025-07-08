@@ -268,6 +268,7 @@ $route['shufflepinterestposts'] = 'rest/publisher/Usersrest/shufflepinterestpost
 // Publish now Rss
 $route['publishNowFacebookPost'] = 'rest/publisher/Usersrest/publish_now_facebook_post';
 $route['publishNowPinterestPost'] = 'rest/publisher/Usersrest/publish_now_pinterest_post';
+$route['publishNowInstagramPost'] = 'rest/publisher/Usersrest/publish_now_instagram_post';
 // Refresh RSS Posts
 $route['refresh_rss_posts'] = 'rest/publisher/Usersrest/refresh_rss_posts';
 // Queue posts

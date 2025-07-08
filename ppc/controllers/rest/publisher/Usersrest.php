@@ -3495,6 +3495,29 @@ class Usersrest extends REST_Controller
 		$this->response(['status' => true, 'data' => 'Your post is being Published!'], REST_Controller::HTTP_OK);
 	}
 
+	public function publish_now_instagram_post_POST()
+	{
+		$user_id = App::Session()->get('userid');
+		$post_id = $this->post('id');
+		$page_id = $this->post('page_id');
+		$post = $this->Publisher_model->retrieve_record('instagram_scheduler', $post_id);
+		if ($post->publish_datetime == "0000-00-00 00:00:00") {
+			$this->Publisher_model->delete_record('publish_now', $post->id);
+			$this->Publisher_model->delete_record('instagram_scheduler', $post->id);
+			$this->response(['status' => false, 'data' => 'Something went wrong!'], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+		}
+		$data = [
+			'user_id' => $user_id,
+			'page_id' => $page_id,
+			'post_id' => $post->id,
+			'type' => 'instagram_rss',
+			'published' => 0
+		];
+		$this->db->insert('publish_now', $data);
+		run_php_background('https://www.adublisher.com/publishRssNow');
+		$this->response(['status' => true, 'data' => 'Your post is being Published!'], REST_Controller::HTTP_OK);
+	}
+
 	public function shuffle_scheduled_posts_POST()
 	{
 		$this->sessioncheck();

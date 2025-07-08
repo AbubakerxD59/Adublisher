@@ -4993,11 +4993,6 @@ function pin_board_publish_now($post, $board, $pinterest_user)
 	];
 	$result = $CI->Publisher_model->publish_pin_curl($data);
 	$result = json_decode($result, true);
-	echo '<pre>';
-	print_r($data);
-	echo '<br>';
-	echo '<pre>';
-	print_r($result);
 	if ($result) {
 		$post_data_this['error'] = '';
 		$post_data_this['published'] = 0;
@@ -5027,6 +5022,34 @@ function pin_board_publish_now($post, $board, $pinterest_user)
 		);
 	}
 	return $response;
+}
+
+function ig_media_publish_now($post_data, $ig_user)
+{
+	$CI = &get_instance();
+	$container = $CI->Publisher_model->create_ig_media_container($ig_user->instagram_id, $ig_user->access_token, $post_data->image_link, $post_data->post_title);
+	if (isset($container['id'])) {
+		$result = $CI->Publisher_model->publish_ig_media_container($post_data->user_id, $container['id']);
+		if (isset($result['id'])) {
+			return array(
+				'status' => true,
+				'data' => $result,
+				'message' => 'ig - post published Successfully',
+			);
+		} else {
+			return array(
+				'status' => false,
+				'data' => $result,
+				'message' => 'Some Problem occured, while publishing ig - post',
+			);
+		}
+	} else {
+		return array(
+			'status' => false,
+			'data' => $container,
+			'message' => 'Some Problem occured, while creating container - ig',
+		);
+	}
 }
 
 function fb_page_queue_publish_now($post, $page)

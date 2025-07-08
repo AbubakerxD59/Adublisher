@@ -1248,9 +1248,11 @@
             var selected_type = $('#pages').find('option:selected').data('type');
             var page_id = $('#pages').find('option:selected').val();
             if (selected_type == 'facebook') {
-                var publish_url = 'publishNowFacebookPost'
+                var publish_url = 'publishNowFacebookPost';
             } else if (selected_type == 'pinterest') {
-                var publish_url = 'publishNowPinterestPost'
+                var publish_url = 'publishNowPinterestPost';
+            } else if(selected_type == 'instagram'){
+                var publish_url = 'publishNowInstagramPost';
             }
             swal({
                 title: "Publish Now!",
