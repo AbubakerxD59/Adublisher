@@ -1406,7 +1406,7 @@ function ig_user_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 						if ($i > 10) {
 							break;
 						}
-						$metaOfUrlt = metaOfUrlt($item->link, 'other');
+						$metaOfUrlt = metaOfUrlt($item->link, 'instagram');
 						if (count($metaOfUrlt) > 0) {
 							// utm checks on url
 							$utm_details = [];
@@ -2149,7 +2149,7 @@ function ig_user_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 							// get url info and save it to database
 							$CI->load->library('getMetaInfo');
 							// Fetching Single Post data
-							$data = $CI->getmetainfo->get_info($postUrl, 'other');
+							$data = $CI->getmetainfo->get_info($postUrl, 'instagram');
 							if (empty($data['image'])) {
 								continue;
 							} else {

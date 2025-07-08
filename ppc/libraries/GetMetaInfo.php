@@ -105,6 +105,15 @@ class GetMetaInfo
 			}
 			// fetch images for pinterest
 
+			// fetch instagram image
+			if ($mode == 'instagram') {
+				$pinterest_image = $this->fetch_instagram_image($tags);
+				if ($pinterest_image != '' && $pinterest_image != null) {
+					$meta_image = $pinterest_image;
+				}
+			}
+			// fetch instagram image
+
 			if (empty($meta_image) && $meta_image == "") {
 				$ogimage = "";
 				$ogimagesecure = "";
@@ -222,7 +231,50 @@ class GetMetaInfo
 
 		return $meta_image;
 	}
+	function fetch_instagram_image($tags)
+	{
+		$meta_image = '';
+		$pin_image = false;
+		foreach ($tags as $tag) {
+			if ($this->insta_aspect_ratio($tag)) {
+				$image = $tag->getAttribute('src');
+				if ($tag->hasAttribute('data-lazy-src')) {
+					$image = $tag->getAttribute("data-lazy-src");
+				}
+				$pin_image = true;
+				$pinterest_image = $image;
+				break;
+			}
+			sleep(2);
+		}
+		if ($pin_image && $pinterest_image != '' && $pinterest_image != null) {
+			$meta_image = $pinterest_image;
+		}
 
+		return $meta_image;
+	}
+	function insta_aspect_ratio($image)
+	{
+		$ig_image = false;
+		if ($image != '' && $image != null) {
+			$height = $image->getAttribute('height');
+			$width = $image->getAttribute('width');
+			if ($height == "" || $height == null || $width == "" || $width == null) {
+				$dimensions = getimagesize($image->getAttribute('src'));
+				$width = $dimensions[0];
+				$height = $dimensions[1];
+			}
+			$aspect_ratio = $width / $height;
+			$aspect_ratio = round($aspect_ratio, 2);
+			if ($aspect_ratio <= 1.91 && $aspect_ratio >= 4 / 5) {
+				$ig_image = true;
+			}
+			if (in_array(ceil($height), $heightArray) && in_array(ceil($width), $widthArray)) {
+				$ig_image = true;
+			}
+		}
+		return $ig_image;
+	}
 	function user_agent()
 	{
 		$agent[] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
