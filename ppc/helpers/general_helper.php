@@ -5028,8 +5028,10 @@ function ig_media_publish_now($post_data, $ig_user)
 {
 	$CI = &get_instance();
 	$container = $CI->Publisher_model->create_ig_media_container($ig_user->instagram_id, $ig_user->access_token, $post_data->image_link, $post_data->post_title);
+	print_pre($container);
 	if (isset($container['id'])) {
 		$result = $CI->Publisher_model->publish_ig_media_container($post_data->user_id, $container['id']);
+		print_pre($result);
 		if (isset($result['id'])) {
 			return array(
 				'status' => true,

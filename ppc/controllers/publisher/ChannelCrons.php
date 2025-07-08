@@ -2207,6 +2207,7 @@ class ChannelCrons extends CI_Controller
 				if (!empty($ig_user)) {
 					$post = $this->Publisher_model->retrieve_record('instagram_scheduler', $post->post_id);
 					$response = ig_media_publish_now($post, $ig_user);
+					print_pre($response);
 				} else {
 					if ($post->post_type == 'latest') {
 						resources_update('down', RSS_FEED_LATEST_POST_FETCH_ID, $post->user_id);
