@@ -48,8 +48,11 @@ class GetMetaInfo
 		$fb_groups = isset($user_channels['fb_groups']) ? $user_channels['fb_groups'] : [];
 		$tiktoks = isset($user_channels['tiktoks']) ? $user_channels['tiktoks'] : [];
 		$pinterest_active = true;
-		if (empty($mode)) {
-			if (count($fbpages) > 0 || count($ig_accounts) > 0 || count($fb_groups) > 0 || count($tiktoks) > 0) {
+		if (count($ig_accounts) > 0) {
+			$mode = "instagram";
+		}
+		if (empty($mode) && $mode != "instagram") {
+			if (count($fbpages) > 0 || count($fb_groups) > 0 || count($tiktoks) > 0) {
 				$pinterest_active = false;
 			} else if ($boards > 0) {
 				$pinterest_active = true;
@@ -267,9 +270,6 @@ class GetMetaInfo
 			$aspect_ratio = $width / $height;
 			$aspect_ratio = round($aspect_ratio, 2);
 			if ($aspect_ratio <= 1.91 && $aspect_ratio >= 4 / 5) {
-				$ig_image = true;
-			}
-			if (in_array(ceil($height), $heightArray) && in_array(ceil($width), $widthArray)) {
 				$ig_image = true;
 			}
 		}

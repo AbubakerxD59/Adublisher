@@ -1864,7 +1864,7 @@ class ChannelCrons extends CI_Controller
 		$unpublished_posts = $this->Publisher_model->list_records('publish_posts', 0, 10, $where, 'id', 'asc');
 		foreach ($unpublished_posts as $key => $value) {
 			// change status to in progress
-			// $this->Publisher_model->update_record('publish_posts', array('published' => '2'), $value->id);
+			$this->Publisher_model->update_record('publish_posts', array('published' => '2'), $value->id);
 			// change status to in progress
 			$type = !empty($value->image) ? 'image' : 'video';
 			$ig_user = $this->Publisher_model->get_allrecords('instagram_users', array('user_id' => $value->user_id, 'instagram_id' => $value->page_id));
