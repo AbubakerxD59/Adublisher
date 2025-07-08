@@ -7313,7 +7313,7 @@ class Usersrest extends REST_Controller
 		$this->db->like('image_link', 'cdn.shopify.com');
 		$this->db->order_by('id', 'DESC')->limit(1);
 		$query = $this->db->get()->result_array();
-		$last_shopify_run = $query[0]['created_at'];
+		$last_shopify_run = count($query) > 0 ? $query[0]['created_at'] : '';
 		if (empty($last_shopify_run)) {
 			$last_shopify_run = '';
 		} else {

@@ -2223,7 +2223,7 @@ class ChannelCrons extends CI_Controller
 				} elseif ($post->post_type == 'past') {
 					resources_update('down', RSS_FEED_OLD_POST_FETCH_ID, $post->user_id);
 				}
-				$response_data[$status_column] = '1';
+				$response_data[$status_column] = '-1';
 				$this->Publisher_model->update_record($table, $response_data, $post->id);
 			} else {
 				resources_update('up', RSS_FEED_POST_PUBLISH_ID, $post->user_id);
