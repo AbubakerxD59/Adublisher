@@ -5033,25 +5033,29 @@ function ig_media_publish_now($post_data, $ig_user)
 		$result = $CI->Publisher_model->publish_ig_media_container($post_data->user_id, $container['id']);
 		print_pre($result);
 		if (isset($result['id'])) {
-			return array(
+			$response =  array(
 				'status' => true,
 				'data' => $result,
 				'message' => 'ig - post published Successfully',
 			);
 		} else {
-			return array(
+			$response =  array(
 				'status' => false,
 				'data' => $result,
-				'message' => 'Some Problem occured, while publishing ig - post',
+				'message' => $result["error"]["message"]
 			);
 		}
 	} else {
-		return array(
+		$response =  array(
 			'status' => false,
 			'data' => $container,
-			'message' => 'Some Problem occured, while creating container - ig',
+			'message' => $container["error"]["message"]
 		);
 	}
+	if (!$response["status"]) {
+		$CI->Publisher_model->update_record("instagram_scheduler", ["error" => $response["message"]], $post_data->id);
+	}
+	return $response;
 }
 
 function fb_page_queue_publish_now($post, $page)
