@@ -2201,6 +2201,8 @@ class ChannelCrons extends CI_Controller
 				}
 			}
 			if ($type == 'instagram_rss') {
+				$table = 'instagram_scheduler';
+				$status_column = 'published';
 				$ig_user = $this->Publisher_model->retrieve_record('instagram_users', $post->page_id);
 				if (!empty($ig_user)) {
 					$post_data = $this->Publisher_model->retrieve_record('instagram_scheduler', $post->post_id);
