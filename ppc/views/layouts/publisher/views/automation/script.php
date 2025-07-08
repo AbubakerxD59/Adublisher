@@ -1251,7 +1251,7 @@
                 var publish_url = 'publishNowFacebookPost';
             } else if (selected_type == 'pinterest') {
                 var publish_url = 'publishNowPinterestPost';
-            } else if(selected_type == 'instagram'){
+            } else if (selected_type == 'instagram') {
                 var publish_url = 'publishNowInstagramPost';
             }
             swal({
@@ -1718,10 +1718,6 @@
                                 }
                                 node += '<div class="d-flex align-items-center" style="border-top: 1px solid #e6dbdb; padding-top: 5px;">'
                                 node += '<div class="read"><p class="my-2""><strong> <i class="mdi mdi-calendar-clock text-info mdi-24px"></i>' + elem.post_date + '</strong></p></div>'
-                                node += '</div>'
-                                node += '<div class="d-flex float-right">'
-                                node += '<a href="javascript:void(0);" class="h5 cursor-pointer mx-1 btn btn-sm btn-outline-success" id="publish_now" data-id="' + elem.id + '"  data-toggle="tooltip" title="Publish this post!">Publish</a>'
-                                node += '<a href="javascript:void(0);" class="h5 cursor-pointer delbulkone btn btn-sm btn-outline-danger" data-id="' + elem.id + '"  data-toggle="tooltip" title="Delete this post!" data-original-title="Delete">Delete</a>'
                                 node += '</div>'
                                 node += '</div>'
                                 node += '</div>'
