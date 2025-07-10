@@ -1,5 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
-
 <script type="text/javascript">
     var facebook_page_icon = pinterest_board_icon = tiktok_account_icon = instagram_account_icon = youtube_icon = '';
     var facebook_logo = "<?= BulkAssets . 'images/Icons/facebook-circle.svg'; ?>";
