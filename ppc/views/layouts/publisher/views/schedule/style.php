@@ -53,6 +53,7 @@
         max-width: 100%;
         line-height: 22px;
         cursor: text;
+        width: 100% !important;
     }
 
     .bootstrap-tagsinput .tag {
