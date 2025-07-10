@@ -99,7 +99,7 @@
                         class="form-control"><?php echo !empty($youtube_settings) ? rtrim($youtube_settings->description) : ''; ?></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="selected_tags" id="selected_tags"
+                    <input type="hidden" name="selected_tags" id="selected_tags" class="form-control"
                         value="<?php echo !empty($youtube_settings) ? $youtube_settings->tags : ''; ?>">
                     <label for="tags">Tags</label>
                     <input id="tags" type="text" name="tags[]"

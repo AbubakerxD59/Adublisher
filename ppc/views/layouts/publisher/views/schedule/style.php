@@ -42,7 +42,21 @@
     }
 
     .bootstrap-tagsinput {
-        height: 70px !important;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        display: inline-block;
+        padding: 4px 6px;
+        color: #555;
+        vertical-align: middle;
+        border-radius: 4px;
+        max-width: 100%;
+        line-height: 22px;
+        cursor: text;
+    }
+
+    .bootstrap-tagsinput .tag {
+        color: black !important;
     }
 
     @media all and (max-width: 600px) {
