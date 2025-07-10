@@ -1362,9 +1362,10 @@ function ig_user_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 		]
 	];
 	$context = stream_context_create($contextOptions);
+	sleep(1);
 	$file = file_get_contents($links, FALSE, $context);
+	sleep(1);
 	$single_feed = simplexml_load_string((string) $file);
-
 	if ($mode == 1) {
 		if (!$single_feed || empty($single_feed)) {
 			$response = array(
@@ -1387,82 +1388,69 @@ function ig_user_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 		}
 		return $response;
 	}
-
-	if (empty($single_feed)) {
-		$false_link = $links;
-	} else {
-		$feed[] = $single_feed;
-	}
-	if ($feed) {
-		foreach ($feed as $data) {
-			if (!empty($data)) {
-				$i = 1;
-				if (isset($data->channel->item)) {
-					$items_count = count($data->channel->item);
-					$few_issues = [];
-					foreach ($data->channel->item as $item) {
-						$items_count--;
-						$item = $data->channel->item[$items_count];
-						if ($i > 10) {
-							break;
-						}
-						$metaOfUrlt = metaOfUrlt($item->link, 'instagram');
-						if (count($metaOfUrlt) > 0) {
-							// utm checks on url
-							$utm_details = [];
-							$utm_check = false;
-							$url_detail = getDomain($item->link);
-							if (!empty($url_detail['url'])) {
-								$domain = $url_detail['url'];
-								$utm_details = getUtm($domain, $userID);
-								if (count($utm_details) > 0) {
-									$utm_check = true;
-								}
-							}
-							$utmPostUrl = $item->link;
-							$ig_user = $CI->Publisher_model->get_allrecords('instagram_users', ['user_id' => $userID]);
-							$ig_user = $ig_user[0];
-							if ($utm_check) {
-								$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $ig_user->instagram_username, 'instagram');
-							}
-							// utm checks end
-
-							$where_rss = [];
-							$where_rss[0]['key'] = 'url';
-							$where_rss[0]['value'] = $utmPostUrl;
-							$where_rss[1]['key'] = 'ig_id';
-							$where_rss[1]['value'] = $page;
-							$where_rss[2]['key'] = 'user_id';
-							$where_rss[2]['value'] = $userID;
-							// $where_rss[3]['key'] = 'published';
-							// $where_rss[3]['value'] = 0;
-							$present = $CI->Publisher_model->count_records('instagram_scheduler', $where_rss);
-							if (!$present) {
-								$i++;
-								$img_path = $metaOfUrlt['image'];
-								if (empty($img_path)) {
-									$img_path = base_url('assets/general/images/no_image_found.jpg');
-								}
-								if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
-									resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
-									create_single_ig_rss_feed($userID, $page, $item->title, $img_path, $utmPostUrl, $timeslots, 'latest');
-								} else {
-									$response = [
-										'status' => false,
-										'error' => 'Your resource limit has been reached'
-									];
-									break;
-								}
-							}
-						} else {
-							$few_issues['errors'][] = $item->link;
-						}
+	foreach ($single_feed as $data) {
+		if (!empty($data)) {
+			$i = 1;
+			if (isset($data->channel->item)) {
+				$items_count = count($data->channel->item);
+				$few_issues = [];
+				foreach ($data->channel->item as $item) {
+					$items_count--;
+					$item = $data->channel->item[$items_count];
+					if ($i > 10) {
+						break;
 					}
-				} else {
-					$response = array(
-						'status' => false,
-						'error' => 'Your provided link has not valid RSS feed, Please fix and try again'
-					);
+					$metaOfUrlt = metaOfUrlt($item->link, 'instagram');
+					sleep(rand(2, 5));
+					if (count($metaOfUrlt) > 0) {
+						// utm checks on url
+						$utm_details = [];
+						$utm_check = false;
+						$url_detail = getDomain($item->link);
+						if (!empty($url_detail['url'])) {
+							$domain = $url_detail['url'];
+							$utm_details = getUtm($domain, $userID);
+							if (count($utm_details) > 0) {
+								$utm_check = true;
+							}
+						}
+						$utmPostUrl = $item->link;
+						$ig_user = $CI->Publisher_model->get_allrecords('instagram_users', ['user_id' => $userID]);
+						$ig_user = $ig_user[0];
+						if ($utm_check) {
+							$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $ig_user->instagram_username, 'instagram');
+						}
+						// utm checks end
+						$where_rss = [];
+						$where_rss[0]['key'] = 'url';
+						$where_rss[0]['value'] = $utmPostUrl;
+						$where_rss[1]['key'] = 'ig_id';
+						$where_rss[1]['value'] = $page;
+						$where_rss[2]['key'] = 'user_id';
+						$where_rss[2]['value'] = $userID;
+						// $where_rss[3]['key'] = 'published';
+						// $where_rss[3]['value'] = 0;
+						$present = $CI->Publisher_model->count_records('instagram_scheduler', $where_rss);
+						if (!$present) {
+							$i++;
+							$img_path = $metaOfUrlt['image'];
+							if (empty($img_path)) {
+								$img_path = base_url('assets/general/images/no_image_found.jpg');
+							}
+							if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
+								resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
+								create_single_ig_rss_feed($userID, $page, $item->title, $img_path, $utmPostUrl, $timeslots, 'latest');
+							} else {
+								$response = [
+									'status' => false,
+									'error' => 'Your resource limit has been reached'
+								];
+								break;
+							}
+						}
+					} else {
+						$few_issues['errors'][] = $item->link;
+					}
 				}
 			} else {
 				$response = array(
@@ -1470,17 +1458,17 @@ function ig_user_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 					'error' => 'Your provided link has not valid RSS feed, Please fix and try again'
 				);
 			}
+		} else {
+			$response = array(
+				'status' => false,
+				'error' => 'Your provided link has not valid RSS feed, Please fix and try again'
+			);
 		}
-		$response = array(
-			'status' => true,
-			'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
-		);
-	} else {
-		$response = array(
-			'status' => false,
-			'error' => 'Your provided link has not valid RSS feed, Please fix and try again.'
-		);
 	}
+	$response = array(
+		'status' => true,
+		'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
+	);
 	return $response;
 }
 
@@ -3779,11 +3767,11 @@ function get_youtube_channels_by_api($access_token = null, $google_id = null)
 					$channel_description = $channel_detail['description'];
 					$thumbnails = $channel_detail['thumbnails'];
 					if (isset($thumbnails['high'])) {
-						$channel_thumbnail = $thumbnails['high']['url'];
+						$channel_thumbnail = saveImageFromUrl($thumbnails['high']['url'], $user_id, $channel_id);
 					} elseif (isset($thumbnails['medium'])) {
-						$channel_thumbnail = $thumbnails['medium']['url'];
+						$channel_thumbnail = saveImageFromUrl($thumbnails['medium']['url'], $user_id, $channel_id);
 					} else {
-						$channel_thumbnail = $thumbnails['default']['url'];
+						$channel_thumbnail = saveImageFromUrl($thumbnails['default']['url'], $user_id, $channel_id);
 					}
 					$country = $channel_detail['country'];
 					$column = array(

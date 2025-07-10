@@ -1615,6 +1615,7 @@ class ChannelCrons extends CI_Controller
 					}
 					foreach ($rss_linke as $link) {
 						$response = ig_user_fetch_more_posts($link, $ig_user->id, $user_id, $timeslots, 0);
+						sleep(rand(2,5));
 						if ($response['status']) {
 							removeCronJobError($user_id, $error_column_name);
 						} else {
