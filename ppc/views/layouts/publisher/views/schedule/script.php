@@ -1,9 +1,10 @@
 <script type="text/javascript">
-    var facebook_page_icon = pinterest_board_icon = tiktok_account_icon = instagram_account_icon = '';
+    var facebook_page_icon = pinterest_board_icon = tiktok_account_icon = instagram_account_icon = youtube_icon = '';
     var facebook_logo = "<?= BulkAssets . 'images/Icons/facebook-circle.svg'; ?>";
     var pinterest_logo = "<?= BulkAssets . 'images/Icons/pinterest-circle.svg' ?>";
     var instagram_logo = "<?= BulkAssets . 'images/Icons/instagram-circle.svg' ?>";
     var tiktok_logo = "<?= BulkAssets . 'images/Icons/tiktok-circle.svg' ?>";
+    var youtube_logo = "<?= BulkAssets . 'images/Icons/youtube-circle.svg' ?>";
     Dropzone.autoDiscover = false;
     $(function() {
         setTimeout(() => {
@@ -876,28 +877,28 @@
         // chech if type is facebook 
         if (elem.type == "facebook") {
             node +=
-                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle mr-2" alt="facebook_logo">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle mr-2" alt="' + facebook_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
 
         } else if (elem.type == "pinterest") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + pinterest_board_icon + '" class="rounded-circle mr-2" alt="pinterest_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + pinterest_board_icon + '" class="rounded-circle mr-2" alt="' + pinterest_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == "instagram") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="instagram_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == "fb_groups") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle mr-2" alt="facebook_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle mr-2" alt="' + facebook_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == 'youtube') {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="<?= BulkAssets ?>images/youtube_logo.png" class="rounded-circle mr-2" alt="youtube_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + youtube_icon + '" class="rounded-circle mr-2" alt="' + youtube_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == 'tiktok') {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + tiktok_account_icon + '" class="rounded-circle mr-2" alt="tiktok_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + tiktok_account_icon + '" class="rounded-circle mr-2" alt="' + tiktok_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         }
 
@@ -985,26 +986,26 @@
         // chech if type is facebook 
         if (elem.type == "facebook") {
             node +=
-                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle mr-2" alt="facebook_logo">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle mr-2" alt="' + facebook_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
 
 
         } else if (elem.type == "pinterest") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + pinterest_board_icon + '" class="rounded-circle mr-2" alt="pinterest_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + pinterest_board_icon + '" class="rounded-circle mr-2" alt="' + pinterest_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
 
         } else if (elem.type == "instagram") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="instagram_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == "fb_groups") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="instagram_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == 'youtube') {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="<?= BulkAssets ?>images/youtube_logo.png" class="rounded-circle mr-2" alt="instagram_logo">' +
+                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + youtube_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         }
 
@@ -1339,20 +1340,19 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fb_channel channel-button' data-type='facebook' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle mr-2' alt='" + facebook_logo + "'> " +
                                     '<b>' + value.page_name + '</b>' +
                                     "</button>");
                             } else {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fb_channel channel-button active' data-type='facebook' data-id='" +
                                     value.id +
-                                    "' ><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle mr-2' alt='" + facebook_logo + "'> " +
                                     '<b>' + value.page_name + '</b>' +
                                     "</button>");
                             }
                         });
                     }
-
                     if (response.data.boards.length > 0) {
                         $.each(response.data.boards, function(index, value) {
                             pinterest_board_icon = "<?= BulkAssets ?>" + value.profile_pic;
@@ -1361,22 +1361,20 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 board_channel channel-button' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='" + pinterest_logo + "'> " +
                                     '<b>' + value.name + '</b>' +
                                     "</button>");
                             } else {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right board_channel channel-button active' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='" + pinterest_logo + "'> " +
                                     '<b>' + value.name + '</b>' +
                                     "</button>");
                             }
                         });
                     }
-
                     if (response.data.ig_accounts.length > 0) {
-                        // $("#channels").append("<div class='col-md-12'><h4>Instagram Accounts</h4></div>");
                         $.each(response.data.ig_accounts, function(index, value) {
                             instagram_account_icon = "<?= BulkAssets ?>" + value.profile_pic;
                             if (value.channel_active == 1) {
@@ -1384,37 +1382,35 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='" + instagram_logo + "'> " +
                                     '<b>' + value.instagram_username + '</b>' +
                                     "</button>");
                             } else {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right ig_channel channel-button active' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='" + instagram_logo + "'> " +
                                     '<b>' + value.instagram_username + '</b>' +
                                     "</button>");
                             }
                         });
                     }
-
                     if (response.data.fb_groups.length > 0) {
-                        $.each(response.data.fb_groups, function(index,
-                            value) {
+                        $.each(response.data.fb_groups, function(index, value) {
                             if (value.active == 'y') {
                                 if (value.channel_active == 1) {
                                     facebook_check = false;
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                        "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='" + instagram_logo + "'> " +
                                         '<b>' + value.name + '</b>' +
                                         "</button>");
                                 } else {
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fbgroup_channel channel-button active' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                        "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='" + instagram_logo + "'> " +
                                         '<b>' + value.name + '</b>' +
                                         "</button>");
                                 }
@@ -1422,22 +1418,22 @@
                         });
                     }
                     if (response.data.yt_channels.length > 0) {
-                        $.each(response.data.yt_channels, function(index,
-                            value) {
+                        $.each(response.data.yt_channels, function(index, value) {
+                            youtube_icon = "<?= BulkAssets ?>" + value.channel_thumbnail;
                             if (value.active == '1') {
                                 if (value.channel_active == 1) {
                                     youtube_check = true;
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                        "' style='border: 2px solid green;'><img style='width:20px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
                                         '<b>' + value.channel_title + '</b>' +
                                         "</button>");
                                 } else {
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right yt_channel channel-button active' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' ><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                        "' ><img style='width:20px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
                                         '<b>' + value.channel_title + '</b>' +
                                         "</button>");
                                 }
@@ -1451,14 +1447,14 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
                                     '<b>' + value.username + '</b>' +
                                     "</button>");
                             } else {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right tiktok_acc channel-button active' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
                                     '<b>' + value.username + '</b>' +
                                     "</button>");
                             }
@@ -1507,14 +1503,14 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fb_channel channel-button' data-type='facebook' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='<?= BulkAssets ?>images/facebook_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle mr-2' alt='" + facebook_logo + "'> " +
                                     '<b>' + value.page_name + '</b>' +
                                     "</button>");
                             } else {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fb_channel channel-button active' data-type='facebook' data-id='" +
                                     value.id +
-                                    "' ><img style='width:35px;height:35px;' src='<?= BulkAssets ?>images/facebook_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='" + facebook_page_icon + "' class='rounded-circle mr-2' alt='" + facebook_logo + "'> " +
                                     '<b>' + value.page_name + '</b>' +
                                     "</button>");
                             }
@@ -1528,14 +1524,14 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 board_channel channel-button' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='" + pinterest_logo + "'> " +
                                     '<b>' + value.name + '</b>' +
                                     "</button>");
                             } else {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right board_channel channel-button active' data-type='pinterest' data-id='" +
                                     value.id +
-                                    "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='" + pinterest_board_icon + "' class='rounded-circle mr-2' alt='" + pinterest_logo + "'> " +
                                     '<b>' + value.name + '</b>' +
                                     "</button>");
                             }
@@ -1549,14 +1545,14 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 ig_channel channel-button' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='" + instagram_logo + "'> " +
                                     '<b>' + value.instagram_username + '</b>' +
                                     "</button>");
                             } else {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right ig_channel channel-button active' data-type='instagram' data-id='" +
                                     value.id +
-                                    "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='" + instagram_logo + "'> " +
                                     '<b>' + value.instagram_username + '</b>' +
                                     "</button>");
                             }
@@ -1571,14 +1567,14 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 fbgroup_channel channel-button' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                        "' style='border: 2px solid green;'><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='" + instagram_logo + "'> " +
                                         '<b>' + value.name + '</b>' +
                                         "</button>");
                                 } else {
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right fbgroup_channel channel-button active' data-type='fbgroup' data-id='" +
                                         value.id +
-                                        "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                        "' ><img style='width:35px;height:35px;' src='" + instagram_account_icon + "' class='rounded-circle mr-2' alt='" + instagram_logo + "'> " +
                                         '<b>' + value.name + '</b>' +
                                         "</button>");
                                 }
@@ -1593,14 +1589,14 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                        "' style='border: 2px solid green;'><img style='width:20px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
                                         '<b>' + value.channel_title + '</b>' +
                                         "</button>");
                                 } else {
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right yt_channel channel-button active' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' ><img style='width:20px;' src='<?= BulkAssets ?>images/youtube_logo.png' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                        "' ><img style='width:20px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
                                         '<b>' + value.channel_title + '</b>' +
                                         "</button>");
                                 }
@@ -1613,14 +1609,14 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1  tiktok_acc channel-button' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
                                     '<b>' + value.username + '</b>' +
                                     "</button>");
                             } else {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right tiktok_acc channel-button active' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='profile_pic'> " +
+                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
                                     '<b>' + value.username + '</b>' +
                                     "</button>");
                             }
