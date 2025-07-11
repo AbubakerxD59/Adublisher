@@ -1473,7 +1473,7 @@
                         facebook_comment();
                     } else {
                         $('.social_content_div').show();
-                        $('.facebook_comment_content').hide();
+                        // $('.facebook_comment_content').hide();
                     }
 
                 } else {
@@ -1635,7 +1635,7 @@
                         facebook_comment();
                     } else {
                         $('.social_content_div').show();
-                        $('.facebook_comment_content').hide();
+                        // $('.facebook_comment_content').hide();
                     }
 
                 } else {
