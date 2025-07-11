@@ -6080,6 +6080,7 @@ function check_pinterest_access_token($pinterest_user)
 function fetchUrlFromComment(string $string)
 {
 	$response = [
+		"link" => "",
 		"hasLink" => false,
 	];
 	$pattern = '/\b(?:https?|ftp):\/\/\S+\b/';

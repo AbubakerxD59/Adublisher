@@ -5028,6 +5028,7 @@ class Usersrest extends REST_Controller
 					'content_type' => !empty($img_path) ? 'image_path' : 'video_path',
 					'published' => 0
 				];
+				dd([$data]);
 				$pinterest_response = $this->db->insert('publish_posts', $data);
 				if ($pinterest_response) {
 					$success_message[] = "Your post(s) are being Published!";
