@@ -1426,14 +1426,14 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:20px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
+                                        "' style='border: 2px solid green;'><img style='width:35px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
                                         '<b>' + value.channel_title + '</b>' +
                                         "</button>");
                                 } else {
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right yt_channel channel-button active' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' ><img style='width:20px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
+                                        "' ><img style='width:35px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
                                         '<b>' + value.channel_title + '</b>' +
                                         "</button>");
                                 }
@@ -1447,14 +1447,14 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
                                     '<b>' + value.username + '</b>' +
                                     "</button>");
                             } else {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right tiktok_acc channel-button active' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
+                                    "' ><img style='width:35px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
                                     '<b>' + value.username + '</b>' +
                                     "</button>");
                             }
@@ -1589,14 +1589,14 @@
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 yt_channel channel-button' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' style='border: 2px solid green;'><img style='width:20px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
+                                        "' style='border: 2px solid green;'><img style='width:35px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
                                         '<b>' + value.channel_title + '</b>' +
                                         "</button>");
                                 } else {
                                     $("#channels").append(
                                         "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right yt_channel channel-button active' data-type='youtube' data-id='" +
                                         value.id +
-                                        "' ><img style='width:20px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
+                                        "' ><img style='width:35px;' src='" + youtube_icon + "' class='rounded-circle mr-2' alt='" + youtube_logo + "'> " +
                                         '<b>' + value.channel_title + '</b>' +
                                         "</button>");
                                 }
@@ -1609,14 +1609,14 @@
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1  tiktok_acc channel-button' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' style='border: 2px solid green;'><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
+                                    "' style='border: 2px solid green;'><img style='width:35px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
                                     '<b>' + value.username + '</b>' +
                                     "</button>");
                             } else {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 border-right tiktok_acc channel-button active' data-type='tiktok' data-id='" +
                                     value.id +
-                                    "' ><img style='width:20px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
+                                    "' ><img style='width:35px;' src='" + tiktok_account_icon + "' class='rounded-circle mr-2' alt='" + tiktok_logo + "'> " +
                                     '<b>' + value.username + '</b>' +
                                     "</button>");
                             }
