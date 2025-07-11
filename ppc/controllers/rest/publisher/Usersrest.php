@@ -5010,7 +5010,7 @@ class Usersrest extends REST_Controller
 					$fetchUrl  = fetchUrlFromComment($comment);
 					if ($fetchUrl["hasLink"]) {
 						$hasLink = true;
-						$link = $fetchUrl["link"];
+						$link = $fetchUrl["link"][0];
 					}
 				}
 				// utm check on title
@@ -5028,7 +5028,6 @@ class Usersrest extends REST_Controller
 					'content_type' => !empty($img_path) ? 'image_path' : 'video_path',
 					'published' => 0
 				];
-				dd([$data]);
 				$pinterest_response = $this->db->insert('publish_posts', $data);
 				if ($pinterest_response) {
 					$success_message[] = "Your post(s) are being Published!";
