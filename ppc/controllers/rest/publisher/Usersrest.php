@@ -4925,9 +4925,7 @@ class Usersrest extends REST_Controller
 		$fbpages = $active_channels['fbpages'];
 		$boards = $active_channels['boards'];
 		$ig_users = $active_channels['ig_accounts'];
-		$fb_groups = $active_channels['fb_groups'];
 		$tiktoks = $active_channels['tiktoks'];
-		$this_id = false;
 		$success_message = array();
 		$error_message = array();
 		$upload_data = [];
@@ -5007,6 +5005,12 @@ class Usersrest extends REST_Controller
 						$link = make_utm_url($request_url, $utm_details, $pinterest_user['0']->username, 'pinterest');
 					} else {
 						$link = $link . '?utm_source=pinterest';
+					}
+				} else {
+					$fetchUrl  = fetchUrlFromComment($comment);
+					if ($fetchUrl["hasLink"]) {
+						$hasLink = true;
+						$link = $fetchUrl["link"];
 					}
 				}
 				// utm check on title

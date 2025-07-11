@@ -6076,3 +6076,17 @@ function check_pinterest_access_token($pinterest_user)
 	}
 	return $access_token;
 }
+
+function fetchUrlFromComment(string $string)
+{
+	$response = [
+		"hasLink" => false,
+	];
+	$pattern = '/\b(?:https?|ftp):\/\/\S+\b/';
+	preg_match_all($pattern, $string, $matches);
+	if (!empty($matches[0])) {
+		$response["link"] = $matches[0];
+		$response["hasLink"] = true;
+	}
+	return $response;
+}
