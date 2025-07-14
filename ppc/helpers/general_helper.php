@@ -485,10 +485,15 @@ if (!function_exists('localToUTC')) {
 		}
 	}
 
-	function dd(array $data)
+	function dd($data)
 	{
-		foreach ($data as $value) {
-			print_pre($value);
+		if (is_array($data)) {
+			foreach ($data as $value) {
+				print_pre($value);
+				echo '<br>';
+			}
+		} else {
+			print_pre($data);
 			echo '<br>';
 		}
 		die();

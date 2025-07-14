@@ -1634,6 +1634,7 @@ class ChannelCrons extends CI_Controller
 	{
 		$where = [['key' => 'type', 'value' => 'facebook'], ['key' => 'published', 'value' => 0]];
 		$unpublished_posts = $this->Publisher_model->list_records('publish_posts', 0, 1, $where, 'id', 'asc');
+		dd(['here']);
 		print_pre($unpublished_posts);
 		foreach ($unpublished_posts as $key => $value) {
 			// change status to publish
