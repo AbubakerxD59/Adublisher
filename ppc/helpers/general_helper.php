@@ -876,6 +876,7 @@ if (!function_exists('get_from_s3bucket')) {
 			$file_name = str_replace('assets/bulkuploads/', '', $key);
 			$destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/assets/bulkuploads/' . $file_name;
 			$aws = $CI->s3_upload->get_from_aws($key);
+			print_pre($aws);
 			if ($aws) {
 				if ($mode == 1) { //for url
 					$file_name = $aws['@metadata']['effectiveUri'];
@@ -4675,7 +4676,6 @@ function publish_reels_to_instagram($instagram_id, $access_token, $video_path, $
 		// Step 2 of 2: Publish Container
 		// for resumeable large files
 		$result = $CI->Publisher_model->upload_ig_video($user_id, $container['id'], $video_path);
-		dd([$result]);
 		if ($container_publish) {
 			$result = $CI->Publisher_model->publish_ig_media_container($user_id, $container['id']);
 		} else {

@@ -4317,7 +4317,7 @@ class Publisher_model extends CI_Model
 			// CURLOPT_POSTFIELDS => array('file_url' => $video_path),
 			CURLOPT_HTTPHEADER => array(
 				'Authorization: Bearer ' . $ig_user['access_token'],
-				'file_url: '. $video_path,
+				'file_url: ' . $video_path,
 			),
 		));
 		$response = json_decode(curl_exec($curl), true);
