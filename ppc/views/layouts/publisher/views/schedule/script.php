@@ -119,7 +119,7 @@
             url: "<?php echo SITEURL; ?>save_channels_bulkupload",
             maxFiles: 450,
             paramName: "file",
-            maxFilesize: 10,
+            maxFilesize: 100,
             acceptedFiles: 'image/*, video/*',
             parallelUploads: 1,
             addRemoveLinks: true,
