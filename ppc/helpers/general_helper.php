@@ -909,6 +909,7 @@ if (!function_exists('get_from_s3bucket')) {
 if (!function_exists('remove_from_s3bucket')) {
 	function remove_from_s3bucket($key)
 	{
+		echo '<pre>'; print_r('remove_from_s3');
 		$CI = &get_instance();
 		if (!empty($key)) {
 			$CI->load->library('s3_upload');
