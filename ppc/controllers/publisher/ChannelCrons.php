@@ -1615,7 +1615,7 @@ class ChannelCrons extends CI_Controller
 					}
 					foreach ($rss_linke as $link) {
 						$response = ig_user_fetch_more_posts($link, $ig_user->id, $user_id, $timeslots, 0);
-						sleep(rand(2,5));
+						sleep(rand(2, 5));
 						if ($response['status']) {
 							removeCronJobError($user_id, $error_column_name);
 						} else {
@@ -1634,6 +1634,7 @@ class ChannelCrons extends CI_Controller
 	{
 		$where = [['key' => 'type', 'value' => 'facebook'], ['key' => 'published', 'value' => 0]];
 		$unpublished_posts = $this->Publisher_model->list_records('publish_posts', 0, 1, $where, 'id', 'asc');
+		print_pre($unpublished_posts);
 		foreach ($unpublished_posts as $key => $value) {
 			// change status to publish
 			$this->Publisher_model->update_record('publish_posts', array('published' => '1'), $value->id);
@@ -1646,6 +1647,7 @@ class ChannelCrons extends CI_Controller
 			} else {
 				$type = 'photo';
 			}
+			print_pre($type);
 			$facebook_page = $this->Publisher_model->get_allrecords('facebook_pages', array('page_id' => $value->page_id, 'user_id' => $value->user_id));
 			if (count($facebook_page) > 0) {
 				$this->load->library('facebook');
@@ -1677,7 +1679,9 @@ class ChannelCrons extends CI_Controller
 					if ($file_url['status']) {
 						$file_name = BulkAssets . $file_url['file_name'];
 						$postData = ['description' => $value->title, 'file_url' => $file_name];
+						print_pre($postData);
 						$result = $this->facebook->request('POST', '/' . $page->page_id . '/videos', $postData, $access_token);
+						print_pre($result);
 						remove_file($file_url['file_name']);
 					}
 				}
