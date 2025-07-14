@@ -879,13 +879,14 @@ if (!function_exists('get_from_s3bucket')) {
 			$CI->load->library('s3_upload');
 			// move to aws s3 bucket
 			$file_name = str_replace('assets/bulkuploads/', '', $key);
-			$destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/assets/bulkuploads/' . $file_name;
 			$aws = $CI->s3_upload->get_from_aws($key);
-			print_pre($aws);
+			print_pre('in_aws_get_s3');
+			dd([$aws]);
 			if ($aws) {
 				if ($mode == 1) { //for url
 					$file_name = $aws['@metadata']['effectiveUri'];
 				} else { //for file
+					$destinationPath = $_SERVER['DOCUMENT_ROOT'] . "/assets/bulkuploads/" . $file_name;
 					$fileHandle = fopen($destinationPath, 'wb');
 					// Write the video content to local storage using fput
 					fwrite($fileHandle, $aws['Body']);
@@ -909,7 +910,8 @@ if (!function_exists('get_from_s3bucket')) {
 if (!function_exists('remove_from_s3bucket')) {
 	function remove_from_s3bucket($key)
 	{
-		echo '<pre>'; print_r('remove_from_s3');
+		echo '<pre>';
+		print_r('remove_from_s3');
 		$CI = &get_instance();
 		if (!empty($key)) {
 			$CI->load->library('s3_upload');
