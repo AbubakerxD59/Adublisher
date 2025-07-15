@@ -881,7 +881,6 @@ if (!function_exists('get_from_s3bucket')) {
 			$file_name = str_replace('assets/bulkuploads/', '', $key);
 			$aws = $CI->s3_upload->get_from_aws($key);
 			print_pre('in_aws_get_s3');
-			dd([$aws]);
 			if ($aws) {
 				if ($mode == 1) { //for url
 					$file_name = $aws['@metadata']['effectiveUri'];
