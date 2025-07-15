@@ -36,15 +36,16 @@ class S3_upload
 
     public function get_from_aws($key)
     {
-        try {
+        // try {
             $result = $this->s3->getObject([
                 'Bucket' => S3_BUCKET,
                 'Key' => $key,
             ]);
+            dd($result);
             return $result;
-        } catch (Aws\S3\Exception\S3Exception $e) {
-            return $e->getMessage();
-        }
+        // } catch (Aws\S3\Exception\S3Exception $e) {
+        //     return $e->getMessage();
+        // }
     }
 
     public function remove_from_aws($key)
