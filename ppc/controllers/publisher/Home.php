@@ -314,49 +314,7 @@ class Home extends CI_Controller
 
 	public function testing()
 	{
-		$tempDir = sys_get_temp_dir(); // Get the system's temporary directory path
-
-		echo "Checking permissions for temporary directory: " . $tempDir . "\n\n";
-
-		if (is_readable($tempDir)) {
-			echo "✅ Directory is **readable**.\n";
-		} else {
-			echo "❌ Directory is **not readable**.\n";
-		}
-
-		if (is_writable($tempDir)) {
-			echo "✅ Directory is **writable**.\n";
-		} else {
-			echo "❌ Directory is **not writable**.\n";
-		}
-
-		if (is_executable($tempDir)) {
-			echo "✅ Directory is **executable** (needed to traverse/access contents).\n";
-		} else {
-			echo "❌ Directory is **not executable**.\n";
-		}
-
-		// You can also try to create a temporary file to confirm writability
-		$tempFile = tempnam($tempDir, 'php_test_'); // Create a unique temporary file name
-
-		if ($tempFile !== false) {
-			echo "\nAttempted to create a temporary file: " . $tempFile . "\n";
-			if (file_put_contents($tempFile, "test data") !== false) {
-				echo "✅ Successfully wrote to the temporary file.\n";
-				unlink($tempFile); // Clean up the temporary file
-				echo "🗑️ Temporary file deleted.\n";
-			} else {
-				echo "❌ Failed to write to the temporary file.\n";
-				unlink($tempFile); // Attempt to clean up if file was created but not written to
-			}
-		} else {
-			echo "\n❌ Failed to create a temporary file in: " . $tempDir . ". This could indicate permission issues or full disk.\n";
-		}
-		die();
-	}
-
-	public function ppph(){
-		return phpinfo();
+		return "Hola Amigo!";
 	}
 
 	private function create_thumbnail($image_path, $text)

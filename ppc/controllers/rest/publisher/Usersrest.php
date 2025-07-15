@@ -5162,7 +5162,7 @@ class Usersrest extends REST_Controller
 		}
 		// cronjob for publishing facebook posts
 		if (isset($facebook_response)) {
-			// run_php_background("https://www.adublisher.com/publishFacebookPosts");
+			run_php_background("https://www.adublisher.com/publishFacebookPosts");
 		}
 		// cronjob for publishing pinterest posts
 		if (isset($pinterest_response)) {

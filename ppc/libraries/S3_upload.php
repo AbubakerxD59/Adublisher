@@ -1,6 +1,8 @@
 <?php
 require __DIR__ . '/aws/aws-autoloader.php';
+
 use Aws\S3\S3Client;
+
 class S3_upload
 {
     protected $s3;
@@ -31,16 +33,15 @@ class S3_upload
 
     public function get_from_aws($key)
     {
-        // try {
+        try {
             $result = $this->s3->getObject([
                 'Bucket' => S3_BUCKET,
                 'Key' => $key,
             ]);
-            dd($result);
             return $result;
-        // } catch (Aws\S3\Exception\S3Exception $e) {
-        //     return $e->getMessage();
-        // }
+        } catch (Aws\S3\Exception\S3Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     public function remove_from_aws($key)
@@ -56,5 +57,3 @@ class S3_upload
         }
     }
 }
-
-?>
