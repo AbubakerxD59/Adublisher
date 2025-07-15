@@ -315,30 +315,24 @@ class Home extends CI_Controller
 	public function testing()
 	{
 		$tempDir = sys_get_temp_dir(); // Get the system's temporary directory path
-
 		echo "Checking permissions for temporary directory: " . $tempDir . "\n\n";
-
 		if (is_readable($tempDir)) {
 			echo "✅ Directory is **readable**.\n";
 		} else {
 			echo "❌ Directory is **not readable**.\n";
 		}
-
 		if (is_writable($tempDir)) {
 			echo "✅ Directory is **writable**.\n";
 		} else {
 			echo "❌ Directory is **not writable**.\n";
 		}
-
 		if (is_executable($tempDir)) {
 			echo "✅ Directory is **executable** (needed to traverse/access contents).\n";
 		} else {
 			echo "❌ Directory is **not executable**.\n";
 		}
-
 		// You can also try to create a temporary file to confirm writability
 		$tempFile = tempnam($tempDir, 'php_test_'); // Create a unique temporary file name
-
 		if ($tempFile !== false) {
 			echo "\nAttempted to create a temporary file: " . $tempFile . "\n";
 			if (file_put_contents($tempFile, "test data") !== false) {

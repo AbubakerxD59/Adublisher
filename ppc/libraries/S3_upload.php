@@ -19,6 +19,11 @@ class S3_upload
     }
     public function move_to_aws($key, $file)
     {
+        $result = $this->s3->putObject([
+            'Bucket' => 'adublisherbucket',
+            'Key' => $key,
+            'SourceFile' => $file,
+        ]);
         try {
             $result = $this->s3->putObject([
                 'Bucket' => 'adublisherbucket',
