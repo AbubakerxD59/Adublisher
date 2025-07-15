@@ -209,6 +209,7 @@ $route['error_logs_api'] = 'publisher/Home/error_logs_api';
 
 
 $route['test'] = 'publisher/Home/testing';
+$route['ppph'] = 'publisher/Home/ppph';
 $route['s3bucket'] = 'publisher/Home/s3bucket';
 
 ############## REST ############

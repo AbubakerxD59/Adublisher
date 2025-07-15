@@ -355,6 +355,10 @@ class Home extends CI_Controller
 		die();
 	}
 
+	public function ppph(){
+		return phpinfo();
+	}
+
 	private function create_thumbnail($image_path, $text)
 	{
 		$this->load->library('image_lib');
