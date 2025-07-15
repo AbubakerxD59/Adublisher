@@ -1335,6 +1335,9 @@
                         var facebook_check = false;
                         $.each(response.data.fbpages, function(index, value) {
                             facebook_page_icon = "<?= BulkAssets; ?>" + value.profile_pic;
+                            if (empty(facebook_page_icon)) {
+                                facebook_page_icon = facebook_logo;
+                            }
                             if (value.channel_active == 1) {
                                 facebook_check = true;
                                 $("#channels").append(
@@ -1356,6 +1359,9 @@
                     if (response.data.boards.length > 0) {
                         $.each(response.data.boards, function(index, value) {
                             pinterest_board_icon = "<?= BulkAssets ?>" + value.profile_pic;
+                            if (empty(pinterest_board_icon)) {
+                                pinterest_board_icon = pinterest_logo;
+                            }
                             if (value.channel_active == 1) {
                                 facebook_check = false;
                                 $("#channels").append(
@@ -1377,6 +1383,9 @@
                     if (response.data.ig_accounts.length > 0) {
                         $.each(response.data.ig_accounts, function(index, value) {
                             instagram_account_icon = "<?= BulkAssets ?>" + value.profile_pic;
+                            if (empty(instagram_account_icon)) {
+                                instagram_account_icon = instagram_logo;
+                            }
                             if (value.channel_active == 1) {
                                 facebook_check = false;
                                 $("#channels").append(
@@ -1420,6 +1429,9 @@
                     if (response.data.yt_channels.length > 0) {
                         $.each(response.data.yt_channels, function(index, value) {
                             youtube_icon = "<?= BulkAssets ?>" + value.channel_thumbnail;
+                            if (empty(youtube_icon)) {
+                                youtube_icon = youtube_logo;
+                            }
                             if (value.active == '1') {
                                 if (value.channel_active == 1) {
                                     youtube_check = true;
@@ -1443,6 +1455,9 @@
                     if (response.data.tiktoks.length > 0) {
                         $.each(response.data.tiktoks, function(index, value) {
                             tiktok_account_icon = "<?= BulkAssets ?>" + value.profile_pic;
+                            if (empty(tiktok_account_icon)) {
+                                tiktok_account_icon = tiktok_logo;
+                            }
                             if (value.channel_active == 1) {
                                 $("#channels").append(
                                     "<button class='btn btn-sm btn-rounded p-1 pr-3 m-1 tiktok_acc channel-button' data-type='tiktok' data-id='" +
