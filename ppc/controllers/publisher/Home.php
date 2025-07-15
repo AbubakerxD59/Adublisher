@@ -314,17 +314,45 @@ class Home extends CI_Controller
 
 	public function testing()
 	{
-		$this->load->library('feedFetcher'); // Load our custom library
-		$feed = $this->feedfetcher->fetchFeedItems("https://infodate.me");
-		dd([$feed]);
-		// error_reporting(-1);
-		// ini_set('display_errors', 1);
-		// $tiktok = $this->Publisher_model->get_allrecords('tiktok', ['user_id' => '2210']);
-		// $tiktok = $tiktok[0];
-		// $this->load->library('tiktok');
-		// $access_token = refresh_tiktok_access_token($tiktok->access_token);
-		// $videos = $this->tiktok->get_videos($access_token);
-		// dd('here', $videos);
+		$tempDir = sys_get_temp_dir(); // Get the system's temporary directory path
+
+		echo "Checking permissions for temporary directory: " . $tempDir . "\n\n";
+
+		if (is_readable($tempDir)) {
+			echo "✅ Directory is **readable**.\n";
+		} else {
+			echo "❌ Directory is **not readable**.\n";
+		}
+
+		if (is_writable($tempDir)) {
+			echo "✅ Directory is **writable**.\n";
+		} else {
+			echo "❌ Directory is **not writable**.\n";
+		}
+
+		if (is_executable($tempDir)) {
+			echo "✅ Directory is **executable** (needed to traverse/access contents).\n";
+		} else {
+			echo "❌ Directory is **not executable**.\n";
+		}
+
+		// You can also try to create a temporary file to confirm writability
+		$tempFile = tempnam($tempDir, 'php_test_'); // Create a unique temporary file name
+
+		if ($tempFile !== false) {
+			echo "\nAttempted to create a temporary file: " . $tempFile . "\n";
+			if (file_put_contents($tempFile, "test data") !== false) {
+				echo "✅ Successfully wrote to the temporary file.\n";
+				unlink($tempFile); // Clean up the temporary file
+				echo "🗑️ Temporary file deleted.\n";
+			} else {
+				echo "❌ Failed to write to the temporary file.\n";
+				unlink($tempFile); // Attempt to clean up if file was created but not written to
+			}
+		} else {
+			echo "\n❌ Failed to create a temporary file in: " . $tempDir . ". This could indicate permission issues or full disk.\n";
+		}
+		die();
 	}
 
 	private function create_thumbnail($image_path, $text)
