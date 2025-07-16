@@ -2325,6 +2325,7 @@ class ChannelCrons extends CI_Controller
 			["key" => "status", "value" => "0"]
 		];
 		$unpublished_rss_images = $this->Publisher_model->list_records('rss_images', 0, 10, $where);
+		print_pre($unpublished_rss_images);
 		foreach ($unpublished_rss_images as $image) {
 			$type = $image->type;
 			if ($type == "facebook") {
@@ -2335,7 +2336,9 @@ class ChannelCrons extends CI_Controller
 					$this->Publisher_model->update_record_mc("rsssceduler", ["link" => $metaOfUrlt["image"], "post_title" => $metaOfUrlt["title"]], $schedule_where);
 				}
 			} elseif ($type == "pinterest") {
-				$metaOfUrlt = metaOfUrlt($image->link, 'pinterest');
+				print_pre($image);
+				$this->load->library('getMetaInfo');
+				$metaOfUrlt = $this->getmetainfo->get_info($image->link, 'pinterest');
 				if (isset($metaOfUrlt["image"])) {
 					$schedule_where = [];
 					$schedule_where = [["key" => "user_id", "value" => $image->user_id], ["key" => "board_id", "value" => $image->page_id], ["key" => "url", "value" => $image->link]];
