@@ -2012,7 +2012,6 @@ class Usersrest extends REST_Controller
 				if (in_array($sitemap_rss_link, $decoded_rss_link)) {
 					// old post
 					limit_check(RSS_FEED_OLD_POST_FETCH_ID);
-					// $response = fb_page_fetch_past_posts($sitemap_rss_link, $page, $userID, $timeslots, 1);
 					$data = [
 						'user_id' => $userID,
 						'page_id' => $page,

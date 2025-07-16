@@ -1716,7 +1716,6 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 								break;
 							}
 						}
-						sleep(2);
 					}
 					$response = [
 						'status' => true,
