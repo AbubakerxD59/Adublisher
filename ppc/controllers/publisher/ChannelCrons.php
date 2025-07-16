@@ -1910,12 +1910,13 @@ class ChannelCrons extends CI_Controller
 		];
 		$unpublished_links = $this->Publisher_model->list_records('rss_links', 0, 1, $where, 'id', 'asc');
 		foreach ($unpublished_links as $key => $value) {
+			print_pre($value);
 			// update publish column
 			$this->Publisher_model->update_record('rss_links', ['published' => '2'], $value->id);
 			// update publish column
 			$type = $value->type;
 			if ($type == 'facebook') {
-				$facebook_page = $this->Publisher_model->get_allrecords('facebook_pages', array('page_id' => $value->page_id, 'user_id' => $value->user_id));
+				$facebook_page = $this->Publisher_model->get_allrecords('facebook_pages', array('id' => $value->page_id));
 				if (count($facebook_page) > 0) {
 					$page = $facebook_page[0];
 					$timeslots = json_decode($page->time_slots);
