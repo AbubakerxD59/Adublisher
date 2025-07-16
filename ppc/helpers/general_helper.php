@@ -1200,13 +1200,13 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 				);
 			}
 		}
-		// Set the flag to true after the foreach loop
-		$cron_url = 'https://www.adublisher.com/fetchRssLinkImages';
 		$removeError = removeCronJobError($userID, 'facebook_page_error');
 		$response = array(
 			'status' => true,
 			'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
 		);
+		// Set the flag to true after the foreach loop
+		$cron_url = 'https://www.adublisher.com/fetchRssLinkImages';
 		run_php_background($cron_url);
 	} else {
 		$response = array(
@@ -1781,28 +1781,6 @@ function pin_board_fetch_past_posts($url, $board_id, $user_id, $mode)
 					$xml = simplexml_load_string($sitemapContent);
 				}
 			}
-			// if ($mode == '1') {
-			// 	if (count($xml) == 0) {
-			// 		$response = array(
-			// 			'status' => false,
-			// 			'error' => 'Provided Feed URL do not has valid Sitemap Data!'
-			// 		);
-			// 	} else {
-			// 		$data = [
-			// 			'user_id' => $user_id,
-			// 			'page_id' => $board_id,
-			// 			'type' => 'pinterest_past',
-			// 			'url' => $url,
-			// 			'published' => 0
-			// 		];
-			// 		$CI->db->insert('rss_links', $data);
-			// 		$response = array(
-			// 			'status' => true,
-			// 			'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
-			// 		);
-			// 	}
-			// 	return $response;
-			// }
 			if (count($xml) > 0) {
 				$filteredSitemaps = [];
 				foreach ($xml->sitemap as $sitemap) {
@@ -1898,25 +1876,19 @@ function pin_board_fetch_past_posts($url, $board_id, $user_id, $mode)
 						if ($present > 0) {
 							continue;
 						} else {
-							// get url info and save it to database
-							$CI->load->library('getMetaInfo');
-							// Fetching Single Post data
-							$data = $CI->getmetainfo->get_info($postUrl, 'pinterest');
-							if (empty($data['image'])) {
-								continue;
+							$data["image"] = base_url('assets/images/download.png');
+							if (limit_check(RSS_FEED_OLD_POST_FETCH_ID, 2, $user->id)) {
+								resources_update('up', RSS_FEED_OLD_POST_FETCH_ID, $user->id);
+								$CI->Publisher_model->create_single_pinterest_rss_feed($user->id, $pin_board->id, $data['title'], $data['image'], $utmPostUrl, $pin_board->time_slots_rss, 'past');
+								create_rss_image($user->id, $pin_board->id, $utmPostUrl, "pinterest");
+								// increase post count
+								$postCount++;
 							} else {
-								if (limit_check(RSS_FEED_OLD_POST_FETCH_ID, 2, $user->id)) {
-									resources_update('up', RSS_FEED_OLD_POST_FETCH_ID, $user->id);
-									$CI->Publisher_model->create_single_pinterest_rss_feed($user->id, $pin_board->id, $data['title'], $data['image'], $utmPostUrl, $pin_board->time_slots_rss, 'past');
-									// increase post count
-									$postCount++;
-								} else {
-									$response = [
-										'status' => false,
-										'message' => 'Your resource limit has been reached'
-									];
-									break;
-								}
+								$response = [
+									'status' => false,
+									'message' => 'Your resource limit has been reached'
+								];
+								break;
 							}
 						}
 					}
@@ -1924,6 +1896,8 @@ function pin_board_fetch_past_posts($url, $board_id, $user_id, $mode)
 						'status' => true,
 						'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
 					];
+					$cron_url = 'https://www.adublisher.com/fetchRssLinkImages';
+					run_php_background($cron_url);
 				} else {
 					$response = [
 						'status' => false,
