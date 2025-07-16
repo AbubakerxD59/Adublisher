@@ -2355,6 +2355,7 @@ function metaOfUrlt($request_url, $mode = null)
 {
 	$CI = &get_instance();
 	$response['image'] = '';
+	$response['title'] = '';
 	$response['status'] = false;
 
 	if (!empty($request_url)) {
@@ -2363,6 +2364,10 @@ function metaOfUrlt($request_url, $mode = null)
 
 		if (!empty($info['image'])) {
 			$response['image'] = $info['image'];
+			$response['status'] = true;
+		}
+		if (!empty($info['title'])) {
+			$response['title'] = $info['title'];
 			$response['status'] = true;
 		}
 		// Do not set status and image when cURL error occurs
