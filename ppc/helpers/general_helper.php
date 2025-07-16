@@ -1129,28 +1129,6 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 	$context = stream_context_create($contextOptions);
 	$file = file_get_contents($links, FALSE, $context);
 	$single_feed = simplexml_load_string((string) $file);
-	// if ($mode == 1) {
-	// 	if (!$single_feed || empty($single_feed)) {
-	// 		$response = array(
-	// 			'status' => false,
-	// 			'error' => 'Your provided link has not valid RSS feed, Please fix and try again.'
-	// 		);
-	// 	} else {
-	// 		$data = [
-	// 			'user_id' => $userID,
-	// 			'page_id' => $page_detail->page_id,
-	// 			'type' => 'facebook',
-	// 			'url' => $url,
-	// 			'published' => 0
-	// 		];
-	// 		$CI->db->insert('rss_links', $data);
-	// 		$response = array(
-	// 			'status' => true,
-	// 			'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
-	// 		);
-	// 	}
-	// 	return $response;
-	// }
 
 	if (empty($single_feed)) {
 		$false_link = $links;
@@ -1170,8 +1148,6 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 						if ($i > 10) {
 							break;
 						}
-						// $metaOfUrlt = metaOfUrlt($item->link, 'other');
-						// if (count($metaOfUrlt) > 0) {
 						// utm checks on url
 						$utm_details = [];
 						$utm_check = false;
@@ -1198,10 +1174,6 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 						$present = $CI->Publisher_model->count_records('rsssceduler', $where_rss);
 						if (!$present) {
 							$i++;
-							// $img_path = $metaOfUrlt['image'];
-							// if (empty($img_path)) {
-							// 	$img_path = base_url('assets/general/images/no_image_found.jpg');
-							// }
 							$img_path = base_url('assets/images/download.png');
 							if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
 								resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
@@ -1214,9 +1186,6 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 								];
 							}
 						}
-						// } else {
-						// 	$few_issues['errors'][] = $item->link;
-						// }
 					}
 				} else {
 					$response = array(
@@ -1697,7 +1666,6 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 					// descending order complete with same structure as xml//
 					$postCount = 0;
 					foreach ($newSitemapXml->url as $url) {
-						print_pre($url);
 						$utmPostUrl = '';
 						if ($postCount >= $desiredPostCount) {
 							break;
@@ -1733,18 +1701,11 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 						$where_rss[2]['value'] = $user_id;
 						$present = $CI->Publisher_model->count_records('rsssceduler', $where_rss);
 						if (!$present) {
-							// get url info and save it to database
-							$CI->load->library('getMetaInfo');
-							// Fetching Single Post data
-							$data = $CI->getmetainfo->get_info($postUrl, 'other');
-							if (empty($data['image'])) {
-								$data["image"] = null;
-							}
-							// else {
-							// }
+							$data['image'] = base_url('assets/images/download.png');
 							if (limit_check(RSS_FEED_OLD_POST_FETCH_ID, 2, $user->id)) {
 								resources_update('up', RSS_FEED_OLD_POST_FETCH_ID, $user->id);
 								create_single_rss_feed($user->id, $page_id, $data['title'], $data['image'], $utmPostUrl, $timeslots, 'past');
+								create_rss_image($user->id, $page_id, $utmPostUrl, "facebook");
 								// increase post count
 								$postCount++;
 							} else {
