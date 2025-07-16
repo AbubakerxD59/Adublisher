@@ -1722,6 +1722,8 @@ function fb_page_fetch_past_posts($url, $page_id, $user_id, $timeslots, $mode)
 						'status' => true,
 						'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
 					];
+					$cron_url = 'https://www.adublisher.com/fetchRssLinkImages';
+					run_php_background($cron_url);
 				} else {
 					$response = [
 						'status' => false,
