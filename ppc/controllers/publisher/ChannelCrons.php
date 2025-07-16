@@ -2342,7 +2342,7 @@ class ChannelCrons extends CI_Controller
 				if (isset($metaOfUrlt["image"])) {
 					$schedule_where = [];
 					$schedule_where = [["key" => "user_id", "value" => $image->user_id], ["key" => "board_id", "value" => $image->page_id], ["key" => "url", "value" => $image->link]];
-					$this->Publisher_model->update_record_mc("rsssceduler", ["image_link" => $metaOfUrlt["image"], "post_title" => $metaOfUrlt["title"]], $schedule_where);
+					$this->Publisher_model->update_record_mc("pinterest_scheduler", ["image_link" => $metaOfUrlt["image"], "post_title" => $metaOfUrlt["title"]], $schedule_where);
 				}
 			}
 			if (isset($metaOfUrlt["image"])) {
