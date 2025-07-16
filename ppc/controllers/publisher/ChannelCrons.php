@@ -1919,7 +1919,7 @@ class ChannelCrons extends CI_Controller
 				$facebook_page = $this->Publisher_model->get_allrecords('facebook_pages', array('id' => $value->page_id));
 				if (count($facebook_page) > 0) {
 					$page = $facebook_page[0];
-					$timeslots = json_decode($page->time_slots);
+					$timeslots = json_decode($page->time_slots_rss);
 					if (count($timeslots) > 0) {
 						$timeslots = implode(',', $timeslots);
 						$response = fb_page_fetch_more_posts($value->url, $page->id, $value->user_id, $timeslots, 0);
