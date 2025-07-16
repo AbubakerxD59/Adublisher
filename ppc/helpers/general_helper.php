@@ -1222,12 +1222,7 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 	$CI = &get_instance();
 	$links = $CI->Publisher_model->appendFeedToUrl($url);
 	$userAgent = user_agent();
-	$contextOptions = [
-		'http' => [
-			'user_agent' => $userAgent,
-			'ignore_errors' => true
-		]
-	];
+	$contextOptions = ['http' => ['user_agent' => $userAgent, 'ignore_errors' => true]];
 	$context = stream_context_create($contextOptions);
 	$file = @file_get_contents($links, FALSE, $context);
 	if ($file === false || empty($file)) {
@@ -1247,50 +1242,43 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 			if (!empty($data)) {
 				if (isset($data->channel->item)) {
 					foreach ($data->channel->item as $item) {
-						$metaOfUrlt = metaOfUrlt($item->link, 'pinterest');
-						if (count($metaOfUrlt) > 0) {
-							$utm_details = [];
-							$utm_check = false;
-							$url_detail = getDomain($item->link);
-							if (!empty($url_detail['url'])) {
-								$domain = $url_detail['url'];
-								$utm_details = getUtm($domain, $userID);
-								if (count($utm_details) > 0) {
-									$utm_check = true;
-								}
-							}
-							$utmPostUrl = $item->link;
-							$pin_user = $CI->Publisher_model->get_allrecords('pinterest_users', ['user_id' => $userID]);
-							$pin_user = $pin_user[0];
-							if ($utm_check) {
-								$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $pin_user->username, 'pinterest');
-							}
-							$where_rss[0]['key'] = 'url';
-							$where_rss[0]['value'] = $utmPostUrl;
-							$where_rss[1]['key'] = 'board_id';
-							$where_rss[1]['value'] = $page;
-							$where_rss[2]['key'] = 'user_id';
-							$where_rss[2]['value'] = $userID;
-							$present = $CI->Publisher_model->count_records('pinterest_scheduler', $where_rss);
-							print_pre($present);
-							if (!$present) {
-								$img_path = $metaOfUrlt['image'];
-								if (empty($img_path)) {
-									$img_path = base_url('assets/general/images/no_image_found.jpg');
-								}
-								if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
-									resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
-									create_single_pinterest_rss_feed($userID, $page, $item->title, $img_path, $utmPostUrl, $timeslots, 'latest');
-								} else {
-									$response = [
-										'status' => false,
-										'error' => 'Your resource limit has been reached'
-									];
-									break;
-								}
+						$utm_details = [];
+						$utm_check = false;
+						$url_detail = getDomain($item->link);
+						if (!empty($url_detail['url'])) {
+							$domain = $url_detail['url'];
+							$utm_details = getUtm($domain, $userID);
+							if (count($utm_details) > 0) {
+								$utm_check = true;
 							}
 						}
-						sleep(rand(2, 5));
+						$utmPostUrl = $item->link;
+						$pin_user = $CI->Publisher_model->get_allrecords('pinterest_users', ['user_id' => $userID]);
+						$pin_user = $pin_user[0];
+						if ($utm_check) {
+							$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $pin_user->username, 'pinterest');
+						}
+						$where_rss[0]['key'] = 'url';
+						$where_rss[0]['value'] = $utmPostUrl;
+						$where_rss[1]['key'] = 'board_id';
+						$where_rss[1]['value'] = $page;
+						$where_rss[2]['key'] = 'user_id';
+						$where_rss[2]['value'] = $userID;
+						$present = $CI->Publisher_model->count_records('pinterest_scheduler', $where_rss);
+						if (!$present) {
+							$img_path = base_url('assets/images/download.png');
+							if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
+								resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
+								create_single_pinterest_rss_feed($userID, $page, $item->title, $img_path, $utmPostUrl, $timeslots, 'latest');
+								create_rss_image($userID, $page, $utmPostUrl, "pinterest");
+							} else {
+								$response = [
+									'status' => false,
+									'error' => 'Your resource limit has been reached'
+								];
+								break;
+							}
+						}
 					}
 				} else {
 					$response = array(
@@ -1309,6 +1297,8 @@ function pin_board_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 			'status' => true,
 			'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
 		);
+		$cron_url = 'https://www.adublisher.com/fetchRssLinkImages';
+		run_php_background($cron_url);
 	} else {
 		$response = array(
 			'status' => false,
