@@ -1125,38 +1125,32 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 	$page_detail = $CI->Publisher_model->retrieve_record('facebook_pages', $page);
 	$links = $CI->Publisher_model->appendFeedToUrl($url);
 	$userAgent = user_agent();
-	ini_set('user_agent', $userAgent);
-	$contextOptions = [
-		'http' => [
-			'user_agent' => $userAgent,
-			'ignore_errors' => true
-		]
-	];
+	$contextOptions = ['http' => ['user_agent' => $userAgent, 'ignore_errors' => true]];
 	$context = stream_context_create($contextOptions);
 	$file = file_get_contents($links, FALSE, $context);
 	$single_feed = simplexml_load_string((string) $file);
-	if ($mode == 1) {
-		if (!$single_feed || empty($single_feed)) {
-			$response = array(
-				'status' => false,
-				'error' => 'Your provided link has not valid RSS feed, Please fix and try again.'
-			);
-		} else {
-			$data = [
-				'user_id' => $userID,
-				'page_id' => $page_detail->page_id,
-				'type' => 'facebook',
-				'url' => $url,
-				'published' => 0
-			];
-			$CI->db->insert('rss_links', $data);
-			$response = array(
-				'status' => true,
-				'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
-			);
-		}
-		return $response;
-	}
+	// if ($mode == 1) {
+	// 	if (!$single_feed || empty($single_feed)) {
+	// 		$response = array(
+	// 			'status' => false,
+	// 			'error' => 'Your provided link has not valid RSS feed, Please fix and try again.'
+	// 		);
+	// 	} else {
+	// 		$data = [
+	// 			'user_id' => $userID,
+	// 			'page_id' => $page_detail->page_id,
+	// 			'type' => 'facebook',
+	// 			'url' => $url,
+	// 			'published' => 0
+	// 		];
+	// 		$CI->db->insert('rss_links', $data);
+	// 		$response = array(
+	// 			'status' => true,
+	// 			'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
+	// 		);
+	// 	}
+	// 	return $response;
+	// }
 
 	if (empty($single_feed)) {
 		$false_link = $links;
@@ -1165,7 +1159,6 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 	}
 	if ($feed) {
 		foreach ($feed as $data) {
-			// $rss = simplexml_load_string($data);
 			if (!empty($data)) {
 				$i = 1;
 				if (isset($data->channel->item)) {
@@ -1177,54 +1170,53 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 						if ($i > 10) {
 							break;
 						}
-						$metaOfUrlt = metaOfUrlt($item->link, 'other');
-						if (count($metaOfUrlt) > 0) {
-							// utm checks on url
-							$utm_details = [];
-							$utm_check = false;
-							$url_detail = getDomain($item->link);
-							if (!empty($url_detail['url'])) {
-								$domain = $url_detail['url'];
-								$utm_details = getUtm($domain, $userID);
-								if (count($utm_details) > 0) {
-									$utm_check = true;
-								}
+						// $metaOfUrlt = metaOfUrlt($item->link, 'other');
+						// if (count($metaOfUrlt) > 0) {
+						// utm checks on url
+						$utm_details = [];
+						$utm_check = false;
+						$url_detail = getDomain($item->link);
+						if (!empty($url_detail['url'])) {
+							$domain = $url_detail['url'];
+							$utm_details = getUtm($domain, $userID);
+							if (count($utm_details) > 0) {
+								$utm_check = true;
 							}
-							$utmPostUrl = $item->link;
-							if ($utm_check) {
-								$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $page_detail->page_name, 'facebook');
-							}
-							// utm checks end
-
-							$where_rss = [];
-							$where_rss[0]['key'] = 'url';
-							$where_rss[0]['value'] = $utmPostUrl;
-							$where_rss[1]['key'] = 'page_id';
-							$where_rss[1]['value'] = $page;
-							$where_rss[2]['key'] = 'user_id';
-							$where_rss[2]['value'] = $userID;
-							// $where_rss[3]['key'] = 'posted';
-							// $where_rss[3]['value'] = 0;
-							$present = $CI->Publisher_model->count_records('rsssceduler', $where_rss);
-							if (!$present) {
-								$i++;
-								$img_path = $metaOfUrlt['image'];
-								if (empty($img_path)) {
-									$img_path = base_url('assets/general/images/no_image_found.jpg');
-								}
-								if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
-									resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
-									create_single_rss_feed($userID, $page, $item->title, $img_path, $utmPostUrl, $timeslots, 'latest');
-								} else {
-									$response = [
-										'status' => false,
-										'error' => 'Your resource limit has been reached'
-									];
-								}
-							}
-						} else {
-							$few_issues['errors'][] = $item->link;
 						}
+						$utmPostUrl = $item->link;
+						if ($utm_check) {
+							$utmPostUrl = make_utm_url($utmPostUrl, $utm_details, $page_detail->page_name, 'facebook');
+						}
+						// utm checks end
+						$where_rss = [];
+						$where_rss[0]['key'] = 'url';
+						$where_rss[0]['value'] = $utmPostUrl;
+						$where_rss[1]['key'] = 'page_id';
+						$where_rss[1]['value'] = $page;
+						$where_rss[2]['key'] = 'user_id';
+						$where_rss[2]['value'] = $userID;
+						$present = $CI->Publisher_model->count_records('rsssceduler', $where_rss);
+						if (!$present) {
+							$i++;
+							// $img_path = $metaOfUrlt['image'];
+							// if (empty($img_path)) {
+							// 	$img_path = base_url('assets/general/images/no_image_found.jpg');
+							// }
+							$img_path = base_url('assets/images/download.png');
+							if (limit_check(RSS_FEED_LATEST_POST_FETCH_ID, 2, $userID)) {
+								resources_update('up', RSS_FEED_LATEST_POST_FETCH_ID, $userID);
+								create_single_rss_feed($userID, $page, $item->title, $img_path, $utmPostUrl, $timeslots, 'latest');
+								create_rss_image($userID, $page, $utmPostUrl, "facebook");
+							} else {
+								$response = [
+									'status' => false,
+									'error' => 'Your resource limit has been reached'
+								];
+							}
+						}
+						// } else {
+						// 	$few_issues['errors'][] = $item->link;
+						// }
 					}
 				} else {
 					$response = array(
@@ -1240,11 +1232,13 @@ function fb_page_fetch_more_posts($url, $page, $userID, $timeslots, $mode)
 			}
 		}
 		// Set the flag to true after the foreach loop
+		$cron_url = 'https://www.adublisher.com/fetchRssLinkImages';
 		$removeError = removeCronJobError($userID, 'facebook_page_error');
 		$response = array(
 			'status' => true,
 			'message' => 'Good Work!! We are setting up your awesome feed, Please Wait.'
 		);
+		run_php_background($cron_url);
 	} else {
 		$response = array(
 			'status' => false,
@@ -6094,4 +6088,18 @@ function fetchUrlFromComment(string $string)
 		$response["hasLink"] = true;
 	}
 	return $response;
+}
+
+function create_rss_image($user_id, $page_id, $link, $type)
+{
+	$CI = &get_instance();
+	$data = [
+		"user_id" => $user_id,
+		"page_id" => $page_id,
+		"link" => $link,
+		"type" => $type,
+		"status" => 0
+	];
+	$CI->Publisher_model->create_record('rss_images', $data);
+	return true;
 }

@@ -625,6 +625,8 @@ $route['rssfbgrouppublish'] = 'publisher/ChannelCrons/rssFacebookGroupPublish';
 // cronjob for publishing rss tiktok posts
 $route['rsstiktokpublish'] = 'publisher/ChannelCrons/rssTikTokPublish';
 
+// cronjob for fetching images for rss links
+$route['fetchRssLinkImages'] = 'publisher/ChannelCrons/fetchRssLinkImages';
 // cronjob for fetching latest posts from rss links for facebook
 $route['fetchrsslatestpostsfacebook'] = 'publisher/ChannelCrons/fetch_rss_latest_posts_facebook';
 // cronjob for fetching latest posts from rss links for pinterest

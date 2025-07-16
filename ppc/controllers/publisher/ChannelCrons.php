@@ -2317,4 +2317,30 @@ class ChannelCrons extends CI_Controller
 			print_pre('Finished');
 		}
 	}
+
+	public function fetchRssLinkImages()
+	{
+		$where = [
+			["key" => "status", "value" => "0"]
+		];
+		$unpublished_rss_images = $this->Publisher_model->list_records('rss_images', 0, 10, $where);
+		foreach ($unpublished_rss_images as $image) {
+			$type = $image->type;
+			if ($type == "facebook") {
+				$metaOfUrlt = metaOfUrlt($image->link, 'other');
+				if (isset($metaOfUrlt["image"])) {
+					$schedule_where = [];
+					$schedule_where = [["key" => "user_id", "value" => $image->user_id], ["key" => "page_id", "value" => $image->page_id], ["key" => "url", "value" => $image->link]];
+					$this->Publisher_model->update_record_mc("rsssceduler", ["link" => $metaOfUrlt["image"]], $schedule_where);
+					$this->Publisher_model->update_record("rss_images", array('status' => 1, 'response' => $metaOfUrlt["image"]), $image->id);
+				}
+			} elseif ($type == "pinterest") {
+				$metaOfUrlt = metaOfUrlt($image->link, 'pinterest');
+			}
+			if (isset($metaOfUrlt["image"])) {
+				$this->Publisher_model->update_record("rss_images", array('status' => 1, 'response' => $metaOfUrlt["image"]), $image->id);
+			}
+			sleep(rand(1, 5));
+		}
+	}
 }
