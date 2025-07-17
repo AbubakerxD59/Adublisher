@@ -396,9 +396,6 @@ if (!function_exists('localToUTC')) {
 		function loader()
 		{
 			return '';
-			// 		return '<div class="col-md-12 col-xlg-12 text-center" style="min-height:20px;">
-			// <i class="fa fa-refresh  fa-spin fa-1x fa-fw" id="loader" style="display:none;"></i>
-			// </div>';
 		}
 	}
 	if (!function_exists('limit_check')) {

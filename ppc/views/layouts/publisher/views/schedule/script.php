@@ -5,6 +5,7 @@
     var instagram_logo = "<?= ASSETURL . 'images/Icons/instagram-circle.svg' ?>";
     var tiktok_logo = "<?= ASSETURL . 'images/Icons/tiktok-circle.svg' ?>";
     var youtube_logo = "<?= ASSETURL . 'images/Icons/youtube-circle.svg' ?>";
+    var currentActionButton = '';
     Dropzone.autoDiscover = false;
     $(function() {
         setTimeout(() => {
@@ -126,23 +127,12 @@
             dictRemoveFile: "×",
             dictCancelUpload: "X",
             init: function() {
-                /*this.on("addedfile", function(file) {
-                    $("#loader").show();
-                    var channel_title = $("#channel_title").val();
-                });*/
                 this.on("addedfile", function(file) {
-
-                    document.getElementById('previewbox').style
-                        .display = 'none';
+                    document.getElementById('previewbox').style.display = 'none';
                     NoPreviewIfFile = true;
-
-                    var supportedFormats = ['image/jpeg',
-                        'image/jpg', 'image/png', 'video/mp4', 'video/quicktime', 'video/mpg', 'video/webm', 'video/mov'
-                    ];
+                    var supportedFormats = ['image/jpeg', 'image/jpg', 'image/png', 'video/mp4', 'video/quicktime', 'video/mpg', 'video/webm', 'video/mov'];
                     var fileExtension = file.name.split('.').pop().toLowerCase();
-                    if (
-                        supportedFormats.indexOf(file.type) ===
-                        -1 ||
+                    if (supportedFormats.indexOf(file.type) === -1 ||
                         (fileExtension !== 'jpg' &&
                             fileExtension !== 'jpeg' &&
                             fileExtension !== 'png' &&
@@ -157,120 +147,83 @@
                             fileExtension !== 'webm'
                         )
                     ) {
-                        alertbox("Failed",
-                            "This image format is not supported. Please upload image/s in these formats: JPG, JPEG and PNG",
-                            "error");
+                        alertbox("Failed", "This image format is not supported. Please upload image/s in these formats: JPG, JPEG and PNG", "error");
                         this.removeFile(file);
                     } else {
-                        // $("#loader").show();
-                        var channel_title = $("#channel_title")
-                            .val();
+                        var channel_title = $("#channel_title").val();
                     }
                 });
                 this.on("removedfile", function(file) {
                     // Check if there are any files remaining after removal
                     NoPreviewIfFile = false;
-                    var channelTitleValue = document
-                        .getElementById('channel_title').value;
+                    var channelTitleValue = document.getElementById('channel_title').value;
 
-                    if (this.files.length === 0 &&
-                        channelTitleValue !== '') {
+                    if (this.files.length === 0 && channelTitleValue !== '') {
                         // If no files are left, display the preview box
-                        document.getElementById('previewbox')
-                            .style.display = 'block';
+                        document.getElementById('previewbox').style.display = 'block';
                     }
                 });
                 this.on("sending", function(file, xhr, data) {
-                    data.append("totalfiles", this
-                        .getAcceptedFiles().length);
+                    data.append("totalfiles", this.getAcceptedFiles().length);
                     data.append("current_file", Current_File);
-                    data.append("channel_title", $(
-                        "#channel_title_visible").val());
-                    data.append("channel_comment", $(
-                        "#post_comment").val());
-                    data.append("action", $("#action_name")
-                        .val());
-                    // Current_File = Current_File + 1;
+                    data.append("channel_title", $("#channel_title_visible").val());
+                    data.append("channel_comment", $("#post_comment").val());
+                    data.append("action", $("#action_name").val());
                 });
                 this.on("success", function(file, response) {
-                    // Check if response is a JSON string
+                    enableButton(currentActionButton);
                     firstPreview = true;
                     NoPreviewIfFile = false;
                     if (typeof response === 'string') {
                         try {
                             response = JSON.parse(response);
                         } catch (e) {
-                            console.error(
-                                'Error parsing JSON response:',
-                                e);
                             response = {};
                         }
                     }
-                    if (typeof response === 'object' &&
-                        'message' in response) {
-                        console.log(response.message);
+                    if (typeof response === 'object' && 'message' in response) {
                         if (response.status) {
-                            $("#left").text(parseInt($("#left")
-                                .text()) - 1);
-                            alertbox("Success", response
-                                .message, "success");
-                            // if ($("#action_name").val() != "publish") {
-                            //     get_channels_scheduled();
-                            // }
+                            $("#left").text(parseInt($("#left").text()) - 1);
+                            enableButton(currentActionButton);
+                            alertbox("Success", response.message, "success");
                         } else {
-                            alertbox("Error", response.message,
-                                "error");
+                            enableButton(currentActionButton);
+                            alertbox("Error", response.message, "error");
                         }
                     } else {
                         // Handle the case where response is not in the expected format.
-                        console.error('Invalid response:',
-                            response);
+                        enableButton(currentActionButton);
+                        console.error('Invalid response:', response);
                     }
                     // console.log(Current_File + 1, myDropzone.files);
                     this.removeFile(file);
                     if (myDropzone.files.length < 1) {
-                        //$("#loader").hide();
                         $("#preloader_ajax").hide();
                     }
                     processQueueWithDelay(myDropzone.files);
                 });
                 this.on("error", function(file, response) {
+                    enableButton(currentActionButton);
                     $("#preloader_ajax").hide();
-                    // alertbox("Error", response.data.error.message, "error");
-                    alertbox("Error", response, "error");
                     this.removeFile(file);
                     processQueueWithDelay(myDropzone.files);
+                    alertbox("Error", response, "error");
                 });
                 this.on("complete", function(file) {
-                    document.getElementById('previewbox').style
-                        .display = 'block';
-                    document.getElementById('previewbox')
-                        .innerHTML = '';
-
+                    enableButton(currentActionButton);
+                    document.getElementById('previewbox').style.display = 'block';
+                    document.getElementById('previewbox').innerHTML = '';
                     if ($("#action_name").val() != "publish") {
                         get_channels_scheduled();
                     }
-                    // setTimeout(() => {
-                    this.removeFile(
-                        file); // right here after 3 seconds you can clear
-                    // }, 2000);
-                    if (this.getUploadingFiles().length === 0 &&
-                        this.getQueuedFiles().length === 0) {
-                        // doSomething();
+                    this.removeFile(file);
+                    if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
                         $("#channel_title").val('');
                         $("#channel_title_visible").val('');
                         $("#post_comment").val('');
-
                     }
                 });
             },
-            /*accept: function(file, done) {
-                if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png' || file.type === 'image/bmp' || file.type === 'image/gif' || file.type === 'image/tiff' || file.type === 'image/webp') {
-                    done(); // Accept the file
-                } else {
-                    done("This file is not supported. Please upload a file in these formats: jpg, jpeg, png, bmp, gif, tiff, webp.");
-                }
-            }*/
             accept: function(file, done) {
                 done();
             }
@@ -397,11 +350,11 @@
                 data: dataOBJ,
                 dataType: "json",
                 success: function(response) {
+                    enableButton(currentActionButton);
                     $("#loader").hide();
                     $("#preloader_ajax").hide();
                     if (response.status) {
-                        alertbox("Success", response.message,
-                            "success");
+                        alertbox("Success", response.message, "success");
                         setTimeout(function() {
                             location.reload();
                         }, 500);
@@ -412,6 +365,7 @@
                 error: function(response) {
                     $("#loader").hide();
                     $("#preloader_ajax").hide();
+                    enableButton(currentActionButton);
                     alertbox("Error", response.message, "error");
                 }
             });
@@ -420,6 +374,8 @@
 
 
         $("#video_publish").click(function(e) {
+            currentActionButton = $(this);
+            var videoPublish = $(this);
             video_action = 'publish';
             var video_title = $("#video_title").val();
             var filled = true;
@@ -429,16 +385,13 @@
             } else {
                 if (video_title.length >= 99) {
                     filled = false;
-                    alertbox("Error",
-                        "Video title can't be more than 99 characters!",
-                        "error");
+                    alertbox("Error", "Video title can't be more than 99 characters!", "error");
                 }
             }
             var video_category = $("#video_category").val();
             if (video_category == "" || video_category == null) {
                 filled = false;
-                alertbox("Error", "Video Category field is required",
-                    "error");
+                alertbox("Error", "Video Category field is required", "error");
             }
             var video_path = $("#video_path").val();
             if (video_path == "" || video_path == null) {
@@ -446,10 +399,12 @@
                 alertbox("Error", "Video is missing!", "error");
             }
             if (filled) {
+                disableButton(currentActionButton, "Publish");
                 youtube_upload();
             }
         });
         $("#video_schedule").click(function(e) {
+            currentActionButton = $(this);
             video_action = 'schedule'
             var video_title = $("#video_title").val();
             var filled = true;
@@ -459,16 +414,13 @@
             } else {
                 if (video_title.length >= 99) {
                     filled = false;
-                    alertbox("Error",
-                        "Video title can't be more than 99 characters!",
-                        "error");
+                    alertbox("Error", "Video title can't be more than 99 characters!", "error");
                 }
             }
             var video_category = $("#video_category").val();
             if (video_category == "" || video_category == null) {
                 filled = false;
-                alertbox("Error", "Video Category field is required",
-                    "error");
+                alertbox("Error", "Video Category field is required", "error");
             }
             var video_path = $("#video_path").val();
             if (video_path == "" || video_path == null) {
@@ -476,14 +428,10 @@
                 alertbox("Error", "Video is missing!", "error");
             }
             if (filled) {
+                disableButton(currentActionButton, "Publish");
                 youtube_upload();
             }
         });
-        /*$("#publish").click(function(e) {
-            $("#action_name").val("publish");
-            var channel_title = $("#channel_title").val();
-            myDropzone.processQueue();
-        });*/
         $("#save").click(function(e) {
             $("#action_name").val("save");
             var channel_title = $("#channel_title").val();
@@ -525,20 +473,16 @@
                 'channel_title': titleValue,
                 'channel_comment': channel_comment
             }
-            console.log($("#post_comment").val());
             return dataOBJ;
         };
 
         $("#publish").click(function(e) {
+            currentActionButton = $(this);
+            disableButton($(currentActionButton), "Publish");
             $("#loader").show();
-            $("#preloader_ajax").show();
             var dataOBJ = text_area();
-
-            // var channel_title = $("#channel_title").val();    
             var channel_title = $("#channel_title_visible").val();
-
             if (myDropzone.getAcceptedFiles().length == 0) {
-
                 if (channel_title != "" || fetchedUrl != "") {
                     $.ajax({
                         type: "POST",
@@ -546,12 +490,12 @@
                         data: dataOBJ,
                         dataType: "json",
                         success: function(response) {
+                            enableButton(currentActionButton);
                             firstPreview = true;
                             $("#loader").hide();
                             $("#preloader_ajax").hide();
                             if (response.status) {
-                                alertbox("Success", response
-                                    .message, "success");
+                                alertbox("Success", response.message, "success");
                                 get_channels_scheduled();
                                 $("#channel_title").val('');
                                 $("#post_comment").val('');
@@ -562,19 +506,18 @@
                                 fetchedUrl = "";
                                 fetchedThumbnail = "";
                             } else {
-                                alertbox("Error", response
-                                    .message, "error");
+                                alertbox("Error", response.message, "error");
                             }
                         },
                         error: function(response) {
+                            enableButton(currentActionButton);
                             $("#loader").hide();
                             $("#preloader_ajax").hide();
-                            alertbox("Error", response.message,
-                                "error");
+                            alertbox("Error", response.message, "error");
                         }
                     });
-
                 } else {
+                    enableButton(currentActionButton);
                     $("#loader").hide();
                     $("#preloader_ajax").hide();
                     alertbox("Error", "Please Provide Post Title", "error");
@@ -584,12 +527,13 @@
         });
 
         $("#schedule").click(function(e) {
+            currentActionButton = $(this);
+            disableButton(currentActionButton, "Queue");
             $("#loader").show();
             $("#preloader_ajax").show();
             var dataOBJ = text_area();
             var channel_title = $("#channel_title_visible").val();
             if (myDropzone.getAcceptedFiles().length == 0) {
-
                 if (channel_title != "" || fetchedUrl != "") {
                     $.ajax({
                         type: "POST",
@@ -597,38 +541,35 @@
                         data: dataOBJ,
                         dataType: "json",
                         success: function(response) {
+                            enableButton(currentActionButton);
                             firstPreview = true;
                             $("#loader").hide();
                             $("#preloader_ajax").hide();
                             if (response.status) {
-                                alertbox("Success", response
-                                    .message, "success");
+                                alertbox("Success", response.message, "success");
                                 get_channels_scheduled();
                                 $("#channel_title").val('');
                                 $("#post_comment").val('');
                                 $("#channel_comment").val('');
-                                $("#channel_title_visible").val(
-                                    '');
+                                $("#channel_title_visible").val('');
                                 $("#previewbox").html("");
                                 fetchedUrl = "";
                                 fetchedThumbnail = "";
                             } else {
-                                alertbox("Error", response
-                                    .message, "error");
+                                alertbox("Error", response.message, "error");
                             }
                         },
                         error: function(response) {
                             $("#loader").hide();
                             $("#preloader_ajax").hide();
-                            alertbox("Error",
-                                "Something went wrong",
-                                "error");
+                            enableButton(currentActionButton);
+                            alertbox("Error", "Something went wrong", "error");
                         }
                     });
-
                 } else {
                     $("#loader").hide();
                     $("#preloader_ajax").hide();
+                    enableButton(currentActionButton);
                     alertbox("Error", "Please Provide Post Title", "error");
                 }
             }
@@ -2137,6 +2078,7 @@
 <script>
     $(document).ready(function() {
         $(document).on('click', '.publish_now', function() {
+            currentActionButton = $(this);
             var id = $(this).data('id');
             var publish_url = 'publishNowQueuedPost'
             swal({

@@ -72,6 +72,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.5.3/waves.min.js" integrity="sha512-X55hOdevOe9o6meBWUdyPeWhv7F0zPBTMayKW0e+wiqXBLa/AoQ8/pNkbKdPr1RHbjoIjBH+yKo3YW5oFUgQRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
+    var ajax_preloader_text = null;
+
     function alertbox(heading, message, type) {
         if (type == 'success') {
             toastr.success(message);
@@ -90,5 +92,22 @@
         } else {
             return false;
         }
+    }
+
+    function getAjaxLoader() {
+        var ajax_loader = '<span class="ajax_loader" data-title="loader"></span>';
+        return ajax_loader;
+    }
+
+    function disableButton(button, text) {
+        var ajax_loader = getAjaxLoader();
+        ajax_preloader_text = text;
+        button.html(ajax_loader);
+        button.attr('disabled', true);
+    }
+
+    function enableButton(button) {
+        button.html(ajax_preloader_text);
+        button.prop('disabled', false);
     }
 </script>
