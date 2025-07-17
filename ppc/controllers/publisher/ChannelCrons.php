@@ -2345,7 +2345,7 @@ class ChannelCrons extends CI_Controller
 					$this->Publisher_model->update_record_mc("pinterest_scheduler", ["image_link" => $metaOfUrlt["image"], "post_title" => $metaOfUrlt["title"]], $schedule_where);
 				}
 			}
-			if (isset($metaOfUrlt["image"])) {
+			if (isset($metaOfUrlt["image"]) && !empty($metaOfUrlt["image"])) {
 				$this->Publisher_model->update_record("rss_images", array('status' => 1, 'response' => $metaOfUrlt["image"]), $image->id);
 			}
 			sleep(rand(1, 5));
