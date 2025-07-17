@@ -124,6 +124,7 @@
             parallelUploads: 1,
             addRemoveLinks: true,
             dictRemoveFile: "×",
+            dictCancelUpload: "X",
             init: function() {
                 /*this.on("addedfile", function(file) {
                     $("#loader").show();
@@ -287,6 +288,7 @@
             parallelUploads: 1,
             addRemoveLinks: true,
             dictRemoveFile: "×",
+            dictCancelUpload: "X",
             init: function() {
                 this.on("addedfile", function(file) {
 
