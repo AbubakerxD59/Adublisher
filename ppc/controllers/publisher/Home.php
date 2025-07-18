@@ -349,7 +349,8 @@ class Home extends CI_Controller
 		die();
 	}
 
-	public function ppph(){
+	public function ppph()
+	{
 		return phpinfo();
 	}
 
@@ -867,13 +868,12 @@ class Home extends CI_Controller
 		// save to cronjob table
 		$facebook_pages = $this->Publisher_model->get_allrecords('facebook_pages', array('user_id' => $userID));
 		$tiktoks = $this->Publisher_model->get_allrecords('tiktok', array('user_id' => $userID));
-		$view_data = [];
-		$view_data['facebook_pages'] = $facebook_pages;
-		$view_data['tiktoks'] = $tiktoks;
-		check_analytics($view_data);
-		$this->load->view('templates/publisher/header', $roles_data);
+		$data = [];
+		$data["data"]['facebook_pages'] = $facebook_pages;
+		$data["data"]['tiktoks'] = $tiktoks;
+		check_analytics($data["data"]);
 		// load analytics view
-		$this->load->view('layouts/publisher/analytics', $view_data);
+		$this->load->view('layouts/publisher/analytics', $data);
 	}
 
 	public function calendar()

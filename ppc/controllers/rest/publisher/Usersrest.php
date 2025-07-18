@@ -6984,9 +6984,9 @@ class Usersrest extends REST_Controller
 
 	public function get_link_valid_meta($url)
 	{
-		$this->load->library('getMetaInfo');
 		$response = array();
 		$info = array();
+		$this->load->library('getMetaInfo');
 		$info = $this->getmetainfo->get_info($url);
 		try {
 			if (!empty($info) && isset($info['title']) && isset($info['image'])) {
