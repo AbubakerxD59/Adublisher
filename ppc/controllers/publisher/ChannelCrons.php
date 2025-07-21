@@ -1678,12 +1678,11 @@ class ChannelCrons extends CI_Controller
 						$file_name = BulkAssets . $file_url['file_name'];
 						$postData = ['description' => $value->title, 'file_url' => $file_name];
 						$result = $this->facebook->request('POST', '/' . $page->page_id . '/videos', $postData, $access_token);
-						print_pre($result);
-						remove_file($file_url['file_name']);
+						// remove_file($file_url['file_name']);
 					}
 				}
-				remove_file($value->image);
-				remove_from_s3bucket($value->video_path);
+				// remove_file($value->image);
+				// remove_from_s3bucket($value->video_path);
 				if (isset($result['id'])) {
 					resources_update('up', POST_PUBLISHING_FB_ID);
 					if (!empty($value->comment)) {
@@ -1709,7 +1708,6 @@ class ChannelCrons extends CI_Controller
 			['key' => 'published', 'value' => 0]
 		];
 		$unpublished_posts = $this->Publisher_model->list_records('publish_posts', 0, 10, $where, 'id', 'asc');
-		print_pre($unpublished_posts);
 		foreach ($unpublished_posts as $key => $value) {
 			// change status to publish
 			$this->Publisher_model->update_record('publish_posts', array('published' => 1), $value->id);
@@ -1766,7 +1764,6 @@ class ChannelCrons extends CI_Controller
 					$response = $this->Publisher_model->publish_video_pin_curl($data);
 				}
 				$response = json_decode($response, true);
-				print_pre($response);
 				if (isset($response['id']) && !empty($response['id'])) {
 					$this->Publisher_model->update_record('publish_posts', array('published' => '1', 'error' => $response['id']), $value->id);
 					resources_update('up', POST_PUBLISHING_PIN_ID);
@@ -1774,10 +1771,10 @@ class ChannelCrons extends CI_Controller
 					$this->Publisher_model->update_record('publish_posts', array('published' => '-1', 'error' => $response['message']), $value->id);
 					notify_via_email($error_postData, $board, 'Pinterest', $response['message']);
 				}
-				isset($image_path) ? remove_file($image_path) : '';
-				remove_file($value->image);
-				remove_file($value->video_path);
-				remove_from_s3bucket($value->video_path);
+				// isset($image_path) ? remove_file($image_path) : '';
+				// remove_file($value->image);
+				// remove_file($value->video_path);
+				// remove_from_s3bucket($value->video_path);
 			} else {
 				$this->db->where('id', $value->id);
 				$this->db->delete('publish_posts');
@@ -1835,7 +1832,7 @@ class ChannelCrons extends CI_Controller
 						$publish = $this->tiktok->fetch_status($access_token, $response['publish_id']);
 					} while (!in_array($publish['status'], ['PUBLISH_COMPLETE', 'FAILED']));
 					if (isset($publish['status']) && $publish['status'] == 'PUBLISH_COMPLETE') {
-						remove_file($value->image);
+						// remove_file($value->image);
 						$this->Publisher_model->update_record('publish_posts', array('published' => '1', 'error' => $response['publish_id']), $value->id);
 					} else {
 						$this->Publisher_model->update_record('publish_posts', array('published' => '-1', 'error' => $publish['fail_reason']), $value->id);
@@ -1865,19 +1862,15 @@ class ChannelCrons extends CI_Controller
 		];
 		$unpublished_posts = $this->Publisher_model->list_records('publish_posts', 0, 10, $where, 'id', 'asc');
 		foreach ($unpublished_posts as $key => $value) {
-			print_pre($value);
 			// change status to in progress
 			$this->Publisher_model->update_record('publish_posts', array('published' => '2'), $value->id);
 			// change status to in progress
 			$type = !empty($value->image) ? 'image' : 'video';
-			print_pre($type);
 			$ig_user = $this->Publisher_model->get_allrecords('instagram_users', array('user_id' => $value->user_id, 'instagram_id' => $value->page_id));
-			print_pre($ig_user);
 			if (count($ig_user) > 0) {
 				$ig_user = $ig_user[0];
 				if ($type == 'image') {
 					$response = publish_ig_single_media($ig_user->instagram_id, $ig_user->access_token, $value->image, $value->title, $value->user_id);
-					print_pre([$response]);
 					if ($response['status']) {
 						$this->Publisher_model->update_record('publish_posts', array('published' => '1', 'error' => 'Posts are published on Instagram successfully.'), $value->id);
 					} else {
