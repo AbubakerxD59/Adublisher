@@ -244,12 +244,10 @@
             dictCancelUpload: "X",
             init: function() {
                 this.on("addedfile", function(file) {
-
                     var supportedFormats = [
                         'video/mp4, video/mkv, video/mpg, video/webm, video/mov'
                     ];
-                    var fileExtension = file.name.split('.')
-                        .pop().toLowerCase();
+                    var fileExtension = file.name.split('.').pop().toLowerCase();
                     if (
                         fileExtension !== 'mp4' &&
                         fileExtension !== 'mkv' &&
@@ -500,8 +498,7 @@
                                 $("#channel_title").val('');
                                 $("#post_comment").val('');
                                 $("#channel_comment").val('');
-                                $("#channel_title_visible").val(
-                                    '');
+                                $("#channel_title_visible").val('');
                                 $("#previewbox").html("");
                                 fetchedUrl = "";
                                 fetchedThumbnail = "";
@@ -825,23 +822,23 @@
 
         } else if (elem.type == "pinterest") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + pinterest_board_icon + '" class="rounded-circle mr-2" alt="' + pinterest_logo + '">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + pinterest_board_icon + '" class="rounded-circle mr-2" alt="' + pinterest_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == "instagram") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == "fb_groups") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle mr-2" alt="' + facebook_logo + '">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle mr-2" alt="' + facebook_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == 'youtube') {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + youtube_icon + '" class="rounded-circle mr-2" alt="' + youtube_logo + '">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + youtube_icon + '" class="rounded-circle mr-2" alt="' + youtube_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == 'tiktok') {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + tiktok_account_icon + '" class="rounded-circle mr-2" alt="' + tiktok_logo + '">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + tiktok_account_icon + '" class="rounded-circle mr-2" alt="' + tiktok_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         }
 
@@ -909,6 +906,7 @@
 
     function create_publish_block(elem) {
 
+        var post_id = elem.post_id;
         var node = '<div class="col-lg-3 col-md-6" id="card_' + elem.id + '">'
         node += '<div class="card blog-widget">'
         node += '<div class="card-body">';
@@ -928,27 +926,29 @@
         node += '<strong>' + elem.title.slice(0, 30) + '...</strong></p>';
         // chech if type is facebook 
         if (elem.type == "facebook") {
+            node += '<div class="d-flex justify-content-between">';
             node +=
-                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle mr-2" alt="' + facebook_logo + '">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_logo + '" class="rounded-circle mr-2" alt="' + facebook_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
-
-
+            node +=
+                '<button class="btn btn-rounded p-1 px-2 m-2 text-danger delete_post" style="border: 1px solid red; zoom:0.80;" data-id="' + post_id + '" data-account="' + elem.channel_name + '" data-account_id="' + elem.channel_id + '" data-type="Facebook"><b><p class="m-0"><span>Delete</span></p></b></button>'
+            node += '</div>';
         } else if (elem.type == "pinterest") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + pinterest_board_icon + '" class="rounded-circle mr-2" alt="' + pinterest_logo + '">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle mr-2" alt="' + pinterest_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
 
         } else if (elem.type == "instagram") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == "fb_groups") {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         } else if (elem.type == 'youtube') {
             node +=
-                '<button class="btn btn-rounded p-1  pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + youtube_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
+                '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + youtube_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
         }
 
@@ -2379,4 +2379,41 @@
             handleDelete(id, pageType, deleteButton, action);
         });
     });
+
+    $(document).on("click", ".delete_post", function() {
+        var post_id = $(this).data("id");
+        var account = $(this).data("account");
+        var account_id = $(this).data("account_id");
+        var type = $(this).data("type");
+        swal({
+            title: `Delete POST from ${account}`,
+            text: `You are about to Delete this Post from ${account} on ${type}. Do you want to proceed?`,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, I am sure",
+            closeOnConfirm: false
+        }, function(isConfirmed) {
+            if (isConfirmed) {
+                $.ajax({
+                    type: "GET",
+                    url: "<?php echo SITEURL; ?>delete_post",
+                    data: {
+                        "type": type,
+                        "account": account,
+                        "post_id": post_id,
+                        "account_id": account_id,
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $('.bulk_upload_published').trigger("click");
+                            alertbox("Success", response.message, "success");
+                        } else {
+                            alertbox("Error", response.message, "error");
+                        }
+                    }
+                });
+            }
+        });
+    })
 </script>

@@ -5944,6 +5944,7 @@ class Usersrest extends REST_Controller
 				$new_result[$key]['post_day'] = utcToLocal($row->post_datetime, $user->gmt, "l");
 				$new_result[$key]['post_date'] = utcToLocal($row->post_datetime, $user->gmt, "d F, Y");
 				$new_result[$key]['post_time'] = utcToLocal($row->post_datetime, $user->gmt, "g:i a");
+				$new_result["post_id"] = $row->id;
 			}
 			// published posts
 			foreach ($published_posts as $row) {
@@ -6003,6 +6004,7 @@ class Usersrest extends REST_Controller
 				$published['post_day'] = utcToLocal($row->post_datetime, $user->gmt, "l");
 				$published['post_date'] = utcToLocal($row->post_datetime, $user->gmt, "d F, Y");
 				$published['post_time'] = utcToLocal($row->post_datetime, $user->gmt, "g:i a");
+				$published["post_id"] = $row->error;
 				array_push($new_result, $published);
 			}
 			// youtube posts
@@ -7018,6 +7020,36 @@ class Usersrest extends REST_Controller
 			), REST_Controller::HTTP_OK);
 		}
 		// check if any channel is active or not
+	}
+
+	public function delete_post_GET()
+	{
+		$user_id = App::Session()->get('userid');
+		$type = $this->get("type");
+		$account = $this->get("account");
+		$post_id = $this->get("post_id");
+		$account_id = $this->get("account_id");
+		try {
+			if (strtolower($type) == "facebook") {
+				$fb_page = $this->Publisher_model->get_allrecords("facebook_pages", array("user_id" => $user_id, "page_id" => $account_id));
+				if (count($fb_page) > 0) {
+					$fb_page = $fb_page[0];
+					$response = $this->facebook->request('delete', "/", $post_id, (string) $fb_page->access_token);
+					dd([$response]);
+				} else {
+					$response = [
+						"success" => false,
+						"message" => "Facebook Page not found!"
+					];
+				}
+			}
+		} catch (Exception $e) {
+			$response = [
+				"success" => false,
+				"message" => $e->getMessage()
+			];
+		}
+		return $response;
 	}
 
 	public function link_preview_GET()

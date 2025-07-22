@@ -699,6 +699,7 @@ $route['disconnectpinterest'] = 'rest/publisher/Authrest/disconnectPinterest';
 // link preview - content planner
 $route['link_preview'] = 'rest/publisher/Usersrest/link_preview';
 $route['active_channels'] = 'rest/publisher/Usersrest/active_channels';
+$route['delete_post'] = 'rest/publisher/Usersrest/delete_post';
 $route['recent_posts'] = 'rest/publisher/Usersrest/recent_posts';
 $route['get_recent_posts'] = 'rest/publisher/Usersrest/get_recent_posts';
 $route['page_insights'] = 'rest/publisher/Usersrest/page_insights';
