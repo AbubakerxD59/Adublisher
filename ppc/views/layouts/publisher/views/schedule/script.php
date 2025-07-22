@@ -2395,6 +2395,7 @@
             closeOnConfirm: false
         }, function(isConfirmed) {
             if (isConfirmed) {
+                $("#loader").show();
                 $.ajax({
                     type: "GET",
                     url: "<?php echo SITEURL; ?>delete_post",
@@ -2405,11 +2406,24 @@
                         "account_id": account_id,
                     },
                     success: function(response) {
+                        $("#loader").hide();
                         if (response.success) {
                             $('.bulk_upload_published').trigger("click");
-                            alertbox("Success", response.message, "success");
+                            swal({
+                                title: "Deleted!",
+                                text: response.message,
+                                type: "success",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
                         } else {
-                            alertbox("Error", response.message, "error");
+                            swal({
+                                title: "Error!",
+                                text: response.message,
+                                type: "error",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
                         }
                     }
                 });

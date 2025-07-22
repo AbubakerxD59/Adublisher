@@ -7036,7 +7036,18 @@ class Usersrest extends REST_Controller
 					$fb_page = $fb_page[0];
 					$this->load->library('facebook');
 					$response = $this->facebook->request('delete', "/" . $post_id, [], (string) $fb_page->access_token);
-					dd([$response]);
+					if (isset($response["success"])) {
+						// $this->Publisher_model->delete_where($table, $where);
+						$response = [
+							"success" => true,
+							"message" => "Post delete Successfully!"
+						];
+					} else {
+						$response = [
+							"success" => false,
+							"message" => "Unable to delete Post!"
+						];
+					}
 				} else {
 					$response = [
 						"success" => false,
@@ -7050,7 +7061,7 @@ class Usersrest extends REST_Controller
 				"message" => $e->getMessage()
 			];
 		}
-		return $response;
+		$this->response($response, REST_Controller::HTTP_OK);
 	}
 
 	public function link_preview_GET()
