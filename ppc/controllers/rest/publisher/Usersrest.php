@@ -5027,7 +5027,6 @@ class Usersrest extends REST_Controller
 					'content_type' => !empty($img_path) ? 'image_path' : 'video_path',
 					'published' => 0
 				];
-				print_pre($data);
 				$pinterest_response = $this->db->insert('publish_posts', $data);
 				if ($pinterest_response) {
 					$success_message[] = "Your post(s) are being Published!";
@@ -5066,7 +5065,6 @@ class Usersrest extends REST_Controller
 						'video_path' => $video_path,
 						'published' => 0
 					];
-					print_pre($data);
 					$facebook_response = $this->db->insert('publish_posts', $data);
 					if ($facebook_response) {
 						$success_message[] = "Your post(s) are being Published!";
@@ -5163,19 +5161,19 @@ class Usersrest extends REST_Controller
 		}
 		// cronjob for publishing facebook posts
 		if (isset($facebook_response)) {
-			// run_php_background("https://www.adublisher.com/publishFacebookPosts");
+			run_php_background("https://www.adublisher.com/publishFacebookPosts");
 		}
 		// cronjob for publishing pinterest posts
 		if (isset($pinterest_response)) {
-			// run_php_background("https://www.adublisher.com/publishPinterestPosts");
+			run_php_background("https://www.adublisher.com/publishPinterestPosts");
 		}
 		// cronjob for publishing tiktok posts
 		if (isset($tiktok_response)) {
-			// run_php_background("https://www.adublisher.com/publishTiktokPosts");
+			run_php_background("https://www.adublisher.com/publishTiktokPosts");
 		}
 		// cronjob for publishing instagram posts
 		if (isset($instagram_response)) {
-			// run_php_background("https://www.adublisher.com/publishInstagramPosts");
+			run_php_background("https://www.adublisher.com/publishInstagramPosts");
 		}
 		// Return response based on success or error message
 		if (count($success_message) > 0 && count($error_message) == 0) {
