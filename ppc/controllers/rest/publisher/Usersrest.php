@@ -5061,7 +5061,7 @@ class Usersrest extends REST_Controller
 						'type' => 'facebook',
 						'title' => $title,
 						'comment' => $comment,
-						'image' => $img_path,
+						'image' => $file_name,
 						'video_path' => $video_path,
 						'published' => 0
 					];
