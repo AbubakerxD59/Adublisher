@@ -7034,6 +7034,7 @@ class Usersrest extends REST_Controller
 				$fb_page = $this->Publisher_model->get_allrecords("facebook_pages", array("user_id" => $user_id, "page_id" => $account_id));
 				if (count($fb_page) > 0) {
 					$fb_page = $fb_page[0];
+					$this->load->library('facebook');
 					$response = $this->facebook->request('delete', "/", $post_id, (string) $fb_page->access_token);
 					dd([$response]);
 				} else {
