@@ -408,12 +408,12 @@ class ChannelCrons extends CI_Controller
 		foreach ($posts as $key => $post) {
 			$this->Publisher_model->update_record('pinterest_scheduler', array('published' => 2, 'error' => 'Processing'), $post->id);
 			if (isDefaultImage($post->image_link)) {
-				$link_data = $this->getmetainfo->get_info($post->url, 'other');
+				$link_data = $this->getmetainfo->get_info($post->url, 'pinterest');
 				if (!empty($link_data["image"])) {
 					$post->image_link = $link_data["image"];
 				} else {
 					sleep(rand(2, 5));
-					$link_data = $this->getmetainfo->get_info($post->url, 'other');
+					$link_data = $this->getmetainfo->get_info($post->url, 'pinterest');
 					if (!empty($link_data["image"])) {
 						$post->image_link = $link_data["image"];
 					} else {
