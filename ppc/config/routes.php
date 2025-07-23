@@ -284,6 +284,7 @@ $route['loadmoreposts'] = 'rest/publisher/Usersrest/load_more_posts';
 $route['getrssspublished'] = 'rest/publisher/Usersrest/getrssspublished';
 $route['rssfeedonoff'] = 'rest/publisher/Usersrest/rssfeedonoff';
 $route['tiktok_rss_feed_onoff'] = 'rest/publisher/Usersrest/tiktok_rss_feed_onoff';
+$route['rss_auto_shufflling_toggle'] = 'rest/publisher/Usersrest/rss_auto_shufflling_toggle';
 
 // Shopify Automation On Off
 $route['shopify_fb_page_automation_onoff'] = 'rest/publisher/Usersrest/shopify_fb_page_automation_onoff';

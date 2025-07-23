@@ -140,12 +140,34 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                         ?>
                     </select>
                     <br><br>
+                    <!-- rss posting -->
                     <div class="row on_off" style="display: none;">
-                        <div class="col-md-7 pl-3"> <small> Turn Rss posting ON and
-                                OFF</small> </div>
+                        <div class="col-md-7 pl-3">
+                            <small>
+                                Turn Rss posting ON and OFF
+                            </small>
+                        </div>
                         <div class="col-md-5">
                             <label class="switch">
                                 <input type="checkbox" class="rssposting" checked="">
+                                <div class="slider"></div>
+                                <div class="slider-card">
+                                    <div class="slider-card-face slider-card-front"></div>
+                                    <div class="slider-card-face slider-card-back"></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- auto shuffling -->
+                    <div class="row on_off" style="display: none;">
+                        <div class="col-md-7 pl-3">
+                            <small>
+                                Turn Auto Shuffling ON and OFF
+                            </small>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="switch">
+                                <input type="checkbox" class="autoshuffling" checked="">
                                 <div class="slider"></div>
                                 <div class="slider-card">
                                     <div class="slider-card-face slider-card-front"></div>
@@ -581,7 +603,7 @@ if (count($user_pages) > 0 || count($pinterest_boards) > 0 || count($ig_accounts
                             style="display: none; height: fit-content;" data-toggle="tooltip"
                             data-placement="bottom" title=""
                             data-original-title="Shuffles current Feed."><i
-                                class="fa fa-refresh pointer"></i> Shuffle</button>
+                                class="fa fa-sync pointer"></i> Shuffle</button>
                         <button class="btn btn-primary refresh_timeslots btn-sm"
                             style="display: none; height: fit-content;" data-toggle="tooltip"
                             data-placement="bottom" title=""

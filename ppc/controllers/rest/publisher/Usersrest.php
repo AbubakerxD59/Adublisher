@@ -1614,11 +1614,11 @@ class Usersrest extends REST_Controller
 				$new_result[$key]['post_date'] = utcToLocal($row->post_datetime, $user->gmt, "F j, Y, g:i a");
 				$new_result[$key]['post_time'] = utcToLocal($row->post_datetime, $user->gmt, "H:i A");
 			}
-			$this->response(['status' => true, 'data' => $new_result, 'time_slots' => $page->time_slots_rss, 'rss_active' => $page->rss_active, 'shopify_active' => $page->shopify_active, 'rss_link' => $return_link_and_last_run, 'last_shopify_run' => $last_shopify_run, 'count' => count($count), 'scheduled_until' => $scheduled_until], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+			$this->response(['status' => true, 'data' => $new_result, 'time_slots' => $page->time_slots_rss, 'rss_active' => $page->rss_active, "auto_shuffle" => $page->auto_shuffle, 'shopify_active' => $page->shopify_active, 'rss_link' => $return_link_and_last_run, 'last_shopify_run' => $last_shopify_run, 'count' => count($count), 'scheduled_until' => $scheduled_until], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
 
 		} else {
 			//Set the response and exit
-			$this->response(['status' => true, 'message' => 'Please try again', 'time_slots' => $page->time_slots_rss, 'rss_active' => $page->rss_active, 'shopify_active' => $page->shopify_active, 'rss_link' => $return_link_and_last_run, 'last_shopify_run' => $last_shopify_run], REST_Controller::HTTP_OK); // NOT_FOUND (404) being the HTTP response code
+			$this->response(['status' => true, 'message' => 'Please try again', 'time_slots' => $page->time_slots_rss, 'rss_active' => $page->rss_active, "auto_shuffle" => $page->auto_shuffle, 'shopify_active' => $page->shopify_active, 'rss_link' => $return_link_and_last_run, 'last_shopify_run' => $last_shopify_run], REST_Controller::HTTP_OK); // NOT_FOUND (404) being the HTTP response code
 
 		}
 	}
@@ -6645,6 +6645,7 @@ class Usersrest extends REST_Controller
 				'data' => $new_result,
 				'time_slots' => $page->time_slots_rss,
 				'rss_active' => $page->rss_active,
+				'auto_shuffle' => $page->auto_shuffle,
 				'shopify_active' => $page->shopify_active,
 				'rss_link' => $return_link_and_last_run,
 				'last_shopify_run' => $last_shopify_run,
@@ -6659,6 +6660,7 @@ class Usersrest extends REST_Controller
 				'message' => 'Please try again',
 				'time_slots' => $page->time_slots_rss,
 				'rss_active' => $page->rss_active,
+				'auto_shuffle' => $page->auto_shuffle,
 				'shopify_active' => $page->shopify_active,
 				'rss_link' => $return_link_and_last_run,
 				'last_shopify_run' => $last_shopify_run
@@ -7338,6 +7340,7 @@ class Usersrest extends REST_Controller
 				'data' => $new_result,
 				'time_slots' => $page->time_slots_rss,
 				'rss_active' => $page->rss_active,
+				'auto_shuffle' => $page->auto_shuffle,
 				'shopify_active' => $page->shopify_active,
 				'rss_link' => $return_link_and_last_run,
 				'last_shopify_run' => $last_shopify_run,
@@ -7352,6 +7355,7 @@ class Usersrest extends REST_Controller
 				'message' => 'Please try again',
 				'time_slots' => $page->time_slots_rss,
 				'rss_active' => $page->rss_active,
+				'auto_shuffle' => $page->auto_shuffle,
 				'shopify_active' => $page->shopify_active,
 				'rss_link' => $return_link_and_last_run,
 				'last_shopify_run' => $last_shopify_run,
@@ -10462,11 +10466,37 @@ class Usersrest extends REST_Controller
 				$new_result[$key]['post_date'] = utcToLocal($row->post_datetime, $user->gmt, "F j, Y, g:i a");
 				$new_result[$key]['post_time'] = utcToLocal($row->post_datetime, $user->gmt, "H:i A");
 			}
-			$this->response(['status' => true, 'data' => $new_result, 'time_slots' => $page->time_slots_rss, 'rss_active' => $page->rss_active ? $page->rss_active : 0, 'shopify_active' => 0, 'rss_link' => $return_link_and_last_run, 'last_shopify_run' => $last_shopify_run, 'count' => count($total_posts), 'scheduled_until' => $scheduled_until], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+			$this->response(
+				[
+					'status' => true,
+					'data' => $new_result,
+					'time_slots' => $page->time_slots_rss,
+					'rss_active' => $page->rss_active ? $page->rss_active : 0,
+					'auto_shuffle' => $page->auto_shuffle,
+					'shopify_active' => 0,
+					'rss_link' => $return_link_and_last_run,
+					'last_shopify_run' => $last_shopify_run,
+					'count' => count($total_posts),
+					'scheduled_until' => $scheduled_until
+				],
+				REST_Controller::HTTP_OK
+			); // OK (200) being the HTTP response code
 
 		} else {
 			//Set the response and exit
-			$this->response(['status' => true, 'message' => 'Please try again', 'time_slots' => $page->time_slots_rss, 'rss_active' => $page->rss_active, 'shopify_active' => 0, 'rss_link' => $return_link_and_last_run, 'last_shopify_run' => $last_shopify_run], REST_Controller::HTTP_OK); // NOT_FOUND (404) being the HTTP response code
+			$this->response(
+				[
+					'status' => true,
+					'message' => 'Please try again',
+					'time_slots' => $page->time_slots_rss,
+					'rss_active' => $page->rss_active,
+					'auto_shuffle' => $page->auto_shuffle,
+					'shopify_active' => 0,
+					'rss_link' => $return_link_and_last_run,
+					'last_shopify_run' => $last_shopify_run
+				],
+				REST_Controller::HTTP_OK
+			); // NOT_FOUND (404) being the HTTP response code
 
 		}
 	}
@@ -10511,6 +10541,25 @@ class Usersrest extends REST_Controller
 		} else {
 			$this->response(['status' => false, 'message' => 'Something went wrong!!! Please try again'], REST_Controller::HTTP_OK);
 		}
+	}
+
+	public function rss_auto_shufflling_toggle_POST()
+	{
+		$page = $this->post("page");
+		$auto_shuffle = $this->post("auto_shuffle");
+		$type = $this->post("type");
+		if ($type == "facebook") {
+			$this->Publisher_model->update_record("facebook_pages", array("auto_shuffle" => $auto_shuffle), $page);
+		} elseif ($type == "pinterest") {
+			$this->Publisher_model->update_record("pinterest_boards", array("auto_shuffle" => $auto_shuffle), $page);
+		} elseif ($type == "instagram") {
+			$this->Publisher_model->update_record("instagram_users", array("auto_shuffle" => $auto_shuffle), $page);
+		} elseif ($type == "tiktok") {
+			$this->Publisher_model->update_record("tiktok", array("auto_shuffle" => $auto_shuffle), $page);
+		} else {
+			$this->response(['status' => false, 'message' => 'Something went wrong!!! Please try again'], REST_Controller::HTTP_OK);
+		}
+		$this->response(['status' => true, 'message' => 'Your changes have been saved successfully.'], REST_Controller::HTTP_OK);
 	}
 
 	public function tiktok_rss_feed_POST()

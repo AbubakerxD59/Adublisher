@@ -129,6 +129,12 @@
                             $(".rssposting").prop("checked", false);
                         }
 
+                        if (response.auto_shuffle === "1") {
+                            $(".autoshuffling").prop("checked", true);
+                        } else {
+                            $(".autoshuffling").prop("checked", false);
+                        }
+
                         if (response.shopify_active === "1") {
                             $(".shopifyposting").prop("checked", true);
                         } else {
@@ -210,7 +216,7 @@
                 }
             }
         };
-
+        // rss posting
         $(".rssposting").click(function() {
             var selected_type = $('#pages').find('option:selected').data('type');
             if (selected_type == 'pinterest') {
@@ -248,6 +254,45 @@
                         swal({
                             title: "Success!",
                             text: "Rss has been changed successfully!",
+                            type: "success",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    },
+                    error: function() {}
+                });
+            }
+        };
+        // auto shuffling
+        $(".autoshuffling").click(function() {
+            var selected_type = $('#pages').find('option:selected').data('type');
+            auto_shuffle_on_off = "rss_auto_shufflling_toggle";
+            auto_shuffle_toggle(auto_shuffle_on_off, selected_type);
+        });
+
+        function auto_shuffle_toggle(auto_shuffle_on_off, type) {
+            var page = $("#pages").val();
+            if (page != "") {
+                $("#loader").show();
+                var status = "0";
+                if ($(".autoshuffling").is(":checked")) {
+                    status = "1";
+                }
+                var dataOBJ = {
+                    'page': page,
+                    'auto_shuffle': status,
+                    'type': type
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo SITEURL; ?>" + auto_shuffle_on_off,
+                    data: dataOBJ,
+                    dataType: "json",
+                    success: function(response) {
+                        $("#loader").hide();
+                        swal({
+                            title: "Success!",
+                            text: "Auto Shuffle has been changed successfully!",
                             type: "success",
                             showConfirmButton: false,
                             timer: 1500
@@ -1683,6 +1728,11 @@
                             $(".rssposting").prop("checked", true);
                         } else {
                             $(".rssposting").prop("checked", false);
+                        }
+                        if (response.auto_shuffle === "1") {
+                            $(".autoshuffling").prop("checked", true);
+                        } else {
+                            $(".autoshuffling").prop("checked", false);
                         }
 
                         if (response.shopify_active === "1") {
