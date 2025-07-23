@@ -46,7 +46,7 @@
                                 <label for="text">Password</label>
                                 <input type="password" class="signup__input" name="password" placeholder="Atleast 8 characters">
                             </div>
-                            <button class="btn signin__btn">Sign Up</button>
+                            <button class="btn signin__btn">Sign In</button>
                         </form>
                         <div class="signup__text__content">
                             <p>

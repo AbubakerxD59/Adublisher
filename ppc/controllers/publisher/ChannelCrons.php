@@ -314,7 +314,21 @@ class ChannelCrons extends CI_Controller
 
 		foreach ($posts as $post) {
 			$this->Publisher_model->update_record('rsssceduler', ['posted' => '2', 'error' => 'Processing'], $post->id);
-
+			if (isDefaultImage($post->link)) {
+				$link_data = $this->getmetainfo->get_info($post->url, 'other');
+				if (!empty($link_data["image"])) {
+					$post->link = $link_data["image"];
+				} else {
+					sleep(rand(2, 5));
+					$link_data = $this->getmetainfo->get_info($post->url, 'other');
+					if (!empty($link_data["image"])) {
+						$post->link = $link_data["image"];
+					} else {
+						$this->Publisher_model->update_record('rsssceduler', ['posted' => 0, 'error' => null], $post->id);
+						continue;
+					}
+				}
+			}
 			$user_id = $post->user_id;
 			$page = $this->Publisher_model->get_allrecords('facebook_pages', array('user_id' => $user_id, 'id' => $post->page_id));
 			// check for any unknown/bugged timeslots
@@ -393,6 +407,21 @@ class ChannelCrons extends CI_Controller
 		$posts = $this->Publisher_model->rsssceduler_posts("pinterest_scheduler");
 		foreach ($posts as $key => $post) {
 			$this->Publisher_model->update_record('pinterest_scheduler', array('published' => 2, 'error' => 'Processing'), $post->id);
+			if (isDefaultImage($post->image_link)) {
+				$link_data = $this->getmetainfo->get_info($post->url, 'other');
+				if (!empty($link_data["image"])) {
+					$post->image_link = $link_data["image"];
+				} else {
+					sleep(rand(2, 5));
+					$link_data = $this->getmetainfo->get_info($post->url, 'other');
+					if (!empty($link_data["image"])) {
+						$post->image_link = $link_data["image"];
+					} else {
+						$this->Publisher_model->update_record('pinterest_scheduler', ['published' => 0, 'error' => null], $post->id);
+						continue;
+					}
+				}
+			}
 			if ($post->publish_datetime == "0000-00-00 00:00:00") {
 				$this->Publisher_model->delete_record('pinterest_scheduler', $post->id);
 				continue;

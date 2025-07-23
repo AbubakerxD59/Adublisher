@@ -6031,3 +6031,7 @@ function create_rss_image($user_id, $page_id, $link, $type)
 	$CI->Publisher_model->create_record('rss_images', $data);
 	return true;
 }
+
+function isDefaultImage($link){
+	return $link == "http://www.adublisher.com/assets/images/download.png" ? true : false;
+}
