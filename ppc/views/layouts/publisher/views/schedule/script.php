@@ -1871,6 +1871,7 @@
                         $(".refresh").show();
                     }
                     $.each(response.data, function(index, elem) {
+                        console.log('1');
                         tr = create_publish_block(elem);
                         $("#sceduled").append(tr);
                     });

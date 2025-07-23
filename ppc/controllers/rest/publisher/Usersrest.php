@@ -5944,71 +5944,71 @@ class Usersrest extends REST_Controller
 				$new_result[$key]['post_day'] = utcToLocal($row->post_datetime, $user->gmt, "l");
 				$new_result[$key]['post_date'] = utcToLocal($row->post_datetime, $user->gmt, "d F, Y");
 				$new_result[$key]['post_time'] = utcToLocal($row->post_datetime, $user->gmt, "g:i a");
-				$new_result["post_id"] = $row->id;
-				$new_result["source"] = "channels_scheduler";
+				$new_result[$key]["post_id"] = $row->id;
+				$new_result[$key]["source"] = "channels_scheduler";
 			}
 			// published posts
-			foreach ($published_posts as $row) {
-				$published = array();
-				if ($row->type == "pinterest" && empty($boards)) {
-					// Skip items of type 'pinterest' when $boards is empty
-					continue;
-				}
-				if ($row->type == "facebook" && empty($fbpages)) {
-					// Skip items of type 'pinterest' when $boards is empty
-					continue;
-				}
-				if ($row->type == "instagram" && empty($ig_accounts)) {
-					// Skip items of type 'pinterest' when $boards is empty
-					continue;
-				}
-				if ($row->type == "fb_groups" && empty($fb_groups)) {
-					// Skip items of type 'pinterest' when $boards is empty
-					continue;
-				}
+			// foreach ($published_posts as $row) {
+			// 	$published = array();
+			// 	if ($row->type == "pinterest" && empty($boards)) {
+			// 		// Skip items of type 'pinterest' when $boards is empty
+			// 		continue;
+			// 	}
+			// 	if ($row->type == "facebook" && empty($fbpages)) {
+			// 		// Skip items of type 'pinterest' when $boards is empty
+			// 		continue;
+			// 	}
+			// 	if ($row->type == "instagram" && empty($ig_accounts)) {
+			// 		// Skip items of type 'pinterest' when $boards is empty
+			// 		continue;
+			// 	}
+			// 	if ($row->type == "fb_groups" && empty($fb_groups)) {
+			// 		// Skip items of type 'pinterest' when $boards is empty
+			// 		continue;
+			// 	}
 
-				$published['id'] = $row->id;
-				$published['channel_id'] = $row->page_id;
+			// 	$published['id'] = $row->id;
+			// 	$published['channel_id'] = $row->page_id;
 
-				if ($row->type == "facebook") {
-					if (!empty($fbpages)) {
-						$key_search = array_search($row->page_id, array_column($fbpages, 'page_id'));
-						$published['channel_name'] = $fbpages[$key_search]['page_name'];
-					} else {
-						continue;
-					}
-				} else if ($row->type == "pinterest") {
-					if (!empty($boards)) {
-						$key_search = array_search($row->page_id, array_column($boards, 'board_id'));
-						$published['channel_name'] = $boards[$key_search]['name'];
-					} else {
-						continue;
-					}
-				} else if ($row->type == "instagram") {
-					if (!empty($ig_accounts)) {
-						$key_search = array_search($row->page_id, array_column($ig_accounts, 'id'));
-						$published['channel_name'] = $ig_accounts[$key_search]['instagram_username'];
-					} else {
-						continue;
-					}
-				} else {
-					$published['channel_name'] = "N/A";
-				}
-				$published['title'] = ucwords(strtolower(stripslashes($row->title)));
-				$published['link'] = $row->image;
-				$published['link_type'] = "full";
-				$pos = strpos($row->image, 'http');
-				if ($pos === false) {
-					$published['link_type'] = "partial";
-				}
-				$published['type'] = $row->type;
-				$published['post_day'] = utcToLocal($row->post_datetime, $user->gmt, "l");
-				$published['post_date'] = utcToLocal($row->post_datetime, $user->gmt, "d F, Y");
-				$published['post_time'] = utcToLocal($row->post_datetime, $user->gmt, "g:i a");
-				$published["post_id"] = $row->error;
-				$published["source"] = "publish_posts";
-				array_push($new_result, $published);
-			}
+			// 	if ($row->type == "facebook") {
+			// 		if (!empty($fbpages)) {
+			// 			$key_search = array_search($row->page_id, array_column($fbpages, 'page_id'));
+			// 			$published['channel_name'] = $fbpages[$key_search]['page_name'];
+			// 		} else {
+			// 			continue;
+			// 		}
+			// 	} else if ($row->type == "pinterest") {
+			// 		if (!empty($boards)) {
+			// 			$key_search = array_search($row->page_id, array_column($boards, 'board_id'));
+			// 			$published['channel_name'] = $boards[$key_search]['name'];
+			// 		} else {
+			// 			continue;
+			// 		}
+			// 	} else if ($row->type == "instagram") {
+			// 		if (!empty($ig_accounts)) {
+			// 			$key_search = array_search($row->page_id, array_column($ig_accounts, 'id'));
+			// 			$published['channel_name'] = $ig_accounts[$key_search]['instagram_username'];
+			// 		} else {
+			// 			continue;
+			// 		}
+			// 	} else {
+			// 		$published['channel_name'] = "N/A";
+			// 	}
+			// 	$published['title'] = ucwords(strtolower(stripslashes($row->title)));
+			// 	$published['link'] = $row->image;
+			// 	$published['link_type'] = "full";
+			// 	$pos = strpos($row->image, 'http');
+			// 	if ($pos === false) {
+			// 		$published['link_type'] = "partial";
+			// 	}
+			// 	$published['type'] = $row->type;
+			// 	$published['post_day'] = utcToLocal($row->post_datetime, $user->gmt, "l");
+			// 	$published['post_date'] = utcToLocal($row->post_datetime, $user->gmt, "d F, Y");
+			// 	$published['post_time'] = utcToLocal($row->post_datetime, $user->gmt, "g:i a");
+			// 	$published["post_id"] = $row->error;
+			// 	$published["source"] = "publish_posts";
+			// 	array_push($new_result, $published);
+			// }
 			// youtube posts
 			foreach ($yt_scheduled as $yt_key => $yt_row) {
 				if (empty($yt_channels)) {
@@ -6030,6 +6030,7 @@ class Usersrest extends REST_Controller
 				);
 				array_push($new_result, $yt_record);
 			}
+			// dd([$new_result]);
 
 			$this->response(['status' => true, 'data' => $new_result], REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
 		} else {
