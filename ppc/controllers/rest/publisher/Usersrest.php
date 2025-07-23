@@ -5945,6 +5945,7 @@ class Usersrest extends REST_Controller
 				$new_result[$key]['post_date'] = utcToLocal($row->post_datetime, $user->gmt, "d F, Y");
 				$new_result[$key]['post_time'] = utcToLocal($row->post_datetime, $user->gmt, "g:i a");
 				$new_result["post_id"] = $row->id;
+				$new_result["source"] = "channels_scheduler";
 			}
 			// published posts
 			foreach ($published_posts as $row) {
@@ -6005,6 +6006,7 @@ class Usersrest extends REST_Controller
 				$published['post_date'] = utcToLocal($row->post_datetime, $user->gmt, "d F, Y");
 				$published['post_time'] = utcToLocal($row->post_datetime, $user->gmt, "g:i a");
 				$published["post_id"] = $row->error;
+				$published["source"] = "publish_posts";
 				array_push($new_result, $published);
 			}
 			// youtube posts
@@ -7025,8 +7027,9 @@ class Usersrest extends REST_Controller
 	public function delete_post_GET()
 	{
 		$user_id = App::Session()->get('userid');
+		$id = $this->get("id");
 		$type = $this->get("type");
-		$account = $this->get("account");
+		$source = $this->get("source");
 		$post_id = $this->get("post_id");
 		$account_id = $this->get("account_id");
 		try {
@@ -7037,7 +7040,7 @@ class Usersrest extends REST_Controller
 					$this->load->library('facebook');
 					$response = $this->facebook->request('delete', "/" . $post_id, [], (string) $fb_page->access_token);
 					if (isset($response["success"])) {
-						// $this->Publisher_model->delete_where($table, $where);
+						$this->Publisher_model->delete_record($source, $id);
 						$response = [
 							"success" => true,
 							"message" => "Post delete Successfully!"

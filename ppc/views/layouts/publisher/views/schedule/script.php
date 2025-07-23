@@ -923,7 +923,11 @@
 
         }
         node += '<p class="my-1" style="height:35px;overflow: auto;" title="' + elem.title + '">';
-        node += '<strong>' + elem.title.slice(0, 30) + '...</strong></p>';
+        if (elem.title != '' && elem.title != null) {
+            node += '<strong>' + elem.title.slice(0, 30) + '...</strong></p>';
+        } else {
+            node += '<strong></strong></p>';
+        }
         // chech if type is facebook 
         if (elem.type == "facebook") {
             node += '<div class="d-flex justify-content-between">';
@@ -931,13 +935,12 @@
                 '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green; zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_logo + '" class="rounded-circle mr-2" alt="' + facebook_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
             node +=
-                '<button class="btn btn-rounded p-1 px-2 m-2 text-danger delete_post" style="border: 1px solid red; zoom:0.80;" data-id="' + post_id + '" data-account="' + elem.channel_name + '" data-account_id="' + elem.channel_id + '" data-type="Facebook"><b><p class="m-0"><span>Delete</span></p></b></button>'
+                '<button class="btn btn-rounded p-1 px-2 m-2 text-danger delete_post" style="border: 1px solid red; zoom:0.80;" data-post_id="' + post_id + '" data-id="' + elem.id + '" data-account_id="' + elem.channel_id + '" data-type="Facebook" data-source="' + elem.source + '" data-account="' + elem.channel_name + '"><b><p class="m-0"><span>Delete</span></p></b></button>'
             node += '</div>';
         } else if (elem.type == "pinterest") {
             node +=
                 '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + facebook_page_icon + '" class="rounded-circle mr-2" alt="' + pinterest_logo + '">' +
                 '<b>' + elem.channel_name + '</b></p> </button>'
-
         } else if (elem.type == "instagram") {
             node +=
                 '<button class="btn btn-rounded p-1 pr-2 m-2" style="border: 1px solid green;zoom:0.80;"> <p class="m-0"><img style="width:35px;height:35px;" src="' + instagram_account_icon + '" class="rounded-circle mr-2" alt="' + instagram_logo + '">' +
@@ -2381,10 +2384,12 @@
     });
 
     $(document).on("click", ".delete_post", function() {
-        var post_id = $(this).data("id");
-        var account = $(this).data("account");
+        var id = $(this).data("id");
+        var post_id = $(this).data("post_id");
         var account_id = $(this).data("account_id");
+        var account = $(this).data("account");
         var type = $(this).data("type");
+        var source = $(this).data("source");
         swal({
             title: `Delete POST from ${account}`,
             text: `You are about to Delete this Post from ${account} on ${type}. Do you want to proceed?`,
@@ -2400,8 +2405,9 @@
                     type: "GET",
                     url: "<?php echo SITEURL; ?>delete_post",
                     data: {
+                        "id": id,
                         "type": type,
-                        "account": account,
+                        "source": source,
                         "post_id": post_id,
                         "account_id": account_id,
                     },
