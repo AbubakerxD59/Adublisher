@@ -1,7 +1,0 @@
-.rte_command_insertvideo, .rte_command_insertdocument, .rte_command_inserttemplate{
-    display: none;
-}
-#gallery_preview> img, #thumbnail_preview{
-    padding: 2px;
-    border-radius: 15px;
-}
