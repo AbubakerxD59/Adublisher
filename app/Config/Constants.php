@@ -131,3 +131,28 @@ define('BulkAssets', BASEURL . 'assets/bulkuploads/'); // database error
 define('AdminAssets', BASEURL . 'assets/admin/'); // database error
 define('PubLandingpageAssets', BASEURL . 'assets/landingpage/');
 define('SERVER_TZ', 'America/Toronto');
+// Test credential
+define('STRIPE_PUBLISHABLE_KEY', '');
+define('STRIPE_SECRET_KEY', '');
+defined('PINTEREST_CLIENT_ID') || define('PINTEREST_CLIENT_ID', '');
+defined('PINTEREST_CLIENT_SECRET') || define('PINTEREST_CLIENT_SECRET', '');
+// facebook credentials
+defined('FACEBOOK_CLIENT_ID') || define('FACEBOOK_CLIENT_ID', '');
+defined('FACEBOOK_CLIENT_SECRET') || define('FACEBOOK_CLIENT_SECRET', '');
+// instagram credentials
+defined('INSTAGRAM_CLIENT_ID') || define('INSTAGRAM_CLIENT_ID', '');
+defined('INSTAGRAM_CLIENT_SECRET') || define('INSTAGRAM_CLIENT_SECRET', '');
+defined('REVIEW_REQUEST') || define('REVIEW_REQUEST', '');
+// google auth credentials
+defined('GOOGLE_CLIENT_ID') || define('GOOGLE_CLIENT_ID', "");
+defined('GOOGLE_CLIENT_SECRET') || define('GOOGLE_CLIENT_SECRET', "");
+// AWS S3 Bucket credentials
+defined('S3_BUCKET') || define('S3_BUCKET', "");
+defined('S3_CLIENT_KEY') || define('S3_CLIENT_KEY', "");
+defined('S3_CLIENT_SECRET') || define('S3_CLIENT_SECRET', "");
+// CALENDARIFIC
+defined('CALENDARIFIC_API_KEY') || define('CALENDARIFIC_API_KEY', "");
+// TIKTOK
+defined('TIKTOK_CLIENT_KEY') || define('TIKTOK_CLIENT_KEY', '');
+defined('TIKTOK_CLIENT_SECRET') || define('TIKTOK_CLIENT_SECRET', '');
+defined('TIKTOK_REDIRECT_URI') || define('TIKTOK_REDIRECT_URI', SITEURL . '');
