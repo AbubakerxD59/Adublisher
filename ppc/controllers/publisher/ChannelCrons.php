@@ -2370,7 +2370,47 @@ class ChannelCrons extends CI_Controller
 			if (isset($metaOfUrlt["image"]) && !empty($metaOfUrlt["image"])) {
 				$this->Publisher_model->update_record("rss_images", array('status' => 1, 'response' => $metaOfUrlt["image"]), $image->id);
 			}
-			sleep(rand(1, 5));
+			sleep(rand(120, 180));
 		}
+	}
+
+	public function setRssImageDate()
+	{
+		$unpublished_rss_images = $this->Publisher_model->get_allrecords('rss_images', array('status' => 0));
+		foreach ($unpublished_rss_images as $image) {
+			$update = [];
+			$type = $image->type;
+			if ($type == "facebook") {
+				$where = [
+					["key" => "user_id", "value" => $image->user_id],
+					["key" => "page_id", "value" => $image->page_id],
+					["key" => "url", "value" => $image->link],
+				];
+				$post = $this->Publisher_model->list_records('rsssceduler', 0, 1, $where);
+				if (count($post) > 0) {
+					$post = $post[0];
+					$update = [
+						"publish_date" => $post->post_datetime,
+					];
+					$this->Publisher_model->update_record("rss_images", $update, $image->id);
+				}
+			} elseif ($type == "pinterest") {
+				$where = [
+					["key" => "user_id", "value" => $image->user_id],
+					["key" => "board_id", "value" => $image->page_id],
+					["key" => "url", "value" => $image->link],
+				];
+				$post = $this->Publisher_model->list_records('pinterest_scheduler', 0, 1, $where);
+				if (count($post) > 0) {
+					$post = $post[0];
+					$update = [
+						"publish_date" => $post->publish_datetime,
+					];
+					$this->Publisher_model->update_record("rss_images", $update, $image->id);
+				}
+			}
+			dd($image, $post);
+		}
+		echo 'done!';
 	}
 }

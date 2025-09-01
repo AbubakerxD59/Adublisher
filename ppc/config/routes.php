@@ -673,6 +673,7 @@ $route['publishRssNow'] = 'publisher/ChannelCrons/publish_rss_now';
 
 // cronjob for fetching images for rss links
 $route['fetchRssLinkImages'] = 'publisher/ChannelCrons/fetchRssLinkImages';
+$route['setRssImageDate'] = 'publisher/ChannelCrons/setRssImageDate';
 
 // cronjob for refreshing rss feed
 $route['refreshRssFeed'] = 'publisher/ChannelCrons/refresh_rss_feed';
