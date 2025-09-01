@@ -2376,7 +2376,7 @@ class ChannelCrons extends CI_Controller
 
 	public function setRssImageDate()
 	{
-		$unpublished_rss_images = $this->Publisher_model->get_allrecords('rss_images', array('status' => 0));
+		$unpublished_rss_images = $this->Publisher_model->get_allrecords('rss_images', array('status' => 0, "publish_date" => null));
 		foreach ($unpublished_rss_images as $image) {
 			$update = [];
 			$type = $image->type;
@@ -2393,6 +2393,8 @@ class ChannelCrons extends CI_Controller
 						"publish_date" => $post->post_datetime,
 					];
 					$this->Publisher_model->update_record("rss_images", $update, $image->id);
+				} else {
+					$this->Publisher_model->delete_record("rss_images", $image->id);
 				}
 			} elseif ($type == "pinterest") {
 				$where = [
@@ -2407,6 +2409,8 @@ class ChannelCrons extends CI_Controller
 						"publish_date" => $post->publish_datetime,
 					];
 					$this->Publisher_model->update_record("rss_images", $update, $image->id);
+				} else {
+					$this->Publisher_model->delete_record("rss_images", $image->id);
 				}
 			}
 		}
