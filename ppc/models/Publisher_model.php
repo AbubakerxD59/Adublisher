@@ -5502,6 +5502,7 @@ class Publisher_model extends CI_Model
 		$query = $this->db->where("status", 0);
 		$query = $this->db->where('publish_date >=', $date["start"]);
 		$query = $this->db->where('publish_date <=', $date["end"]);
+		$query = $this->db->order_by('publish_date', 'ASC');
 		$query = $this->db->get($table, 10, 0);
 		return $query->result();
 	}
