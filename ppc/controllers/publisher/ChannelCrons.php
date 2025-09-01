@@ -2409,7 +2409,6 @@ class ChannelCrons extends CI_Controller
 					$this->Publisher_model->update_record("rss_images", $update, $image->id);
 				}
 			}
-			dd($image, $post);
 		}
 		echo 'done!';
 	}
