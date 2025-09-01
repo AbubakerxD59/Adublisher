@@ -2343,10 +2343,12 @@ class ChannelCrons extends CI_Controller
 
 	public function fetchRssLinkImages()
 	{
-		$where = [
-			["key" => "status", "value" => "0"]
-		];
-		$unpublished_rss_images = $this->Publisher_model->list_records('rss_images', 0, 10, $where);
+		$date = array(
+			"start" => date("Y-m-d 00:00:00"),
+			"end" => date("Y-m-d 23:59:59", strtotime("+1 days")),
+		);
+		$unpublished_rss_images = $this->Publisher_model->get_rss_images('rss_images', $date);
+		dd($unpublished_rss_images);
 		print_pre($unpublished_rss_images);
 		foreach ($unpublished_rss_images as $image) {
 			$type = $image->type;

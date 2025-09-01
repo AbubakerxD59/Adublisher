@@ -5496,4 +5496,13 @@ class Publisher_model extends CI_Model
 		}
 		return $common_name;
 	}
+
+	public function get_rss_images($table, $date)
+	{
+		$query = $this->db->where("status", 0);
+		$query = $this->db->where('publish_date >=', $date["start"]);
+		$query = $this->db->where('publish_date <=', $date["end"]);
+		$query = $this->db->get($table, 10, 0);
+		return $query->result();
+	}
 }
