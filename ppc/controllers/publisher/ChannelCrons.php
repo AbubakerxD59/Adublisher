@@ -2348,7 +2348,6 @@ class ChannelCrons extends CI_Controller
 			"end" => date("Y-m-d 23:59:59", strtotime("+1 days")),
 		);
 		$unpublished_rss_images = $this->Publisher_model->get_rss_images('rss_images', $date);
-		dd($unpublished_rss_images);
 		print_pre($unpublished_rss_images);
 		foreach ($unpublished_rss_images as $image) {
 			$type = $image->type;
