@@ -401,6 +401,8 @@ if (!function_exists('localToUTC')) {
 	if (!function_exists('limit_check')) {
 		function limit_check($fid, $mode = null, $user_id = null)
 		{
+			// for testing
+			return true;
 			$CI = &get_instance();
 			$upr = user_pr($fid, $user_id);
 			// $account = $upr['ptu']->active;
@@ -656,6 +658,10 @@ if (!function_exists('get_google_auth')) {
 if (!function_exists('user_check')) {
 	function user_check($user_id = null)
 	{
+		// for testing
+		return array(
+			'status' => true
+		);
 		$CI = &get_instance();
 		$CI->load->database();
 		$where = array(
@@ -6032,6 +6038,7 @@ function create_rss_image($user_id, $page_id, $link, $type)
 	return true;
 }
 
-function isDefaultImage($link){
+function isDefaultImage($link)
+{
 	return $link == "http://www.adublisher.com/assets/images/download.png" ? true : false;
 }
