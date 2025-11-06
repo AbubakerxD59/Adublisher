@@ -42,51 +42,83 @@ class Home extends CI_Controller
 	}
 	public function calendar_view()
 	{
-		$this->load->view('layouts/publisher/client_side/calendar_view');
+		if (MAINTENANCE) {
+			$this->load->view('maintenance_view');
+		} else {
+			$this->load->view('layouts/publisher/client_side/calendar_view');
+		}
 	}
 
 	public function analytic_view()
 	{
-		$this->load->view('layouts/publisher/client_side/analytic_view');
+		if (MAINTENANCE) {
+			$this->load->view('maintenance_view');
+		} else {
+			$this->load->view('layouts/publisher/client_side/analytic_view');
+		}
 	}
 
 	public function automation_view()
 	{
-		$this->load->view('layouts/publisher/client_side/rss_feed_view');
+		if (MAINTENANCE) {
+			$this->load->view('maintenance_view');
+		} else {
+			$this->load->view('layouts/publisher/client_side/rss_feed_view');
+		}
 	}
 
 	public function bulk_schedule_view()
 	{
-		$this->load->view('layouts/publisher/client_side/bulk_schedule_view');
+		if (MAINTENANCE) {
+			$this->load->view('maintenance_view');
+		} else {
+			$this->load->view('layouts/publisher/client_side/bulk_schedule_view');
+		}
 	}
 
 	public function recycle_view()
 	{
-		$this->load->view('layouts/publisher/client_side/recycle_view');
+		if (MAINTENANCE) {
+			$this->load->view('maintenance_view');
+		} else {
+			$this->load->view('layouts/publisher/client_side/recycle_view');
+		}
 	}
 
 	public function curate_post_view()
 	{
-		$this->load->view('layouts/publisher/client_side/curate_post_view');
+		if (MAINTENANCE) {
+			$this->load->view('maintenance_view');
+		} else {
+			$this->load->view('layouts/publisher/client_side/curate_post_view');
+		}
 	}
 
 	public function pricing_view()
 	{
-		$this->load->view('layouts/publisher/client_side/pricing_view');
+		if (MAINTENANCE) {
+			$this->load->view('maintenance_view');
+		} else {
+			$this->load->view('layouts/publisher/client_side/pricing_view');
+		}
 	}
 
 	public function blog_view()
 	{
-		$data = [];
-		$where = array(
-			[
-				'key' => 'status',
-				'value' => 1,
-			]
-		);
-		$data['latest_blog'] = $this->Publisher_model->list_records('blogs', 0, 1, $where, 'id', 'desc');
-		$data['blogs'] = $this->Publisher_model->list_records('blogs', 0, 100000, $where, 'id', 'desc');
-		$this->load->view('layouts/publisher/client_side/blog_view', $data);
+		if (MAINTENANCE) {
+			$this->load->view('maintenance_view');
+		} else {
+			$data = [];
+			$where = array(
+				[
+					'key' => 'status',
+					'value' => 1,
+				]
+			);
+			$data['latest_blog'] = $this->Publisher_model->list_records('blogs', 0, 1, $where, 'id', 'desc');
+			$data['blogs'] = $this->Publisher_model->list_records('blogs', 0, 100000, $where, 'id', 'desc');
+			$this->load->view('layouts/publisher/client_side/blog_view', $data);
+		}
 	}
 
 	public function product_updates()
